@@ -206,7 +206,7 @@ function Keno5() {
 			money: item1.length * newMoney,
 		};
 		axios
-			.post("https://server.st666.pro/history3/choose", formData)
+			.post("https://server.st666.pro/history5/choose", formData)
 			.then((res) => swal("Đặt cược thành công", "", "success"))
 			.catch((err) => swal("Thất bại", "Số tiền trong ví không đủ", "error"));
 	};

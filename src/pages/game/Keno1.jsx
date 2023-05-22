@@ -250,7 +250,7 @@ function Keno1() {
 	}
 	function getHistoryBet() {
 		axios
-			.get(`https://server.st666.pro/history/historyus`, {})
+			.get(`https://server.st666.pro/history1/historyus`, {})
 			.then((res) => {
 				setHistoryGame(res.data.data);
 			})
