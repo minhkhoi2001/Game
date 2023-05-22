@@ -367,6 +367,7 @@ function Loxien3() {
 												justifyContent: "center",
 											}}
 										>
+											{total[0].dacbiet}
 										</div>
 									</div>
 								</>

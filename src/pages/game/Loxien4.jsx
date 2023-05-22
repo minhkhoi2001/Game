@@ -360,13 +360,14 @@ function Loxien4() {
 											Kết quả phiên
 											<b style={{ color: "#333" }}>{total[0]?.id_bet}</b>
 										</div>
-										<div
+											<div
 											className="ball_xs"
 											style={{
 												margin: "0.3rem auto",
 												justifyContent: "center",
 											}}
 										>
+											{total[0].dacbiet}
 										</div>
 									</div>
 								</>
