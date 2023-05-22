@@ -159,7 +159,7 @@ function Keno1() {
 	}, [update, dulieunhap]);
 
 	useEffect(() => {
-		let curTime_second = Math.floor(60 - (date - dulieunhap) / 1000);
+		let curTime_second = Math.floor(180 - (date - dulieunhap) / 1000);
 		let myTimeout = 0;
 		if (start) {
 			setSecond(curTime_second % 60);
@@ -206,7 +206,7 @@ function Keno1() {
 			money: item1.length * newMoney,
 		};
 		axios
-			.post("https://server.st666.pro/history3/choose", formData)
+			.post("https://server.st666.pro/history/choose", formData)
 			.then((res) => swal("Đặt cược thành công", "", "success"))
 			.catch((err) => swal("Thất bại", "Số tiền trong ví không đủ", "error"));
 	};
