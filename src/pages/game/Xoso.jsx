@@ -356,7 +356,7 @@ function Xoso() {
 										className="info_bet"
 									>
 										<div style={{ fontSize: "0.33rem" }}>
-											Kết quả phiên
+											Kết quả phiên {" "}
 											<b style={{ color: "#333" }}>{total[0].id_bet}</b>
 										</div>
 										<div
@@ -465,11 +465,11 @@ function Xoso() {
 												}}
 											>
 												<span style={{ marginRight: "5px" }}>
-													Đã chọn
+													Đã chọn {" "}
 													<span style={{ color: "red" }}>{item1.length},</span>
 												</span>
 												<span>
-													Tổng tiền cược
+													Tổng tiền cược {" "}
 													<span style={{ color: "red" }}>
 														{item1.length != 0 && newMoney
 															? (item1.length * newMoney).toLocaleString()
