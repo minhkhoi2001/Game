@@ -1,17 +1,17 @@
 import { Link } from "react-router-dom";
 import axios from "axios";
-
 import { useEffect, useState } from "react";
-import RemoveRedEyeIcon from "@mui/icons-material/RemoveRedEye";
-import ArrowDropDownIcon from "@mui/icons-material/ArrowDropDown";
-
+import Visibility from "@mui/icons-material/Visibility";
+import VisibilityOff from "@mui/icons-material/VisibilityOff";
 import swal from "sweetalert";
-import ArrowBackOutlinedIcon from "@mui/icons-material/ArrowBackOutlined";
+import Footer from "../../components/Footer/Footer";
+import { GetNameChoose } from "../../funcUtils";
 
 function Xoso() {
 	const [isVisible, setVisible] = useState(null);
 	const [bet, setBet] = useState(null);
 	const [profile, setProfile] = useState(null);
+	const [historyGame, setHistoryGame] = useState(null);
 	const [second, setSecond] = useState(0);
 	const [minute, setMinute] = useState(1);
 	const [start, setStart] = useState(false);
@@ -43,52 +43,56 @@ function Xoso() {
 		}
 	);
 	useEffect(() => {
-		axios.get(`http://localhost/auth/getUser`, {}).then((res) => {
+		axios.get(`https://server.st666.pro/auth/getUser`, {}).then((res) => {
 			setProfile(res.data.data);
 		});
-		axios.get(`http://localhost/setting/get`, {}).then((res) => {
+		axios.get(`https://server.st666.pro/setting/get`, {}).then((res) => {
 			setSetting(res.data.data[0]);
 		});
-		axios.get(`http://localhost/Xoso/get`).then((res) => {
+		axios.get(`https://server.st666.pro/bet1/get`).then((res) => {
 			setBet(res.data.data);
 			setDulieunhap(new Date(res.data.data.createdAt));
 			setStart(true);
 		});
 		axios
-			.get(`http://localhost/bet1/getallbet`, {})
+			.get(`https://server.st666.pro/bet1/getallbet`, {})
 			.then((res) => {
 				setTotal(res.data.data);
 			})
 			.catch(() => setTotal(null));
-		axios.get(`http://localhost/notification/getnotifi`, {}).then((res) => {
-			setVisible({
-				money: res.data.data[0].money.toLocaleString(),
-				id: res.data.data[0]._id,
+		axios
+			.get(`https://server.st666.pro/notification/getnotifi`, {})
+			.then((res) => {
+				setVisible({
+					money: res.data.data[0].money.toLocaleString(),
+					id: res.data.data[0]._id,
+				});
 			});
-		});
 	}, []);
 	useEffect(() => {
 		const timer = setInterval(() => {
-			if (Math.floor(1800 - (new Date() - dulieunhap) / 1000) < 0) {
-				axios.get(`http://localhost/auth/getUser`, {}).then((res) => {
+			if (Math.floor(60 - (new Date() - dulieunhap) / 1000) < 0) {
+				axios.get(`https://server.st666.pro/auth/getUser`, {}).then((res) => {
 					setProfile(res.data.data);
 				});
-				axios.get(`http://localhost/bet1/get`).then((res) => {
+				axios.get(`https://server.st666.pro/bet1/get`).then((res) => {
 					setBet(res.data.data);
 					setDulieunhap(new Date(res.data.data.createdAt));
 				});
 				axios
-					.get(`http://localhost/bet1/getallbet`, {})
+					.get(`https://server.st666.pro/bet1/getallbet`, {})
 					.then((res) => {
 						setTotal(res.data.data);
 					})
 					.catch(() => setTotal(null));
-				axios.get(`http://localhost/notification/getnotifi`, {}).then((res) => {
-					setVisible({
-						money: res.data.data[0].money.toLocaleString(),
-						id: res.data.data[0]._id,
+				axios
+					.get(`https://server.st666.pro/notification/getnotifi`, {})
+					.then((res) => {
+						setVisible({
+							money: res.data.data[0].money.toLocaleString(),
+							id: res.data.data[0]._id,
+						});
 					});
-				});
 			}
 		}, 500);
 
@@ -112,7 +116,7 @@ function Xoso() {
 			switch (result) {
 				case "submit":
 					// clear everything here!!
-					axios.post("http://localhost/notification/seen", {
+					axios.post("https://server.st666.pro/notification/seen", {
 						id: data.id,
 					});
 					break;
@@ -126,7 +130,7 @@ function Xoso() {
 		}
 	}, [isVisible]);
 	useEffect(() => {
-		let curTime_second = Math.floor(1800 - (date - dulieunhap) / 1000);
+		let curTime_second = Math.floor(60 - (date - dulieunhap) / 1000);
 
 		let myTimeout;
 
@@ -139,7 +143,7 @@ function Xoso() {
 			return () => {
 				clearTimeout(myTimeout);
 			};
-		} else if (curTime_second < 1800 && curTime_second >= 0) {
+		} else if (curTime_second < 60 && curTime_second >= 0) {
 			setSecond(curTime_second % 60);
 			setMinute((curTime_second - (curTime_second % 60)) / 60);
 			setStart(true);
@@ -155,15 +159,15 @@ function Xoso() {
 	}, [update, dulieunhap]);
 
 	useEffect(() => {
-		let curTime_second = Math.floor(1800 - (date - dulieunhap) / 1000);
+		let curTime_second = Math.floor(60 - (date - dulieunhap) / 1000);
 		let myTimeout = 0;
 		if (start) {
 			setSecond(curTime_second % 60);
 			setMinute(Math.floor(curTime_second / 60));
 
-			if (curTime_second > 1800 || curTime_second <= 0) {
+			if (curTime_second > 60 || curTime_second <= 0) {
 				setStart(false);
-				setMinute(30);
+				setMinute(1);
 				setSecond(0);
 				return () => {
 					clearTimeout(myTimeout);
@@ -178,7 +182,14 @@ function Xoso() {
 		};
 	}, [second, start, dulieunhap]);
 
-	const [showPopup, setShowPopup] = useState(false);
+	const [isOpen, setIsOpen] = useState(false);
+	const openPopup = () => {
+		setIsOpen(true);
+	};
+	const closePopup = () => {
+		setIsOpen(false);
+	};
+
 	const onChoose = (e) => {
 		console.log(e.target.id);
 		if (item1.includes(e.target.id)) {
@@ -195,9 +206,9 @@ function Xoso() {
 			money: item1.length * newMoney,
 		};
 		axios
-			.post("http://localhost/history1/choose", formData)
-			.then((res) => swal("Chọn thành công"))
-			.catch((err) => swal("Chọn không thành công"));
+			.post("https://server.st666.pro/history1/choose", formData)
+			.then((res) => swal("Đặt cược thành công", "", "success"))
+			.catch((err) => swal("Thất bại", "Số tiền trong ví không đủ", "error"));
 	};
 	function formatDate(m) {
 		new Date(m);
@@ -214,28 +225,66 @@ function Xoso() {
 		return dateString;
 	}
 	const [newMoney, setNewMoney] = useState();
+
+	const [activeTab, setActiveTab] = useState("tab1");
+
+	const handleTabClick = (tabName) => {
+		setActiveTab(tabName);
+		getHistoryBet();
+	};
+
+	useEffect(() => {
+		if (minute == 0 && second == 0) {
+			runSlotEffect();
+		}
+	}, [minute, second]);
+
+	const slotTransforms = document.querySelectorAll(".slot-transform");
+	function runSlotEffect() {
+		slotTransforms.forEach((slotTransform) => {
+			slotTransform.classList.add("slot-scroll");
+			setTimeout(() => {
+				slotTransform.classList.remove("slot-scroll");
+			}, 3000);
+		});
+	}
+	function getHistoryBet() {
+		axios
+			.get(`https://server.st666.pro/history/historyus`, {})
+			.then((res) => {
+				setHistoryGame(res.data.data);
+			})
+			.catch((err) => function () {});
+	}
 	return (
 		<>
-			<div className="app1">
-				<div className="info_profile">
-					<div className="cycle_bet">
-						<Link style={{ color: "white" }} to="/">
-							<ArrowBackOutlinedIcon />
-						</Link>
-						<span className="title_game_header"> Kendo Xổ số</span>
-					</div>
-					<div style={{ display: "flex", float: "right" }}>
-						{isShow && profile ? (
-							<span style={{ color: "white", marginRight: "15px" }}>
-								{Number(profile.money).toLocaleString()}đ
-							</span>
-						) : null}
-						<div
-							onClick={() => {
-								setShow(!isShow);
-							}}
-						>
-							<RemoveRedEyeIcon />
+			<div className="main">
+				<div className="header">
+					<div className="header-top">
+						<div className="logo">
+							<Link to="/">
+								<img src={require("../../img/vietllot.png")} alt="Logo" />
+							</Link>
+						</div>
+						<div className="header-right">
+							<div style={{ display: "flex", float: "right" }}>
+								{isShow && profile ? (
+									<span style={{ marginRight: "0.111rem" }}>
+										Số dư: <b>{Number(profile.money).toLocaleString()}đ</b>
+									</span>
+								) : (
+									<span style={{ marginRight: "0.111rem" }}>
+										Số dư: <b>******đ</b>
+									</span>
+								)}
+								<div
+									onClick={() => {
+										setShow(!isShow);
+									}}
+								>
+									{isShow ? <VisibilityOff /> : <Visibility />}
+								</div>
+							</div>
 						</div>
 					</div>
 				</div>
@@ -246,16 +295,38 @@ function Xoso() {
 							{bet ? (
 								<>
 									<div className="info_bet">
-										Phiên số {bet.id_bet}
-										<div className="count">
-											{minute} : {second < 10 ? "0" : ""}
-											{second}
+										<div style={{ fontSize: "0.33rem" }}>
+											Phiên số <b style={{ color: "#333" }}>{bet.id_bet}</b>
 										</div>
 									</div>
 								</>
 							) : (
 								<span></span>
 							)}
+							{total ? (
+								<>
+									<div className="info_bet">
+										<div
+											className="count"
+											style={{
+												margin: "0.3rem auto",
+												justifyContent: "center",
+											}}
+										>
+											<div>0</div>
+											<div>{minute}</div>
+											<div className="notime">:</div>
+											{second < 10 ? <div>0</div> : ""}
+											{second
+												.toString()
+												.split("")
+												.map((item, index) => (
+													<div key={index}>{item}</div>
+												))}
+										</div>
+									</div>
+								</>
+							) : null}
 						</div>
 						<div className="col-50">
 							{total ? (
@@ -263,13 +334,15 @@ function Xoso() {
 									<div
 										style={{ cursor: "pointer" }}
 										onClick={() => {
-											setShowPopup(!showPopup);
+											//setShowPopup(!showPopup);
 										}}
 										className="info_bet"
 									>
-										Kết quả phiên số {total[0].id_bet}{" "}
-										<ArrowDropDownIcon sx={{ marginBottom: "-5px" }} />
-										<div className="ball_xs">
+										<div style={{ fontSize: "0.33rem" }}>
+											Kết quả phiên{" "}
+											<b style={{ color: "#333" }}>{total[0].id_bet}</b>{" "}
+										</div>
+										<div className="ball_xs" style={{ margin: "0.3rem auto", justifyContent: "center" }}>
 											{total[0].result.split(" ").map((item) => (
 												<div className="ball">{item}</div>
 											))}
@@ -278,112 +351,141 @@ function Xoso() {
 								</>
 							) : null}
 						</div>
-					</div>
-					{showPopup && (
-						<div className="award_tb">
-							<table>
-								<thead>
-									<tr>
-										<td style={{ textAlign: "center" }}>Phiên số</td>
-										<td style={{ textAlign: "center" }}>Kết quả giải thưởng</td>
-										<td style={{ textAlign: "center" }}>Kết quả</td>
-									</tr>
-								</thead>
-								<tbody>
-									<tr>
-										<td style={{ textAlign: "center" }}>{bet && bet.id_bet}</td>
-										<td style={{ textAlign: "center" }}>Đang chờ kết quả</td>
-										<td style={{ textAlign: "center" }}>
-											{bet && formatDate(new Date(bet.createdAt))}
-										</td>
-									</tr>
-									{total &&
-										total.map((item, index) => (
-											<>
-												<tr
-													key={index}
-													style={{
-														backgroundColor: `${index % 2 == 1 && "#f4f4f4"}`,
-													}}
-												>
-													<td style={{ textAlign: "center" }}>{item.id_bet}</td>
-													<td
-														style={{
-															textAlign: "center",
-															display: "flex",
-															justifyContent: "center",
-														}}
-													>
-														{item.result.split(" ").map((x) => (
-															<div className="redball">{x}</div>
-														))}
-													</td>
-													<td style={{ textAlign: "center" }}>
-														{formatDate(new Date(item.createdAt))}
-													</td>
-												</tr>
-											</>
-										))}
-								</tbody>
-							</table>
-						</div>
-					)}
-					<div className="route_game">
-						<div className="route_game_container"></div>
-						<div className="text_choose_center">
-							{Array.from(Array(100), (e, i) => {
-								return <div key={i}>{i<10?`0${i}`:`${i}`}</div>;
-							})}
-						</div>
-					</div>
-				</div>
-			</div>
-
-			<div className="bg-menu1">
-				<form onSubmit={onSubmit}>
-					<div className="footer_choose">
-						<div className="title_choose_footer">
-							<div className="item_choose_footer">
-								<div style={{ display: "flex", alignItems: "center" }}>
-									Số tiền cược:{" "}
-									<input
-										value={newMoney}
-										onChange={(e) => setNewMoney(e.target.value)}
-										required
-										min="1"
-										name="money"
-										type="number"
-										placeholder="Chọn số tiền cược"
-									/>
-								</div>
-								<div style={{ display: "flex", alignItems: "center" }}>
-									<span style={{ marginRight: "5px" }}>
-										Đã chọn{" "}
-										<span style={{ color: "red" }}>{item1.length},</span>
-									</span>
-									<span>
-										Tổng số{" "}
-										<span style={{ color: "red" }}>
-											{item1.length != 0 && newMoney
-												? (item1.length * newMoney).toLocaleString()
-												: 0}{" "}
-											đ
-										</span>
-									</span>
-								</div>
-							</div>
-							<div
-								style={{ justifyContent: "flex-end" }}
-								className="item_choose_footer"
-							>
-								<button type="submit" className="btn-sbmit">
-									Đặt lệnh
+						<div className="col-100">
+							<div style={{display:"flex"}}>
+								<button className="btn-mini" onClick={openPopup}>
+									Hướng dẫn cách chơi
+								</button>
+								<button
+									className="btn-mini"
+									onClick={openPopup}
+									style={{ border: "1px solid #00b977", color: "#00b977" }}
+								>
+									Chi tiết kết quả
+								</button>
+								<button
+									className="btn-mini"
+									onClick={openPopup}
+									style={{ border: "1px solid #477bff", color: "#477bff" }}
+								>
+									Lịch sử của bạn
 								</button>
 							</div>
 						</div>
 					</div>
-				</form>
-				<div className="footer"></div>
+				</div>
+
+				<div className="main_game">
+					<div className="route_game">
+						<div className="text_choose_center">
+							<div className="bet_state">Chọn Số</div>
+							<div className="state_choose">
+								<div
+									onClick={onChoose}
+									className={`state_rowindex ${
+										item1.includes("1") ? "chooseItem" : ""
+									}`}
+									id="1"
+								>
+									<i id="1" className="state">
+										T
+									</i>
+									<span id="1" className="setting_type">
+										{setting && setting.doiben}
+									</span>
+								</div>
+								<div
+									onClick={onChoose}
+									id="2"
+									className={`state_rowindex ${
+										item1.includes("2") ? "chooseItem" : ""
+									}`}
+								>
+									<i id="2" className="state">
+										X
+									</i>
+									<span id="2" className="setting_type">
+										{setting && setting.doiben}
+									</span>
+									</div>
+							</div>
+						</div>
+					</div>
+				</div>
+				<Footer />
+
+				<div className="popup-bet">
+					<form onSubmit={onSubmit}>
+						<div className="footer_choose">
+							<div className="title_choose_footer">
+								<div className="item_choose_footer">
+									<div style={{ display: "flex", alignItems: "center" }}>
+										<b>Số tiền cược: </b>
+										<input
+											value={newMoney}
+											onChange={(e) => setNewMoney(e.target.value)}
+											required
+											min="1"
+											name="money"
+											type="number"
+											placeholder="Chọn số tiền cược"
+										/>
+									</div>
+								</div>
+								<div
+									style={{ margin: "0.3rem 0 0" }}
+									className="item_choose_footer"
+								>
+									<div style={{ display: "flex", alignItems: "center" }}>
+										<span style={{ marginRight: "5px" }}>
+											Đã chọn{" "}
+											<span style={{ color: "red" }}>{item1.length},</span>
+										</span>
+										<span>
+											Tổng tiền cược{" "}
+											<span style={{ color: "red" }}>
+												{item1.length != 0 && newMoney
+													? (item1.length * newMoney).toLocaleString()
+													: 0}{" "}
+												đ
+											</span>
+										</span>
+									</div>
+									<button type="submit" className="btn-sbmit">
+										Đặt lệnh
+									</button>
+								</div>
+							</div>
+						</div>
+					</form>
+				</div>
+
+				{isOpen && (
+					<div className="popup-backdrop">
+						<div className="popup-main">
+							<div className="popup-header">Hướng dẫn cách chơi</div>
+							<div className="popup-content">
+								Chiến thắng khi đặt cược bi (tài/xỉu/lẻ/chẵn) khớp với kết quả
+								xổ số. Tỉ lệ ăn 1.98 (đánh 100k ăn 198k).
+								<br />
+								<br />
+								<b>Ví dụ 1</b>
+								<br />
+								Bạn đặt bi thứ 2 là L (lẻ) và T (tài). Kết quả xổ số là 71294,
+								bi thứ 2 có kết quả là 1. Bạn chiến thắng L nhưng thua T.
+								<br />
+								<br />
+								<b>Ví dụ 2</b>
+								<br />
+								Bạn đặt bi thứ 4 là C (chẵn). Kết quả xổ số là 71294, bi thứ 4
+								có kết quả là 9. Bạn thua cuộc.
+							</div>
+							<button onClick={closePopup} className="popup-close">
+								Đóng
+							</button>
+						</div>
+					</div>
+				)}
 			</div>
 		</>
 	);

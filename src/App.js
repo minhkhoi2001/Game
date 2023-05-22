@@ -24,8 +24,8 @@ import UserProfile from "./pages/admin/UserProfile";
 
 
 import ThongBao from "./pages/admin/ThongBao";
-import Trend5 from "./pages/bet/Trend copy 2";
-import Trend1 from "./pages/bet/Trend copy";
+import Trend5 from "./pages/bet/Trend5";
+import Trend1 from "./pages/bet/Trend1";
 
 import Setting from "./pages/admin/Setting";
 import Employee from "./pages/admin/Employee";
