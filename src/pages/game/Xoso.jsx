@@ -658,7 +658,52 @@ function Xoso() {
 							<div className="popup-header" style={{ background: "#477bff" }}>
 								Lịch Sử Tham Gia
 							</div>
-							<div className="popup-content"></div>
+							<div className="popup-content">
+							{historyGame != null ? (
+									<div className="content-history award_tb">
+										{historyGame?.map((item, key) => (
+											<>
+											{item.sanh ? (
+												<div className="item_inner">
+													<div className="item_history">
+														<div className="title_item_history">
+															<span className="sanh">Keno {item.sanh}</span>
+															<span
+																className={`type_state ${
+																	item.status_bet === "Pending"
+																		? "pending"
+																		: item.status_bet === "Win"
+																		? "win"
+																		: "lose"
+																}`}
+															>
+																{item.status_bet}
+															</span>
+														</div>
+														<div className="id_history_sanh">
+															Phiên cược: {item.id_bet.id_bet}
+														</div>
+														<div className="id_history_sanh">
+															{GetNameChoose(Number(item.state), null)}
+														</div>
+													</div>
+													<div className="money_history">
+														<span className="money">
+															{Number(item.money).toLocaleString()}đ
+														</span>
+														<div className="time_choose">
+															{formatDate(new Date(item.createdAt))}
+														</div>
+													</div>
+												</div>
+											) : null}
+											</>
+										))}
+									</div>
+								) : (
+									<div style={{ margin: "0.5rem" }}>Loading...</div>
+								)}
+							</div>
 							<button
 								onClick={closePopup2}
 								className="popup-close"

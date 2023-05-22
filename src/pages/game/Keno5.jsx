@@ -792,7 +792,7 @@ function Keno5() {
 									<div className="content-history award_tb">
 										{historyGame?.map((item, key) => (
 											<>
-											{item.sanh === "3 phút" ? (
+											{item.sanh === "5 phút" ? (
 												<div className="item_inner">
 													<div className="item_history">
 														<div className="title_item_history">
