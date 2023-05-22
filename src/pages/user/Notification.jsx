@@ -1,8 +1,5 @@
 import { useEffect, useState } from "react";
-import LiveChat from "react-livechat";
 import Footer from "../../components/Footer/Footer";
-import Visibility from "@mui/icons-material/Visibility";
-import VisibilityOff from "@mui/icons-material/VisibilityOff";
 import axios from "axios";
 import { Link, useNavigate } from "react-router-dom";
 
@@ -43,14 +40,20 @@ function Notification() {
 						</div>
 					</div>
 				</div>
-				<h1 className="title-h1">Chăm Sóc Khách Hàng</h1>
-				<div style={{ position: "relative", height: "100vh" }}>
-					<iframe
-						src="https://tawk.to/chat/64563b4c6a9aad4bc5793cfd/1gvodf9bp"
-						frameborder="0"
-						width="100%"
-						height="100%"
-					></iframe>
+				<h1 className="title-h1">Thông Báo</h1>
+				<div style={{ position: "relative", margin: "1.8rem 0 0" }}>
+					<div className="box-image">
+						<img src={require("../../img/tb1.jpg")} />
+						<div className="box-image-title">Thông báo 1</div>
+					</div>
+					<div className="box-image">
+						<img src={require("../../img/tb2.jpg")} />
+						<div className="box-image-title">Thông báo 2</div>
+					</div>
+					<div className="box-image">
+						<img src={require("../../img/tb3.jpg")} />
+						<div className="box-image-title">Thông báo 3</div>
+					</div>
 				</div>
 			</div>
 			<Footer />

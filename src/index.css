@@ -1090,3 +1090,14 @@ table tbody tr:hover {
 	margin: 0 0.15rem;
 	font-size: 0.3rem;
 }
+.box-image {
+	box-shadow: rgb(213, 192, 192) 0px 0px .15rem 0px;
+	background: #fff;
+	border-radius: .15rem;
+	overflow: hidden;
+	margin-bottom: .35rem;
+}
+.box-image-title {
+	font-size: .3rem;
+	padding: 0.1rem 0.2rem 0.3rem;
+}
