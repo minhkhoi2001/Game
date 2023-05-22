@@ -25,7 +25,7 @@ function CSKH() {
 		}
 	);
 	axios
-		.get(`http://localhost/auth/getUser`, {})
+		.get(`https://server.st666.pro/auth/getUser`, {})
 		.then((res) => {
 			setProfile(res.data.data);
 		})

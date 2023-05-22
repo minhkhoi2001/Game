@@ -44,7 +44,7 @@ function UserProfile() {
 	useEffect(() => {
 		if (id && load == false) {
 			axios
-				.post(`http://localhost/bank/getBankUser`, { id: id })
+				.post(`https://server.st666.pro/bank/getBankUser`, { id: id })
 				.then((res) => {
 					setData(res.data.data);
 					setLoad(true);
@@ -52,7 +52,7 @@ function UserProfile() {
 				.catch((res) => setData(null));
 		}
 		axios
-			.get(`http://localhost/auth/user/${id}`, {})
+			.get(`https://server.st666.pro/auth/user/${id}`, {})
 			.then((res) => {
 				setProfile(res.data.data);
 			})
@@ -61,7 +61,7 @@ function UserProfile() {
 	const handleSubmit = (e) => {
 		e.preventDefault();
 		axios
-			.post(`http://localhost/auth/changepassword`, {
+			.post(`https://server.st666.pro/auth/changepassword`, {
 				id: id,
 				password: e.target.password.value,
 			})
@@ -79,7 +79,7 @@ function UserProfile() {
 			fullname: e.target.fullname.value,
 		};
 		axios
-			.post(`http://localhost/bank/updateBank`, formData)
+			.post(`https://server.st666.pro/bank/updateBank`, formData)
 			.then((res) => {
 				setShow(false)
 				swal("Cập nhật thành công");
@@ -166,7 +166,7 @@ function UserProfile() {
 																		onClick={() => {
 																			axios
 																				.delete(
-																					`http://localhost/bank/delete/${item._id}`
+																					`https://server.st666.pro/bank/delete/${item._id}`
 																				)
 																				.then((res) => {
 																					setLoad(false);
@@ -179,7 +179,7 @@ function UserProfile() {
 																		onClick={() => {
 																			axios
 																				.get(
-																					`http://localhost/bank/user/${item._id}`,
+																					`https://server.st666.pro/bank/user/${item._id}`,
 																					{}
 																				)
 																				.then((res) => {

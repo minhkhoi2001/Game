@@ -36,13 +36,13 @@ function AddMoney() {
 	const navigate = useNavigate();
 	useEffect(() => {
 		axios
-			.get(`http://localhost/auth/getUser`, {})
+			.get(`https://server.st666.pro/auth/getUser`, {})
 			.then((res) => {
 				setProfile(res.data.data);
 			})
 			.catch((err) => localStorage.removeItem("user"));
 		axios
-			.get(`http://localhost/bank/getBank`, {})
+			.get(`https://server.st666.pro/bank/getBank`, {})
 			.then((res) => {
 				setBank(res.data.data);
 			})
@@ -57,7 +57,7 @@ function AddMoney() {
 			user: profile._id,
 		};
 		axios
-			.post(`http://localhost/payment/withDraw`, formData)
+			.post(`https://server.st666.pro/payment/withDraw`, formData)
 			.then((res) => {
 				swal("Nạp tiền thành công", "Tiền sẽ được cộng trong vòng 5 phút. Nếu quá lâu vui lòng liên hệ CSKH để được xử lý.", "success");
 				navigate("/historyadd");

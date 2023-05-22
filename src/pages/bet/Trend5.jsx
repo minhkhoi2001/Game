@@ -41,11 +41,11 @@ function Trend5() {
 	const [profile, setProfile]=useState(null)
 	useEffect(() => {
 		if (start === false) {
-			axios.get(`http://localhost/auth/getUser`, {}).then((res) => {
+			axios.get(`https://server.st666.pro/auth/getUser`, {}).then((res) => {
 				setProfile(res.data.data);
 			});
 			axios
-				.get(`http://localhost/bet5/getallbet`, {})
+				.get(`https://server.st666.pro/bet5/getallbet`, {})
 				.then((res) => {
 					setTotal(res.data.data);
 				})
