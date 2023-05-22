@@ -190,6 +190,22 @@ function Xoso() {
 		setIsOpen(false);
 	};
 
+	const [isOpen1, setIsOpen1] = useState(false);
+	const openPopup1 = () => {
+		setIsOpen1(true);
+	};
+	const closePopup1 = () => {
+		setIsOpen1(false);
+	};
+
+	const [isOpen2, setIsOpen2] = useState(false);
+	const openPopup2 = () => {
+		setIsOpen2(true);
+	};
+	const closePopup2 = () => {
+		setIsOpen2(false);
+	};
+
 	const onChoose = (e) => {
 		console.log(e.target.id);
 		if (item1.includes(e.target.id)) {
@@ -340,8 +356,8 @@ function Xoso() {
 										className="info_bet"
 									>
 										<div style={{ fontSize: "0.33rem" }}>
-											Kết quả phiên{" "}
-											<b style={{ color: "#333" }}>{total[0].id_bet}</b>{" "}
+											Kết quả phiên
+											<b style={{ color: "#333" }}>{total[0].id_bet}</b>
 										</div>
 										<div
 											className="ball_xs"
@@ -365,14 +381,14 @@ function Xoso() {
 								</button>
 								<button
 									className="btn-mini"
-									onClick={openPopup}
+									onClick={openPopup1}
 									style={{ border: "1px solid #00b977", color: "#00b977" }}
 								>
 									Chi tiết kết quả
 								</button>
 								<button
 									className="btn-mini"
-									onClick={openPopup}
+									onClick={openPopup2}
 									style={{ border: "1px solid #477bff", color: "#477bff" }}
 								>
 									Lịch sử của bạn
@@ -390,7 +406,15 @@ function Xoso() {
 									<div className="title_choose_footer1">
 										<div className="item_choose_footer1">
 											<div>
-												<div style={{margin:"0.2rem auto", textAlign: "left", width: "90%" }}>Số tiền cược 1 con</div>
+												<div
+													style={{
+														margin: "0.2rem auto",
+														textAlign: "left",
+														width: "90%",
+													}}
+												>
+													Số tiền cược 1 con
+												</div>
 												<input
 													value={newMoney}
 													onChange={(e) => setNewMoney(e.target.value)}
@@ -406,17 +430,23 @@ function Xoso() {
 											style={{ margin: "0.3rem 0 0" }}
 											className="item_choose_footer1"
 										>
-											<div style={{margin:"0.1rem auto", textAlign: "left", width: "90%" }}>
+											<div
+												style={{
+													margin: "0.1rem auto",
+													textAlign: "left",
+													width: "90%",
+												}}
+											>
 												<span style={{ marginRight: "5px" }}>
-													Đã chọn{" "}
+													Đã chọn
 													<span style={{ color: "red" }}>{item1.length},</span>
 												</span>
 												<span>
-													Tổng tiền cược{" "}
+													Tổng tiền cược
 													<span style={{ color: "red" }}>
 														{item1.length != 0 && newMoney
 															? (item1.length * newMoney).toLocaleString()
-															: 0}{" "}
+															: 0}
 														đ
 													</span>
 												</span>
@@ -471,6 +501,173 @@ function Xoso() {
 								có kết quả là 9. Bạn thua cuộc.
 							</div>
 							<button onClick={closePopup} className="popup-close">
+								Đóng
+							</button>
+						</div>
+					</div>
+				)}
+
+				{isOpen1 && (
+					<div className="popup-backdrop">
+						<div className="popup-main">
+							<div className="popup-content" style={{padding:"0"}}>
+								<table id="table-xsmb" class="table-result table table-bordered table-striped table-xsmb">
+								  <tbody>
+								    <tr>
+								      <th style={{width:"10%"}}>ĐB</th>
+								      <td>
+								        <span id="mb_prize_0" class="special-prize div-horizontal" data="30621">
+								          30621
+								        </span>
+								      </td>
+								    </tr>
+								    <tr>
+								      <th>1</th>
+								      <td>
+								        <span id="mb_prize_1" class="prize1 div-horizontal" data="44342">
+								          44342
+								        </span>
+								      </td>
+								    </tr>
+								    <tr>
+								      <th>2</th>
+								      <td>
+								        <span id="mb_prize_2" class="prize2 div-horizontal" data="83110">
+								          83110
+								        </span>
+								        <span id="mb_prize_3" class="prize2 div-horizontal" data="50594">
+								          50594
+								        </span>
+								      </td>
+								    </tr>
+								    <tr>
+								      <th>3</th>
+								      <td>
+								        <span id="mb_prize_4" class="prize3 div-horizontal" data="54163">
+								          54163
+								        </span>
+								        <span id="mb_prize_5" class="prize3 div-horizontal" data="11773">
+								          11773
+								        </span>
+								        <span id="mb_prize_6" class="prize3 div-horizontal" data="42425">
+								          42425
+								        </span>
+								        <span id="mb_prize_7" class="prize3 div-horizontal" data="73193">
+								          73193
+								        </span>
+								        <span id="mb_prize_8" class="prize3 div-horizontal" data="80948">
+								          80948
+								        </span>
+								        <span id="mb_prize_9" class="prize3 div-horizontal" data="39475">
+								          39475
+								        </span>
+								      </td>
+								    </tr>
+								    <tr>
+								      <th>4</th>
+								      <td>
+								        <span id="mb_prize_10" class="prize4 div-horizontal" data="7783">
+								          7783
+								        </span>
+								        <span id="mb_prize_11" class="prize4 div-horizontal" data="7730">
+								          7730
+								        </span>
+								        <span id="mb_prize_12" class="prize4 div-horizontal" data="8277">
+								          8277
+								        </span>
+								        <span id="mb_prize_13" class="prize4 div-horizontal" data="9783">
+								          9783
+								        </span>
+								      </td>
+								    </tr>
+								    <tr>
+								      <th>5</th>
+								      <td>
+								        <span id="mb_prize_14" class="prize5 div-horizontal" data="3039">
+								          3039
+								        </span>
+								        <span id="mb_prize_15" class="prize5 div-horizontal" data="9691">
+								          9691
+								        </span>
+								        <span id="mb_prize_16" class="prize5 div-horizontal" data="4053">
+								          4053
+								        </span>
+								        <span id="mb_prize_17" class="prize5 div-horizontal" data="6513">
+								          6513
+								        </span>
+								        <span id="mb_prize_18" class="prize5 div-horizontal" data="8098">
+								          8098
+								        </span>
+								        <span id="mb_prize_19" class="prize5 div-horizontal" data="3212">
+								          3212
+								        </span>
+								      </td>
+								    </tr>
+								    <tr>
+								      <th>6</th>
+								      <td>
+								        <span id="mb_prize_20" class="prize6 div-horizontal" data="459">
+								          459
+								        </span>
+								        <span id="mb_prize_21" class="prize6 div-horizontal" data="258">
+								          258
+								        </span>
+								        <span id="mb_prize_22" class="prize6 div-horizontal" data="345">
+								          345
+								        </span>
+								      </td>
+								    </tr>
+								    <tr>
+								      <th>7</th>
+								      <td>
+								        <span id="mb_prize_23" class="prize7 div-horizontal" data="56">
+								          56
+								        </span>
+								        <span id="mb_prize_24" class="prize7 div-horizontal" data="65">
+								          65
+								        </span>
+								        <span id="mb_prize_25" class="prize7 div-horizontal" data="32">
+								          32
+								        </span>
+								        <span id="mb_prize_26" class="prize7 div-horizontal" data="77">
+								          77
+								        </span>
+								      </td>
+								    </tr>
+								  </tbody>
+								</table>
+							</div>
+							<button
+								onClick={closePopup1}
+								className="popup-close"
+								style={{
+									background: "#00b977",
+									boxShadow: "none",
+									textShadow: "none",
+								}}
+							>
+								Đóng
+							</button>
+						</div>
+					</div>
+				)}
+
+				{isOpen2 && (
+					<div className="popup-backdrop">
+						<div className="popup-main">
+							<div className="popup-header" style={{ background: "#477bff" }}>
+								Lịch Sử Tham Gia
+							</div>
+							<div className="popup-content"></div>
+							<button
+								onClick={closePopup2}
+								className="popup-close"
+								style={{
+									background: "#477bff",
+									boxShadow: "none",
+									textShadow: "none",
+								}}
+							>
 								Đóng
 							</button>
 						</div>
