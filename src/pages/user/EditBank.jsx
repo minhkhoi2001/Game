@@ -56,7 +56,7 @@ function EditBank() {
 		axios
 			.post(`https://server.st666.pro/bank/updateBank`, formData)
 			.then((res) => {
-				swal("Sửa ngân hàng thành công");
+				swal("Thành công","Sửa ngân hàng thành công","success");
 			})
 			.catch((err) =>
 				setError("money", {
