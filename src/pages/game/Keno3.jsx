@@ -13,7 +13,7 @@ function Keno1() {
 	const [profile, setProfile] = useState(null);
 	const [historyGame, setHistoryGame] = useState(null);
 	const [second, setSecond] = useState(0);
-	const [minute, setMinute] = useState(1);
+	const [minute, setMinute] = useState(3);
 	const [start, setStart] = useState(false);
 	const [dulieunhap, setDulieunhap] = useState(new Date());
 	const [update, setUpdate] = useState(0);
@@ -49,13 +49,13 @@ function Keno1() {
 		axios.get(`https://server.st666.pro/setting/get`, {}).then((res) => {
 			setSetting(res.data.data[0]);
 		});
-		axios.get(`https://server.st666.pro/bet3/get`).then((res) => {
+		axios.get(`https://server.st666.pro/bet/get`).then((res) => {
 			setBet(res.data.data);
 			setDulieunhap(new Date(res.data.data.createdAt));
 			setStart(true);
 		});
 		axios
-			.get(`https://server.st666.pro/bet3/getallbet`, {})
+			.get(`https://server.st666.pro/bet/getallbet`, {})
 			.then((res) => {
 				setTotal(res.data.data);
 			})
@@ -71,16 +71,16 @@ function Keno1() {
 	}, []);
 	useEffect(() => {
 		const timer = setInterval(() => {
-			if (Math.floor(60 - (new Date() - dulieunhap) / 1000) < 0) {
+			if (Math.floor(180 - (new Date() - dulieunhap) / 1000) < 0) {
 				axios.get(`https://server.st666.pro/auth/getUser`, {}).then((res) => {
 					setProfile(res.data.data);
 				});
-				axios.get(`https://server.st666.pro/bet3/get`).then((res) => {
+				axios.get(`https://server.st666.pro/bet/get`).then((res) => {
 					setBet(res.data.data);
 					setDulieunhap(new Date(res.data.data.createdAt));
 				});
 				axios
-					.get(`https://server.st666.pro/bet1/getallbet`, {})
+					.get(`https://server.st666.pro/bet/getallbet`, {})
 					.then((res) => {
 						setTotal(res.data.data);
 					})
@@ -130,7 +130,7 @@ function Keno1() {
 		}
 	}, [isVisible]);
 	useEffect(() => {
-		let curTime_second = Math.floor(60 - (date - dulieunhap) / 1000);
+		let curTime_second = Math.floor(180 - (date - dulieunhap) / 1000);
 
 		let myTimeout;
 
@@ -143,7 +143,7 @@ function Keno1() {
 			return () => {
 				clearTimeout(myTimeout);
 			};
-		} else if (curTime_second < 60 && curTime_second >= 0) {
+		} else if (curTime_second < 180 && curTime_second >= 0) {
 			setSecond(curTime_second % 60);
 			setMinute((curTime_second - (curTime_second % 60)) / 60);
 			setStart(true);
@@ -165,9 +165,9 @@ function Keno1() {
 			setSecond(curTime_second % 60);
 			setMinute(Math.floor(curTime_second / 60));
 
-			if (curTime_second > 60 || curTime_second <= 0) {
+			if (curTime_second > 180 || curTime_second <= 0) {
 				setStart(false);
-				setMinute(1);
+				setMinute(3);
 				setSecond(0);
 				return () => {
 					clearTimeout(myTimeout);
