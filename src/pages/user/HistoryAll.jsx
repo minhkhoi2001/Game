@@ -112,7 +112,13 @@ function HistoryAll() {
 												</div>
 											</div>
 											<div className="money_history">
-												<span className="money">{Number(item.money).toLocaleString()}đ</span>
+												<span className="money">
+													{item.status_bet === "Win"
+														? "+"
+														: item.status_bet === "Lose"
+														? "-"
+														: ""}
+													{Number(item.money).toLocaleString()}đ</span>
 												<div className="time_choose">
 													{formatDate(new Date(item.createdAt))}
 												</div>

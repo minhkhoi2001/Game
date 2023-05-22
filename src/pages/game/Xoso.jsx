@@ -521,7 +521,7 @@ function Xoso() {
 					</div>
 				</div>
 				<Footer />
-
+				
 				{isOpen && (
 					<div className="popup-backdrop">
 						<div className="popup-main">

@@ -89,6 +89,8 @@ function Rut() {
 					<div className="content-history" style={{ margin: "1.5rem 0 0" }}>
 						{profile?.map((item, key) => (
 							<>
+							{item.type_payment == "RÚT" ? (
+							<>
 								<div className="item_inner">
 									<div className="item_history">
 										<div className="title_item_history">
@@ -113,7 +115,7 @@ function Rut() {
 												? "-"
 												: item.status_payment === "Success"
 												? "-"
-												: "+"}
+												: ""}
 											{Number(item.money).toLocaleString()}đ
 										</span>
 										<div className="time_choose">
@@ -121,6 +123,8 @@ function Rut() {
 										</div>
 									</div>
 								</div>
+							</>
+							) : null}
 							</>
 						))}
 					</div>

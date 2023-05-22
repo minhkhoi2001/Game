@@ -1133,9 +1133,11 @@ table tbody tr:hover {
 .demo {
 	position: fixed;
 	width: 100%;
+	max-width: 540px;
 	height: 100vh;
-	left: 0;
+	left: 50%;
 	top: 0;
+	transform: translateX(-50%);
 	display: flex;
 	align-items: center;
 	justify-content: center;
