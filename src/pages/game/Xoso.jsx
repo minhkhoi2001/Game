@@ -474,11 +474,11 @@ function Xoso() {
 												}}
 											>
 												<span style={{ marginRight: "5px" }}>
-													Đã chọn
+													Đã chọn {" "}
 													<span style={{ color: "red" }}>{item1.length},</span>
 												</span>
 												<span>
-													Tổng tiền cược
+													Tổng tiền cược {" "}
 													<span style={{ color: "red" }}>
 														{item1.length != 0 && newMoney
 															? (item1.length * newMoney).toLocaleString()
