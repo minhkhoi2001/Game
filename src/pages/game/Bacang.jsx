@@ -271,7 +271,7 @@ function Bacang() {
 			})
 			.catch((err) => function () {});
 	}
-	const numbers = Array.from(Array(100).keys());
+	const numbers = Array.from(Array(1000).keys());
 	const location = useLocation()
 
 	const navigate = useNavigate()
@@ -509,7 +509,7 @@ function Bacang() {
 											item1.includes(String(number)) ? "chooseItem" : ""
 										}`}
 									>
-										{number < 10 ? `0${number}` : number}
+										{number < 100&&number>10 ? `0${number}` : number<10?`00${number}`:number}
 									</div>
 								))}
 							</div>
@@ -545,7 +545,7 @@ function Bacang() {
 					</div>
 				)}
 
-				{isOpen1 &&total[0]&&total?.lenght>0 (
+				{isOpen1 && (
 					<div className="popup-backdrop">
 						<div className="popup-main">
 							<div className="popup-content" style={{padding:"0"}}>

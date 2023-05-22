@@ -540,7 +540,7 @@ function De() {
 
 				{isOpen1 &&
 					total[0] &&
-					total?.lenght >
+					total?.length >
 						0(
 							<div className="popup-backdrop">
 								<div className="popup-main">
