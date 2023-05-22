@@ -253,10 +253,7 @@ select:active {
 	box-shadow: 0 0.05333rem 0.21333rem #d0d0ed5c;
 	-webkit-appearance: none;
 	-moz-appearance: none;
-	background-image: url(
-		data:image/svg + xml;charset=utf8,
-		%3Csvgxmlns="http://www.w3.org/2000/svg"width="24"height="24"viewBox="0 0 24 24"fill="none"stroke="%23333"stroke-width="2"stroke-linecap="round"stroke-linejoin="round"className="feather feather-chevron-down"%3E%3Cpolylinepoints="6 9 12 15 18 9"%3E%3C/polyline%3E%3C/svg%3E
-	);
+
 	background-position: right 0.45em top 50%;
 	background-repeat: no-repeat;
 	background-size: auto 16px;
