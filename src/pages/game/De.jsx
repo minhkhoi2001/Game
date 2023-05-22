@@ -362,7 +362,9 @@ function De() {
 												margin: "0.3rem auto",
 												justifyContent: "center",
 											}}
-										></div>
+										>
+											{total[0].dacbiet}
+										</div>
 									</div>
 								</>
 							) : null}
