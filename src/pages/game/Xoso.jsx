@@ -506,9 +506,7 @@ function Xoso() {
 					</div>
 				</div>
 				<Footer />
-				<div className="demo">
-					Đang hoàn thiện
-				</div>
+
 				{isOpen && (
 					<div className="popup-backdrop">
 						<div className="popup-main">
