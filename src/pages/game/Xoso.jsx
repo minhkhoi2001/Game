@@ -398,6 +398,33 @@ function Xoso() {
 					</div>
 				</div>
 
+				<ul className="tab-navigation tab-game">
+						<li
+							className={activeTab === "tab1" ? "active" : ""}
+							onClick={() => handleTabClick("tab1")}
+						>
+							Game 1
+						</li>
+						<li
+							className={activeTab === "tab2" ? "active" : ""}
+							onClick={() => handleTabClick("tab2")}
+						>
+							Game 2
+						</li>
+						<li
+							className={activeTab === "tab3" ? "active" : ""}
+							onClick={() => handleTabClick("tab3")}
+						>
+							Game 3
+						</li>
+						<li
+							className={activeTab === "tab4" ? "active" : ""}
+							onClick={() => handleTabClick("tab4")}
+						>
+							Game 4
+						</li>
+					</ul>
+
 				<div className="main_game">
 					<div className="route_game">
 						<div className="text_choose_center">
