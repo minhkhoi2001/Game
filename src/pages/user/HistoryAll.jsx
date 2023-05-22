@@ -143,6 +143,17 @@ function HistoryAll() {
 													>
 														{item.status_payment}
 													</span>
+													<span
+														className={`type_state ${
+															item.type_payment === "NẠP"
+																? "win"
+																: item.type_payment === "RÚT"
+																? "lose"
+																: "pending"
+														}`}
+													>
+														{item.type_payment}
+													</span>
 												</div>
 												<div className="id_history_sanh">
 													STK : {item?.detail}
@@ -150,11 +161,11 @@ function HistoryAll() {
 											</div>
 											<div className="money_history">
 												<span className="money">
-													{item.status_payment === "Pending"
+													{item.type_payment === "NẠP"
+														? "+"
+														: item.type_payment === "RÚT"
 														? "-"
-														: item.status_payment === "Success"
-														? "-"
-														: "+"}
+														: ""}
 													{Number(item.money).toLocaleString()}đ
 												</span>
 												<div className="time_choose">
