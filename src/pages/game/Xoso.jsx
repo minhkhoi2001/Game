@@ -385,92 +385,70 @@ function Xoso() {
 				<div className="main_game">
 					<div className="route_game">
 						<div className="text_choose_center">
+							<form onSubmit={onSubmit} className="form-lg">
+								<div className="footer_choose1">
+									<div className="title_choose_footer1">
+										<div className="item_choose_footer1">
+											<div>
+												<div style={{margin:"0.2rem auto", textAlign: "left", width: "90%" }}>Số tiền cược 1 con</div>
+												<input
+													value={newMoney}
+													onChange={(e) => setNewMoney(e.target.value)}
+													required
+													min="1"
+													name="money"
+													type="number"
+													placeholder="Chọn số tiền cược"
+												/>
+											</div>
+										</div>
+										<div
+											style={{ margin: "0.3rem 0 0" }}
+											className="item_choose_footer1"
+										>
+											<div style={{margin:"0.1rem auto", textAlign: "left", width: "90%" }}>
+												<span style={{ marginRight: "5px" }}>
+													Đã chọn{" "}
+													<span style={{ color: "red" }}>{item1.length},</span>
+												</span>
+												<span>
+													Tổng tiền cược{" "}
+													<span style={{ color: "red" }}>
+														{item1.length != 0 && newMoney
+															? (item1.length * newMoney).toLocaleString()
+															: 0}{" "}
+														đ
+													</span>
+												</span>
+											</div>
+											<button type="submit" className="btn-sbmit">
+												Đặt lệnh
+											</button>
+										</div>
+									</div>
+								</div>
+							</form>
+						</div>
+						<div className="text_choose_center">
 							<div className="bet_state">Chọn Số</div>
 							<div className="state_choose">
 								{numbers.map((number) => (
-									<div key={number} data-index={number} className="choose_xs">
+									<div
+										key={number}
+										id={number}
+										onClick={onChoose}
+										className={`choose_xs ${
+											item1.includes(number) ? "chooseItem" : ""
+										}`}
+									>
 										{number < 10 ? `0${number}` : number}
 									</div>
 								))}
-								<div
-									onClick={onChoose}
-									className={`state_rowindex ${
-										item1.includes("1") ? "chooseItem" : ""
-									}`}
-									id="1"
-								>
-									<i id="1" className="state">
-										T
-									</i>
-									<span id="1" className="setting_type">
-										{setting && setting.doiben}
-									</span>
-								</div>
-								<div
-									onClick={onChoose}
-									id="2"
-									className={`state_rowindex ${
-										item1.includes("2") ? "chooseItem" : ""
-									}`}
-								>
-									<i id="2" className="state">
-										X
-									</i>
-									<span id="2" className="setting_type">
-										{setting && setting.doiben}
-									</span>
-								</div>
 							</div>
 						</div>
 					</div>
 				</div>
 				<Footer />
-
-				<div className="popup-bet">
-					<form onSubmit={onSubmit}>
-						<div className="footer_choose">
-							<div className="title_choose_footer">
-								<div className="item_choose_footer">
-									<div style={{ display: "flex", alignItems: "center" }}>
-										<b>Số tiền cược: </b>
-										<input
-											value={newMoney}
-											onChange={(e) => setNewMoney(e.target.value)}
-											required
-											min="1"
-											name="money"
-											type="number"
-											placeholder="Chọn số tiền cược"
-										/>
-									</div>
-								</div>
-								<div
-									style={{ margin: "0.3rem 0 0" }}
-									className="item_choose_footer"
-								>
-									<div style={{ display: "flex", alignItems: "center" }}>
-										<span style={{ marginRight: "5px" }}>
-											Đã chọn{" "}
-											<span style={{ color: "red" }}>{item1.length},</span>
-										</span>
-										<span>
-											Tổng tiền cược{" "}
-											<span style={{ color: "red" }}>
-												{item1.length != 0 && newMoney
-													? (item1.length * newMoney).toLocaleString()
-													: 0}{" "}
-												đ
-											</span>
-										</span>
-									</div>
-									<button type="submit" className="btn-sbmit">
-										Đặt lệnh
-									</button>
-								</div>
-							</div>
-						</div>
-					</form>
-				</div>
 
 				{isOpen && (
 					<div className="popup-backdrop">
