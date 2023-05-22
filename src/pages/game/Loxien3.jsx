@@ -537,14 +537,14 @@ function Loxien3() {
 								Bạn đặt bi thứ 4 là C (chẵn). Kết quả xổ số là 71294, bi thứ 4
 								có kết quả là 9. Bạn thua cuộc.
 							</div>
-							<button onClick={closePopup} className="popup-close">
+							<button onClick={()=>console.log(1)} className="popup-close">
 								Đóng
 							</button>
 						</div>
 					</div>
 				)}
 
-				{isOpen1 &&total[0]&&total?.lenght>0 (
+				{isOpen1 && (
 					<div className="popup-backdrop">
 						<div className="popup-main">
 							<div className="popup-content" style={{padding:"0"}}>

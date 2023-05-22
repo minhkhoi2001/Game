@@ -544,7 +544,7 @@ function Loxien4() {
 					</div>
 				)}
 
-				{isOpen1 &&total[0]&&total?.lenght>0 (
+				{isOpen1 && (
 					<div className="popup-backdrop">
 						<div className="popup-main">
 							<div className="popup-content" style={{padding:"0"}}>
