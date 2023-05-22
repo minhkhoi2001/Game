@@ -740,6 +740,7 @@ table tbody tr:hover {
 	display: flex;
 	align-items: center;
 	justify-content: center;
+	flex-flow: row wrap;
 }
 .state_choose > div {
 	flex: 1;
@@ -764,6 +765,12 @@ table tbody tr:hover {
 }
 .state_choose .chooseItem * {
 	color: #fff !important;
+}
+.state_choose .choose_xs {
+	width: calc(10% - 0.1rem);
+	padding: 0.1rem 0;
+	margin: 0.05rem;
+	flex: unset;
 }
 .popup-bet {
 	position: fixed;

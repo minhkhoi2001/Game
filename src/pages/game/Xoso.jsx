@@ -256,6 +256,7 @@ function Xoso() {
 			})
 			.catch((err) => function () {});
 	}
+	const numbers = Array.from(Array(100).keys());
 	return (
 		<>
 			<div className="main">
@@ -342,7 +343,13 @@ function Xoso() {
 											Kết quả phiên{" "}
 											<b style={{ color: "#333" }}>{total[0].id_bet}</b>{" "}
 										</div>
-										<div className="ball_xs" style={{ margin: "0.3rem auto", justifyContent: "center" }}>
+										<div
+											className="ball_xs"
+											style={{
+												margin: "0.3rem auto",
+												justifyContent: "center",
+											}}
+										>
 											{total[0].result.split(" ").map((item) => (
 												<div className="ball">{item}</div>
 											))}
@@ -352,7 +359,7 @@ function Xoso() {
 							) : null}
 						</div>
 						<div className="col-100">
-							<div style={{display:"flex"}}>
+							<div style={{ display: "flex" }}>
 								<button className="btn-mini" onClick={openPopup}>
 									Hướng dẫn cách chơi
 								</button>
@@ -380,6 +387,11 @@ function Xoso() {
 						<div className="text_choose_center">
 							<div className="bet_state">Chọn Số</div>
 							<div className="state_choose">
+								{numbers.map((number) => (
+									<div key={number} data-index={number} className="choose_xs">
+										{number < 10 ? `0${number}` : number}
+									</div>
+								))}
 								<div
 									onClick={onChoose}
 									className={`state_rowindex ${
@@ -407,7 +419,7 @@ function Xoso() {
 									<span id="2" className="setting_type">
 										{setting && setting.doiben}
 									</span>
-									</div>
+								</div>
 							</div>
 						</div>
 					</div>
