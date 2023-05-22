@@ -53,6 +53,11 @@ import EditBank from "./pages/user/EditBank";
 import ResetPassword from "./pages/user/ResetPassword";
 // Admin
 import HistoryBetAll from "./pages/admin/HistoryBetAll";
+import Bacang from "./pages/game/Bacang";
+import De from "./pages/game/De";
+import Loxien2 from "./pages/game/Loxien2";
+import Loxien3 from "./pages/game/Loxien3";
+import Loxien4 from "./pages/game/Loxien4";
 
 function App() {
 	return (
@@ -71,11 +76,11 @@ function App() {
 						<Route element={<Keno3 />} path="/keno3p" />
 						<Route element={<Keno1 />} path="/keno1p" />
 						<Route element={<Xoso />} path="/xoso" />
-						<Route element={<Xoso />} path="/xoso/bacang" />
-						<Route element={<Xoso />} path="/xoso/de" />
-						<Route element={<Xoso />} path="/xoso/loxien" />
-						<Route element={<Xoso />} path="/xoso/loxien3" />
-						<Route element={<Xoso />} path="/xoso/loxien4" />
+						<Route element={<Bacang />} path="/xoso/bacang" />
+						<Route element={<De />} path="/xoso/de" />
+						<Route element={<Loxien2 />} path="/xoso/loxien" />
+						<Route element={<Loxien3 />} path="/xoso/loxien3" />
+						<Route element={<Loxien4 />} path="/xoso/loxien4" />
 						<Route element={<Bet />} path="/bet" />
 						<Route element={<Trend />} path="/trend" />
 						<Route element={<Trend1 />} path="/trend1" />

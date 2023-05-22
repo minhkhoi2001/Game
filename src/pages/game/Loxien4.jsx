@@ -7,7 +7,7 @@ import swal from "sweetalert";
 import Footer from "../../components/Footer/Footer";
 import { GetNameChoose } from "../../funcUtils";
 
-function Xoso() {
+function Loxien4() {
 	const [isVisible, setVisible] = useState(null);
 	const [bet, setBet] = useState(null);
 	const [profile, setProfile] = useState(null);
@@ -26,6 +26,8 @@ function Xoso() {
 	const [isShow, setShow] = useState(false);
 	const [setting, setSetting] = useState(null);
 	const [item1, setItem] = useState([]);
+	const navigate = useNavigate()
+	const location = useLocation()
 	axios.interceptors.request.use(
 		(config) => {
 			const token = localStorage.getItem("user");
@@ -243,8 +245,8 @@ function Xoso() {
 
 	const [activeTab, setActiveTab] = useState("tab1");
 
-	const handleTabClick = (tabname) => {
-		navigate(tabname)
+	const handleTabClick = (tabName) => {
+		navigate(tabName);
 		getHistoryBet();
 	};
 
@@ -272,8 +274,6 @@ function Xoso() {
 			.catch((err) => function () {});
 	}
 	const numbers = Array.from(Array(100).keys());
-	const location = useLocation()
-	const navigate = useNavigate()
 	return (
 		<>
 			<div className="main">
@@ -395,6 +395,7 @@ function Xoso() {
 						</div>
 					</div>
 				</div>
+
 				<ul className="tab-navigation tab-game">
 						<li
 							className={location.pathname === "/xoso" ? "active" : ""}
@@ -758,4 +759,4 @@ function Xoso() {
 		</>
 	);
 }
-export default Xoso;
+export default Loxien4;

@@ -25,7 +25,7 @@ function Notification() {
 		}
 	);
 	axios
-		.get(`https://server.st666.pro/auth/getUser`, {})
+		.get(`http://localhost/auth/getUser`, {})
 		.then((res) => {
 			setProfile(res.data.data);
 		})

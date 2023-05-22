@@ -66,56 +66,56 @@ function Set1() {
 		}
 	);
 	useEffect(() => {
-		axios.get(`https://server.st666.pro/auth/getUser`, {}).then((res) => {
+		axios.get(`http://localhost/auth/getUser`, {}).then((res) => {
 			setProfile(res.data.data);
 		});
-		axios.get(`https://server.st666.pro/setting/get`, {}).then((res) => {
+		axios.get(`http://localhost/setting/get`, {}).then((res) => {
 			setSetting(res.data.data[0]);
 		});
-		axios.get(`https://server.st666.pro/bet1/getadmin`).then((res) => {
+		axios.get(`http://localhost/bet1/getadmin`).then((res) => {
 			setBet(res.data.data[0]);
 			setDulieunhap(new Date(res.data.data[0].createdAt));
 			setStart(true);
 		});
 		axios
-			.get(`https://server.st666.pro/bet1/getallbet`, {})
+			.get(`http://localhost/bet1/getallbet`, {})
 			.then((res) => {
 				setTotal(res.data.data);
 			})
 			.catch(() => setTotal(null));
-		axios.get(`https://server.st666.pro/notification/getnotifi`, {}).then((res) => {
+		axios.get(`http://localhost/notification/getnotifi`, {}).then((res) => {
 			setVisible({
 				money: res.data.data[0].money.toLocaleString(),
 				id: res.data.data[0]._id,
 			});
 		});
-		axios.get(`https://server.st666.pro/bet1/getcurrent`).then((res) => {
+		axios.get(`http://localhost/bet1/getcurrent`).then((res) => {
 			setCurrent(res.data.data);
 		});
 	}, []);
 	useEffect(() => {
 		const timer = setInterval(() => {
 			if (Math.floor(60 - (new Date() - dulieunhap) / 1000) < 0) {
-				axios.get(`https://server.st666.pro/auth/getUser`, {}).then((res) => {
+				axios.get(`http://localhost/auth/getUser`, {}).then((res) => {
 					setProfile(res.data.data);
 				});
-				axios.get(`https://server.st666.pro/bet1/getadmin`).then((res) => {
+				axios.get(`http://localhost/bet1/getadmin`).then((res) => {
 					setBet(res.data.data[0]);
 					setDulieunhap(new Date(res.data.data[0].createdAt));
 				});
 				axios
-					.get(`https://server.st666.pro/bet1/getallbet`, {})
+					.get(`http://localhost/bet1/getallbet`, {})
 					.then((res) => {
 						setTotal(res.data.data);
 					})
 					.catch(() => setTotal(null));
-				axios.get(`https://server.st666.pro/notification/getnotifi`, {}).then((res) => {
+				axios.get(`http://localhost/notification/getnotifi`, {}).then((res) => {
 					setVisible({
 						money: res.data.data[0].money.toLocaleString(),
 						id: res.data.data[0]._id,
 					});
 				});
-				axios.get(`https://server.st666.pro/bet1/getcurrent`).then((res) => {
+				axios.get(`http://localhost/bet1/getcurrent`).then((res) => {
 					setCurrent(res.data.data);
 				});
 			}
@@ -141,7 +141,7 @@ function Set1() {
 			switch (result) {
 				case "submit":
 					// clear everything here!!
-					axios.post("https://server.st666.pro/notification/seen", {
+					axios.post("http://localhost/notification/seen", {
 						id: data.id,
 					});
 					break;
@@ -212,7 +212,7 @@ function Set1() {
 			result: String(e.target.bet.value).split("").join(" "),
 		};
 		axios
-			.post("https://server.st666.pro/bet1/update", formData)
+			.post("http://localhost/bet1/update", formData)
 			.then((res) => {
 				setBet(res.data.data)
 				swal("Update thanh cong")

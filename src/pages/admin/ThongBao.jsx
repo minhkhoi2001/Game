@@ -43,7 +43,7 @@ function ThongBao() {
 	useEffect(() => {
 		if (load == false) {
 			axios
-				.get(`https://server.st666.pro/notification/getSale`)
+				.get(`http://localhost/notification/getSale`)
 				.then((res) => {
 					setData(res.data.data);
 					setLoad(true);
@@ -57,7 +57,7 @@ function ThongBao() {
 			title: e.target.title1.value,
 		};
 		axios
-			.post(`https://server.st666.pro/notification/create`, formData)
+			.post(`http://localhost/notification/create`, formData)
 			.then((res) => {
 				setShow(false);
 				swal("Thêm thông báo thành công");
@@ -97,7 +97,7 @@ function ThongBao() {
 													id: data[0]._id
 												};
 												axios
-													.post(`https://server.st666.pro/notification/updatebyadmin`, formData)
+													.post(`http://localhost/notification/updatebyadmin`, formData)
 													.then((res) => {
 														setShow(false);
 														swal("Cập nhật thành công");

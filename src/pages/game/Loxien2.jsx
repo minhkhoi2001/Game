@@ -7,7 +7,7 @@ import swal from "sweetalert";
 import Footer from "../../components/Footer/Footer";
 import { GetNameChoose } from "../../funcUtils";
 
-function Xoso() {
+function Loxien2() {
 	const [isVisible, setVisible] = useState(null);
 	const [bet, setBet] = useState(null);
 	const [profile, setProfile] = useState(null);
@@ -243,11 +243,12 @@ function Xoso() {
 
 	const [activeTab, setActiveTab] = useState("tab1");
 
-	const handleTabClick = (tabname) => {
-		navigate(tabname)
+	const handleTabClick = (tabName) => {
+		navigate(tabName);
 		getHistoryBet();
 	};
-
+	const location = useLocation()
+	const navigate = useNavigate()
 	useEffect(() => {
 		if (minute == 0 && second == 0) {
 			runSlotEffect();
@@ -272,8 +273,6 @@ function Xoso() {
 			.catch((err) => function () {});
 	}
 	const numbers = Array.from(Array(100).keys());
-	const location = useLocation()
-	const navigate = useNavigate()
 	return (
 		<>
 			<div className="main">
@@ -395,6 +394,7 @@ function Xoso() {
 						</div>
 					</div>
 				</div>
+
 				<ul className="tab-navigation tab-game">
 						<li
 							className={location.pathname === "/xoso" ? "active" : ""}
@@ -758,4 +758,4 @@ function Xoso() {
 		</>
 	);
 }
-export default Xoso;
+export default Loxien2;

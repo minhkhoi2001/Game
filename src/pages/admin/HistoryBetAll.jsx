@@ -67,7 +67,7 @@ function HistoryBetAll() {
 	};
 	useEffect(() => {
 		axios
-			.get(`https://server.st666.pro/history/all`, {})
+			.get(`http://localhost/history/all`, {})
 			.then((res) => {
 				localStorage.setItem("data", JSON.stringify(res.data.data));
 				setData(res.data.data);

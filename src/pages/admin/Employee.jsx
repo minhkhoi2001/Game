@@ -44,7 +44,7 @@ function Employee() {
 		}
 		console.log(formData);
 		axios
-			.post(`https://server.st666.pro/auth/createEmployee`, formData)
+			.post(`http://localhost/auth/createEmployee`, formData)
 			.then((res) => {
 				setLoad(true);
 			})

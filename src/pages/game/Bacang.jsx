@@ -7,7 +7,7 @@ import swal from "sweetalert";
 import Footer from "../../components/Footer/Footer";
 import { GetNameChoose } from "../../funcUtils";
 
-function Xoso() {
+function Bacang() {
 	const [isVisible, setVisible] = useState(null);
 	const [bet, setBet] = useState(null);
 	const [profile, setProfile] = useState(null);
@@ -243,8 +243,8 @@ function Xoso() {
 
 	const [activeTab, setActiveTab] = useState("tab1");
 
-	const handleTabClick = (tabname) => {
-		navigate(tabname)
+	const handleTabClick = (tabName) => {
+		navigate(tabName);
 		getHistoryBet();
 	};
 
@@ -273,6 +273,7 @@ function Xoso() {
 	}
 	const numbers = Array.from(Array(100).keys());
 	const location = useLocation()
+
 	const navigate = useNavigate()
 	return (
 		<>
@@ -395,6 +396,7 @@ function Xoso() {
 						</div>
 					</div>
 				</div>
+
 				<ul className="tab-navigation tab-game">
 						<li
 							className={location.pathname === "/xoso" ? "active" : ""}
@@ -758,4 +760,4 @@ function Xoso() {
 		</>
 	);
 }
-export default Xoso;
+export default Bacang;

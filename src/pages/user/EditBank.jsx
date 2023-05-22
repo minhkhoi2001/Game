@@ -34,13 +34,13 @@ function EditBank() {
 	const navigate = useNavigate();
 	useEffect(() => {
 		axios
-			.get(`https://server.st666.pro/auth/getUser`, {})
+			.get(`http://localhost/auth/getUser`, {})
 			.then((res) => {
 				setProfile(res.data.data);
 			})
 			.catch((err) => localStorage.removeItem("user"));
 		axios
-			.get(`https://server.st666.pro/bank/user/${id}`, {})
+			.get(`http://localhost/bank/user/${id}`, {})
 			.then((res) => {
 				setBank(res.data.data);
 			})
@@ -54,7 +54,7 @@ function EditBank() {
 			fullname: data.fullname,
 		};
 		axios
-			.post(`https://server.st666.pro/bank/updateBank`, formData)
+			.post(`http://localhost/bank/updateBank`, formData)
 			.then((res) => {
 				swal("Thành công","Sửa ngân hàng thành công","success");
 			})

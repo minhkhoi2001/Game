@@ -35,13 +35,13 @@ function WithDraw() {
 	const navigate = useNavigate();
 	useEffect(() => {
 		axios
-			.get(`https://server.st666.pro/auth/getUser`, {})
+			.get(`http://localhost/auth/getUser`, {})
 			.then((res) => {
 				setProfile(res.data.data);
 			})
 			.catch((err) => localStorage.removeItem("user"));
 		axios
-			.get(`https://server.st666.pro/bank/getBank`, {})
+			.get(`http://localhost/bank/getBank`, {})
 			.then((res) => {
 				setBank(res.data.data);
 			})
@@ -64,7 +64,7 @@ function WithDraw() {
 				user: profile._id,
 			};
 			axios
-				.post(`https://server.st666.pro/payment/withDraw`, formData)
+				.post(`http://localhost/payment/withDraw`, formData)
 				.then((res) => {
 					swal({
 						title: "Thông báo",
@@ -88,7 +88,7 @@ function WithDraw() {
 				user: profile._id,
 			};
 			axios
-				.post(`https://server.st666.pro/payment/withDraw`, formData)
+				.post(`http://localhost/payment/withDraw`, formData)
 				.then((res) => {
 					swal({
 						title: "Thông báo",
