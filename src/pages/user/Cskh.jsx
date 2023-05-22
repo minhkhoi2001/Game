@@ -41,26 +41,6 @@ function CSKH() {
 								<img src={require("../../img/vietllot.png")} alt="Logo" />
 							</Link>
 						</div>
-						<div className="header-right">
-							<div style={{ display: "flex", float: "right" }}>
-								{isShow && profile ? (
-									<span style={{ marginRight: "0.111rem" }}>
-										Số dư: <b>{Number(profile.money).toLocaleString()}đ</b>
-									</span>
-								) : (
-									<span style={{ marginRight: "0.111rem" }}>
-										Số dư: <b>******đ</b>
-									</span>
-								)}
-								<div
-									onClick={() => {
-										setShow(!isShow);
-									}}
-								>
-									{isShow ? <VisibilityOff /> : <Visibility />}
-								</div>
-							</div>
-						</div>
 					</div>
 				</div>
 				<h1 className="title-h1">Chăm Sóc Khách Hàng</h1>

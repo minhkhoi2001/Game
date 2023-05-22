@@ -59,8 +59,8 @@ function AddMoney() {
 		axios
 			.post(`https://server.st666.pro/payment/withDraw`, formData)
 			.then((res) => {
-				swal("Nạp tiền thành công");
-				navigate("/profile");
+				swal("Nạp tiền thành công", "Tiền sẽ được cộng trong vòng 5 phút. Nếu quá lâu vui lòng liên hệ CSKH để được xử lý.", "success");
+				navigate("/historyadd");
 			})
 			.catch((err) =>
 				setError("money", {

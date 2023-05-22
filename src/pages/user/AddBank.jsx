@@ -57,6 +57,7 @@ function AddBank() {
 			.post(`https://server.st666.pro/bank/create`, formData)
 			.then((res) => {
 				swal("Thành Công", "Ngân hàng đã được thêm thành công", "success");
+				navigate("/profile");
 			})
 			.catch((err) =>
 				setError("money", {
