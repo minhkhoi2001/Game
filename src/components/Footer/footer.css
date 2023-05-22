@@ -1,0 +1,117 @@
+.footer {
+	position: fixed;
+	bottom: 0;
+	left: 50%;
+	display: -webkit-box;
+	display: -webkit-flex;
+	display: flex;
+	-webkit-box-align: end;
+	-webkit-align-items: flex-end;
+	align-items: flex-end;
+	width: 100%;
+	max-width: 540px;
+	-webkit-transform: translateX(-50%);
+	transform: translate(-50%);
+	height: 1.73333rem;
+	padding-block: 0 0.10333rem;
+	font-size: 0.33333rem;
+	background: url(../../img/footer-bg.png) no-repeat center center/cover;
+	z-index: 100;
+}
+.footer-item {
+	-webkit-box-flex: 1;
+	-webkit-flex: 1;
+	flex: 1;
+	display: -webkit-box;
+	display: -webkit-flex;
+	display: flex;
+	-webkit-box-orient: vertical;
+	-webkit-box-direction: normal;
+	-webkit-flex-direction: column;
+	flex-direction: column;
+	-webkit-box-align: center;
+	-webkit-align-items: center;
+	align-items: center;
+	-webkit-box-pack: end;
+	-webkit-justify-content: flex-end;
+	justify-content: flex-end;
+	gap: 0.11707rem;
+	color: #949494;
+}
+.footer-item a {
+	display: block;
+	color: #949494;
+}
+.footer-item .icon_footer {
+	margin-bottom: 0.1rem;
+}
+.footer-item .icon_footer svg {
+	width: 0.6776rem;
+	height: 0.69387rem;
+}
+.footer-center-bg {
+	position: absolute;
+	left: 50%;
+	bottom: 0.65333rem;
+	-webkit-transform: translate(-50%, 0);
+	transform: translate(-50%);
+	background: #fff;
+	width: 1.56667rem;
+	height: 1.56667rem;
+	border-radius: 50%;
+	box-shadow: 0 -0.08rem 0.16rem #d0d0ed80;
+	z-index: 2;
+}
+.footer-center-bg:after {
+	content: "";
+	position: absolute;
+	left: 50%;
+	top: 50%;
+	width: 1.40667rem;
+	height: 1.40667rem;
+	border-radius: 50%;
+	-webkit-transform: translate(-50%, -50%);
+	transform: translate(-50%, -50%);
+	background: -webkit-linear-gradient(0deg, #ee8d8d 0%, #ff0000 100%);
+	background: linear-gradient(0deg, #ee8d8d 0%, #ff0000 100%);
+}
+.footer-item:nth-child(3) .icon_footer svg {
+	position: relative;
+	color: #fff !important;
+	top: -0.45rem;
+	width: 0.7504rem;
+	height: 0.65rem;
+	z-index: 3;
+}
+.footer-item:nth-child(3) .icon_footer * {
+	color: #fff;
+}
+.footer-item:has(.active) * {
+	color: red;
+}
+.title_footer {
+	white-space: nowrap;
+}
+/*@media (max-width: 600px) {
+	.footer {
+		font-size: 0.25rem;
+		height: 1.3rem;
+		padding-bottom: 0.1rem;
+	}
+	.footer-center-bg {
+		width: 1.02rem;
+		height: 1.02rem;
+		bottom: 0.55rem;	
+	}
+	.footer-center-bg:after {
+		width: 0.9rem;
+		height: 0.9rem;
+	}
+	.footer-item .icon_footer svg {
+		width: 0.5rem;
+		height: 0.52rem;
+	}
+	.footer-item:nth-child(3) .icon_footer svg {
+		top: -0.2rem;
+	}
+}*/

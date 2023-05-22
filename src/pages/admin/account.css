@@ -1,0 +1,228 @@
+.item_accountprofile {
+	display: flex;
+	margin-top: 25px;
+	justify-content: space-around;
+	background-color: white;
+}
+.account_profile {
+	margin-top: 10px;
+}
+.titleitem {
+	font-weight: 700;
+	font-size: 18px;
+	margin-bottom: 10px;
+}
+.edit_account_bankl {
+	margin-top: 10px;
+}
+.btn_setting{
+	color: #fff;
+    background-color: #1f2937;
+    border-color: #1f2937;
+    box-shadow: inset 0 1px 0 rgba(255,255,255,.15), 0 1px 1px rgba(17,24,39,.075);
+	display: inline-block;
+    font-weight: 500;
+    line-height: 1.5;
+    text-align: center;
+    vertical-align: middle;
+    cursor: pointer;
+    -webkit-user-select: none;
+    user-select: none;
+    border: .0625rem solid transparent;
+    padding: .5rem 1rem;
+    font-size: .875rem;
+    border-radius: .5rem;
+}
+.setting{
+	--bs-gutter-x: 1.5rem;
+    --bs-gutter-y: 0;
+    display: flex;
+    flex-wrap: wrap;
+    margin-top: calc(var(--bs-gutter-y) * -1);
+    margin-right: calc(var(--bs-gutter-x)/ -2);
+    margin-left: calc(var(--bs-gutter-x)/ -2);
+}
+.form_group{
+	--bs-gutter-x: -0.5rem;
+    --bs-gutter-y: 0;
+    display: flex;
+    flex-wrap: wrap;
+    margin-top: calc(var(--bs-gutter-y) * -1);
+    margin-right: calc(var(--bs-gutter-x)/ -2);
+    margin-left: calc(var(--bs-gutter-x)/ -2);
+}.form_col{
+	margin-bottom: 1rem!important;	    
+	flex: 0 0 auto;
+    width: 50%;
+	max-width: 100%;
+    padding-right: calc(var(--bs-gutter-x)/ 2);
+    padding-left: calc(var(--bs-gutter-x)/ 2);
+    margin-top: var(--bs-gutter-y);
+}
+.input_setting{
+    display: block;
+    width: 100%;
+    padding: .5rem 1rem;
+    font-size: .875rem;
+    font-weight: 400;
+    line-height: 1.5;
+    color: #6b7280;
+    background-color: #fff;
+    background-clip: padding-box;
+    border: .0625rem solid #d1d5db;
+    -webkit-appearance: none;
+    appearance: none;
+    border-radius: .5rem;
+    box-shadow: 0 1px 2px 0 rgba(0,0,0,.07);
+    transition: border-color .15s ease-in-out,box-shadow .15s ease-in-out;
+}
+.detail_user {
+	display: flex;
+	width: 100%;
+	justify-content: space-between;
+	align-items: center;
+	padding-bottom: 20px;
+}
+.username_ {
+	font-weight: 600;
+	padding: 10px;
+}
+.modal {
+	display: none;
+	animation: ModalGrow ease-in 0.2s;
+}
+
+.modalheader {
+	display: flex;
+	justify-content:center;
+	padding-top: 30px;
+	padding-bottom: 28px;
+    font-weight: 600;
+    font-size: 25px;
+}
+.modalheader h3 {
+	font-size: 2rem;
+	font-weight: 400;
+	margin: 0;
+}
+.modalheader span {
+	font-size: 1.5rem;
+	line-height: 100%;
+	margin: auto 0;
+	cursor: pointer;
+	color: var(--shop_be-color);
+}
+
+.modalformsocials a:hover,
+.modalhelp a:hover,
+.btn:hover,
+.modalheader span:hover {
+	opacity: 0.7;
+}
+
+.modalinner {
+	padding: 30px;
+	background-color: white;
+	border-radius: 10px;
+}
+.item_btn_form {
+	display: flex;
+    margin-bottom: 20px;
+    align-items: center;
+    justify-content: center;
+}
+
+.modalforminput {
+	width: 100%;
+	height: 40px;
+	display: block;
+	margin-bottom: 28px;
+	font-size: 1.4em;
+	border: 1px solid #ccc;
+	border-radius: 2px;
+}
+
+.btn {
+	height: 40px;
+	width: 100%;
+	background-color: #efbf6e;
+	color: var(--white-color);
+	font-size: 1.4rem;
+	border: 1px solid #ccc;
+	border-radius: 2px;
+	cursor: pointer;
+}
+
+.modalhelp {
+	display: flex;
+	justify-content: space-between;
+	padding-top: 12px;
+}
+.modalhelp a {
+	font-size: 1.3rem;
+	text-decoration: none;
+}
+
+.modalformsocials {
+	margin-bottom: 1rem;
+	padding: 2rem 0;
+	display: flex;
+}
+.modalformsocials a {
+	flex: 1;
+	text-align: center;
+	text-decoration: none;
+	font-size: 1.4rem;
+	line-height: 40px;
+	color: var(--white-color);
+	border-radius: 4px;
+}
+.btn-with-facebook {
+	background-color: #1877f2;
+	margin-right: 1rem;
+}
+.btn-with-google {
+	background-image: linear-gradient(
+		to right,
+		#ea4335,
+		#fbbe0d,
+		#8ccd9d,
+		#4285f4
+	);
+}
+.modal {
+	position: fixed;
+	top: 0;
+	right: 0;
+	bottom: 0;
+	left: 0;
+	z-index: 1;
+	display: flex;
+}
+
+.modaloverlay {
+	position: absolute;
+	width: 100%;
+	height: 100%;
+	background-color: rgba(0, 0, 0, 0.4);
+}
+
+.modalbody {
+	background-color: var(--white-color);
+	position: relative;
+	margin: auto;
+	border-radius: 5px;
+	width: 400px;
+}
+.closelogin {
+	color: white;
+	position: absolute;
+	font-size: 30px;
+	right: 10px;
+	top: 50px;
+	font-weight: bold !important;
+	cursor: pointer;
+}
+.closelogin:hover {
+	color: rgb(239 191 110);
+}

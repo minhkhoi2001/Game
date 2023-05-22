@@ -1,0 +1,413 @@
+.info_profile {
+	background-color: red;
+	display: flex;
+	justify-content: space-between;
+	height: 43px;
+	padding: 5px 10px;
+}
+.content-home {
+	max-width: 869%;
+	overflow: auto;
+}
+.carousel {
+	height: 175px;
+}
+.title-speaker {
+	color: red;
+	float: left;
+	display: flex;
+	align-items: center;
+}
+.row-content-home {
+	color: red;
+}
+.text-red {
+	color: red;
+	font-size: 12px;
+}
+.item_game {
+	width: 100%;
+	flex-shrink: 0;
+	overflow: auto hidden;
+}
+.col-game {
+	float: left;
+	width: 100%;
+	box-sizing: border-box;
+	padding: 0px 10px;
+}
+.item-game1 {
+	display: table;
+	width: 100%;
+}
+.a-btn {
+	padding: 3px 8px;
+	background: red;
+	border-radius: 5px;
+	color: white;
+	width: 100%;
+	max-width: 100px;
+	cursor: pointer;
+}
+.title-game {
+	font-size: 15px;
+	padding-right: 5px;
+	text-align: left;
+	padding-left: 10px;
+	display: table-cell;
+	word-break: break-word;
+	color: red;
+	vertical-align: middle;
+}
+.btn-join {
+	display: table-cell;
+	width: 80px;
+	white-space: nowrap;
+	cursor: pointer;
+}
+.img-games {
+	width: 50px;
+	height: 50px;
+	border-radius: 50%;
+}
+.col-game-box {
+	padding: 10px;
+	border-width: 2px;
+	border-style: solid;
+	border-color: red;
+	border-image: initial;
+	margin: 5px;
+	height: 70px;
+	border-radius: 5px;
+	background-color: transparent;
+	text-align: center;
+	margin: 0 0 20px;
+	position: relative;
+}
+.content-nav {
+	padding: 5px 20px;
+	display: flex;
+	justify-content: space-between;
+	background: #fff;
+	border-bottom: 1px solid #f4f4f4;
+	width: calc(100% - 20px);
+	border-radius: 50px;
+	margin: 0 auto 15px;
+	box-shadow: 4px 4px 50px rgba(0, 0, 0, 0.15);
+	border-radius: 10px;
+	border-bottom: 0px;
+}
+.notifiall {
+	position: relative;
+	overflow: hidden;
+	white-space: nowrap;
+	text-overflow: ellipsis;
+	font-size: 10px;
+	line-height: 26px;
+	font-weight: 500;
+	display: block;
+	padding: 5px 16px;
+	color: red;
+}
+.icon_setting_header {
+	display: flex;
+	align-items: center;
+	color: #fff;
+	font-size: 25px;
+	padding-bottom: 5px;
+	text-decoration: none;
+}
+.icon_setting_header > * {
+	margin-right: 5px;
+}
+.header_profile {
+	width: 100%;
+	background-image: linear-gradient(270deg, #52b7d2, #6271ac);
+}
+.avatar_profile {
+	display: flex;
+	align-items: center;
+}
+.avatar_profile img {
+	max-height: 58px;
+}
+.detail_avatar {
+	overflow: hidden;
+	border-radius: 50px;
+	width: 15%;
+	height: 15%;
+	padding: 20px;
+}
+.name_profile {
+	display: flex;
+	align-items: center;
+	color: white;
+	font-weight: 500;
+	font-size: 1.2rem;
+}
+.content_profile {
+	position: relative;
+}
+.list-bank {
+	padding: 0 10px;
+}
+.list-bank > .title {
+	font-weight: 500;
+}
+.list-bank a {
+	text-decoration: none;
+}
+.item-bank {
+	display: flex;
+}
+.item-bank > div {
+	border: 0.5px solid #ddd;
+	white-space: nowrap;
+	overflow: hidden;
+	text-overflow: ellipsis;
+}
+.item-bank > div:not(.edit) {
+	width: 30%;
+	text-align: left;
+	padding: 5px;
+}
+.item-bank > .edit img {
+	margin: 5px auto;
+}
+.item-bank > .edit {
+	width: 10%;
+	text-align: center;
+}
+:root {
+	--color-main: #25cb83;
+	--color-main-hover: #25cb83;
+	--color-text: #333;
+	--color-text-light: #fff;
+	--color-link: #1d2327;
+	--color-link-hover: #242f48;
+	--color-link-content: #6422c3;
+	--color-link-content-hover: #0d6efd;
+	--color-line: #e2e5ec;
+	--color-note: #888c91;
+	--color-section: #fff;
+	--color-background: #f5f5f5;
+	--box-shadow: 0px 4px 10px #626262;
+	--border-input: 1px solid var(--color-line);
+	--transition: 300ms all ease-in-out;
+	--scrollbarBG: #e9ecef;
+	--width-content: 800px;
+	--bg-main: #25cb83;
+	--bg-app: #fff;
+}
+.account {
+	color: var(--color-text);
+	height: 100%;
+	width: 100%;
+	z-index: 2;
+	position: relative;
+}
+.account h1 {
+	color: red !important;
+	margin: 0.4rem 0 !important;
+}
+.account__top {
+	background: #fff;
+	box-shadow: 0 0.05333rem 0.10667rem #c5c5da40;
+	border-radius: 0.26667rem;
+	padding: 0.26667rem 0.34667rem;
+	text-align: center;
+	font-size: 0.34667rem;
+	margin-top: 0.33rem;
+}
+.account__top .account__heading {
+	color: var(--color-text);
+	font-size: 15px;
+	font-weight: 600;
+	line-height: 30px;
+	margin-bottom: 15px;
+	padding-top: 15px;
+	text-align: center;
+	text-transform: capitalize;
+}
+.account__top .account__ID {
+	-webkit-box-pack: start;
+	-ms-flex-pack: start;
+	-webkit-box-align: center;
+	-ms-flex-align: center;
+	-webkit-align-items: center;
+	align-items: center;
+	color: var(--color-text);
+	display: -webkit-box;
+	display: -webkit-flex;
+	display: -ms-flexbox;
+	display: flex;
+	-webkit-justify-content: flex-start;
+	justify-content: flex-start;
+}
+.account__top .account__ID span {
+	color: var(--color-text);
+	margin: 0 5px;
+	font-size: 0.42rem;
+}
+.account__top .account__balance {
+	-webkit-box-orient: vertical;
+	-webkit-box-direction: normal;
+	-webkit-box-pack: center;
+	-ms-flex-pack: center;
+	-webkit-box-align: center;
+	-ms-flex-align: center;
+	-webkit-align-items: center;
+	align-items: center;
+	display: -webkit-box;
+	display: -webkit-flex;
+	display: -ms-flexbox;
+	display: flex;
+	-webkit-flex-direction: column;
+	-ms-flex-direction: column;
+	flex-direction: column;
+	-webkit-justify-content: center;
+	justify-content: center;
+	padding: 15px 0 50px;
+}
+.account__top .account__balance img {
+	width: 80px;
+	height: 80px;
+	border-radius: 100%;
+}
+.account__top .account__balance span {
+	color: var(--color-text);
+	display: block;
+	font-size: 14px;
+	font-weight: 400;
+	margin-bottom: 15px;
+}
+.account__top .account__balance strong {
+	color: var(--color-text);
+	font-size: 32px;
+	font-weight: 600;
+}
+.account__transaction {
+	-webkit-box-pack: center;
+	-ms-flex-pack: center;
+	-webkit-justify-content: center;
+	justify-content: center;
+}
+.account__transaction,
+.account__transaction .account__transaction-box {
+	-webkit-box-align: center;
+	-ms-flex-align: center;
+	-webkit-align-items: center;
+	align-items: center;
+	display: -webkit-box;
+	display: -webkit-flex;
+	display: -ms-flexbox;
+	display: flex;
+}
+.account__transaction .account__transaction-box {
+	-webkit-box-pack: justify;
+	-ms-flex-pack: justify;
+	-webkit-box-orient: horizontal;
+	-webkit-box-direction: normal;
+	background: linear-gradient(180deg, #da4141 0%, #ff0000 100%);
+	border: var(--border-input);
+	-webkit-border-radius: 10px;
+	border-radius: 10px;
+	color: var(--color-text-light);
+	-webkit-flex-direction: row;
+	-ms-flex-direction: row;
+	flex-direction: row;
+	-webkit-justify-content: space-between;
+	justify-content: space-between;
+	margin-top: -36px;
+	padding: 10px;
+	width: -webkit-max-content;
+	width: -moz-max-content;
+	width: max-content;
+}
+.account__transaction .account__transaction-box .account__transaction-item {
+	-webkit-box-pack: center;
+	-ms-flex-pack: center;
+	-webkit-box-align: center;
+	-ms-flex-align: center;
+	-webkit-box-orient: vertical;
+	-webkit-box-direction: normal;
+	-webkit-align-items: center;
+	align-items: center;
+	cursor: pointer;
+	display: -webkit-box;
+	display: -webkit-flex;
+	display: -ms-flexbox;
+	display: flex;
+	-webkit-flex-direction: column;
+	-ms-flex-direction: column;
+	flex-direction: column;
+	-webkit-justify-content: center;
+	justify-content: center;
+	padding: 0 35px;
+}
+.account__transaction .account__transaction-box .account__transaction-item svg {
+	fill: var(--color-text-light);
+	display: block;
+	font-size: 22px;
+}
+.account__transaction
+	.account__transaction-box
+	.account__transaction-item
+	span {
+	color: var(--color-text-light);
+	display: block;
+	font-size: 14px;
+	line-height: 15px;
+	margin-top: 8px;
+}
+.account__transaction .account__transaction-box .account__transaction-line {
+	background: var(--color-text-light);
+	-webkit-border-radius: 100%;
+	border-radius: 100%;
+	height: 28px;
+	width: 1px;
+}
+.account__menu {
+	padding: 20px 22px 15px;
+}
+.account__menu .account__menu-item {
+	-webkit-box-pack: justify;
+	-ms-flex-pack: justify;
+	-webkit-box-align: center;
+	-ms-flex-align: center;
+	-webkit-align-items: center;
+	align-items: center;
+	border-bottom: var(--border-input);
+	cursor: pointer;
+	display: -webkit-box;
+	display: -webkit-flex;
+	display: -ms-flexbox;
+	display: flex;
+	font-size: 16px;
+	-webkit-justify-content: space-between;
+	justify-content: space-between;
+	padding: 8px 0 13px;
+	color: #444;
+}
+.account__menu .account__menu-item i,
+.account__menu .account__menu-item span {
+	font-size: 17px;
+}
+.account__menu .account__menu-item span svg {
+	margin-right: 10px;
+	position: relative;
+	top: 6px;
+	width: 25px;
+}
+.account__menu .account__menu-item:last-child {
+	border-bottom: none;
+}
+.account a {
+	display: block;
+	text-decoration: none;
+}
+.account__menu .account__menu-item > svg {
+	font-size: 0.6rem !important;
+	position: relative;
+	top: 0.1rem;
+}
