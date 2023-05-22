@@ -242,10 +242,14 @@ function Bacang() {
 	const [newMoney, setNewMoney] = useState();
 
 	const [activeTab, setActiveTab] = useState("tab1");
-
 	const handleTabClick = (tabName) => {
 		navigate(tabName);
 		getHistoryBet();
+	};
+
+	const [activeTab3c, setActiveTab3c] = useState("tab_1");
+	const handleTabClick3c = (tabName) => {
+		setActiveTab3c(tabName);
 	};
 
 	useEffect(() => {
@@ -272,9 +276,9 @@ function Bacang() {
 			.catch((err) => function () {});
 	}
 	const numbers = Array.from(Array(1000).keys());
-	const location = useLocation()
+	const location = useLocation();
 
-	const navigate = useNavigate()
+	const navigate = useNavigate();
 	return (
 		<>
 			<div className="main">
@@ -282,7 +286,7 @@ function Bacang() {
 					<div className="header-top">
 						<div className="logo">
 							<Link to="/">
-								<img src={require("../../img/vietllot.png")} alt="Logo" />
+								<img src={require("../../img/logo-vietlott.png")} alt="Logo" />
 							</Link>
 						</div>
 						<div className="header-right">
@@ -332,8 +336,13 @@ function Bacang() {
 												justifyContent: "center",
 											}}
 										>
-											<div>{minute<10?"0":null}</div>
-											<div>{minute}</div>
+											<div>{minute < 10 ? "0" : null}</div>
+											{minute
+												.toString()
+												.split("")
+												.map((item, index) => (
+													<div key={index}>{item}</div>
+												))}
 											<div className="notime">:</div>
 											{second < 10 ? <div>0</div> : ""}
 											{second
@@ -352,23 +361,23 @@ function Bacang() {
 								<>
 									<div
 										style={{ cursor: "pointer" }}
-										onClick={() => {
-											//setShowPopup(!showPopup);
-										}}
+										onClick={openPopup1}
 										className="info_bet"
 									>
 										<div style={{ fontSize: "0.33rem" }}>
-											Kết quả phiên
+											Kết quả phiên{" "}
 											<b style={{ color: "#333" }}>{total[0]?.id_bet}</b>
 										</div>
-											<div
+										<div
 											className="ball_xs"
 											style={{
 												margin: "0.3rem auto",
 												justifyContent: "center",
 											}}
 										>
-											{total[0].dacbiet}
+											{total[0].dacbiet.split("").map((x) => (
+												<div className="redball">{x}</div>
+											))}
 										</div>
 									</div>
 								</>
@@ -399,43 +408,43 @@ function Bacang() {
 				</div>
 
 				<ul className="tab-navigation tab-game">
-						<li
-							className={location.pathname === "/xoso" ? "active" : ""}
-							onClick={() => handleTabClick("/xoso")}
-						>
-							Lô
-						</li>
-						<li
-							className={location.pathname === "/xoso/bacang"  ? "active" : ""}
-							onClick={() => handleTabClick("/xoso/bacang")}
-						>
-							Ba càng
-						</li>
-						<li
-						className={location.pathname === "/xoso/de"  ? "active" : ""}
-							onClick={() => handleTabClick("/xoso/de")}
-						>
-							Đề
-						</li>
-						<li
-							className={location.pathname === "/xoso/loxien"  ? "active" : ""}
-							onClick={() => handleTabClick("/xoso/loxien")}
-						>
-							Lô xiên 2
-						</li>
-						<li
-							className={location.pathname === "/xoso/loxien3"  ? "active" : ""}
-							onClick={() => handleTabClick("/xoso/loxien3")}
-						>
-							Lô xiên 3
-						</li>
-						<li
-							className={location.pathname === "/xoso/loxien4"  ? "active" : ""}
-							onClick={() => handleTabClick("/xoso/loxien4")}
-						>
-							Lô xiên 4
-						</li>
-					</ul>
+					<li
+						className={location.pathname === "/xoso" ? "active" : ""}
+						onClick={() => handleTabClick("/xoso")}
+					>
+						Lô
+					</li>
+					<li
+						className={location.pathname === "/xoso/bacang" ? "active" : ""}
+						onClick={() => handleTabClick("/xoso/bacang")}
+					>
+						Ba càng
+					</li>
+					<li
+						className={location.pathname === "/xoso/de" ? "active" : ""}
+						onClick={() => handleTabClick("/xoso/de")}
+					>
+						Đề
+					</li>
+					<li
+						className={location.pathname === "/xoso/loxien" ? "active" : ""}
+						onClick={() => handleTabClick("/xoso/loxien")}
+					>
+						Lô xiên 2
+					</li>
+					<li
+						className={location.pathname === "/xoso/loxien3" ? "active" : ""}
+						onClick={() => handleTabClick("/xoso/loxien3")}
+					>
+						Lô xiên 3
+					</li>
+					<li
+						className={location.pathname === "/xoso/loxien4" ? "active" : ""}
+						onClick={() => handleTabClick("/xoso/loxien4")}
+					>
+						Lô xiên 4
+					</li>
+				</ul>
 
 				<div className="main_game">
 					<div className="route_game">
@@ -500,19 +509,71 @@ function Bacang() {
 						</div>
 						<div className="text_choose_center">
 							<div className="bet_state">Chọn Số</div>
-							<div className="state_choose">
-								{numbers.map((number) => (
-									<div
-										key={number}
-										id={number}
-										onClick={onChoose}
-										className={`choose_xs  ${
-											item1.includes(String(number)) ? "chooseItem" : ""
-										}`}
-									>
-										{number < 100&&number>10 ? `0${number}` : number<10?`00${number}`:number}
-									</div>
-								))}
+							<div className="bacang">
+								<ul className="tab-navigation tab-3cang">
+									{[0, 100, 200, 300, 400, 500, 600, 700, 800, 900].map((startNumber, index) => {
+										const endNumber = startNumber + 99;
+										const tabId = `tab_${index + 1}`;
+										const isActive = activeTab3c === tabId ? "active" : "";
+
+										return (
+										<li
+											key={tabId}
+											className={isActive}
+											onClick={() => handleTabClick3c(tabId)}
+										>
+											{startNumber.toString().padStart(3, "0")}
+											<br/> ━ <br/>
+											{endNumber.toString().padStart(3, "0")}
+										</li>
+										);
+									})}
+								</ul>
+							</div>
+							<div className="tab-contents" style={{marginLeft:"-0.2rem", marginRight:"-0.2rem"}}>
+								<div>
+									{[
+										{ tabId: "tab_1", startNumber: 0, endNumber: 99 },
+										{ tabId: "tab_2", startNumber: 100, endNumber: 199 },
+										{ tabId: "tab_3", startNumber: 200, endNumber: 299 },
+										{ tabId: "tab_4", startNumber: 300, endNumber: 399 },
+										{ tabId: "tab_5", startNumber: 400, endNumber: 499 },
+										{ tabId: "tab_6", startNumber: 500, endNumber: 599 },
+										{ tabId: "tab_7", startNumber: 600, endNumber: 699 },
+										{ tabId: "tab_8", startNumber: 700, endNumber: 799 },
+										{ tabId: "tab_9", startNumber: 800, endNumber: 899 },
+										{ tabId: "tab_10", startNumber: 900, endNumber: 999 }
+									].map(({ tabId, startNumber, endNumber }) => {
+										if (activeTab3c === tabId) {
+										return (
+											<div key={tabId} className="state_choose">
+											{numbers.map((number) => {
+												if (number >= startNumber && number <= endNumber) {
+												return (
+													<div
+													key={number}
+													id={number}
+													onClick={onChoose}
+													className={`choose_xs ${
+														item1.includes(String(number)) ? "chooseItem" : ""
+													}`}
+													>
+													{number < 100 && number > 10
+														? `0${number}`
+														: number < 10
+														? `00${number}`
+														: number}
+													</div>
+												);
+												}
+											})}
+											</div>
+										);
+										}
+										return null;
+									})}
+								</div>
+
 							</div>
 						</div>
 					</div>
@@ -549,131 +610,137 @@ function Bacang() {
 				{isOpen1 && (
 					<div className="popup-backdrop">
 						<div className="popup-main">
-							<div className="popup-content" style={{padding:"0"}}>
-								<table id="table-xsmb" class="table-result table table-bordered table-striped table-xsmb">
-								  <tbody>
-								    <tr>
-								      <th style={{width:"10%"}}>ĐB</th>
-								      <td>
-								        <span id="mb_prize_0" class="special-prize div-horizontal" data="30621">
-								          {total[0].dacbiet}
-								        </span>
-								      </td>
-								    </tr>
-								    <tr>
-								      <th>1</th>
-								      <td>
-								        <span id="mb_prize_1" class="prize1 div-horizontal" data="44342">
-										{total[0].nhat}
-								        </span>
-								      </td>
-								    </tr>
-								    <tr>
-								      <th>2</th>
-								      <td>
-								        <span id="mb_prize_2" class="prize2 div-horizontal" data="83110">
-								        {total[0].hai.split(" ")[0]}
-								        </span>
-								        <span id="mb_prize_3" class="prize2 div-horizontal" data="50594">
-										{total[0].hai.split(" ")[1]}
-								        </span>
-								      </td>
-								    </tr>
-								    <tr>
-								      <th>3</th>
-								      <td>
-								        <span id="mb_prize_4" class="prize3 div-horizontal" data="54163">
-										{total[0].ba.split(" ")[0]}
-								        </span>
-								        <span id="mb_prize_5" class="prize3 div-horizontal" data="11773">
-										{total[0].ba.split(" ")[1]}
-								        </span>
-								        <span id="mb_prize_6" class="prize3 div-horizontal" data="42425">
-										{total[0].ba.split(" ")[2]}
-								        </span>
-								        <span id="mb_prize_7" class="prize3 div-horizontal" data="73193">
-										{total[0].ba.split(" ")[3]}
-								        </span>
-								        <span id="mb_prize_8" class="prize3 div-horizontal" data="80948">
-										{total[0].ba.split(" ")[4]}
-								        </span>
-								        <span id="mb_prize_9" class="prize3 div-horizontal" data="39475">
-										{total[0].ba.split(" ")[5]}
-								        </span>
-								      </td>
-								    </tr>
-								    <tr>
-								      <th>4</th>
-								      <td>
-								        <span id="mb_prize_10" class="prize4 div-horizontal" data="7783">
-								        {total[0].tu.split(" ")[0]}
-								        </span>
-								        <span id="mb_prize_11" class="prize4 div-horizontal" data="7730">
-										{total[0].tu.split(" ")[1]}
-								        </span>
-								        <span id="mb_prize_12" class="prize4 div-horizontal" data="8277">
-										{total[0].tu.split(" ")[2]}
-								        </span>
-								        <span id="mb_prize_13" class="prize4 div-horizontal" data="9783">
-										{total[0].tu.split(" ")[3]}
-								        </span>
-								      </td>
-								    </tr>
-								    <tr>
-								      <th>5</th>
-								      <td>
-								        <span id="mb_prize_14" class="prize5 div-horizontal" data="3039">
-										{total[0].nam.split(" ")[0]}
-								        </span>
-								        <span id="mb_prize_15" class="prize5 div-horizontal" data="9691">
-										{total[0].nam.split(" ")[1]}
-								        </span>
-								        <span id="mb_prize_16" class="prize5 div-horizontal" data="4053">
-										{total[0].nam.split(" ")[2]}
-								        </span>
-								        <span id="mb_prize_17" class="prize5 div-horizontal" data="6513">
-										{total[0].nam.split(" ")[3]}
-								        </span>
-								        <span id="mb_prize_18" class="prize5 div-horizontal" data="8098">
-										{total[0].nam.split(" ")[4]}
-								        </span>
-								        <span id="mb_prize_19" class="prize5 div-horizontal" data="3212">
-										{total[0].nam.split(" ")[5]}
-								        </span>
-								      </td>
-								    </tr>
-								    <tr>
-								      <th>6</th>
-								      <td>
-								        <span id="mb_prize_20" class="prize6 div-horizontal" data="459">
-										{total[0].sau.split(" ")[0]}
-								        </span>
-								        <span id="mb_prize_21" class="prize6 div-horizontal" data="258">
-								        {total[0].sau.split(" ")[1]}
-								        </span>
-								        <span id="mb_prize_22" class="prize6 div-horizontal" data="345">
-										{total[0].sau.split(" ")[2]}
-								        </span>
-								      </td>
-								    </tr>
-								    <tr>
-								      <th>7</th>
-								      <td>
-								        <span id="mb_prize_23" class="prize7 div-horizontal" data="56">
-										{total[0].bay.split(" ")[0]}
-								        </span>
-								        <span id="mb_prize_24" class="prize7 div-horizontal" data="65">
-										{total[0].bay.split(" ")[1]}
-								        </span>
-								        <span id="mb_prize_25" class="prize7 div-horizontal" data="32">
-										{total[0].bay.split(" ")[2]}
-								        </span>
-								        <span id="mb_prize_26" class="prize7 div-horizontal" data="77">
-										{total[0].bay.split(" ")[3]}
-								        </span>
-								      </td>
-								    </tr>
-								  </tbody>
+							<div className="popup-content" style={{ padding: "0" }}>
+								<table
+									id="table-xsmb"
+									class="table-result table table-bordered table-striped table-xsmb"
+								>
+									<tbody>
+										<tr>
+											<th style={{ width: "10%" }}>ĐB</th>
+											<td>
+												<span
+													id="mb_prize_0"
+													class="special-prize div-horizontal"
+												>
+													{total[0].dacbiet}
+												</span>
+											</td>
+										</tr>
+										<tr>
+											<th>1</th>
+											<td>
+												<span id="mb_prize_1" class="prize1 div-horizontal">
+													{total[0].nhat}
+												</span>
+											</td>
+										</tr>
+										<tr>
+											<th>2</th>
+											<td>
+												<span id="mb_prize_2" class="prize2 div-horizontal">
+													{total[0].hai.split(" ")[0]}
+												</span>
+												<span id="mb_prize_3" class="prize2 div-horizontal">
+													{total[0].hai.split(" ")[1]}
+												</span>
+											</td>
+										</tr>
+										<tr>
+											<th>3</th>
+											<td>
+												<span id="mb_prize_4" class="prize3 div-horizontal">
+													{total[0].ba.split(" ")[0]}
+												</span>
+												<span id="mb_prize_5" class="prize3 div-horizontal">
+													{total[0].ba.split(" ")[1]}
+												</span>
+												<span id="mb_prize_6" class="prize3 div-horizontal">
+													{total[0].ba.split(" ")[2]}
+												</span>
+												<span id="mb_prize_7" class="prize3 div-horizontal">
+													{total[0].ba.split(" ")[3]}
+												</span>
+												<span id="mb_prize_8" class="prize3 div-horizontal">
+													{total[0].ba.split(" ")[4]}
+												</span>
+												<span id="mb_prize_9" class="prize3 div-horizontal">
+													{total[0].ba.split(" ")[5]}
+												</span>
+											</td>
+										</tr>
+										<tr>
+											<th>4</th>
+											<td>
+												<span id="mb_prize_10" class="prize4 div-horizontal">
+													{total[0].tu.split(" ")[0]}
+												</span>
+												<span id="mb_prize_11" class="prize4 div-horizontal">
+													{total[0].tu.split(" ")[1]}
+												</span>
+												<span id="mb_prize_12" class="prize4 div-horizontal">
+													{total[0].tu.split(" ")[2]}
+												</span>
+												<span id="mb_prize_13" class="prize4 div-horizontal">
+													{total[0].tu.split(" ")[3]}
+												</span>
+											</td>
+										</tr>
+										<tr>
+											<th>5</th>
+											<td>
+												<span id="mb_prize_14" class="prize5 div-horizontal">
+													{total[0].nam.split(" ")[0]}
+												</span>
+												<span id="mb_prize_15" class="prize5 div-horizontal">
+													{total[0].nam.split(" ")[1]}
+												</span>
+												<span id="mb_prize_16" class="prize5 div-horizontal">
+													{total[0].nam.split(" ")[2]}
+												</span>
+												<span id="mb_prize_17" class="prize5 div-horizontal">
+													{total[0].nam.split(" ")[3]}
+												</span>
+												<span id="mb_prize_18" class="prize5 div-horizontal">
+													{total[0].nam.split(" ")[4]}
+												</span>
+												<span id="mb_prize_19" class="prize5 div-horizontal">
+													{total[0].nam.split(" ")[5]}
+												</span>
+											</td>
+										</tr>
+										<tr>
+											<th>6</th>
+											<td>
+												<span id="mb_prize_20" class="prize6 div-horizontal">
+													{total[0].sau.split(" ")[0]}
+												</span>
+												<span id="mb_prize_21" class="prize6 div-horizontal">
+													{total[0].sau.split(" ")[1]}
+												</span>
+												<span id="mb_prize_22" class="prize6 div-horizontal">
+													{total[0].sau.split(" ")[2]}
+												</span>
+											</td>
+										</tr>
+										<tr>
+											<th>7</th>
+											<td>
+												<span id="mb_prize_23" class="prize7 div-horizontal">
+													{total[0].bay.split(" ")[0]}
+												</span>
+												<span id="mb_prize_24" class="prize7 div-horizontal">
+													{total[0].bay.split(" ")[1]}
+												</span>
+												<span id="mb_prize_25" class="prize7 div-horizontal">
+													{total[0].bay.split(" ")[2]}
+												</span>
+												<span id="mb_prize_26" class="prize7 div-horizontal">
+													{total[0].bay.split(" ")[3]}
+												</span>
+											</td>
+										</tr>
+									</tbody>
 								</table>
 							</div>
 							<button
@@ -698,49 +765,49 @@ function Bacang() {
 								Lịch Sử Tham Gia
 							</div>
 							<div className="popup-content">
-							{historyGame != null ? (
+								{historyGame != null ? (
 									<div className="content-history award_tb">
 										{historyGame?.map((item, key) => (
 											<>
-											{item.sanh ? (
-												<div className="item_inner">
-													<div className="item_history">
-														<div className="title_item_history">
-															<span className="sanh">Keno {item.sanh}</span>
-															<span
-																className={`type_state ${
-																	item.status_bet === "Pending"
-																		? "pending"
-																		: item.status_bet === "Win"
-																		? "win"
-																		: "lose"
-																}`}
-															>
-																{item.status_bet}
+												{item.sanh ? (
+													<div className="item_inner">
+														<div className="item_history">
+															<div className="title_item_history">
+																<span className="sanh">Keno {item.sanh}</span>
+																<span
+																	className={`type_state ${
+																		item.status_bet === "Pending"
+																			? "pending"
+																			: item.status_bet === "Win"
+																			? "win"
+																			: "lose"
+																	}`}
+																>
+																	{item.status_bet}
+																</span>
+															</div>
+															<div className="id_history_sanh">
+																Phiên cược: {item.id_bet.id_bet}
+															</div>
+															<div className="id_history_sanh">
+																{GetNameChoose(Number(item.state), null)}
+															</div>
+														</div>
+														<div className="money_history">
+															<span className="money">
+																{Number(item.money).toLocaleString()}đ
 															</span>
-														</div>
-														<div className="id_history_sanh">
-															Phiên cược: {item.id_bet.id_bet}
-														</div>
-														<div className="id_history_sanh">
-															{GetNameChoose(Number(item.state), null)}
+															<div className="time_choose">
+																{formatDate(new Date(item.createdAt))}
+															</div>
 														</div>
 													</div>
-													<div className="money_history">
-														<span className="money">
-															{Number(item.money).toLocaleString()}đ
-														</span>
-														<div className="time_choose">
-															{formatDate(new Date(item.createdAt))}
-														</div>
-													</div>
-												</div>
-											) : null}
+												) : null}
 											</>
 										))}
 									</div>
 								) : (
-									<div style={{ margin: "0.5rem" }}>Loading...</div>
+									<div></div>
 								)}
 							</div>
 							<button

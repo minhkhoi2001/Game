@@ -262,7 +262,7 @@ function Keno1() {
 				<div className="header">
 					<div className="header-top">
 						<div className="logo">
-							<Link to="/"><img src={require("../../img/vietllot.png")} alt="Logo" /></Link>
+							<Link to="/"><img src={require("../../img/logo-vietlott.png")} alt="Logo" /></Link>
 						</div>
 						<div className="header-right">
 							<div style={{ display: "flex", float: "right" }}>
@@ -310,7 +310,12 @@ function Keno1() {
 										<div style={{ fontSize: "0.33rem" }}>Thời gian còn lại</div>
 										<div className="count">
 											<div>0</div>
-											<div>{minute}</div>
+											{minute
+												.toString()
+												.split("")
+												.map((item, index) => (
+													<div key={index}>{item}</div>
+												))}
 											<div className="notime">:</div>
 											{second < 10 ? <div>0</div> : ""}
 											{second
@@ -830,7 +835,7 @@ function Keno1() {
 										))}
 									</div>
 								) : (
-									<div style={{ margin: "0.5rem" }}>Loading...</div>
+									<div></div>
 								)}
 							</>
 						)}

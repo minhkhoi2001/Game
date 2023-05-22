@@ -332,7 +332,12 @@ function Loxien4() {
 											}}
 										>
 											<div>{minute<10?"0":null}</div>
-											<div>{minute}</div>
+											{minute
+												.toString()
+												.split("")
+												.map((item, index) => (
+													<div key={index}>{item}</div>
+												))}
 											<div className="notime">:</div>
 											{second < 10 ? <div>0</div> : ""}
 											{second
@@ -351,13 +356,11 @@ function Loxien4() {
 								<>
 									<div
 										style={{ cursor: "pointer" }}
-										onClick={() => {
-											//setShowPopup(!showPopup);
-										}}
+										onClick={openPopup1}
 										className="info_bet"
 									>
 										<div style={{ fontSize: "0.33rem" }}>
-											Kết quả phiên
+											Kết quả phiên {" "}
 											<b style={{ color: "#333" }}>{total[0]?.id_bet}</b>
 										</div>
 											<div
@@ -367,7 +370,9 @@ function Loxien4() {
 												justifyContent: "center",
 											}}
 										>
-											{total[0].dacbiet}
+											{total[0].dacbiet.split("").map((x) => (
+																<div className="redball">{x}</div>
+															))}
 										</div>
 									</div>
 								</>

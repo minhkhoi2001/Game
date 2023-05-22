@@ -60,7 +60,7 @@ function HistoryAdd() {
 					<div className="header-top">
 						<div className="logo">
 							<Link to="/">
-								<img src={require("../../img/vietllot.png")} alt="Logo" />
+								<img src={require("../../img/logo-vietlott.png")} alt="Logo" />
 							</Link>
 						</div>
 						<div className="header-right">
