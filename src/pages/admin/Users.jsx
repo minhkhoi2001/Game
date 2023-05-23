@@ -118,6 +118,7 @@ function Users() {
 														<TableCell>Admin Trừ</TableCell>
 														<TableCell>Admin Thưởng</TableCell>
 														<TableCell>Tổng đặt</TableCell>
+														<TableCell>Tổng win</TableCell>
 														<TableCell>Rút/ Nạp Tiền</TableCell>
 														<TableCell>Thưởng</TableCell>
 														<TableCell>Xem thông tin</TableCell>
@@ -150,6 +151,9 @@ function Users() {
 																</TableCell>
 																<TableCell sx={{ fontWeight: "600" }}>
 																	{item.totalbet.toLocaleString()}
+																</TableCell>
+																<TableCell sx={{ fontWeight: "600" }}>
+																	{item.totalwin.toLocaleString()}
 																</TableCell>
 																<TableCell sx={{ fontWeight: "600" }}>
 																	<form
