@@ -723,7 +723,7 @@ function Xoso() {
 									<div className="content-history award_tb">
 										{historyGame?.map((item, key) => (
 											<>
-											{item.sanh ? (
+											{item.sanh&&item.type ? (
 												<div className="item_inner">
 													<div className="item_history">
 														<div className="title_item_history">

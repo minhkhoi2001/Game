@@ -200,6 +200,7 @@ function Loxien2() {
 	const [isOpen2, setIsOpen2] = useState(false);
 	const openPopup2 = () => {
 		setIsOpen2(true);
+		getHistoryBet()
 	};
 	const closePopup2 = () => {
 		setIsOpen2(false);
@@ -722,7 +723,7 @@ function Loxien2() {
 									<div className="content-history award_tb">
 										{historyGame?.map((item, key) => (
 											<>
-											{item.sanh ? (
+											{item.sanh&&item.type ? (
 												<div className="item_inner">
 													<div className="item_history">
 														<div className="title_item_history">

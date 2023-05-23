@@ -199,6 +199,7 @@ function De() {
 
 	const [isOpen2, setIsOpen2] = useState(false);
 	const openPopup2 = () => {
+		getHistoryBet()
 		setIsOpen2(true);
 	};
 	const closePopup2 = () => {
@@ -728,7 +729,7 @@ function De() {
 									<div className="content-history award_tb">
 										{historyGame?.map((item, key) => (
 											<>
-												{item.sanh ? (
+												{item.sanh&&item.type? (
 													<div className="item_inner">
 														<div className="item_history">
 															<div className="title_item_history">

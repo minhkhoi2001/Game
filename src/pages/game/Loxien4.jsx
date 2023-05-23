@@ -202,6 +202,7 @@ function Loxien4() {
 	const [isOpen2, setIsOpen2] = useState(false);
 	const openPopup2 = () => {
 		setIsOpen2(true);
+		getHistoryBet()
 	};
 	const closePopup2 = () => {
 		setIsOpen2(false);
@@ -209,12 +210,12 @@ function Loxien4() {
 
 	const onChoose = (e) => {
 		console.log(e.target.id);
-		if (item1.includes(e.target.id)&&item1.length<2) {
+		if (item1.includes(e.target.id)&&item1.length<4) {
 			setItem(item1.filter((item) => item !== e.target.id));
-		} else if(item1.length<2){
+		} else if(item1.length<4){
 			setItem([...item1, e.target.id]);
 		}else{
-			swal("Chú ý", "Bạn chỉ được chọn tối đa 2 số", "warning")
+			swal("Chú ý", "Bạn chỉ được chọn tối đa 4 số", "warning")
 			item1.pop()
 			setItem(item1)
 		}
@@ -723,7 +724,7 @@ function Loxien4() {
 									<div className="content-history award_tb">
 										{historyGame?.map((item, key) => (
 											<>
-											{item.sanh ? (
+											{item.sanh&&item.type? (
 												<div className="item_inner">
 													<div className="item_history">
 														<div className="title_item_history">
