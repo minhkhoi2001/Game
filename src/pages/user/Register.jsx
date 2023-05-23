@@ -47,7 +47,7 @@ function Register() {
 			return;
 		}
 		axios
-			.post(`http://localhost/auth/register`, {
+			.post(`https://server.st666.pro/auth/register`, {
 				username: data.username,
 				password: data.password,
 				code: data.code,

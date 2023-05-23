@@ -25,7 +25,7 @@ function CSKH() {
 		}
 	);
 	axios
-		.get(`http://localhost/auth/getUser`, {})
+		.get(`https://server.st666.pro/auth/getUser`, {})
 		.then((res) => {
 			setProfile(res.data.data);
 		})
@@ -43,8 +43,8 @@ function CSKH() {
 	return (
 		<>
 			{isLoading ? (
-				<div class="loading">
-					<div class="loader"></div>
+				<div className="loading">
+					<div className="loader"></div>
 				</div>
 			) : null}
 			<div className="main">

@@ -1198,3 +1198,6 @@ body:has(.info_bet) .loading {
 		transform: rotate(1turn);
 	}
 }
+.route_game input {
+	border: 1px solid #e5e5e5
+}

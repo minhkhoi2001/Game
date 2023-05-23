@@ -43,25 +43,25 @@ function Keno5() {
 		}
 	);
 	useEffect(() => {
-		axios.get(`http://localhost/auth/getUser`, {}).then((res) => {
+		axios.get(`https://server.st666.pro/auth/getUser`, {}).then((res) => {
 			setProfile(res.data.data);
 		});
-		axios.get(`http://localhost/setting/get`, {}).then((res) => {
+		axios.get(`https://server.st666.pro/setting/get`, {}).then((res) => {
 			setSetting(res.data.data[0]);
 		});
-		axios.get(`http://localhost/bet5/get`).then((res) => {
+		axios.get(`https://server.st666.pro/bet5/get`).then((res) => {
 			setBet(res.data.data);
 			setDulieunhap(new Date(res.data.data.createdAt));
 			setStart(true);
 		});
 		axios
-			.get(`http://localhost/bet5/getallbet`, {})
+			.get(`https://server.st666.pro/bet5/getallbet`, {})
 			.then((res) => {
 				setTotal(res.data.data);
 			})
 			.catch(() => setTotal(null));
 		axios
-			.get(`http://localhost/notification/getnotifi`, {})
+			.get(`https://server.st666.pro/notification/getnotifi`, {})
 			.then((res) => {
 				setVisible({
 					money: res.data.data[0].money.toLocaleString(),
@@ -72,21 +72,21 @@ function Keno5() {
 	useEffect(() => {
 		const timer = setInterval(() => {
 			if (Math.floor(300 - (new Date() - dulieunhap) / 1000) < 0) {
-				axios.get(`http://localhost/auth/getUser`, {}).then((res) => {
+				axios.get(`https://server.st666.pro/auth/getUser`, {}).then((res) => {
 					setProfile(res.data.data);
 				});
-				axios.get(`http://localhost/bet5/get`).then((res) => {
+				axios.get(`https://server.st666.pro/bet5/get`).then((res) => {
 					setBet(res.data.data);
 					setDulieunhap(new Date(res.data.data.createdAt));
 				});
 				axios
-					.get(`http://localhost/bet5/getallbet`, {})
+					.get(`https://server.st666.pro/bet5/getallbet`, {})
 					.then((res) => {
 						setTotal(res.data.data);
 					})
 					.catch(() => setTotal(null));
 				axios
-					.get(`http://localhost/notification/getnotifi`, {})
+					.get(`https://server.st666.pro/notification/getnotifi`, {})
 					.then((res) => {
 						setVisible({
 							money: res.data.data[0].money.toLocaleString(),
@@ -116,7 +116,7 @@ function Keno5() {
 			switch (result) {
 				case "submit":
 					// clear everything here!!
-					axios.post("http://localhost/notification/seen", {
+					axios.post("https://server.st666.pro/notification/seen", {
 						id: data.id,
 					});
 					break;
@@ -206,7 +206,7 @@ function Keno5() {
 			money: item1.length * newMoney,
 		};
 		axios
-			.post("http://localhost/history5/choose", formData)
+			.post("https://server.st666.pro/history5/choose", formData)
 			.then((res) => swal("Đặt cược thành công", "", "success"))
 			.catch((err) => swal("Thất bại", "Số tiền trong ví không đủ", "error"));
 	};
@@ -250,7 +250,7 @@ function Keno5() {
 	}
 	function getHistoryBet() {
 		axios
-			.get(`http://localhost/history/historyus`, {})
+			.get(`https://server.st666.pro/history/historyus`, {})
 			.then((res) => {
 				setHistoryGame(res.data.data);
 			})
