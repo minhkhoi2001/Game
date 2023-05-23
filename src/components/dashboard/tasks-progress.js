@@ -18,13 +18,13 @@ export const TasksProgress = (props) => (
             gutterBottom
             variant="overline"
           >
-            TASKS PROGRESS
+            Tổng rút
           </Typography>
           <Typography
             color="textPrimary"
             variant="h4"
           >
-            75.5%
+            {Number(props.tongrut).toLocaleString()}đ
           </Typography>
         </Grid>
         <Grid item>

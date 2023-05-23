@@ -19,16 +19,11 @@ const items = [
 		icon: <ChartBarIcon fontSize="small" />,
 		title: "Doanh Thu",
 	},
-	/*{
-	  href: "/admin/notification",
-	  icon: <NotificationsActiveIcon fontSize="small" />,
-	  title: "Thông báo",
-	},*/
-	// {
-	//   href: "/404",
-	//   icon: <XCircleIcon fontSize="small" />,
-	//   title: "Error",
-	// },
+	{
+		href: "/customer/usercustomer",
+		icon: <Person2Icon fontSize="small" />,
+		title: "Thống kê thành viên",
+	}
 ];
 
 export const DashboardSidebarCustomer = (props) => {

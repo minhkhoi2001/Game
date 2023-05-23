@@ -15,10 +15,11 @@ export const TotalCustomers = (props) => (
       <Grid container spacing={3} sx={{ justifyContent: "space-between" }}>
         <Grid item>
           <Typography color="textSecondary" gutterBottom variant="overline">
-            TOTAL CUSTOMERS
+            Tổng thành viên
           </Typography>
           <Typography color="textPrimary" variant="h4">
-            1,6k
+            {props.user}
+            {console.log(props)}
           </Typography>
         </Grid>
         <Grid item>
@@ -33,7 +34,7 @@ export const TotalCustomers = (props) => (
           </Avatar>
         </Grid>
       </Grid>
-      <Box
+      {/* <Box
         sx={{
           alignItems: "center",
           display: "flex",
@@ -52,7 +53,7 @@ export const TotalCustomers = (props) => (
         <Typography color="textSecondary" variant="caption">
           Since last month
         </Typography>
-      </Box>
+      </Box> */}
     </CardContent>
   </Card>
 );

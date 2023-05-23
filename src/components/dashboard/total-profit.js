@@ -15,13 +15,13 @@ export const TotalProfit = (props) => (
             gutterBottom
             variant="overline"
           >
-            TOTAL PROFIT
+            Tổng cược
           </Typography>
           <Typography
             color="textPrimary"
             variant="h4"
           >
-            $23k
+            {Number(props.tongcuoc).toLocaleString()}đ
           </Typography>
         </Grid>
         <Grid item>
