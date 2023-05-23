@@ -38,7 +38,7 @@ function Setting() {
 	);
 	useEffect(()=>{
 		if(load==true){
-			axios.get(`https://server.st666.pro/setting/get`, {}).then((res) => {
+			axios.get(`http://localhost/setting/get`, {}).then((res) => {
 				setSetting(res.data.data[0]);
 				setLoad(false)
 			});		
@@ -74,7 +74,7 @@ function Setting() {
 		}
 		console.log(formData);
 		axios
-			.put(`https://server.st666.pro/setting/update`, formData)
+			.put(`http://localhost/setting/update`, formData)
 			.then((res) => {
 				setLoad(true);
 			})

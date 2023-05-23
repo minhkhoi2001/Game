@@ -2,9 +2,9 @@ import { Outlet, Navigate } from "react-router";
 import { LoginStatus } from "./hook/checkLg";
 import axios from "axios";
 import { useEffect, useState } from "react";
-const PrivateRouteAdmin=()=>{
+const PrivateCustomer=()=>{
     const [checking, setChecking] =useState(true)
-    const [isAdmin,setIsAdmin] = useState(null)
+    const [isCustomer,setisCustomer] = useState(null)
 	axios.interceptors.request.use(
 		(config) => {
 			const token = localStorage.getItem('user');
@@ -26,7 +26,9 @@ const PrivateRouteAdmin=()=>{
 			})
 			.then((res) => {
 					setChecking(false)
-                    setIsAdmin(res.data.data.isAdmin)
+                   if(res.data.data.isCustomer== true){
+					setisCustomer(res.data.data.isCustomer)
+				   }
 			}).catch(res=>setChecking(false))
 	},[])
 
@@ -37,7 +39,7 @@ const PrivateRouteAdmin=()=>{
             </>
         )
     }
-    return isAdmin?<Outlet/> :<Navigate to ='/login'/>
+    return isCustomer?<Outlet/> :<Navigate to ='/login'/>
    
 }
-export default PrivateRouteAdmin;
+export default PrivateCustomer;

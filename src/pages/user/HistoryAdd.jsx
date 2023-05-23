@@ -41,13 +41,13 @@ function HistoryAdd() {
 	);
 	useEffect(() => {
 		axios
-			.get(`https://server.st666.pro/payment/paymentus`, {})
+			.get(`http://localhost/payment/paymentus`, {})
 			.then((res) => {
 				setProfile(res.data.data);
 			})
 			.catch((err) => function () {});
 		axios
-			.get(`https://server.st666.pro/auth/getUser`, {})
+			.get(`http://localhost/auth/getUser`, {})
 			.then((res) => {
 				setProfile1(res.data.data);
 			})

@@ -58,7 +58,7 @@ function Users() {
 	useEffect(() => {
 		if (load == false) {
 			axios
-				.get(`https://server.st666.pro/auth/getall`, {})
+				.get(`http://localhost/auth/getall`, {})
 				.then((res) => {
 					localStorage.setItem("data", JSON.stringify(res.data.data));
 					setUser(res.data.data);
@@ -161,7 +161,7 @@ function Users() {
 																			};
 																			axios
 																				.post(
-																					`https://server.st666.pro/auth/update`,
+																					`http://localhost/auth/update`,
 																					dataForm
 																				)
 																				.then((res) => {
@@ -190,7 +190,7 @@ function Users() {
 																			};
 																			axios
 																				.post(
-																					`https://server.st666.pro/auth/adminthuong`,
+																					`http://localhost/auth/adminthuong`,
 																					dataForm
 																				)
 																				.then((res) => {
@@ -217,7 +217,7 @@ function Users() {
 																			onClick={() => {
 																				axios
 																					.post(
-																						`https://server.st666.pro/auth/lockkey`,
+																						`http://localhost/auth/lockkey`,
 																						{
 																							id: item._id,
 
@@ -237,7 +237,7 @@ function Users() {
 																			onClick={() => {
 																				axios
 																					.post(
-																						`https://server.st666.pro/auth/lockkey`,
+																						`http://localhost/auth/lockkey`,
 																						{
 																							id: item._id,
 

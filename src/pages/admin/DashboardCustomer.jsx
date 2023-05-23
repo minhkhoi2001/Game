@@ -12,12 +12,13 @@ import { ThemeProvider } from "@mui/material/styles";
 import { useEffect } from "react";
 
 import { theme } from "../../theme";
+import { DashboardLayoutCustomer } from "../../components/dashboard-layout-customer";
 
-function Dashboard() {
+function DashboardCustomer() {
 	return (
 		<>
 				<ThemeProvider theme={theme}>
-					<DashboardLayout >
+					<DashboardLayoutCustomer>
 						{
 							<Box
 								component="main"
@@ -56,10 +57,10 @@ function Dashboard() {
 								</Container>
 							</Box>
 						}
-					</DashboardLayout>
+					</DashboardLayoutCustomer>
 				</ThemeProvider>
 		</>
 	);
 }
 
-export default Dashboard;
+export default DashboardCustomer;

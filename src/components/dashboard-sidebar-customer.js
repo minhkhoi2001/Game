@@ -15,64 +15,9 @@ import { Users } from "../icons/users";
 
 const items = [
 	{
-		href: "/admin",
+		href: "/customer",
 		icon: <ChartBarIcon fontSize="small" />,
 		title: "Doanh Thu",
-	},
-	{
-		href: "/admin/users",
-		icon: <Person2Icon fontSize="small" />,
-		title: "Người chơi",
-	},
-	{
-		href: "/admin/allNV",
-		icon: <Person2Icon fontSize="small" />,
-		title: "Quản lý nhân viên",
-	},
-	{
-		href: "/admin/set1",
-		icon: <ShoppingBagIcon fontSize="small" />,
-		title: "Set Kèo 1 ",
-	},
-	{
-		href: "/admin/set3",
-		icon: <ShoppingBagIcon fontSize="small" />,
-		title: "Set Kèo 3 ",
-	},
-	{
-		href: "/admin/set5",
-		icon: <ShoppingBagIcon fontSize="small" />,
-		title: "Set Kèo 5 ",
-	},
-	{
-		href: "/admin/xoso",
-		icon: <ShoppingBagIcon fontSize="small" />,
-		title: "Set Kèo Xổ Số ",
-	},
-	{
-		href: "/admin/request",
-		icon: <AutorenewIcon fontSize="small" />,
-		title: "Yêu cầu rút tiền",
-	},
-	{
-		href: "/admin/add",
-		icon: <AutorenewIcon fontSize="small" />,
-		title: "Yêu cầu nạp tiền",
-	},
-	{
-		href: "/admin/history",
-		icon: <AutorenewIcon fontSize="small" />,
-		title: "Lịch sử trò chơi",
-	},
-	{
-		href: "/admin/setting",
-		icon: <TuneIcon fontSize="small" />,
-		title: "Cài đặt",
-	},
-	{
-		href: "/admin/employee",
-		icon: <Users fontSize="small" />,
-		title: "Thêm mới nhân viên",
 	},
 	/*{
 	  href: "/admin/notification",
@@ -86,7 +31,7 @@ const items = [
 	// },
 ];
 
-export const DashboardSidebar = (props) => {
+export const DashboardSidebarCustomer = (props) => {
 	const lgUp = useMediaQuery((theme) => theme.breakpoints.up("lg"), {
 		defaultMatches: true,
 		noSsr: false,

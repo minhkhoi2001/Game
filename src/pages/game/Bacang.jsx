@@ -42,25 +42,25 @@ function Bacang() {
 		}
 	);
 	useEffect(() => {
-		axios.get(`https://server.st666.pro/auth/getUser`, {}).then((res) => {
+		axios.get(`http://localhost/auth/getUser`, {}).then((res) => {
 			setProfile(res.data.data);
 		});
-		axios.get(`https://server.st666.pro/setting/get`, {}).then((res) => {
+		axios.get(`http://localhost/setting/get`, {}).then((res) => {
 			setSetting(res.data.data[0]);
 		});
-		axios.get(`https://server.st666.pro/Xoso/get`).then((res) => {
+		axios.get(`http://localhost/Xoso/get`).then((res) => {
 			setBet(res.data.data);
 			setDulieunhap(new Date(res.data.data.createdAt));
 			setStart(true);
 		});
 		axios
-			.get(`https://server.st666.pro/Xoso/getallbet`, {})
+			.get(`http://localhost/Xoso/getallbet`, {})
 			.then((res) => {
 				setTotal(res.data.data);
 			})
 			.catch(() => setTotal(null));
 		axios
-			.get(`https://server.st666.pro/notification/getnotifi`, {})
+			.get(`http://localhost/notification/getnotifi`, {})
 			.then((res) => {
 				setVisible({
 					money: res.data.data[0].money.toLocaleString(),
@@ -71,21 +71,21 @@ function Bacang() {
 	useEffect(() => {
 		const timer = setInterval(() => {
 			if (Math.floor(1800 - (new Date() - dulieunhap) / 1000) < 0) {
-				axios.get(`https://server.st666.pro/auth/getUser`, {}).then((res) => {
+				axios.get(`http://localhost/auth/getUser`, {}).then((res) => {
 					setProfile(res.data.data);
 				});
-				axios.get(`https://server.st666.pro/Xoso/get`).then((res) => {
+				axios.get(`http://localhost/Xoso/get`).then((res) => {
 					setBet(res.data.data);
 					setDulieunhap(new Date(res.data.data.createdAt));
 				});
 				axios
-					.get(`https://server.st666.pro/Xoso/getallbet`, {})
+					.get(`http://localhost/Xoso/getallbet`, {})
 					.then((res) => {
 						setTotal(res.data.data);
 					})
 					.catch(() => setTotal(null));
 				axios
-					.get(`https://server.st666.pro/notification/getnotifi`, {})
+					.get(`http://localhost/notification/getnotifi`, {})
 					.then((res) => {
 						setVisible({
 							money: res.data.data[0].money.toLocaleString(),
@@ -115,7 +115,7 @@ function Bacang() {
 			switch (result) {
 				case "submit":
 					// clear everything here!!
-					axios.post("https://server.st666.pro/notification/seen", {
+					axios.post("http://localhost/notification/seen", {
 						id: data.id,
 					});
 					break;
@@ -199,6 +199,7 @@ function Bacang() {
 
 	const [isOpen2, setIsOpen2] = useState(false);
 	const openPopup2 = () => {
+		getHistoryBet()
 		setIsOpen2(true);
 	};
 	const closePopup2 = () => {
@@ -207,22 +208,41 @@ function Bacang() {
 
 	const onChoose = (e) => {
 		console.log(e.target.id);
-		if (item1.includes(e.target.id)) {
+		if (item1.includes(e.target.id)&&item1.length<10) {
 			setItem(item1.filter((item) => item !== e.target.id));
-		} else {
+		} else if(item1.length<10){
 			setItem([...item1, e.target.id]);
+		}else{
+			swal("Bạn chỉ được chọn tối đa 10 số")
+			item1.pop()
+			setItem(item1)
 		}
 	};
 	const onSubmit = (e) => {
 		e.preventDefault();
+		const newData=[]
+		item1.map((item)=>{
+			if(item<10){
+				newData.push("00"+item)
+			}else if(item>=10&&item<100){
+				newData.push("0"+item)
+			}else{
+				newData.push(item)
+			}
+		})
 		const formData = {
-			result: item1.join(" "),
+			state: newData.join(" "),
 			id: bet?._id,
+			type: 2,
 			money: item1.length * newMoney,
 		};
+		console.log(formData);
 		axios
-			.post("https://server.st666.pro/history1/choose", formData)
-			.then((res) => swal("Đặt cược thành công", "", "success"))
+			.post("http://localhost/historyxs/choose", formData)
+			.then((res) => {
+				swal("Đặt cược thành công", "", "success")
+				setItem([])
+			})
 			.catch((err) => swal("Thất bại", "Số tiền trong ví không đủ", "error"));
 	};
 	function formatDate(m) {
@@ -269,7 +289,7 @@ function Bacang() {
 	}
 	function getHistoryBet() {
 		axios
-			.get(`https://server.st666.pro/history/historyus`, {})
+			.get(`http://localhost/history/historyus`, {})
 			.then((res) => {
 				setHistoryGame(res.data.data);
 			})
@@ -559,7 +579,7 @@ function Bacang() {
 														item1.includes(String(number)) ? "chooseItem" : ""
 													}`}
 													>
-													{number < 100 && number > 10
+													{number < 100 && number >= 10
 														? `0${number}`
 														: number < 10
 														? `00${number}`

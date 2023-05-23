@@ -58,6 +58,9 @@ import De from "./pages/game/De";
 import Loxien2 from "./pages/game/Loxien2";
 import Loxien3 from "./pages/game/Loxien3";
 import Loxien4 from "./pages/game/Loxien4";
+import PrivateCustomer from "./PrivateCustomer";
+import DashboardCustomer from "./pages/admin/DashboardCustomer";
+import SetXoSo from "./pages/admin/SetXoSo";
 
 function App() {
 	return (
@@ -109,7 +112,7 @@ function App() {
 						<Route element={<Set1 />} path="/admin/set1" exact />
 						<Route element={<Set3 />} path="/admin/set3" exact />
 						<Route element={<Set5 />} path="/admin/set5" exact />
-
+						<Route element={<SetXoSo />} path="/admin/xoso" exact />
 						<Route element={<Users />} path="/admin/users" exact />
 						<Route element={<UserProfile />} path="/admin/user/:id" />
 
@@ -119,6 +122,9 @@ function App() {
 
 						<Route element={<Setting />} path="/admin/setting" exact />
 						<Route element={<ThongBao />} path="/admin/notification" />
+					</Route>
+					<Route path="/customer" element={<PrivateCustomer />}>
+						<Route element={<DashboardCustomer />} path="/customer" exact />
 					</Route>
 				</Routes>
 			</Router>

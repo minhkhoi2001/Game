@@ -3,8 +3,9 @@ import { Box } from "@mui/material";
 import { styled } from "@mui/material/styles";
 import DashboardNavbar from "./dashboard-navbar";
 import { DashboardSidebar } from "./dashboard-sidebar";
+import { DashboardSidebarCustomer } from "./dashboard-sidebar-customer";
 
-const DashboardLayoutRoot = styled("div")(({ theme }) => ({
+const DashboardLayoutRootCustomer = styled("div")(({ theme }) => ({
   display: "flex",
   flex: "1 1 auto",
   maxWidth: "100%",
@@ -14,7 +15,7 @@ const DashboardLayoutRoot = styled("div")(({ theme }) => ({
   },
 }));
 
-export const DashboardLayout = (props) => {
+export const DashboardLayoutCustomer = (props) => {
   const { children } = props;
   const [state, setState]=useState()
   const parentCallback =(data)=>{
@@ -25,7 +26,7 @@ export const DashboardLayout = (props) => {
 }
   return (
     <>
-      <DashboardLayoutRoot>
+      <DashboardLayoutRootCustomer>
         <Box
           sx={{
             display: "flex",
@@ -36,9 +37,9 @@ export const DashboardLayout = (props) => {
         >
           {children}
         </Box>
-      </DashboardLayoutRoot>
+      </DashboardLayoutRootCustomer>
       <DashboardNavbar callback={parentCallback} />
-      <DashboardSidebar show={props.customer} callback={parentCallback1} open={state}/>
+      <DashboardSidebarCustomer show={props.customer} callback={parentCallback1} open={state}/>
     </>
   );
 };
