@@ -275,6 +275,7 @@ function Loxien2() {
 	const numbers = Array.from(Array(100).keys());
 	return (
 		<>
+			<div className="loading"><div className="loader"></div></div>
 			<div className="main">
 				<div className="header">
 					<div className="header-top">
@@ -553,12 +554,12 @@ function Loxien2() {
 					<div className="popup-backdrop">
 						<div className="popup-main">
 							<div className="popup-content" style={{padding:"0"}}>
-								<table id="table-xsmb" class="table-result table table-bordered table-striped table-xsmb">
+								<table id="table-xsmb" className="table-result table table-bordered table-striped table-xsmb">
 								  <tbody>
 								    <tr>
 								      <th style={{width:"10%"}}>ĐB</th>
 								      <td>
-								        <span id="mb_prize_0" class="special-prize div-horizontal" >
+								        <span id="mb_prize_0" className="special-prize div-horizontal" >
 								          {total[0].dacbiet}
 								        </span>
 								      </td>
@@ -566,7 +567,7 @@ function Loxien2() {
 								    <tr>
 								      <th>1</th>
 								      <td>
-								        <span id="mb_prize_1" class="prize1 div-horizontal" >
+								        <span id="mb_prize_1" className="prize1 div-horizontal" >
 										{total[0].nhat}
 								        </span>
 								      </td>
@@ -574,10 +575,10 @@ function Loxien2() {
 								    <tr>
 								      <th>2</th>
 								      <td>
-								        <span id="mb_prize_2" class="prize2 div-horizontal" >
+								        <span id="mb_prize_2" className="prize2 div-horizontal" >
 								        {total[0].hai.split(" ")[0]}
 								        </span>
-								        <span id="mb_prize_3" class="prize2 div-horizontal" >
+								        <span id="mb_prize_3" className="prize2 div-horizontal" >
 										{total[0].hai.split(" ")[1]}
 								        </span>
 								      </td>
@@ -585,22 +586,22 @@ function Loxien2() {
 								    <tr>
 								      <th>3</th>
 								      <td>
-								        <span id="mb_prize_4" class="prize3 div-horizontal" >
+								        <span id="mb_prize_4" className="prize3 div-horizontal" >
 										{total[0].ba.split(" ")[0]}
 								        </span>
-								        <span id="mb_prize_5" class="prize3 div-horizontal" >
+								        <span id="mb_prize_5" className="prize3 div-horizontal" >
 										{total[0].ba.split(" ")[1]}
 								        </span>
-								        <span id="mb_prize_6" class="prize3 div-horizontal" >
+								        <span id="mb_prize_6" className="prize3 div-horizontal" >
 										{total[0].ba.split(" ")[2]}
 								        </span>
-								        <span id="mb_prize_7" class="prize3 div-horizontal" >
+								        <span id="mb_prize_7" className="prize3 div-horizontal" >
 										{total[0].ba.split(" ")[3]}
 								        </span>
-								        <span id="mb_prize_8" class="prize3 div-horizontal" >
+								        <span id="mb_prize_8" className="prize3 div-horizontal" >
 										{total[0].ba.split(" ")[4]}
 								        </span>
-								        <span id="mb_prize_9" class="prize3 div-horizontal" >
+								        <span id="mb_prize_9" className="prize3 div-horizontal" >
 										{total[0].ba.split(" ")[5]}
 								        </span>
 								      </td>
@@ -608,16 +609,16 @@ function Loxien2() {
 								    <tr>
 								      <th>4</th>
 								      <td>
-								        <span id="mb_prize_10" class="prize4 div-horizontal" >
+								        <span id="mb_prize_10" className="prize4 div-horizontal" >
 								        {total[0].tu.split(" ")[0]}
 								        </span>
-								        <span id="mb_prize_11" class="prize4 div-horizontal" >
+								        <span id="mb_prize_11" className="prize4 div-horizontal" >
 										{total[0].tu.split(" ")[1]}
 								        </span>
-								        <span id="mb_prize_12" class="prize4 div-horizontal" >
+								        <span id="mb_prize_12" className="prize4 div-horizontal" >
 										{total[0].tu.split(" ")[2]}
 								        </span>
-								        <span id="mb_prize_13" class="prize4 div-horizontal" >
+								        <span id="mb_prize_13" className="prize4 div-horizontal" >
 										{total[0].tu.split(" ")[3]}
 								        </span>
 								      </td>
@@ -625,22 +626,22 @@ function Loxien2() {
 								    <tr>
 								      <th>5</th>
 								      <td>
-								        <span id="mb_prize_14" class="prize5 div-horizontal" >
+								        <span id="mb_prize_14" className="prize5 div-horizontal" >
 										{total[0].nam.split(" ")[0]}
 								        </span>
-								        <span id="mb_prize_15" class="prize5 div-horizontal" >
+								        <span id="mb_prize_15" className="prize5 div-horizontal" >
 										{total[0].nam.split(" ")[1]}
 								        </span>
-								        <span id="mb_prize_16" class="prize5 div-horizontal" >
+								        <span id="mb_prize_16" className="prize5 div-horizontal" >
 										{total[0].nam.split(" ")[2]}
 								        </span>
-								        <span id="mb_prize_17" class="prize5 div-horizontal" >
+								        <span id="mb_prize_17" className="prize5 div-horizontal" >
 										{total[0].nam.split(" ")[3]}
 								        </span>
-								        <span id="mb_prize_18" class="prize5 div-horizontal" >
+								        <span id="mb_prize_18" className="prize5 div-horizontal" >
 										{total[0].nam.split(" ")[4]}
 								        </span>
-								        <span id="mb_prize_19" class="prize5 div-horizontal" >
+								        <span id="mb_prize_19" className="prize5 div-horizontal" >
 										{total[0].nam.split(" ")[5]}
 								        </span>
 								      </td>
@@ -648,13 +649,13 @@ function Loxien2() {
 								    <tr>
 								      <th>6</th>
 								      <td>
-								        <span id="mb_prize_20" class="prize6 div-horizontal" >
+								        <span id="mb_prize_20" className="prize6 div-horizontal" >
 										{total[0].sau.split(" ")[0]}
 								        </span>
-								        <span id="mb_prize_21" class="prize6 div-horizontal" >
+								        <span id="mb_prize_21" className="prize6 div-horizontal" >
 								        {total[0].sau.split(" ")[1]}
 								        </span>
-								        <span id="mb_prize_22" class="prize6 div-horizontal" >
+								        <span id="mb_prize_22" className="prize6 div-horizontal" >
 										{total[0].sau.split(" ")[2]}
 								        </span>
 								      </td>
@@ -662,16 +663,16 @@ function Loxien2() {
 								    <tr>
 								      <th>7</th>
 								      <td>
-								        <span id="mb_prize_23" class="prize7 div-horizontal" >
+								        <span id="mb_prize_23" className="prize7 div-horizontal" >
 										{total[0].bay.split(" ")[0]}
 								        </span>
-								        <span id="mb_prize_24" class="prize7 div-horizontal" >
+								        <span id="mb_prize_24" className="prize7 div-horizontal" >
 										{total[0].bay.split(" ")[1]}
 								        </span>
-								        <span id="mb_prize_25" class="prize7 div-horizontal" >
+								        <span id="mb_prize_25" className="prize7 div-horizontal" >
 										{total[0].bay.split(" ")[2]}
 								        </span>
-								        <span id="mb_prize_26" class="prize7 div-horizontal" >
+								        <span id="mb_prize_26" className="prize7 div-horizontal" >
 										{total[0].bay.split(" ")[3]}
 								        </span>
 								      </td>

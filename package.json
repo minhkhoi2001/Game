@@ -55,5 +55,10 @@
       "last 1 firefox version",
       "last 1 safari version"
     ]
+  },
+  "devDependencies": {
+    "babel-loader": "^9.1.2",
+    "css-loader": "^6.7.4",
+    "style-loader": "^3.3.3"
   }
 }

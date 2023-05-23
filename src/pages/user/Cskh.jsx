@@ -31,8 +31,22 @@ function CSKH() {
 		})
 		.catch((err) => localStorage.removeItem("user"));
 
+	const [isLoading, setIsLoading] = useState(false);
+	useEffect(() => {
+		setIsLoading(true);
+		const timer = setTimeout(() => {
+		setIsLoading(false);
+		}, 2000);
+		return () => clearTimeout(timer);
+	}, []);
+
 	return (
 		<>
+			{isLoading ? (
+				<div class="loading">
+					<div class="loader"></div>
+				</div>
+			) : null}
 			<div className="main">
 				<div className="header">
 					<div className="header-top">
