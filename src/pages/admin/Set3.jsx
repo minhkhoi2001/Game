@@ -214,10 +214,10 @@ function Set3() {
 			.post("https://server.st666.pro/bet/update", formData)
 			.then((res) => {
 				setBet(res.data.data)
-				swal("Update thanh cong")
+				swal("Thành công", "Update thành công", "success")
 				
 			})
-			.catch((res) => swal("Update khong thanh cong"));
+			.catch((res) => swal("Lỗi", "Update không thành công", "error"));
 	};
 	return (
 		<>

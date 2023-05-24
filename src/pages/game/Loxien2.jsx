@@ -244,7 +244,7 @@ function Loxien2() {
 				setItem([])
 			})
 			.catch((err) => swal("Thất bại", "Số tiền trong ví không đủ", "error"));
-		} else if (item1.length > 0 && item1.length <= 2) {
+		} else if (item1.length > 0 && item1.length < 2) {
 			swal("Thất bại", "Số đánh không hợp lệ", "error");
 		}
 	};

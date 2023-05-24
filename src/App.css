@@ -40,6 +40,7 @@
 .App:has(.admin-theme) {
 	width: 100%;
 	max-width: 100%;
+	box-shadow: none;
 }
 html:has(.admin-theme) {
   font-size: 16px;

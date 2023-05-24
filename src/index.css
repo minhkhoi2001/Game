@@ -1201,3 +1201,7 @@ body:has(.info_bet) .loading {
 .route_game input {
 	border: 1px solid #e5e5e5
 }
+body:has(.admin-theme) .table-result th, body:has(.admin-theme) .table-result td span, body:has(.admin-theme) .table-result td {
+	font-size: 20px!important;
+	margin: 10px 0;
+}

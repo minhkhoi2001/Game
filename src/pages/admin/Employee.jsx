@@ -47,7 +47,7 @@ function Employee() {
 			.post(`https://server.st666.pro/auth/createEmployee`, formData)
 			.then((res) => {
 				setLoad(true);
-				swal("Thêm mới nhân viên thành công!")
+				swal("Thành công", "Thêm mới nhân viên thành công!", "success")
 			})
 			.catch((res) => setLoad(true))
 	};

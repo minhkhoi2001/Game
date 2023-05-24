@@ -8,7 +8,7 @@ import store from "../src/app/store";
 
 ReactDOM.createRoot(document.getElementById("root")).render(
   <Provider store={store}>
-      <React.Suspense fallback={<div>Loading...</div>}>
+      <React.Suspense fallback={<div className="admin-theme">Loading...</div>}>
       <App />
       </React.Suspense>
   </Provider>

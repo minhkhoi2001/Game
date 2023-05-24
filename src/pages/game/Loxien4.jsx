@@ -236,13 +236,19 @@ function Loxien4() {
 			type: 6,
 			money: item1.length * newMoney,
 		};
+		if (item1.length == 0) {
+			swal("Thất bại", "Bạn chưa chọn số", "error");
+		} else if (item1.length == 4) {
 		axios
 			.post("https://server.st666.pro/historyxs/choose", formData)
-			.then((res) => {
+			.then((res) => {	
 				swal("Đặt cược thành công", "", "success")
 				setItem([])
 			})
 			.catch((err) => swal("Thất bại", "Số tiền trong ví không đủ", "error"));
+		} else if (item1.length > 0 && item1.length < 4) {
+			swal("Thất bại", "Số đánh không hợp lệ", "error");
+		}
 	};
 	function formatDate(m) {
 		new Date(m);
@@ -762,7 +768,7 @@ function Loxien4() {
 										))}
 									</div>
 								) : (
-									<div style={{ margin: "0.5rem" }}>Loading...</div>
+									<div></div>
 								)}
 							</div>
 							<button
