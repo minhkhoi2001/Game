@@ -1,5 +1,6 @@
 import PropTypes from "prop-types";
-
+import GoogleTranslate from './GoogleTranslate';
+import React from 'react';
 import styled from "@emotion/styled";
 import {
   AppBar,
@@ -59,6 +60,7 @@ function DashboardNavbar(props) {
             lg: "calc(100% - 280px)",
           },
         }}
+        className="admin-theme"
       >
         <Toolbar
           disableGutters
@@ -104,6 +106,9 @@ function DashboardNavbar(props) {
               </Badge>
             </IconButton>
           </Tooltip>*/}
+          <Tooltip title="Translate">
+            <GoogleTranslate />
+          </Tooltip>
           <Tooltip title="Account">
             <IconButton
               onClick={handleClick}

@@ -168,9 +168,8 @@ export const TrafficByDeviceCustomer = (props) => {
 					}}
 				>
 					<div>
-						Xem thống kê
 						<div style={{ display: "flex" }}>
-							Từ ngày
+							<div style={{width:"100px"}}>Từ ngày</div>
 							<DatePicker
 								maxDate={new Date()}
 								selected={startDate}
@@ -180,8 +179,9 @@ export const TrafficByDeviceCustomer = (props) => {
 								}}
 							/>
 						</div>
+						<br/>
 						<div style={{ display: "flex" }}>
-							Đến ngày
+							<div style={{width:"100px"}}>Đến ngày</div>
 							<DatePicker
 								maxDate={new Date()}
 								selected={endDate}
@@ -201,6 +201,7 @@ export const TrafficByDeviceCustomer = (props) => {
 				}}
 			>
 				<Button
+					className="button-admin"
 					color="primary"
 					endIcon={<ArrowRightIcon fontSize="small" />}
 					size="small"
@@ -225,7 +226,7 @@ export const TrafficByDeviceCustomer = (props) => {
 					);
 					}}
 				>
-					Xem tất cả
+					Xem tất cả thời gian
 				</Button>
 			</Box>
 			</CardContent>

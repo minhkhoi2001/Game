@@ -106,7 +106,7 @@ function Setting() {
 												/>
 											</div>
 										</div>
-										<div className="form_col">
+										{/*<div className="form_col">
 											<div className="form_group">
 												<label >Banh đơn</label>
 												<input
@@ -300,7 +300,7 @@ function Setting() {
 													className="input_setting"
 												/>
 											</div>
-										</div>
+										</div>*/}
 										<div className="form_col">
 											<div className="form_group">
 												<label >Lô thường</label>

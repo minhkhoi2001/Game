@@ -95,7 +95,7 @@ function Employee() {
 												/>
 											</div>
 										</div>
-										<button>Xác nhận</button>
+										<button className="btn_setting">Xác nhận</button>
 									</form>
 								</div>
 							</Container>

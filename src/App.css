@@ -43,5 +43,8 @@
 	box-shadow: none;
 }
 html:has(.admin-theme) {
-  font-size: 16px;
+  font-size: 16px!important;
+}
+.App:not(:has(header)) {
+	box-shadow: none;
 }

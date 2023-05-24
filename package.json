@@ -22,6 +22,7 @@
     "react-chartjs-2": "^5.2.0",
     "react-datepicker": "^4.11.0",
     "react-dom": "^18.2.0",
+    "react-google-translate": "^1.0.12",
     "react-hook-form": "^7.43.9",
     "react-live-chat-loader": "^2.8.1",
     "react-livechat": "^1.1.1",

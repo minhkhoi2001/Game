@@ -282,7 +282,6 @@ function Users() {
 	} else {
 		return (
 			<>
-				<div>Loading...</div>
 			</>
 		);
 	}

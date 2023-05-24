@@ -67,7 +67,7 @@ function BankAdmin() {
 									Cài đặt ngân hàng
 								</div>
 								<div style={{ marginTop: "20px" }}>
-									<form className="setting" onSubmit={handleSubmit}>
+									<form onSubmit={handleSubmit} className="form-admin">
 										<div>
 											<div>
 												<label>Tên người nhận</label>

@@ -73,7 +73,7 @@ export const Sales = (props) => {
 						maxBarThickness: 10,
 					},
 				],
-				labels: ["Một phút", "Ba phút", "Năm phút", "Xổ số"],
+				labels: ["Keno 1p", "Keno 3p", "Keno 5p", "Xổ số"],
 			})
 		);
 	}, []);
@@ -100,7 +100,7 @@ export const Sales = (props) => {
 				maxBarThickness: 10,
 			},
 		],
-		labels: ["Một phút", "Ba phút", "Năm phút", "Xổ số"],
+		labels: ["Keno 1p", "Keno 3p", "Keno 5p", "Xổ số"],
 	};
 	useEffect(() => {
 		if(load==true){
@@ -142,7 +142,7 @@ export const Sales = (props) => {
 						maxBarThickness: 10,
 					},
 				],
-				labels: ["Một phút", "Ba phút", "Năm phút", "Xổ số"],
+				labels: ["Keno 1p", "Keno 3p", "Keno 5p", "Xổ số"],
 			})
 			);
 		}
@@ -199,11 +199,6 @@ export const Sales = (props) => {
 	return (
 		<Card {...props}>
 			<CardHeader
-				action={
-					<Button endIcon={<ArrowDropDownIcon fontSize="small" />} size="small">
-						Last 7 days
-					</Button>
-				}
 				title="Thống kê đặt cược"
 			/>
 			<Divider />
@@ -222,15 +217,8 @@ export const Sales = (props) => {
 				</Box>
 			</CardContent>
 			<Divider />
-			<Box
-				sx={{
-					display: "flex",
-					justifyContent: "flex-start",
-					p: 2,
-				}}
-			>
-				<div style={{ display: "flex" }}>
-					<div style={{ display: "flex" }}>
+			<Box>
+					<div className="col-1-1">
 						Từ ngày
 						<DatePicker
 							maxDate={new Date()}
@@ -241,7 +229,7 @@ export const Sales = (props) => {
 							}}
 						/>
 					</div>
-					<div style={{ display: "flex" }}>
+					<div className="col-1-1">
 						Đến ngày
 						<DatePicker
 							maxDate={new Date()}
@@ -252,7 +240,6 @@ export const Sales = (props) => {
 							}}
 						/>
 					</div>
-				</div>
 			</Box>
 			<Box
 				sx={{
@@ -260,8 +247,10 @@ export const Sales = (props) => {
 					justifyContent: "flex-end",
 					p: 2,
 				}}
+				style={{width:"100%", padding: "15px 0 0"}}
 			>
 				<Button
+					className="button-admin"
 					color="primary"
 					endIcon={<ArrowRightIcon fontSize="small" />}
 					size="small"
@@ -300,12 +289,12 @@ export const Sales = (props) => {
 									maxBarThickness: 10,
 								},
 							],
-							labels: ["Một phút", "Ba phút", "Năm phút", "Xổ số"],
+							labels: ["Keno 1p", "Keno 3p", "Keno 5p", "Xổ số"],
 						})
 					);
 					}}
 				>
-					Xem tất cả
+					Xem tất cả thời gian
 				</Button>
 			</Box>
 		</Card>

@@ -278,7 +278,6 @@ function AllEmployee() {
 	} else {
 		return (
 			<>
-				<div>Loading...</div>
 			</>
 		);
 	}

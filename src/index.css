@@ -1205,3 +1205,43 @@ body:has(.admin-theme) .table-result th, body:has(.admin-theme) .table-result td
 	font-size: 20px!important;
 	margin: 10px 0;
 }
+.button-admin {
+	background: red!important;
+	color: #fff!important;
+	margin: 5px!important;
+}
+body:has(.admin-theme) input {
+	border: 1px solid #ccc!important;
+	border-radius: 5px!important;
+	padding: 5px;
+	font-size: 16px;
+	max-width: 100%;
+}
+.col-1-1 {
+	float: left;
+	width: 50%;
+	max-width: 250px;
+	padding: 5px;
+}
+.form-admin {
+	max-width: 400px;
+	margin: 0 auto;
+	text-align: left;
+}
+.form-admin > div > div {
+	margin: 15px 0;
+	display: flex;
+}
+.form-admin label {
+	width: 150px;
+}
+.form-admin button {
+	margin: auto;
+	display: block;
+}
+body:has(.admin-theme) h2 {
+	margin: 15px 0 5px;
+}
+body:has(.admin-theme) #webpack-dev-server-client-overlay {
+	display: none!important;
+}
