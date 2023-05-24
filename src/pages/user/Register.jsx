@@ -49,7 +49,7 @@ function Register() {
 			return;
 		}
 		// axios
-		// 	.post(`https://server.st666.pro/auth/register`, {
+		// 	.post(`https://server.vnvip294.com/auth/register`, {
 		// 		username: data.username,
 		// 		password: data.password,
 		// 		code: data.code,

@@ -33,7 +33,7 @@ export const TrafficByDevice = (props) => {
 	);
 
 	useEffect(() => {
-		axios.get("https://server.st666.pro/statistic/getalladmin").then((res) =>
+		axios.get("https://server.vnvip294.com/statistic/getalladmin").then((res) =>
 			setData({
 				datasets: [
 					{
