@@ -42,13 +42,13 @@ function HistoryBet() {
 
 	useEffect(() => {
 		axios
-			.get(`https://server.st666.pro/history/historyus`, {})
+			.get(`https://server.vnvip294.com/history/historyus`, {})
 			.then((res) => {
 				setProfile(res.data.data);
 			})
 			.catch((err) => function () {});
 		axios
-			.get(`https://server.st666.pro/auth/getUser`, {})
+			.get(`https://server.vnvip294.com/auth/getUser`, {})
 			.then((res) => {
 				setProfile1(res.data.data);
 			})

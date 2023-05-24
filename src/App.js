@@ -62,6 +62,7 @@ import PrivateCustomer from "./PrivateCustomer";
 import DashboardCustomer from "./pages/admin/DashboardCustomer";
 import SetXoSo from "./pages/admin/SetXoSo";
 import UsersByEmployeeNV from "./pages/admin/UsersByEmployeeNV";
+import BankAdmin from "./pages/admin/BankAdmin";
 
 function App() {
 	return (
@@ -122,6 +123,7 @@ function App() {
 						<Route element={<UsersByEmployee />} path="/admin/employee/:id" />
 
 						<Route element={<Setting />} path="/admin/setting" exact />
+						<Route element={<BankAdmin />} path="/admin/bank" exact />
 						<Route element={<ThongBao />} path="/admin/notification" />
 					</Route>
 					<Route path="/customer" element={<PrivateCustomer />}>

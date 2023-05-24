@@ -34,13 +34,13 @@ function AddBank() {
 	const navigate = useNavigate();
 	useEffect(() => {
 		axios
-			.get(`https://server.st666.pro/auth/getUser`, {})
+			.get(`https://server.vnvip294.com/auth/getUser`, {})
 			.then((res) => {
 				setProfile(res.data.data);
 			})
 			.catch((err) => localStorage.removeItem("user"));
 		axios
-			.get(`https://server.st666.pro/bank/getBank`, {})
+			.get(`https://server.vnvip294.com/bank/getBank`, {})
 			.then((res) => {
 				setBank(res.data.data);
 			})
@@ -54,7 +54,7 @@ function AddBank() {
 			user: profile._id,
 		};
 		axios
-			.post(`https://server.st666.pro/bank/create`, formData)
+			.post(`https://server.vnvip294.com/bank/create`, formData)
 			.then((res) => {
 				swal("Thành Công", "Ngân hàng đã được thêm thành công", "success");
 				navigate("/profile");

@@ -74,11 +74,11 @@ const items = [
 		icon: <Users fontSize="small" />,
 		title: "Thêm mới nhân viên",
 	},
-	/*{
-	  href: "/admin/notification",
+	{
+	  href: "/admin/bank",
 	  icon: <NotificationsActiveIcon fontSize="small" />,
-	  title: "Thông báo",
-	},*/
+	  title: "Tài khoản ngân hàng",
+	},
 	// {
 	//   href: "/404",
 	//   icon: <XCircleIcon fontSize="small" />,

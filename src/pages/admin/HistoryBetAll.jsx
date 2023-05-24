@@ -67,7 +67,7 @@ function HistoryBetAll() {
 	};
 	useEffect(() => {
 		axios
-			.get(`https://server.st666.pro/history/all`, {})
+			.get(`https://server.vnvip294.com/history/all`, {})
 			.then((res) => {
 				localStorage.setItem("data", JSON.stringify(res.data.data));
 				setData(res.data.data);

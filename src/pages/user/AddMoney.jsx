@@ -36,13 +36,13 @@ function AddMoney() {
 	const navigate = useNavigate();
 	useEffect(() => {
 		axios
-			.get(`https://server.st666.pro/auth/getUser`, {})
+			.get(`https://server.vnvip294.com/auth/getUser`, {})
 			.then((res) => {
 				setProfile(res.data.data);
 			})
 			.catch((err) => localStorage.removeItem("user"));
 		axios
-			.get(`https://server.st666.pro/bank/getBank`, {})
+			.get(`https://server.vnvip294.com/auth/bank`, {})
 			.then((res) => {
 				setBank(res.data.data);
 			})
@@ -57,7 +57,7 @@ function AddMoney() {
 			user: profile._id,
 		};
 		axios
-			.post(`https://server.st666.pro/payment/withDraw`, formData)
+			.post(`https://server.vnvip294.com/payment/withDraw`, formData)
 			.then((res) => {
 				swal("Nạp tiền thành công", "Tiền sẽ được cộng trong vòng 5 phút. Nếu quá lâu vui lòng liên hệ CSKH để được xử lý.", "success");
 				navigate("/historyadd");
@@ -110,21 +110,26 @@ function AddMoney() {
 					/>
 					<div style={{ display: "flex" }}>
 						<div className="content_bank">
-							<div>
+							{bank?(<>
+								<div>
 								<h4 style={{ fontSize: "0.45rem", color: "#333" }}>
 									Quét mã QR hoặc chuyển khoản tới
 								</h4>
 							</div>
 							<div>
-								STK: <b>123456789</b>
+								STK: <b>{bank.stk}</b>
 							</div>
 							<div>
-								Ngân hàng: <b>Vietcombank</b>
+								Ngân hàng: <b>{bank.name_bank}</b>
+							</div>
+							<div>
+								Người nhận: <b>{bank.fullname}</b>
 							</div>
 							<div>
 								Nội dung chuyển khoản:{" "}
 								<b>addxs {profile ? <span>{profile.username}</span> : null}</b>
 							</div>
+							</>):<div>Hệ thống nạp tiền đang bảo trì, vui lòng quay lại sau</div>}
 						</div>
 					</div>
 					<form className="form-lg" onSubmit={handleSubmit(onSubmit)}>
