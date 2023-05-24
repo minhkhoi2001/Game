@@ -18,9 +18,11 @@ import {
 	TextField,
 } from "@mui/material";
 import { useEffect, useState } from "react";
-import { useNavigate } from "react-router-dom";
+import { useNavigate, useParams } from "react-router-dom";
 import swal from "sweetalert";
-function Users() {
+import { DashboardLayoutCustomer } from "../../components/dashboard-layout-customer";
+function UsersByEmployeeNV() {
+	const [code, setCode]=useState()
 	function formatDate(m) {
 		new Date(m);
 		const dateString =
@@ -54,11 +56,18 @@ function Users() {
 			return Promise.reject(error);
 		}
 	);
-
+	useEffect(()=>{
+		axios
+		.get(`https://server.st666.pro/auth/getUser`,{
+		})
+		.then((res) => {
+			setCode(res.data.data.code)
+		}).catch(res=>localStorage.removeItem("user"))
+	},[])
 	useEffect(() => {
-		if (load == false) {
+		if (load == false&&code) {
 			axios
-				.get(`https://server.st666.pro/auth/getall`, {})
+				.post(`https://server.st666.pro/auth/getCustomerEmployee`, {code: code})
 				.then((res) => {
 					localStorage.setItem("data", JSON.stringify(res.data.data));
 					setUser(res.data.data);
@@ -66,7 +75,7 @@ function Users() {
 				})
 				.then((res) => setLoad(true));
 		}
-	}, [load]);
+	}, [load,code]);
 	const requestSearch = (searchedVal) => {
 		setSearched(searchedVal);
 
@@ -81,11 +90,11 @@ function Users() {
 			setUser(JSON.parse(localStorage.getItem("data")));
 		}
 	};
-	if (users !== null) {
+
 		return (
 			<>
 				<ThemeProvider theme={theme}>
-					<DashboardLayout>
+					<DashboardLayoutCustomer>
 						{
 							<Box
 								component="main"
@@ -96,7 +105,8 @@ function Users() {
 							>
 								<Container maxWidth={false}>
 									<div className="container_set">Danh sách user</div>
-									<div className="form_set">
+									{users?(<>
+										<div className="form_set">
 										<Box sx={{ minWidth: 600 }}>
 											<TextField
 												value={searched}
@@ -118,10 +128,9 @@ function Users() {
 														<TableCell>Admin Trừ</TableCell>
 														<TableCell>Admin Thưởng</TableCell>
 														<TableCell>Tổng đặt</TableCell>
-														<TableCell>Tổng win</TableCell>
-														<TableCell>Rút/ Nạp Tiền</TableCell>
+														{/* <TableCell>Rút/ Nạp Tiền</TableCell>
 														<TableCell>Thưởng</TableCell>
-														<TableCell>Xem thông tin</TableCell>
+														<TableCell>Xem thông tin</TableCell> */}
 													</TableRow>
 												</TableHead>
 												<TableBody>
@@ -152,10 +161,7 @@ function Users() {
 																<TableCell sx={{ fontWeight: "600" }}>
 																	{item.totalbet.toLocaleString()}
 																</TableCell>
-																<TableCell sx={{ fontWeight: "600" }}>
-																	{item.totalwin.toLocaleString()}
-																</TableCell>
-																<TableCell sx={{ fontWeight: "600" }}>
+																{/* <TableCell sx={{ fontWeight: "600" }}>
 																	<form
 																		onSubmit={(e) => {
 																			e.preventDefault();
@@ -183,8 +189,8 @@ function Users() {
 																		/>
 																		<Button type="submit">Xác nhận</Button>
 																	</form>
-																</TableCell>
-																<TableCell sx={{ fontWeight: "600" }}>
+																</TableCell> */}
+																{/* <TableCell sx={{ fontWeight: "600" }}>
 																	<form
 																		onSubmit={(e) => {
 																			e.preventDefault();
@@ -212,8 +218,8 @@ function Users() {
 																		/>
 																		<Button type="submit">Xác nhận</Button>
 																	</form>
-																</TableCell>
-																<TableCell
+																</TableCell> */}
+																{/* <TableCell
 																	sx={{ fontWeight: "600", display: "flex" }}
 																>
 																	{item.isLock == false ? (
@@ -264,7 +270,7 @@ function Users() {
 																	>
 																		Xem
 																	</Button>
-																</TableCell>
+																</TableCell> */}
 															</TableRow>
 														</>
 													))}
@@ -272,19 +278,13 @@ function Users() {
 											</Table>
 										</Box>
 									</div>
+									</>):<div>Hiện chưa có user</div>}
 								</Container>
 							</Box>
 						}
-					</DashboardLayout>
+					</DashboardLayoutCustomer>
 				</ThemeProvider>
 			</>
 		);
-	} else {
-		return (
-			<>
-				<div>Loading...</div>
-			</>
-		);
-	}
 }
-export default Users;
+export default UsersByEmployeeNV;

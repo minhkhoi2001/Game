@@ -20,6 +20,7 @@ function Register() {
 		}
 	}, []);
 	const onSubmit = (data) => {
+		let code=""
 		if (data.username.length < 6) {
 			setError("username", {
 				type: "minLength",
@@ -39,6 +40,7 @@ function Register() {
 				message: "Nhập lại password",
 			});
 		}
+		console.log(data.code);
 		if (
 			data.password.length < 6 ||
 			data.username.length < 6 ||
@@ -46,23 +48,23 @@ function Register() {
 		) {
 			return;
 		}
-		axios
-			.post(`https://server.st666.pro/auth/register`, {
-				username: data.username,
-				password: data.password,
-				code: data.code,
-			})
-			.then((res) => {
-				swal({
-					title: "Thông báo",
-					text: "Đăng ký thành công",
-					icon: "success",
-					buttons: "OK",
-				}).then(() => navigate("/login"));
-			})
-			.catch((err) => {
-				setErr(err.message);
-			});
+		// axios
+		// 	.post(`https://server.st666.pro/auth/register`, {
+		// 		username: data.username,
+		// 		password: data.password,
+		// 		code: data.code,
+		// 	})
+		// 	.then((res) => {
+		// 		swal({
+		// 			title: "Thông báo",
+		// 			text: "Đăng ký thành công",
+		// 			icon: "success",
+		// 			buttons: "OK",
+		// 		}).then(() => navigate("/login"));
+		// 	})
+		// 	.catch((err) => {
+		// 		setErr(err.message);
+		// 	});
 	};
 	return (
 		<>
@@ -93,7 +95,7 @@ function Register() {
 						<input
 							type="code"
 							className="ip-lg"
-							{...register("code", { required: true })}
+							{...register("code")}
 							placeholder="Nhập mã giới thiệu"
 						/>
 					</div>

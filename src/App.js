@@ -61,6 +61,7 @@ import Loxien4 from "./pages/game/Loxien4";
 import PrivateCustomer from "./PrivateCustomer";
 import DashboardCustomer from "./pages/admin/DashboardCustomer";
 import SetXoSo from "./pages/admin/SetXoSo";
+import UsersByEmployeeNV from "./pages/admin/UsersByEmployeeNV";
 
 function App() {
 	return (
@@ -125,6 +126,7 @@ function App() {
 					</Route>
 					<Route path="/customer" element={<PrivateCustomer />}>
 						<Route element={<DashboardCustomer />} path="/customer" exact />
+						<Route element={<UsersByEmployeeNV />} path="/customer/usercustomer" exact />
 					</Route>
 				</Routes>
 			</Router>

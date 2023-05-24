@@ -19,13 +19,13 @@ export const Budget = (props) => (
             gutterBottom
             variant="overline"
           >
-            BUDGET
+            Tổng nạp
           </Typography>
           <Typography
             color="textPrimary"
             variant="h4"
           >
-            $24k
+            {Number(props.tongnap).toLocaleString()}đ
           </Typography>
         </Grid>
         <Grid item>
@@ -40,30 +40,6 @@ export const Budget = (props) => (
           </Avatar>
         </Grid>
       </Grid>
-      <Box
-        sx={{
-          pt: 2,
-          display: 'flex',
-          alignItems: 'center'
-        }}
-      >
-        <ArrowDownwardIcon color="error" />
-        <Typography
-          color="error"
-          sx={{
-            mr: 1
-          }}
-          variant="body2"
-        >
-          12%
-        </Typography>
-        <Typography
-          color="textSecondary"
-          variant="caption"
-        >
-          Since last month
-        </Typography>
-      </Box>
     </CardContent>
   </Card>
 );
