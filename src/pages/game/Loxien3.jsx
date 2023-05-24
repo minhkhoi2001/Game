@@ -239,7 +239,7 @@ function Loxien3() {
 		} else if (item1.length == 3) {
 		axios
 			.post("https://server.vnvip294.com/historyxs/choose", formData)
-			.then((res) => {	
+			.then((res) => {
 				swal("Đặt cược thành công", "", "success")
 				setItem([])
 			})

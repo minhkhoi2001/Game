@@ -42,7 +42,7 @@ function AddMoney() {
 			})
 			.catch((err) => localStorage.removeItem("user"));
 		axios
-			.get(`https://server.vnvip294.com/bank/getBank`, {})
+			.get(`https://server.vnvip294.com/auth/bank`, {})
 			.then((res) => {
 				setBank(res.data.data);
 			})
@@ -110,21 +110,26 @@ function AddMoney() {
 					/>
 					<div style={{ display: "flex" }}>
 						<div className="content_bank">
-							<div>
+							{bank?(<>
+								<div>
 								<h4 style={{ fontSize: "0.45rem", color: "#333" }}>
 									Quét mã QR hoặc chuyển khoản tới
 								</h4>
 							</div>
 							<div>
-								STK: <b>123456789</b>
+								STK: <b>{bank.stk}</b>
 							</div>
 							<div>
-								Ngân hàng: <b>Vietcombank</b>
+								Ngân hàng: <b>{bank.name_bank}</b>
+							</div>
+							<div>
+								Người nhận: <b>{bank.fullname}</b>
 							</div>
 							<div>
 								Nội dung chuyển khoản:{" "}
 								<b>addxs {profile ? <span>{profile.username}</span> : null}</b>
 							</div>
+							</>):<div>Hệ thống nạp tiền đang bảo trì, vui lòng quay lại sau</div>}
 						</div>
 					</div>
 					<form className="form-lg" onSubmit={handleSubmit(onSubmit)}>

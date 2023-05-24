@@ -5,23 +5,24 @@ import {
 	CardContent,
 	CardHeader,
 	Divider,
-	Button,
 	Typography,
+	Button,
 	useTheme,
 } from "@mui/material";
+import DatePicker from "react-datepicker";
+import ArrowRightIcon from "@mui/icons-material/ArrowRight";
+import "react-datepicker/dist/react-datepicker.css";
 import LaptopMacIcon from "@mui/icons-material/LaptopMac";
 import PhoneIcon from "@mui/icons-material/Phone";
 import TabletIcon from "@mui/icons-material/Tablet";
 import { useEffect, useState } from "react";
 import axios from "axios";
-import DatePicker from "react-datepicker";
-import ArrowRightIcon from "@mui/icons-material/ArrowRight";
-import "react-datepicker/dist/react-datepicker.css";
-export const TrafficByDevice = (props) => {
-	const [dataTable, setData] = useState();
+
+export const TrafficByDeviceCustomer = (props) => {
 	const [startDate, setStartDate] = useState(new Date());
 	const [load, setLoad] = useState(false);
-	const [endDate, setEndDate] = useState(new Date())
+	const [endDate, setEndDate] = useState(new Date());
+	const [dataTable, setData] = useState();
 	axios.interceptors.request.use(
 		(config) => {
 			const token = localStorage.getItem("user");
@@ -39,7 +40,7 @@ export const TrafficByDevice = (props) => {
 	);
 
 	useEffect(() => {
-		axios.get("https://server.vnvip294.com/statistic/getalladmin").then((res) =>
+		axios.get("https://server.vnvip294.com/statistic/getallcustomer").then((res) =>
 			setData({
 				datasets: [
 					{
@@ -53,7 +54,8 @@ export const TrafficByDevice = (props) => {
 						borderColor: "#FFFFFF",
 						hoverBorderColor: "#FFFFFF",
 					},
-				],	labels: ["Tổng cược ngày", "Tổng nạp ngày", "Tổng rút ngày"],
+				],
+				labels: ["Tổng cược ngày", "Tổng nạp ngày", "Tổng rút ngày"],
 			})
 		);
 	}, []);
@@ -61,7 +63,7 @@ export const TrafficByDevice = (props) => {
 		if(load==true){
 			axios
 			.get(
-				`https://server.vnvip294.com/statistic/getbydayadmin?dateStart=${startDate}&endDate=${endDate}`
+				`https://server.vnvip294.com/statistic/getbydaycustomer?dateStart=${startDate}&endDate=${endDate}`
 			)
 			.then((res) =>
 				setData({
@@ -95,7 +97,7 @@ export const TrafficByDevice = (props) => {
 				hoverBorderColor: "#FFFFFF",
 			},
 		],
-    labels: ["Tổng cược ngày", "Tổng nạp ngày", "Tổng rút ngày"],
+		labels: ["Tổng cược ngày", "Tổng nạp ngày", "Tổng rút ngày"],
 	};
 
 	const options = {
@@ -152,7 +154,11 @@ export const TrafficByDevice = (props) => {
 						position: "relative",
 					}}
 				>
-				{dataTable?	<Doughnut data={dataTable} options={options} />:<Doughnut data={data} options={options} />}
+					{dataTable ? (
+						<Doughnut data={dataTable} options={options} />
+					) : (
+						<Doughnut data={data} options={options} />
+					)}
 				</Box>
 				<Box
 					sx={{
@@ -161,24 +167,7 @@ export const TrafficByDevice = (props) => {
 						pt: 2,
 					}}
 				>
-					{/* {devices.map(({ color, icon: Icon, title, value }) => (
-						<Box
-							key={title}
-							sx={{
-								p: 1,
-								textAlign: "center",
-							}}
-						>
-							<Icon color="action" />
-							<Typography color="textPrimary" variant="body1">
-								{title}
-							</Typography>
-							<Typography style={{ color }} variant="h4">
-								{value}%
-							</Typography>
-						</Box>
-					))} */}
-								<div>
+					<div>
 						Xem thống kê
 						<div style={{ display: "flex" }}>
 							Từ ngày
@@ -216,7 +205,7 @@ export const TrafficByDevice = (props) => {
 					endIcon={<ArrowRightIcon fontSize="small" />}
 					size="small"
 					onClick={()=>{
-						axios.get("https://server.vnvip294.com/statistic/getalladmin").then((res) =>
+						axios.get("https://server.vnvip294.com/statistic/getallcustomer").then((res) =>
 						setData({
 							datasets: [
 								{
@@ -230,7 +219,8 @@ export const TrafficByDevice = (props) => {
 									borderColor: "#FFFFFF",
 									hoverBorderColor: "#FFFFFF",
 								},
-							],	labels: ["Tổng cược ngày", "Tổng nạp ngày", "Tổng rút ngày"],
+							],
+							labels: ["Tổng cược ngày", "Tổng nạp ngày", "Tổng rút ngày"],
 						})
 					);
 					}}

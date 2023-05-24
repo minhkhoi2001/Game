@@ -1,14 +1,7 @@
 import {
 	Box,
-	Button,
 	Container,
-	Input,
-	Table,
-	TableBody,
-	TableCell,
-	TableHead,
-	TableRow,
-	TextField,
+
 } from "@mui/material";
 import swal from "sweetalert";
 import axios from "axios";
@@ -77,6 +70,7 @@ function Setting() {
 			.put(`https://server.vnvip294.com/setting/update`, formData)
 			.then((res) => {
 				setLoad(true);
+				swal("Sửa thông tin trò chơi thành công!")
 			})
 			.catch((res) => setLoad(true))
 	};

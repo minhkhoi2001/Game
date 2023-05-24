@@ -16,10 +16,10 @@ import axios from "axios";
 import DatePicker from "react-datepicker";
 
 import "react-datepicker/dist/react-datepicker.css";
-export const Sales = (props) => {
+export const SalesCustomer = (props) => {
 	const theme = useTheme();
-	const [dataTable, setData] = useState();
 	const [startDate, setStartDate] = useState(new Date());
+	const [dataTable, setData] = useState();
 	const [load, setLoad] = useState(false);
 	const [endDate, setEndDate] = useState(new Date());
 	axios.interceptors.request.use(
@@ -39,7 +39,7 @@ export const Sales = (props) => {
 	);
 
 	useEffect(() => {
-		axios.get("https://server.vnvip294.com/statistic/getalladmin").then((res) =>
+		axios.get("https://server.vnvip294.com/statistic/getallcustomer").then((res) =>
 			setData({
 				datasets: [
 					{
@@ -63,7 +63,7 @@ export const Sales = (props) => {
 						barThickness: 12,
 						borderRadius: 4,
 						categoryPercentage: 0.5,
-            data: [
+						data: [
 							res.data.data.motphut.tongthang,
 							res.data.data.baphut.tongthang,
 							res.data.data.namphut.tongthang,
@@ -77,6 +77,51 @@ export const Sales = (props) => {
 			})
 		);
 	}, []);
+	useEffect(() => {
+		if (load == true) {
+			axios
+				.get(
+					`https://server.vnvip294.com/statistic/getbydaycustomer?dateStart=${startDate}&endDate=${endDate}`
+				)
+				.then((res) =>
+					setData({
+						datasets: [
+							{
+								backgroundColor: "#3F51B5",
+								barPercentage: 0.5,
+								barThickness: 12,
+								borderRadius: 4,
+								categoryPercentage: 0.5,
+								data: [
+									res.data.data.motphut.tongcuoc,
+									res.data.data.baphut.tongcuoc,
+									res.data.data.namphut.tongcuoc,
+									res.data.data.xoso.tongcuoc,
+								],
+								label: "Tổng cược",
+								maxBarThickness: 10,
+							},
+							{
+								backgroundColor: "#EEEEEE",
+								barPercentage: 0.5,
+								barThickness: 12,
+								borderRadius: 4,
+								categoryPercentage: 0.5,
+								data: [
+									res.data.data.motphut.tongthang,
+									res.data.data.baphut.tongthang,
+									res.data.data.namphut.tongthang,
+									res.data.data.xoso.tongthang,
+								],
+								label: "Thắng",
+								maxBarThickness: 10,
+							},
+						],
+						labels: ["Một phút", "Ba phút", "Năm phút", "Xổ số"],
+					})
+				);
+		}
+	}, [endDate, startDate, load]);
 	const dataDefault = {
 		datasets: [
 			{
@@ -102,51 +147,7 @@ export const Sales = (props) => {
 		],
 		labels: ["Một phút", "Ba phút", "Năm phút", "Xổ số"],
 	};
-	useEffect(() => {
-		if(load==true){
-			axios
-			.get(
-				`https://server.vnvip294.com/statistic/getbydayadmin?dateStart=${startDate}&endDate=${endDate}`
-			)
-			.then((res) =>
-			setData({
-				datasets: [
-					{
-						backgroundColor: "#3F51B5",
-						barPercentage: 0.5,
-						barThickness: 12,
-						borderRadius: 4,
-						categoryPercentage: 0.5,
-						data: [
-							res.data.data.motphut.tongcuoc,
-							res.data.data.baphut.tongcuoc,
-							res.data.data.namphut.tongcuoc,
-							res.data.data.xoso.tongcuoc,
-						],
-						label: "Tổng cược",
-						maxBarThickness: 10,
-					},
-					{
-						backgroundColor: "#EEEEEE",
-						barPercentage: 0.5,
-						barThickness: 12,
-						borderRadius: 4,
-						categoryPercentage: 0.5,
-						data: [
-							res.data.data.motphut.tongthang,
-							res.data.data.baphut.tongthang,
-							res.data.data.namphut.tongthang,
-							res.data.data.xoso.tongthang,
-						],
-						label: "Thắng",
-						maxBarThickness: 10,
-					},
-				],
-				labels: ["Một phút", "Ba phút", "Năm phút", "Xổ số"],
-			})
-			);
-		}
-	}, [endDate, startDate, load]);
+
 	const options = {
 		animation: false,
 		cornerRadius: 20,
@@ -265,44 +266,44 @@ export const Sales = (props) => {
 					color="primary"
 					endIcon={<ArrowRightIcon fontSize="small" />}
 					size="small"
-					onClick={()=>{
-						axios.get("https://server.vnvip294.com/statistic/getalladmin").then((res) =>
-						setData({
-							datasets: [
-								{
-									backgroundColor: "#3F51B5",
-									barPercentage: 0.5,
-									barThickness: 12,
-									borderRadius: 4,
-									categoryPercentage: 0.5,
-									data: [
-										res.data.data.motphut.tongcuoc,
-										res.data.data.baphut.tongcuoc,
-										res.data.data.namphut.tongcuoc,
-										res.data.data.xoso.tongcuoc,
-									],
-									label: "Tổng cược",
-									maxBarThickness: 10,
-								},
-								{
-									backgroundColor: "#EEEEEE",
-									barPercentage: 0.5,
-									barThickness: 12,
-									borderRadius: 4,
-									categoryPercentage: 0.5,
-						data: [
-										res.data.data.motphut.tongthang,
-										res.data.data.baphut.tongthang,
-										res.data.data.namphut.tongthang,
-										res.data.data.xoso.tongthang,
-									],
-									label: "Thắng",
-									maxBarThickness: 10,
-								},
-							],
-							labels: ["Một phút", "Ba phút", "Năm phút", "Xổ số"],
-						})
-					);
+					onClick={() => {
+						axios.get("https://server.vnvip294.com/statistic/getallcustomer").then((res) =>
+							setData({
+								datasets: [
+									{
+										backgroundColor: "#3F51B5",
+										barPercentage: 0.5,
+										barThickness: 12,
+										borderRadius: 4,
+										categoryPercentage: 0.5,
+										data: [
+											res.data.data.motphut.tongcuoc,
+											res.data.data.baphut.tongcuoc,
+											res.data.data.namphut.tongcuoc,
+											res.data.data.xoso.tongcuoc,
+										],
+										label: "Tổng cược",
+										maxBarThickness: 10,
+									},
+									{
+										backgroundColor: "#EEEEEE",
+										barPercentage: 0.5,
+										barThickness: 12,
+										borderRadius: 4,
+										categoryPercentage: 0.5,
+										data: [
+											res.data.data.motphut.tongthang,
+											res.data.data.baphut.tongthang,
+											res.data.data.namphut.tongthang,
+											res.data.data.xoso.tongthang,
+										],
+										label: "Thắng",
+										maxBarThickness: 10,
+									},
+								],
+								labels: ["Một phút", "Ba phút", "Năm phút", "Xổ số"],
+							})
+						);
 					}}
 				>
 					Xem tất cả
