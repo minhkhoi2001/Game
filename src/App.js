@@ -1,7 +1,8 @@
 import "./App.css";
 import { BrowserRouter as Router, Routes, Route } from "react-router-dom";
-import { Coundown } from "./pages/admin/Test";
 
+import PrivateRoute from "./PrivateRoute";
+import PrivateRouteAdmin from "./PrivateRouteAdmin";
 
 import Login from "./pages/user/Login";
 import Register from "./pages/user/Register";
@@ -9,37 +10,43 @@ import Home from "./pages/user/Home";
 import CSKH from "./pages/user/Cskh";
 import Notification from "./pages/user/Notification";
 
-import Bet from "./pages/bet/Bet";
-import PrivateRoute from "./PrivateRoute";
-import Dashboard from "./pages/admin/Dashboard";
-import Set5 from "./pages/admin/Set5";
-import Request from "./pages/admin/Request";
-import Users from "./pages/admin/Users";
-import Add from "./pages/admin/Add";
-import Trend from "./pages/bet/Trend";
-
-import PrivateRouteAdmin from "./PrivateRouteAdmin";
-
-import UserProfile from "./pages/admin/UserProfile";
-
-
-import ThongBao from "./pages/admin/ThongBao";
-import Trend5 from "./pages/bet/Trend5";
-import Trend1 from "./pages/bet/Trend1";
-
-import Setting from "./pages/admin/Setting";
-import Employee from "./pages/admin/Employee";
-import AllEmployee from "./pages/admin/AllEmployee";
-import UsersByEmployee from "./pages/admin/UsersByEmployee";
-import Xoso from "./pages/game/Xoso";
-import Set1 from "./pages/admin/Set1";
-import Set3 from "./pages/admin/Set3";
-
-
 // Game
-import Keno1 from "./pages/game/Keno1";
-import Keno3 from "./pages/game/Keno3";
-import Keno5 from "./pages/game/Keno5";
+import Keno1 from "./pages/game/Keno/Keno1";
+import Keno3 from "./pages/game/Keno/Keno3";
+import Keno5 from "./pages/game/Keno/Keno5";
+
+// XS Nhanh
+import Lo from "./pages/game/Xoso/Lo";
+import Bacang from "./pages/game/Xoso/Bacang";
+import De from "./pages/game/Xoso/De";
+import Loxien2 from "./pages/game/Xoso/Loxien2";
+import Loxien3 from "./pages/game/Xoso/Loxien3";
+import Loxien4 from "./pages/game/Xoso/Loxien4";
+
+//XSMB
+import MBLo from "./pages/game/XSMB/Lo";
+import MBBacang from "./pages/game/XSMB/Bacang";
+import MBDe from "./pages/game/XSMB/De";
+import MBLoxien2 from "./pages/game/XSMB/Loxien2";
+import MBLoxien3 from "./pages/game/XSMB/Loxien3";
+import MBLoxien4 from "./pages/game/XSMB/Loxien4";
+
+//XSMT
+import MTLo from "./pages/game/XSMT/Lo";
+import MTBacang from "./pages/game/XSMT/Bacang";
+import MTDe from "./pages/game/XSMT/De";
+import MTLoxien2 from "./pages/game/XSMT/Loxien2";
+import MTLoxien3 from "./pages/game/XSMT/Loxien3";
+import MTLoxien4 from "./pages/game/XSMT/Loxien4";
+
+//XSMN
+import MNLo from "./pages/game/XSMN/Lo";
+import MNBacang from "./pages/game/XSMN/Bacang";
+import MNDe from "./pages/game/XSMN/De";
+import MNLoxien2 from "./pages/game/XSMN/Loxien2";
+import MNLoxien3 from "./pages/game/XSMN/Loxien3";
+import MNLoxien4 from "./pages/game/XSMN/Loxien4";
+
 // User
 import Profile from "./pages/user/Profile";
 import HistoryAll from "./pages/user/HistoryAll";
@@ -53,16 +60,24 @@ import EditBank from "./pages/user/EditBank";
 import ResetPassword from "./pages/user/ResetPassword";
 // Admin
 import HistoryBetAll from "./pages/admin/HistoryBetAll";
-import Bacang from "./pages/game/Bacang";
-import De from "./pages/game/De";
-import Loxien2 from "./pages/game/Loxien2";
-import Loxien3 from "./pages/game/Loxien3";
-import Loxien4 from "./pages/game/Loxien4";
 import PrivateCustomer from "./PrivateCustomer";
 import DashboardCustomer from "./pages/admin/DashboardCustomer";
-import SetXoSo from "./pages/admin/SetXoSo";
 import UsersByEmployeeNV from "./pages/admin/UsersByEmployeeNV";
 import BankAdmin from "./pages/admin/BankAdmin";
+import Set1 from "./pages/admin/Set1";
+import Set5 from "./pages/admin/Set5";
+import Set3 from "./pages/admin/Set3";
+import SetXoSo from "./pages/admin/SetXoSo";
+import Dashboard from "./pages/admin/Dashboard";
+import Request from "./pages/admin/Request";
+import Users from "./pages/admin/Users";
+import Add from "./pages/admin/Add";
+import UserProfile from "./pages/admin/UserProfile";
+import ThongBao from "./pages/admin/ThongBao";
+import Setting from "./pages/admin/Setting";
+import Employee from "./pages/admin/Employee";
+import AllEmployee from "./pages/admin/AllEmployee";
+import UsersByEmployee from "./pages/admin/UsersByEmployee";
 
 function App() {
 	return (
@@ -80,16 +95,34 @@ function App() {
 						<Route element={<Keno5 />} path="/keno5p" />
 						<Route element={<Keno3 />} path="/keno3p" />
 						<Route element={<Keno1 />} path="/keno1p" />
-						<Route element={<Xoso />} path="/xoso" />
+
+						<Route element={<Lo />} path="/xoso" />
 						<Route element={<Bacang />} path="/xoso/bacang" />
 						<Route element={<De />} path="/xoso/de" />
 						<Route element={<Loxien2 />} path="/xoso/loxien" />
 						<Route element={<Loxien3 />} path="/xoso/loxien3" />
 						<Route element={<Loxien4 />} path="/xoso/loxien4" />
-						<Route element={<Bet />} path="/bet" />
-						<Route element={<Trend />} path="/trend" />
-						<Route element={<Trend1 />} path="/trend1" />
-						<Route element={<Trend5 />} path="/trend5" />
+
+						<Route element={<MBLo />} path="/xsmb" />
+						<Route element={<MBBacang />} path="/xsmb/bacang" />
+						<Route element={<MBDe />} path="/xsmb/de" />
+						<Route element={<MBLoxien2 />} path="/xsmb/loxien" />
+						<Route element={<MBLoxien3 />} path="/xsmb/loxien3" />
+						<Route element={<MBLoxien4 />} path="/xsmb/loxien4" />
+
+						<Route element={<MTLo />} path="/xsmt" />
+						<Route element={<MTBacang />} path="/xsmt/bacang" />
+						<Route element={<MTDe />} path="/xsmt/de" />
+						<Route element={<MTLoxien2 />} path="/xsmt/loxien" />
+						<Route element={<MTLoxien3 />} path="/xsmt/loxien3" />
+						<Route element={<MTLoxien4 />} path="/xsmt/loxien4" />
+						
+						<Route element={<MNLo />} path="/xsmn" />
+						<Route element={<MNBacang />} path="/xsmn/bacang" />
+						<Route element={<MNDe />} path="/xsmn/de" />
+						<Route element={<MNLoxien2 />} path="/xsmn/loxien" />
+						<Route element={<MNLoxien3 />} path="/xsmn/loxien3" />
+						<Route element={<MNLoxien4 />} path="/xsmn/loxien4" />
 
 						{/* User */}
 						<Route element={<Profile />} path="/profile" />

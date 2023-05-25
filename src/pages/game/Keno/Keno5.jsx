@@ -1,29 +1,26 @@
-import { Link } from "react-router-dom";
 import axios from "axios";
 import { useEffect, useState } from "react";
-import Visibility from "@mui/icons-material/Visibility";
-import VisibilityOff from "@mui/icons-material/VisibilityOff";
+import Header from "../../components/Header";
 import swal from "sweetalert";
-import Footer from "../../components/Footer/Footer";
-import { GetNameChoose } from "../../funcUtils";
+import Footer from "../../../components/Footer/Footer";
+import { GetNameChoose } from "../../../funcUtils";
 
-function Keno1() {
+function Keno5() {
 	const [isVisible, setVisible] = useState(null);
 	const [bet, setBet] = useState(null);
 	const [profile, setProfile] = useState(null);
 	const [historyGame, setHistoryGame] = useState(null);
 	const [second, setSecond] = useState(0);
-	const [minute, setMinute] = useState(3);
+	const [minute, setMinute] = useState(5);
 	const [start, setStart] = useState(false);
 	const [dulieunhap, setDulieunhap] = useState(new Date());
 	const [update, setUpdate] = useState(0);
 
-	const date = new Date();
+	const date = new Date();	
 	const currentMinute = date.getMinutes();
 	const currentSecond = date.getSeconds();
 	const [item, setState] = useState(null);
 	const [total, setTotal] = useState(null);
-	const [isShow, setShow] = useState(false);
 	const [setting, setSetting] = useState(null);
 	const [item1, setItem] = useState([]);
 
@@ -49,13 +46,13 @@ function Keno1() {
 		axios.get(`https://server.vnvip294.com/setting/get`, {}).then((res) => {
 			setSetting(res.data.data[0]);
 		});
-		axios.get(`https://server.vnvip294.com/bet/get`).then((res) => {
+		axios.get(`https://server.vnvip294.com/bet5/get`).then((res) => {
 			setBet(res.data.data);
 			setDulieunhap(new Date(res.data.data.createdAt));
 			setStart(true);
 		});
 		axios
-			.get(`https://server.vnvip294.com/bet/getallbet`, {})
+			.get(`https://server.vnvip294.com/bet5/getallbet`, {})
 			.then((res) => {
 				setTotal(res.data.data);
 			})
@@ -71,16 +68,16 @@ function Keno1() {
 	}, []);
 	useEffect(() => {
 		const timer = setInterval(() => {
-			if (Math.floor(180 - (new Date() - dulieunhap) / 1000) < 0) {
+			if (Math.floor(300 - (new Date() - dulieunhap) / 1000) < 0) {
 				axios.get(`https://server.vnvip294.com/auth/getUser`, {}).then((res) => {
 					setProfile(res.data.data);
 				});
-				axios.get(`https://server.vnvip294.com/bet/get`).then((res) => {
+				axios.get(`https://server.vnvip294.com/bet5/get`).then((res) => {
 					setBet(res.data.data);
 					setDulieunhap(new Date(res.data.data.createdAt));
 				});
 				axios
-					.get(`https://server.vnvip294.com/bet/getallbet`, {})
+					.get(`https://server.vnvip294.com/bet5/getallbet`, {})
 					.then((res) => {
 						setTotal(res.data.data);
 					})
@@ -130,7 +127,7 @@ function Keno1() {
 		}
 	}, [isVisible]);
 	useEffect(() => {
-		let curTime_second = Math.floor(180 - (date - dulieunhap) / 1000);
+		let curTime_second = Math.floor(300 - (date - dulieunhap) / 1000);
 
 		let myTimeout;
 
@@ -143,7 +140,7 @@ function Keno1() {
 			return () => {
 				clearTimeout(myTimeout);
 			};
-		} else if (curTime_second < 180 && curTime_second >= 0) {
+		} else if (curTime_second < 300 && curTime_second >= 0) {
 			setSecond(curTime_second % 60);
 			setMinute((curTime_second - (curTime_second % 60)) / 60);
 			setStart(true);
@@ -159,15 +156,15 @@ function Keno1() {
 	}, [update, dulieunhap]);
 
 	useEffect(() => {
-		let curTime_second = Math.floor(180 - (date - dulieunhap) / 1000);
+		let curTime_second = Math.floor(300 - (date - dulieunhap) / 1000);
 		let myTimeout = 0;
 		if (start) {
 			setSecond(curTime_second % 60);
 			setMinute(Math.floor(curTime_second / 60));
 
-			if (curTime_second > 180 || curTime_second <= 0) {
+			if (curTime_second > 300 || curTime_second <= 0) {
 				setStart(false);
-				setMinute(3);
+				setMinute(5);
 				setSecond(0);
 				return () => {
 					clearTimeout(myTimeout);
@@ -206,7 +203,7 @@ function Keno1() {
 			money: item1.length * newMoney,
 		};
 		axios
-			.post("https://server.vnvip294.com/history/choose", formData)
+			.post("https://server.vnvip294.com/history5/choose", formData)
 			.then((res) => swal("Đặt cược thành công", "", "success"))
 			.catch((err) => swal("Thất bại", "Số tiền trong ví không đủ", "error"));
 	};
@@ -260,33 +257,7 @@ function Keno1() {
 		<>
 			<div className="loading"><div className="loader"></div></div>
 			<div className="main">
-				<div className="header">
-					<div className="header-top">
-						<div className="logo">
-							<Link to="/"><img src={require("../../img/logo-vietlott.png")} alt="Logo" /></Link>
-						</div>
-						<div className="header-right">
-							<div style={{ display: "flex", float: "right" }}>
-								{isShow && profile ? (
-									<span style={{ marginRight: "0.111rem" }}>
-										Số dư: <b>{Number(profile.money).toLocaleString()}đ</b>
-									</span>
-								) : (
-									<span style={{ marginRight: "0.111rem" }}>
-										Số dư: <b>******đ</b>
-									</span>
-								)}
-								<div
-									onClick={() => {
-										setShow(!isShow);
-									}}
-								>
-									{isShow ? <VisibilityOff /> : <Visibility />}
-								</div>
-							</div>
-						</div>
-					</div>
-				</div>
+				<Header profile={profile}/>
 
 				<div className="record_bet">
 					<div className="colum-resultxs">
@@ -798,7 +769,7 @@ function Keno1() {
 									<div className="content-history award_tb">
 										{historyGame?.map((item, key) => (
 											<>
-											{item.sanh === "3 phút" ? (
+											{item.sanh === "5 phút" ? (
 												<div className="item_inner">
 													<div className="item_history">
 														<div className="title_item_history">
@@ -921,4 +892,4 @@ function Keno1() {
 		</>
 	);
 }
-export default Keno1;
+export default Keno5;

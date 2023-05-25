@@ -1,11 +1,9 @@
-import { Link } from "react-router-dom";
 import axios from "axios";
 import { useEffect, useState } from "react";
-import Visibility from "@mui/icons-material/Visibility";
-import VisibilityOff from "@mui/icons-material/VisibilityOff";
 import swal from "sweetalert";
-import Footer from "../../components/Footer/Footer";
-import { GetNameChoose } from "../../funcUtils";
+import Footer from "../../../components/Footer/Footer";
+import { GetNameChoose } from "../../../funcUtils";
+import Header from "../../components/Header";
 
 function Keno1() {
 	const [isVisible, setVisible] = useState(null);
@@ -23,7 +21,6 @@ function Keno1() {
 	const currentSecond = date.getSeconds();
 	const [item, setState] = useState(null);
 	const [total, setTotal] = useState(null);
-	const [isShow, setShow] = useState(false);
 	const [setting, setSetting] = useState(null);
 	const [item1, setItem] = useState([]);
 
@@ -260,33 +257,7 @@ function Keno1() {
 		<>
 			<div className="loading"><div className="loader"></div></div>
 			<div className="main">
-				<div className="header">
-					<div className="header-top">
-						<div className="logo">
-							<Link to="/"><img src={require("../../img/logo-vietlott.png")} alt="Logo" /></Link>
-						</div>
-						<div className="header-right">
-							<div style={{ display: "flex", float: "right" }}>
-								{isShow && profile ? (
-									<span style={{ marginRight: "0.111rem" }}>
-										Số dư: <b>{Number(profile.money).toLocaleString()}đ</b>
-									</span>
-								) : (
-									<span style={{ marginRight: "0.111rem" }}>
-										Số dư: <b>******đ</b>
-									</span>
-								)}
-								<div
-									onClick={() => {
-										setShow(!isShow);
-									}}
-								>
-									{isShow ? <VisibilityOff /> : <Visibility />}
-								</div>
-							</div>
-						</div>
-					</div>
-				</div>
+				<Header profile={profile}/>
 
 				<div className="record_bet">
 					<div className="colum-resultxs">

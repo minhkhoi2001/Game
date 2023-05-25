@@ -1,17 +1,16 @@
-import { Link, useLocation, useNavigate } from "react-router-dom";
 import axios from "axios";
 import { useEffect, useState } from "react";
-import Visibility from "@mui/icons-material/Visibility";
-import VisibilityOff from "@mui/icons-material/VisibilityOff";
 import swal from "sweetalert";
-import Footer from "../../components/Footer/Footer";
-import { GetNameChoose } from "../../funcUtils";
+import Footer from "../../../components/Footer/Footer";
+import Results from "./0_Results";
+import History from "./0_History";
+import TabNavigation from "./0_Tab";
+import Header from "../../components/Header";
 
 function Bacang() {
 	const [isVisible, setVisible] = useState(null);
 	const [bet, setBet] = useState(null);
 	const [profile, setProfile] = useState(null);
-	const [historyGame, setHistoryGame] = useState(null);
 	const [second, setSecond] = useState(0);
 	const [minute, setMinute] = useState(30);
 	const [start, setStart] = useState(false);
@@ -23,7 +22,6 @@ function Bacang() {
 	const currentSecond = date.getSeconds();
 	const [item, setState] = useState(null);
 	const [total, setTotal] = useState(null);
-	const [isShow, setShow] = useState(false);
 	const [setting, setSetting] = useState(null);
 	const [item1, setItem] = useState([]);
 	axios.interceptors.request.use(
@@ -199,7 +197,6 @@ function Bacang() {
 
 	const [isOpen2, setIsOpen2] = useState(false);
 	const openPopup2 = () => {
-		getHistoryBet()
 		setIsOpen2(true);
 	};
 	const closePopup2 = () => {
@@ -245,93 +242,19 @@ function Bacang() {
 			})
 			.catch((err) => swal("Thất bại", "Số tiền trong ví không đủ", "error"));
 	};
-	function formatDate(m) {
-		new Date(m);
-		const dateString =
-			m.getUTCFullYear() +
-			"/" +
-			("0" + (m.getMonth() + 1)).slice(-2) +
-			"/" +
-			("0" + m.getDate()).slice(-2) +
-			"  " +
-			("0" + m.getHours()).slice(-2) +
-			":" +
-			("0" + m.getMinutes()).slice(-2);
-		return dateString;
-	}
 	const [newMoney, setNewMoney] = useState();
-
-	const [activeTab, setActiveTab] = useState("tab1");
-	const handleTabClick = (tabName) => {
-		navigate(tabName);
-		getHistoryBet();
-	};
 
 	const [activeTab3c, setActiveTab3c] = useState("tab_1");
 	const handleTabClick3c = (tabName) => {
 		setActiveTab3c(tabName);
 	};
 
-	useEffect(() => {
-		if (minute == 0 && second == 0) {
-			runSlotEffect();
-		}
-	}, [minute, second]);
-
-	const slotTransforms = document.querySelectorAll(".slot-transform");
-	function runSlotEffect() {
-		slotTransforms.forEach((slotTransform) => {
-			slotTransform.classList.add("slot-scroll");
-			setTimeout(() => {
-				slotTransform.classList.remove("slot-scroll");
-			}, 3000);
-		});
-	}
-	function getHistoryBet() {
-		axios
-			.get(`https://server.vnvip294.com/history/historyus`, {})
-			.then((res) => {
-				setHistoryGame(res.data.data);
-			})
-			.catch((err) => function () {});
-	}
 	const numbers = Array.from(Array(1000).keys());
-	const location = useLocation();
-
-	const navigate = useNavigate();
 	return (
 		<>
 			<div className="loading"><div className="loader"></div></div>
 			<div className="main">
-				<div className="header">
-					<div className="header-top">
-						<div className="logo">
-							<Link to="/">
-								<img src={require("../../img/logo-vietlott.png")} alt="Logo" />
-							</Link>
-						</div>
-						<div className="header-right">
-							<div style={{ display: "flex", float: "right" }}>
-								{isShow && profile ? (
-									<span style={{ marginRight: "0.111rem" }}>
-										Số dư: <b>{Number(profile.money).toLocaleString()}đ</b>
-									</span>
-								) : (
-									<span style={{ marginRight: "0.111rem" }}>
-										Số dư: <b>******đ</b>
-									</span>
-								)}
-								<div
-									onClick={() => {
-										setShow(!isShow);
-									}}
-								>
-									{isShow ? <VisibilityOff /> : <Visibility />}
-								</div>
-							</div>
-						</div>
-					</div>
-				</div>
+				<Header profile={profile}/>
 
 				<div className="record_bet">
 					<div className="colum-resultxs">
@@ -406,8 +329,12 @@ function Bacang() {
 						</div>
 						<div className="col-100">
 							<div style={{ display: "flex" }}>
-								<button className="btn-mini" onClick={openPopup}>
-									Hướng dẫn cách chơi
+								<button
+									className="btn-mini"
+									onClick={openPopup2}
+									style={{ border: "1px solid #477bff", color: "#477bff" }}
+								>
+									Lịch sử của bạn
 								</button>
 								<button
 									className="btn-mini"
@@ -416,56 +343,12 @@ function Bacang() {
 								>
 									Chi tiết kết quả
 								</button>
-								<button
-									className="btn-mini"
-									onClick={openPopup2}
-									style={{ border: "1px solid #477bff", color: "#477bff" }}
-								>
-									Lịch sử của bạn
-								</button>
 							</div>
 						</div>
 					</div>
 				</div>
 
-				<ul className="tab-navigation tab-game">
-					<li
-						className={location.pathname === "/xoso" ? "active" : ""}
-						onClick={() => handleTabClick("/xoso")}
-					>
-						Lô
-					</li>
-					<li
-						className={location.pathname === "/xoso/bacang" ? "active" : ""}
-						onClick={() => handleTabClick("/xoso/bacang")}
-					>
-						Ba càng
-					</li>
-					<li
-						className={location.pathname === "/xoso/de" ? "active" : ""}
-						onClick={() => handleTabClick("/xoso/de")}
-					>
-						Đề
-					</li>
-					<li
-						className={location.pathname === "/xoso/loxien" ? "active" : ""}
-						onClick={() => handleTabClick("/xoso/loxien")}
-					>
-						Lô xiên 2
-					</li>
-					<li
-						className={location.pathname === "/xoso/loxien3" ? "active" : ""}
-						onClick={() => handleTabClick("/xoso/loxien3")}
-					>
-						Lô xiên 3
-					</li>
-					<li
-						className={location.pathname === "/xoso/loxien4" ? "active" : ""}
-						onClick={() => handleTabClick("/xoso/loxien4")}
-					>
-						Lô xiên 4
-					</li>
-				</ul>
+				<TabNavigation/>
 
 				<div className="main_game">
 					<div className="route_game">
@@ -601,250 +484,9 @@ function Bacang() {
 				</div>
 				<Footer />
 
-				{isOpen && (
-					<div className="popup-backdrop">
-						<div className="popup-main">
-							<div className="popup-header">Hướng dẫn cách chơi</div>
-							<div className="popup-content">
-								Chiến thắng khi đặt cược bi (tài/xỉu/lẻ/chẵn) khớp với kết quả
-								xổ số. Tỉ lệ ăn 1.98 (đánh 100k ăn 198k).
-								<br />
-								<br />
-								<b>Ví dụ 1</b>
-								<br />
-								Bạn đặt bi thứ 2 là L (lẻ) và T (tài). Kết quả xổ số là 71294,
-								bi thứ 2 có kết quả là 1. Bạn chiến thắng L nhưng thua T.
-								<br />
-								<br />
-								<b>Ví dụ 2</b>
-								<br />
-								Bạn đặt bi thứ 4 là C (chẵn). Kết quả xổ số là 71294, bi thứ 4
-								có kết quả là 9. Bạn thua cuộc.
-							</div>
-							<button onClick={closePopup} className="popup-close">
-								Đóng
-							</button>
-						</div>
-					</div>
-				)}
+				<Results isOpen={isOpen1} total={total} closePopup={closePopup1} />
 
-				{isOpen1 && (
-					<div className="popup-backdrop">
-						<div className="popup-main">
-							<div className="popup-content" style={{ padding: "0" }}>
-								<table
-									id="table-xsmb"
-									className="table-result table table-bordered table-striped table-xsmb"
-								>
-									<tbody>
-										<tr>
-											<th style={{ width: "10%" }}>ĐB</th>
-											<td>
-												<span
-													id="mb_prize_0"
-													className="special-prize div-horizontal"
-												>
-													{total[0].dacbiet}
-												</span>
-											</td>
-										</tr>
-										<tr>
-											<th>1</th>
-											<td>
-												<span id="mb_prize_1" className="prize1 div-horizontal">
-													{total[0].nhat}
-												</span>
-											</td>
-										</tr>
-										<tr>
-											<th>2</th>
-											<td>
-												<span id="mb_prize_2" className="prize2 div-horizontal">
-													{total[0].hai.split(" ")[0]}
-												</span>
-												<span id="mb_prize_3" className="prize2 div-horizontal">
-													{total[0].hai.split(" ")[1]}
-												</span>
-											</td>
-										</tr>
-										<tr>
-											<th>3</th>
-											<td>
-												<span id="mb_prize_4" className="prize3 div-horizontal">
-													{total[0].ba.split(" ")[0]}
-												</span>
-												<span id="mb_prize_5" className="prize3 div-horizontal">
-													{total[0].ba.split(" ")[1]}
-												</span>
-												<span id="mb_prize_6" className="prize3 div-horizontal">
-													{total[0].ba.split(" ")[2]}
-												</span>
-												<span id="mb_prize_7" className="prize3 div-horizontal">
-													{total[0].ba.split(" ")[3]}
-												</span>
-												<span id="mb_prize_8" className="prize3 div-horizontal">
-													{total[0].ba.split(" ")[4]}
-												</span>
-												<span id="mb_prize_9" className="prize3 div-horizontal">
-													{total[0].ba.split(" ")[5]}
-												</span>
-											</td>
-										</tr>
-										<tr>
-											<th>4</th>
-											<td>
-												<span id="mb_prize_10" className="prize4 div-horizontal">
-													{total[0].tu.split(" ")[0]}
-												</span>
-												<span id="mb_prize_11" className="prize4 div-horizontal">
-													{total[0].tu.split(" ")[1]}
-												</span>
-												<span id="mb_prize_12" className="prize4 div-horizontal">
-													{total[0].tu.split(" ")[2]}
-												</span>
-												<span id="mb_prize_13" className="prize4 div-horizontal">
-													{total[0].tu.split(" ")[3]}
-												</span>
-											</td>
-										</tr>
-										<tr>
-											<th>5</th>
-											<td>
-												<span id="mb_prize_14" className="prize5 div-horizontal">
-													{total[0].nam.split(" ")[0]}
-												</span>
-												<span id="mb_prize_15" className="prize5 div-horizontal">
-													{total[0].nam.split(" ")[1]}
-												</span>
-												<span id="mb_prize_16" className="prize5 div-horizontal">
-													{total[0].nam.split(" ")[2]}
-												</span>
-												<span id="mb_prize_17" className="prize5 div-horizontal">
-													{total[0].nam.split(" ")[3]}
-												</span>
-												<span id="mb_prize_18" className="prize5 div-horizontal">
-													{total[0].nam.split(" ")[4]}
-												</span>
-												<span id="mb_prize_19" className="prize5 div-horizontal">
-													{total[0].nam.split(" ")[5]}
-												</span>
-											</td>
-										</tr>
-										<tr>
-											<th>6</th>
-											<td>
-												<span id="mb_prize_20" className="prize6 div-horizontal">
-													{total[0].sau.split(" ")[0]}
-												</span>
-												<span id="mb_prize_21" className="prize6 div-horizontal">
-													{total[0].sau.split(" ")[1]}
-												</span>
-												<span id="mb_prize_22" className="prize6 div-horizontal">
-													{total[0].sau.split(" ")[2]}
-												</span>
-											</td>
-										</tr>
-										<tr>
-											<th>7</th>
-											<td>
-												<span id="mb_prize_23" className="prize7 div-horizontal">
-													{total[0].bay.split(" ")[0]}
-												</span>
-												<span id="mb_prize_24" className="prize7 div-horizontal">
-													{total[0].bay.split(" ")[1]}
-												</span>
-												<span id="mb_prize_25" className="prize7 div-horizontal">
-													{total[0].bay.split(" ")[2]}
-												</span>
-												<span id="mb_prize_26" className="prize7 div-horizontal">
-													{total[0].bay.split(" ")[3]}
-												</span>
-											</td>
-										</tr>
-									</tbody>
-								</table>
-							</div>
-							<button
-								onClick={closePopup1}
-								className="popup-close"
-								style={{
-									background: "#00b977",
-									boxShadow: "none",
-									textShadow: "none",
-								}}
-							>
-								Đóng
-							</button>
-						</div>
-					</div>
-				)}
-
-				{isOpen2 && (
-					<div className="popup-backdrop">
-						<div className="popup-main">
-							<div className="popup-header" style={{ background: "#477bff" }}>
-								Lịch Sử Tham Gia
-							</div>
-							<div className="popup-content">
-								{historyGame != null ? (
-									<div className="content-history award_tb">
-										{historyGame?.map((item, key) => (
-											<>
-												{item.sanh&&item.type ? (
-													<div className="item_inner">
-														<div className="item_history">
-															<div className="title_item_history">
-																<span className="sanh">{item.sanh == "Xổ số" ? "" : "Keno "}{item.sanh}</span>
-																<span
-																	className={`type_state ${
-																		item.status_bet === "Pending"
-																			? "pending"
-																			: item.status_bet === "Win"
-																			? "win"
-																			: "lose"
-																	}`}
-																>
-																	{item.status_bet}
-																</span>
-															</div>
-															<div className="id_history_sanh">
-																Phiên cược: {item.id_bet.id_bet}
-															</div>
-															<div className="id_history_sanh">
-																{GetNameChoose(Number(item.state), null)}
-															</div>
-														</div>
-														<div className="money_history">
-															<span className="money">
-																{Number(item.money).toLocaleString()}đ
-															</span>
-															<div className="time_choose">
-																{formatDate(new Date(item.createdAt))}
-															</div>
-														</div>
-													</div>
-												) : null}
-											</>
-										))}
-									</div>
-								) : (
-									<div></div>
-								)}
-							</div>
-							<button
-								onClick={closePopup2}
-								className="popup-close"
-								style={{
-									background: "#477bff",
-									boxShadow: "none",
-									textShadow: "none",
-								}}
-							>
-								Đóng
-							</button>
-						</div>
-					</div>
-				)}
+				<History isOpen={isOpen2} closePopup={closePopup2}/>
 			</div>
 		</>
 	);
