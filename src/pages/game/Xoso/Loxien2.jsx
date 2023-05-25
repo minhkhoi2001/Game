@@ -39,6 +39,20 @@ function Loxien2() {
 			return Promise.reject(error);
 		}
 	);
+	function rollLottery(res) {
+		const interval = setInterval(() => {
+			const randomDigits = Math.floor(Math.random() * 90000) + 10000;
+			setTotal([{id_bet: res.data.data[0].id_bet, dacbiet: String(randomDigits) }]);
+		  }, 100);
+	  
+		  setTimeout(() => {
+			clearInterval(interval);
+			setTotal(res.data.data);
+		  }, 2000);
+		  return () => {
+			clearInterval(interval);
+		};
+	}
 	useEffect(() => {
 		axios.get(`https://server.vnvip294.com/auth/getUser`, {}).then((res) => {
 			setProfile(res.data.data);
@@ -54,7 +68,7 @@ function Loxien2() {
 		axios
 			.get(`https://server.vnvip294.com/Xoso/getallbet`, {})
 			.then((res) => {
-				setTotal(res.data.data);
+				rollLottery(res);
 			})
 			.catch(() => setTotal(null));
 		axios
@@ -79,7 +93,7 @@ function Loxien2() {
 				axios
 					.get(`https://server.vnvip294.com/Xoso/getallbet`, {})
 					.then((res) => {
-						setTotal(res.data.data);
+						rollLottery(res);
 					})
 					.catch(() => setTotal(null));
 				axios

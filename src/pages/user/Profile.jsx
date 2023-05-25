@@ -57,8 +57,19 @@ function Profile() {
 					</div>
 				</div>
 				<div className="account">
-					<div className="account__top">
-						
+					<div className="account__top promotionRule__container-content__rules-item">
+						<div class="promotionRule__container-content__rules-item__splitBorder">
+							<span></span>
+						</div>
+						<div class="promotionRule__container-content__rules-item__borderTopStyle">
+							<span></span>
+							<span></span>
+						</div>
+						<div class="promotionRule__container-content__rules-item__titleLeft"></div>
+						<div class="promotionRule__container-content__rules-item__title">
+							Thành Viên
+						</div>
+						<div class="promotionRule__container-content__rules-item__titleRight"></div>
 						<div className="account__ID">
 							{/*<h1 className="title-h1">Trung tâm thành viên</h1>
 							ID:{" "}
@@ -77,15 +88,18 @@ function Profile() {
 							</span>*/}
 						</div>
 						<div className="account__balance">
-							<span style={{margin:"0"}}>
-								<img src={require("../../img/profile-picture.jpg")} alt="Profile"/>
-								{profile ? <span>{profile.username}</span> : null}
+							<span style={{ margin: "0" }}>
+								<img
+									src={require("../../img/profile-picture.jpg")}
+									alt="Profile"
+								/>
+								{profile ? <span>{profile.username}</span> : <span>...</span>}
 							</span>
 							{profile ? (
 								<strong id="account__balance">
 									{profile.money.toLocaleString()} <small>đ</small>
 								</strong>
-							) : null}
+							) : <strong>*****</strong>}
 						</div>
 					</div>
 					<div className="account__transaction">

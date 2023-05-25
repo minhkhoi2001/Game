@@ -302,6 +302,7 @@
 	display: -webkit-flex;
 	display: -ms-flexbox;
 	display: flex;
+	position: relative;
 }
 .account__transaction .account__transaction-box {
 	-webkit-box-pack: justify;

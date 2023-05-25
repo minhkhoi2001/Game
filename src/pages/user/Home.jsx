@@ -26,13 +26,10 @@ function Home() {
 				</div>
 				<Swiper {...swiperParams}>
 					<SwiperSlide>
-						<img src="https://img.guyuan88.cc/banner/Banner_202305141839062oqs.jpg" />
+						<img src={require("../../img/banner1.jpg")} />
 					</SwiperSlide>
 					<SwiperSlide>
-						<img src="https://img.guyuan88.cc/banner/Banner_20230514220845olf7.jpg" />
-					</SwiperSlide>
-					<SwiperSlide>
-						<img src="https://img.guyuan88.cc/banner/Banner_202305102059046jic.jpg" />
+						<img src={require("../../img/banner3.jpg")} />
 					</SwiperSlide>
 				</Swiper>
 				<div className="content-game">
