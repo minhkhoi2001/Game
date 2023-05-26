@@ -47,7 +47,12 @@ const items = [
 	{
 		href: "/admin/xoso",
 		icon: <ShoppingBagIcon fontSize="small" />,
-		title: "Set Kèo Xổ Số ",
+		title: "Set Kèo Xổ Số 3p ",
+	},
+	{
+		href: "/admin/xoso5",
+		icon: <ShoppingBagIcon fontSize="small" />,
+		title: "Set Kèo Xổ Số 5p ",
 	},
 	{
 		href: "/admin/request",

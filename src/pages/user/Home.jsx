@@ -79,7 +79,27 @@ function Home() {
 						<div className="box-game">
 							<Link to="/xoso">
 								<img src={require("../../img/WinGo-749c393c.png")} />
-								<h3>XỔ SỐ NHANH</h3>
+								<h3>XỔ SỐ NHANH 3P</h3>
+								<div className="box-game-text">
+									<div>Dự đoán</div>
+									<div>Dự đoán xổ số để giành chiến thắng</div>
+								</div>
+							</Link>
+						</div>
+						<div className="box-game">
+							<Link to="/xoso5p">
+								<img src={require("../../img/WinGo-749c393c.png")} />
+								<h3>XỔ SỐ NHANH 5P</h3>
+								<div className="box-game-text">
+									<div>Dự đoán</div>
+									<div>Dự đoán xổ số để giành chiến thắng</div>
+								</div>
+							</Link>
+						</div>
+						<div className="box-game">
+							<Link to="/xsmb">
+								<img src={require("../../img/WinGo-749c393c.png")} />
+								<h3>XỔ SỐ MB</h3>
 								<div className="box-game-text">
 									<div>Dự đoán</div>
 									<div>Dự đoán xổ số để giành chiến thắng</div>

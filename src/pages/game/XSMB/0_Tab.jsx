@@ -11,38 +11,38 @@ const TabNavigation = () => {
 	return (
 		<ul className="tab-navigation tab-game">
 			<li
-				className={location.pathname === "/xoso" ? "active" : ""}
-				onClick={() => handleTabClick("/xoso")}
+				className={location.pathname === "/xsmb" ? "active" : ""}
+				onClick={() => handleTabClick("/xsmb")}
 			>
 				Lô
 			</li>
 			<li
-				className={location.pathname === "/xoso/bacang" ? "active" : ""}
-				onClick={() => handleTabClick("/xoso/bacang")}
+				className={location.pathname === "/xsmb/bacang" ? "active" : ""}
+				onClick={() => handleTabClick("/xsmb/bacang")}
 			>
 				Ba càng
 			</li>
 			<li
-				className={location.pathname === "/xoso/de" ? "active" : ""}
-				onClick={() => handleTabClick("/xoso/de")}
+				className={location.pathname === "/xsmb/de" ? "active" : ""}
+				onClick={() => handleTabClick("/xsmb/de")}
 			>
 				Đề
 			</li>
 			<li
-				className={location.pathname === "/xoso/loxien" ? "active" : ""}
-				onClick={() => handleTabClick("/xoso/loxien")}
+				className={location.pathname === "/xsmb/loxien" ? "active" : ""}
+				onClick={() => handleTabClick("/xsmb/loxien")}
 			>
 				Lô xiên 2
 			</li>
 			<li
-				className={location.pathname === "/xoso/loxien3" ? "active" : ""}
-				onClick={() => handleTabClick("/xoso/loxien3")}
+				className={location.pathname === "/xsmb/loxien3" ? "active" : ""}
+				onClick={() => handleTabClick("/xsmb/loxien3")}
 			>
 				Lô xiên 3
 			</li>
 			<li
-				className={location.pathname === "/xoso/loxien4" ? "active" : ""}
-				onClick={() => handleTabClick("/xoso/loxien4")}
+				className={location.pathname === "/xsmb/loxien4" ? "active" : ""}
+				onClick={() => handleTabClick("/xsmb/loxien4")}
 			>
 				Lô xiên 4
 			</li>

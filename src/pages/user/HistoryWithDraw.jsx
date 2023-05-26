@@ -40,18 +40,19 @@ function Rut() {
 	);
 	useEffect(() => {
 		axios
-			.get(`https://server.vnvip294.com/payment/paymentus`, {})
+			.get(`http://localhost/payment/paymentus`, {})
 			.then((res) => {
 				setProfile(res.data.data);
 			})
 			.catch((err) => function () {});
+		axios
+			.get(`http://localhost/auth/getUser`, {})
+			.then((res) => {
+				setProfile1(res.data.data);
+			})
+			.catch((err) => localStorage.removeItem("user"));
 	}, []);
-	axios
-		.get(`https://server.vnvip294.com/auth/getUser`, {})
-		.then((res) => {
-			setProfile1(res.data.data);
-		})
-		.catch((err) => localStorage.removeItem("user"));
+
 	return (
 		<>
 			<div className="main">
@@ -89,42 +90,44 @@ function Rut() {
 					<div className="content-history" style={{ margin: "1.5rem 0 0" }}>
 						{profile?.map((item, key) => (
 							<>
-							{item.type_payment == "RÚT" ? (
-							<>
-								<div className="item_inner">
-									<div className="item_history">
-										<div className="title_item_history">
-											<span className="sanh"> {item.type_payment}</span>
-											<span
-												className={`type_state ${
-													item.status_payment === "Pending"
-														? "pending"
+								{item.type_payment == "RÚT" ? (
+									<>
+										<div className="item_inner">
+											<div className="item_history">
+												<div className="title_item_history">
+													<span className="sanh"> {item.type_payment}</span>
+													<span
+														className={`type_state ${
+															item.status_payment === "Pending"
+																? "pending"
+																: item.status_payment === "Success"
+																? "win"
+																: "lose"
+														}`}
+													>
+														{item.status_payment}
+													</span>
+												</div>
+												<div className="id_history_sanh">
+													STK : {item?.detail}
+												</div>
+											</div>
+											<div className="money_history">
+												<span className="money">
+													{item.status_payment === "Pending"
+														? "-"
 														: item.status_payment === "Success"
-														? "win"
-														: "lose"
-												}`}
-											>
-												{item.status_payment}
-											</span>
+														? "-"
+														: ""}
+													{Number(item.money).toLocaleString()}đ
+												</span>
+												<div className="time_choose">
+													{formatDate(new Date(item.createdAt))}
+												</div>
+											</div>
 										</div>
-										<div className="id_history_sanh">STK : {item?.detail}</div>
-									</div>
-									<div className="money_history">
-										<span className="money">
-											{item.status_payment === "Pending"
-												? "-"
-												: item.status_payment === "Success"
-												? "-"
-												: ""}
-											{Number(item.money).toLocaleString()}đ
-										</span>
-										<div className="time_choose">
-											{formatDate(new Date(item.createdAt))}
-										</div>
-									</div>
-								</div>
-							</>
-							) : null}
+									</>
+								) : null}
 							</>
 						))}
 					</div>

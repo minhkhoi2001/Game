@@ -22,7 +22,7 @@ function SetXoSo() {
 	const [bet, setBet] = useState(null);
 	const [profile, setProfile] = useState(null);
 	const [second, setSecond] = useState(0);
-	const [minute, setMinute] = useState(5);
+	const [minute, setMinute] = useState(3);
 	const [start, setStart] = useState(false);
 	const [dulieunhap, setDulieunhap] = useState(new Date());
 	const [update, setUpdate] = useState(0);
@@ -52,30 +52,30 @@ function SetXoSo() {
 		}
 	);
 	useEffect(() => {
-		axios.get(`https://server.vnvip294.com/auth/getUser`, {}).then((res) => {
+		axios.get(`http://localhost/auth/getUser`, {}).then((res) => {
 			setProfile(res.data.data);
 		});
-		axios.get(`https://server.vnvip294.com/setting/get`, {}).then((res) => {
+		axios.get(`http://localhost/setting/get`, {}).then((res) => {
 			setSetting(res.data.data[0]);
 		});
-		axios.get(`https://server.vnvip294.com/Xoso/getadmin`).then((res) => {
+		axios.get(`http://localhost/Xoso3/getadmin`).then((res) => {
 			setBet(res.data.data[0]);
 			setDulieunhap(new Date(res.data.data[0].createdAt));
 			setStart(true);
 		});
 		axios
-			.get(`https://server.vnvip294.com/Xoso/getallbet`, {})
+			.get(`http://localhost/Xoso3/getallbet`, {})
 			.then((res) => {
 				setTotal(res.data.data);
 			})
 			.catch(() => setTotal(null));
-		axios.get(`https://server.vnvip294.com/notification/getnotifi`, {}).then((res) => {
+		axios.get(`http://localhost/notification/getnotifi`, {}).then((res) => {
 			setVisible({
 				money: res.data.data[0].money.toLocaleString(),
 				id: res.data.data[0]._id,
 			});
 		});
-		axios.get(`https://server.vnvip294.com/Xoso/getcurrent`, {}).then((res) => {
+		axios.get(`http://localhost/Xoso3/getcurrent`, {}).then((res) => {
 			setCurrent(res.data.data);
 		});
 	}, []);
@@ -95,27 +95,27 @@ function SetXoSo() {
 	}
 	useEffect(() => {
 		const timer = setInterval(() => {
-			if (Math.floor(1800 - (new Date() - dulieunhap) / 1000) < 0) {
-				axios.get(`https://server.vnvip294.com/auth/getUser`, {}).then((res) => {
+			if (Math.floor(180 - (new Date() - dulieunhap) / 1000) < 0) {
+				axios.get(`http://localhost/auth/getUser`, {}).then((res) => {
 					setProfile(res.data.data);
 				});
-				axios.get(`https://server.vnvip294.com/Xoso/getadmin`).then((res) => {
+				axios.get(`http://localhost/Xoso3/getadmin`).then((res) => {
 					setBet(res.data.data[0]);
 					setDulieunhap(new Date(res.data.data[0].createdAt));
 				});
 				axios
-					.get(`https://server.vnvip294.com/Xoso/getallbet`, {})
+					.get(`http://localhost/Xoso3/getallbet`, {})
 					.then((res) => {
 						setTotal(res.data.data);
 					})
 					.catch(() => setTotal(null));
-				axios.get(`https://server.vnvip294.com/notification/getnotifi`, {}).then((res) => {
+				axios.get(`http://localhost/notification/getnotifi`, {}).then((res) => {
 					setVisible({
 						money: res.data.data[0].money.toLocaleString(),
 						id: res.data.data[0]._id,
 					});
 				});
-				axios.get(`https://server.vnvip294.com/Xoso/getcurrent`).then((res) => {
+				axios.get(`http://localhost/Xoso3/getcurrent`).then((res) => {
 					setCurrent(res.data.data);
 				});
 			}
@@ -141,7 +141,7 @@ function SetXoSo() {
 			switch (result) {
 				case "submit":
 					// clear everything here!!
-					axios.post("https://server.vnvip294.com/notification/seen", {
+					axios.post("http://localhost/notification/seen", {
 						id: data.id,
 					});
 					break;
@@ -155,7 +155,7 @@ function SetXoSo() {
 		}
 	}, [isVisible]);
 	useEffect(() => {
-		let curTime_second = Math.floor(1800 - (date - dulieunhap) / 1000);
+		let curTime_second = Math.floor(180 - (date - dulieunhap) / 1000);
 		let myTimeout;
 
 		if (
@@ -167,7 +167,7 @@ function SetXoSo() {
 			return () => {
 				clearTimeout(myTimeout);
 			};
-		} else if (curTime_second < 1800 && curTime_second >= 0) {
+		} else if (curTime_second < 180 && curTime_second >= 0) {
 			setSecond(curTime_second % 60);
 			setMinute((curTime_second - (curTime_second % 60)) / 60);
 			setStart(true);
@@ -183,14 +183,14 @@ function SetXoSo() {
 	}, [update, dulieunhap]);
 
 	useEffect(() => {
-		let curTime_second = Math.floor(1800 - (date - dulieunhap) / 1000);
+		let curTime_second = Math.floor(180 - (date - dulieunhap) / 1000);
 		let myTimeout = 0;
 		if (start) {
 			setSecond(curTime_second % 60);
 			setMinute(Math.floor(curTime_second / 60));
-			if (curTime_second > 1800 || curTime_second <= 0) {
+			if (curTime_second > 180 || curTime_second <= 0) {
 				setStart(false);
-				setMinute(5);
+				setMinute(3);
 				setSecond(0);
 				return () => {
 					clearTimeout(myTimeout);
@@ -212,7 +212,7 @@ function SetXoSo() {
 			result: String(e.target.bet.value).split("").join(" "),
 		};
 		axios
-			.post("https://server.vnvip294.com/Xoso/update", formData)
+			.post("http://localhost/Xoso3/update", formData)
 			.then((res) => {
 				setBet(res.data.data);
 				swal("Thành công", "Update thành công", "success");

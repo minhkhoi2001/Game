@@ -16,12 +16,21 @@ import Keno3 from "./pages/game/Keno/Keno3";
 import Keno5 from "./pages/game/Keno/Keno5";
 
 // XS Nhanh
-import Lo from "./pages/game/Xoso/Lo";
-import Bacang from "./pages/game/Xoso/Bacang";
-import De from "./pages/game/Xoso/De";
-import Loxien2 from "./pages/game/Xoso/Loxien2";
-import Loxien3 from "./pages/game/Xoso/Loxien3";
-import Loxien4 from "./pages/game/Xoso/Loxien4";
+import Lo from "./pages/game/Xoso3p/Lo";
+import Bacang from "./pages/game/Xoso3p/Bacang";
+import De from "./pages/game/Xoso3p/De";
+import Loxien2 from "./pages/game/Xoso3p/Loxien2";
+import Loxien3 from "./pages/game/Xoso3p/Loxien3";
+import Loxien4 from "./pages/game/Xoso3p/Loxien4";
+
+
+//xs 5p 
+import Xoso5pLo from "./pages/game/Xoso5p/Lo";
+import Xoso5pBacang from "./pages/game/Xoso5p/Bacang";
+import Xoso5pDe from "./pages/game/Xoso5p/De";
+import Xoso5pLoxien2 from "./pages/game/Xoso5p/Loxien2";
+import Xoso5pLoxien3 from "./pages/game/Xoso5p/Loxien3";
+import Xoso5pLoxien4 from "./pages/game/Xoso5p/Loxien4";
 
 //XSMB
 import MBLo from "./pages/game/XSMB/Lo";
@@ -78,6 +87,7 @@ import Setting from "./pages/admin/Setting";
 import Employee from "./pages/admin/Employee";
 import AllEmployee from "./pages/admin/AllEmployee";
 import UsersByEmployee from "./pages/admin/UsersByEmployee";
+import SetXoSo5 from "./pages/admin/SetXoSo5";
 
 function App() {
 	return (
@@ -102,6 +112,13 @@ function App() {
 						<Route element={<Loxien2 />} path="/xoso/loxien" />
 						<Route element={<Loxien3 />} path="/xoso/loxien3" />
 						<Route element={<Loxien4 />} path="/xoso/loxien4" />
+
+						<Route element={<Xoso5pLo />} path="/xoso5p" />
+						<Route element={<Xoso5pBacang />} path="/xoso5p/bacang" />
+						<Route element={<Xoso5pDe />} path="/xoso5p/de" />
+						<Route element={<Xoso5pLoxien2 />} path="/xoso5p/loxien" />
+						<Route element={<Xoso5pLoxien3 />} path="/xoso5p/loxien3" />
+						<Route element={<Xoso5pLoxien4 />} path="/xoso5p/loxien4" />
 
 						<Route element={<MBLo />} path="/xsmb" />
 						<Route element={<MBBacang />} path="/xsmb/bacang" />
@@ -148,6 +165,7 @@ function App() {
 						<Route element={<Set3 />} path="/admin/set3" exact />
 						<Route element={<Set5 />} path="/admin/set5" exact />
 						<Route element={<SetXoSo />} path="/admin/xoso" exact />
+						<Route element={<SetXoSo5 />} path="/admin/xoso5" exact />
 						<Route element={<Users />} path="/admin/users" exact />
 						<Route element={<UserProfile />} path="/admin/user/:id" />
 

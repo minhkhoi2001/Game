@@ -67,7 +67,7 @@ function HistoryBetAll() {
 	};
 	useEffect(() => {
 		axios
-			.get(`https://server.vnvip294.com/history/all`, {})
+			.get(`http://localhost/history/all`, {})
 			.then((res) => {
 				localStorage.setItem("data", JSON.stringify(res.data.data));
 				setData(res.data.data);
@@ -122,7 +122,7 @@ function HistoryBetAll() {
 														<>
 															<TableRow>
 																<TableCell sx={{ fontWeight: "600" }}>
-																	{item.id_bet.id_bet}
+																	{item.id_bet.id_bet?item.id_bet.id_bet:item.id_bet}
 																</TableCell>
 																<TableCell sx={{ fontWeight: "600" }}>
 																	{item.user.username}

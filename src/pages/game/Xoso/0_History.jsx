@@ -8,7 +8,7 @@ const History = ({ isOpen, closePopup }) => {
   useEffect(() => {
     if (isOpen) {
       axios
-        .get("https://server.vnvip294.com/history/historyus", {})
+        .get("http://localhost/history/historyus", {})
         .then((res) => {
           setHistoryGame(res.data.data);
         })
@@ -61,7 +61,7 @@ const History = ({ isOpen, closePopup }) => {
 															</span>
 														</div>
 														<div className="id_history_sanh">
-															Phiên cược: {item.id_bet.id_bet}
+															Phiên cược: {item.id_bet.id_bet?item.id_bet.id_bet:item.id_bet}
 														</div>
 														<div className="id_history_sanh">
 															{GetNameChoose(Number(item.state), null)}

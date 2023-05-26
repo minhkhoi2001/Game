@@ -50,7 +50,7 @@ function Register() {
 		}
 		if (data.code === "") {
 			axios
-				.post(`https://server.vnvip294.com/auth/register`, {
+				.post(`http://localhost/auth/register`, {
 					username: data.username,
 					password: data.password,
 					code: "admin",
@@ -68,7 +68,7 @@ function Register() {
 				});
 		} else if (data.code) {
 			axios
-				.post(`https://server.vnvip294.com/auth/register`, {
+				.post(`http://localhost/auth/register`, {
 					username: data.username,
 					password: data.password,
 					code: data.code,

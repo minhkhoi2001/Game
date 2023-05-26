@@ -26,6 +26,21 @@ function UserProfile() {
 	const [load, setLoad] = useState(false);
 	const [profile, setProfile] = useState(null);
 	const [bank, setBank] = useState(null);
+	const [history, setHistory] = useState(null);
+	function formatDate(m) {
+		new Date(m);
+		const dateString =
+			m.getUTCFullYear() +
+			"/" +
+			("0" + (m.getMonth() + 1)).slice(-2) +
+			"/" +
+			("0" + m.getDate()).slice(-2) +
+			"  " +
+			("0" + m.getHours()).slice(-2) +
+			":" +
+			("0" + m.getMinutes()).slice(-2);
+		return dateString;
+	}
 	axios.interceptors.request.use(
 		(config) => {
 			const token = localStorage.getItem("user");
@@ -44,7 +59,7 @@ function UserProfile() {
 	useEffect(() => {
 		if (id && load == false) {
 			axios
-				.post(`https://server.vnvip294.com/bank/getBankUser`, { id: id })
+				.post(`http://localhost/bank/getBankUser`, { id: id })
 				.then((res) => {
 					setData(res.data.data);
 					setLoad(true);
@@ -52,16 +67,22 @@ function UserProfile() {
 				.catch((res) => setData(null));
 		}
 		axios
-			.get(`https://server.vnvip294.com/auth/user/${id}`, {})
+			.get(`http://localhost/auth/user/${id}`, {})
 			.then((res) => {
 				setProfile(res.data.data);
 			})
 			.catch((res) => setProfile(null));
+		axios
+			.get(`http://localhost/history/historyuser/${id}`, {})
+			.then((res) => {
+				setHistory(res.data.data);
+			})
+			.catch((res) => setHistory(null));
 	}, [load]);
 	const handleSubmit = (e) => {
 		e.preventDefault();
 		axios
-			.post(`https://server.vnvip294.com/auth/changepassword`, {
+			.post(`http://localhost/auth/changepassword`, {
 				id: id,
 				password: e.target.password.value,
 			})
@@ -79,15 +100,14 @@ function UserProfile() {
 			fullname: e.target.fullname.value,
 		};
 		axios
-			.post(`https://server.vnvip294.com/bank/updateBank`, formData)
+			.post(`http://localhost/bank/updateBank`, formData)
 			.then((res) => {
-				setShow(false)
+				setShow(false);
 				swal("Cập nhật thành công");
 				setLoad(false);
-				
 			})
 			.catch((err) => {
-				setShow(false)
+				setShow(false);
 				swal("Có lỗi vui lòng thử lại!");
 				setLoad(false);
 			});
@@ -131,6 +151,24 @@ function UserProfile() {
 															<Button type="submit">Xác nhận</Button>
 														</div>
 													</form>
+													<div className="detail_user">
+														<div className="username_">Tiền đã đặt cược</div>
+														<div className="username_">
+															{Number(profile.totalbet).toLocaleString()}
+														</div>
+													</div>
+													<div className="detail_user">
+														<div className="username_">Tiền đã win</div>
+														<div className="username_">
+															{Number(profile.totalwin).toLocaleString()}
+														</div>
+													</div>
+													<div className="detail_user">
+														<div className="username_">Ngày lập nick</div>
+														<div className="username_">
+															{formatDate(new Date(profile.createdAt))}
+														</div>
+													</div>
 												</div>
 											</>
 										) : null}
@@ -166,7 +204,7 @@ function UserProfile() {
 																		onClick={() => {
 																			axios
 																				.delete(
-																					`https://server.vnvip294.com/bank/delete/${item._id}`
+																					`http://localhost/bank/delete/${item._id}`
 																				)
 																				.then((res) => {
 																					setLoad(false);
@@ -179,7 +217,7 @@ function UserProfile() {
 																		onClick={() => {
 																			axios
 																				.get(
-																					`https://server.vnvip294.com/bank/user/${item._id}`,
+																					`http://localhost/bank/user/${item._id}`,
 																					{}
 																				)
 																				.then((res) => {
@@ -207,6 +245,49 @@ function UserProfile() {
 										</Table>
 									</div>
 								</div>
+								<Table sx={{ width: "100%" }}>
+									<TableHead>
+										<TableRow>
+											<TableCell>Tên người chơi</TableCell>
+											<TableCell>Game</TableCell>
+											<TableCell>Loại</TableCell>
+											<TableCell>Coin</TableCell>
+											<TableCell>Coin nhận</TableCell>
+											<TableCell>Thời gian</TableCell>
+										</TableRow>
+									</TableHead>
+									<TableBody>
+										{history != null ? (
+											<>
+												{history.map((item) => (
+													<TableRow>
+														<TableCell sx={{ fontWeight: "600" }}>
+															{item.name}
+														</TableCell>
+														<TableCell sx={{ fontWeight: "600" }}>
+															{" "}
+															{item.game}
+														</TableCell>
+														<TableCell sx={{ fontWeight: "600" }}>
+															{item.detail}
+														</TableCell>
+														<TableCell sx={{ fontWeight: "600" }}>
+															{item.money}
+														</TableCell>
+														<TableCell sx={{ fontWeight: "600" }}>
+															{item.money_recv}
+														</TableCell>
+														<TableCell sx={{ fontWeight: "600" }}>
+															{formatDate(new Date(item.time))}
+														</TableCell>
+													</TableRow>
+												))}
+											</>
+										) : (
+											<div>Đang cập nhật dữ liệu</div>
+										)}
+									</TableBody>
+								</Table>
 							</Container>
 						</Box>
 					}
