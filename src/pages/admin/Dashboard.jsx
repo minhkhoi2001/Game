@@ -34,7 +34,7 @@ function Dashboard() {
 
 	useEffect(() => {
 		axios
-			.get("https://server.luckkylotte9d.com/statistic/getalladmin")
+			.get("http://localhost/statistic/getalladmin")
 			.then((res) => setData(res.data.data));
 	}, []);
 	return (

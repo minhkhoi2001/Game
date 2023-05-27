@@ -7,6 +7,7 @@ import {
 	TableHead,
 	TableRow,
 	Button,
+	TextField,
 } from "@mui/material";
 import swal from "sweetalert";
 import axios from "axios";
@@ -35,6 +36,7 @@ function BankAdmin() {
 			return Promise.reject(error);
 		}
 	);
+	const [bankItem, setBankItem] = useState();
 	useEffect(() => {
 		if (load == true) {
 			axios.get(`http://localhost/auth/getbank`, {}).then((res) => {
@@ -56,9 +58,29 @@ function BankAdmin() {
 			.post(`http://localhost/auth/newbank`, formData)
 			.then((res) => {
 				setLoad(true);
-				swal("Sửa thông tin trò chơi thành công!");
+				swal("Tạo ngân hàng thành công!");
 			})
 			.catch((res) => setLoad(true));
+	};
+	const handleSubmitBank = (e) => {
+		e.preventDefault()
+		const formData = {
+			id:bankItem._id,
+			fullname: e.target.fullname.value,
+			stk: e.target.stk.value,
+			name_bank: e.target.name_bank.value,
+			title: e.target.title.value,
+		};
+
+		axios
+		.post(
+			`http://localhost/auth/editlistbank`,formData
+		).then((res)=>{
+			swal("Cập nhật thành công","","success")
+			setLoad(true)
+			setShow(false)
+			
+		})
 	};
 
 	return (
@@ -113,6 +135,7 @@ function BankAdmin() {
 												/>
 											</div>
 										</div>
+										<div>
 											<div>
 												<label>Nội dung chuyển khoản</label>
 												<input type="text" name="title" step="any" id="title" />
@@ -123,12 +146,13 @@ function BankAdmin() {
 										</div>
 									</form>
 								</div>
-								<Table sx={{ width: 700 }}>
+								<Table sx={{ width: "100%" }}>
 									<TableHead>
 										<TableRow>
 											<TableCell>Tên Ngân Hàng</TableCell>
 											<TableCell>STK</TableCell>
 											<TableCell>Người Nhận</TableCell>
+											<TableCell>Nội dung chuyển khoản</TableCell>
 											<TableCell>Hành động</TableCell>
 										</TableRow>
 									</TableHead>
@@ -148,28 +172,32 @@ function BankAdmin() {
 															{item.fullname}
 														</TableCell>
 														<TableCell sx={{ fontWeight: "600" }}>
+															{item.title}
+														</TableCell>
+														<TableCell sx={{ fontWeight: "600" }}>
 															<Button
 																onClick={() => {
 																	axios
-																		.delete(
-																			`http://localhost/bank/delete/${item._id}`
-																		)
-																		.then((res) => {
-																			setLoad(false);
-																		});
+																		.post(
+																			`http://localhost/auth/editlistbank`,{
+																				id:item._id,
+																				isShow: !item.isShow
+																			}
+																		).then((res)=>setLoad(true))
+													
 																}}
 															>
-																Xóa
+																{item.isShow==true?"Ẩn": "Hiện"}  
 															</Button>
 															<Button
 																onClick={() => {
 																	axios
 																		.get(
-																			`http://localhost/auth/bank/${item._id}`,
+																			`http://localhost/auth/bankall/${item._id}`,
 																			{}
 																		)
 																		.then((res) => {
-																			setBank(res.data.data);
+																			setBankItem(res.data.data);
 																			setShow(true);
 																		})
 																		.catch((res) => {
@@ -195,8 +223,11 @@ function BankAdmin() {
 											<div className="modaloverlay">
 												<i className="ti-close closelogin"></i>
 											</div>
-											<div style={{backgroundColor:"white"}} className="modalbody">
-												{bank != null ? (
+											<div
+												style={{ backgroundColor: "white" }}
+												className="modalbody"
+											>
+												{bankItem != null ? (
 													<>
 														<form onSubmit={handleSubmitBank}>
 															<div className="modalinner">
@@ -204,7 +235,6 @@ function BankAdmin() {
 																	{" "}
 																	Sửa thông tin{" "}
 																</div>
-
 																<div className="modalform">
 																	<div
 																		className="modalformgroup"
@@ -212,9 +242,10 @@ function BankAdmin() {
 																	>
 																		<TextField
 																			name="name_bank"
-																			defaultValue={bank.name_bank}
+																			defaultValue={bankItem.name_bank}
 																			sx={{ width: "100%" }}
 																			type="text"
+																			required
 																			placeholder="Tên ngân hàng"
 																		/>
 																	</div>
@@ -224,9 +255,10 @@ function BankAdmin() {
 																	>
 																		<TextField
 																			name="stk"
-																			defaultValue={bank.stk}
+																			defaultValue={bankItem.stk}
 																			sx={{ width: "100%" }}
 																			type="number"
+																			required
 																			placeholder="STK"
 																		/>
 																	</div>
@@ -236,14 +268,31 @@ function BankAdmin() {
 																	>
 																		<TextField
 																			name="fullname"
-																			defaultValue={bank.fullname}
+																			defaultValue={bankItem.fullname}
 																			sx={{ width: "100%" }}
 																			type="text"
+																			required
 																			placeholder="Tên tài khoản"
 																		/>
 																	</div>
+																	<div
+																		style={{ padding: "9px" }}
+																		className="modalformgroup"
+																	>
+																		<TextField
+																			name="title"
+																			defaultValue={bankItem.title}
+																			sx={{ width: "100%" }}
+																			type="text"
+																		
+																			placeholder="Nội dung"
+																		/>
+																	</div>
 																</div>
-
+																<div
+																	style={{ padding: "9px" }}
+																	className="modalformgroup"
+																></div>
 																<div className="item_btn_form">
 																	<div className="modalformcontrols">
 																		<Button type="submit">XÁC NHẬN</Button>

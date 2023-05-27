@@ -35,7 +35,7 @@ function Profile() {
 	);
 	useEffect(() => {
 		axios
-			.get(`https://server.luckkylotte9d.com/auth/getUser`, {})
+			.get(`http://localhost/auth/getUser`, {})
 			.then((res) => {
 				setProfile(res.data.data);
 			})

@@ -44,7 +44,7 @@ function Employee() {
 		}
 		console.log(formData);
 		axios
-			.post(`https://server.luckkylotte9d.com/auth/createEmployee`, formData)
+			.post(`http://localhost/auth/createEmployee`, formData)
 			.then((res) => {
 				setLoad(true);
 				swal("Thành công", "Thêm mới nhân viên thành công!", "success")

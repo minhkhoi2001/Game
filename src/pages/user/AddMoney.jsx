@@ -36,13 +36,13 @@ function AddMoney() {
 	const navigate = useNavigate();
 	useEffect(() => {
 		axios
-			.get(`https://server.luckkylotte9d.com/auth/getUser`, {})
+			.get(`http://localhost/auth/getUser`, {})
 			.then((res) => {
 				setProfile(res.data.data);
 			})
 			.catch((err) => localStorage.removeItem("user"));
 		axios
-			.get(`https://server.luckkylotte9d.com/auth/bank`, {})
+			.get(`http://localhost/auth/getbank`, {})
 			.then((res) => {
 				setBank(res.data.data);
 			})
@@ -57,9 +57,13 @@ function AddMoney() {
 			user: profile._id,
 		};
 		axios
-			.post(`https://server.luckkylotte9d.com/payment/withDraw`, formData)
+			.post(`http://localhost/payment/withDraw`, formData)
 			.then((res) => {
-				swal("Nạp tiền thành công", "Tiền sẽ được cộng trong vòng 5 phút. Nếu quá lâu vui lòng liên hệ CSKH để được xử lý.", "success");
+				swal(
+					"Nạp tiền thành công",
+					"Tiền sẽ được cộng trong vòng 5 phút. Nếu quá lâu vui lòng liên hệ CSKH để được xử lý.",
+					"success"
+				);
 				navigate("/historyadd");
 			})
 			.catch((err) =>
@@ -110,26 +114,37 @@ function AddMoney() {
 					/>
 					<div style={{ display: "flex" }}>
 						<div className="content_bank">
-							{bank?(<>
-								<div>
-								<h4 style={{ fontSize: "0.45rem", color: "#333" }}>
-									Quét mã QR hoặc chuyển khoản tới
-								</h4>
-							</div>
-							<div>
-								STK: <b>{bank.stk}</b>
-							</div>
-							<div>
-								Ngân hàng: <b>{bank.name_bank}</b>
-							</div>
-							<div>
-								Người nhận: <b>{bank.fullname}</b>
-							</div>
-							<div>
-								Nội dung chuyển khoản:{" "}
-								<b>{profile ? <span>{profile.username}</span> : null}</b>
-							</div>
-							</>):<div>Hệ thống nạp tiền đang bảo trì, vui lòng quay lại sau</div>}
+							{bank ? (
+								bank.map(
+									(item) =>
+										item.isShow && (
+											<>
+												<div>
+													<h4 style={{ fontSize: "0.45rem", color: "#333" }}>
+														Quét mã QR hoặc chuyển khoản tới
+													</h4>
+												</div>
+												<div>
+													STK: <b>{item.stk}</b>
+												</div>
+												<div>
+													Ngân hàng: <b>{item.name_bank}</b>
+												</div>
+												<div>
+													Người nhận: <b>{item.fullname}</b>
+												</div>
+												<div>
+													Nội dung chuyển khoản:{" "}
+													<b>
+														{item.title}
+													</b>
+												</div>
+											</>
+										)
+								)
+							) : (
+								<div>Hệ thống nạp tiền đang bảo trì, vui lòng quay lại sau</div>
+							)}
 						</div>
 					</div>
 					<form className="form-lg" onSubmit={handleSubmit(onSubmit)}>
@@ -142,7 +157,7 @@ function AddMoney() {
 									placeholder="Nhập số tiền"
 								/>
 							</div>
-							<div style={{display:"none"}}>
+							<div style={{ display: "none" }}>
 								{" "}
 								<input
 									className="ipadd"

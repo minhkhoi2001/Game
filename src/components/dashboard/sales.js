@@ -39,7 +39,7 @@ export const Sales = (props) => {
 	);
 
 	useEffect(() => {
-		axios.get("https://server.luckkylotte9d.com/statistic/getalladmin").then((res) =>
+		axios.get("http://localhost/statistic/getalladmin").then((res) =>
 			setData({
 				datasets: [
 					{
@@ -106,7 +106,7 @@ export const Sales = (props) => {
 		if(load==true){
 			axios
 			.get(
-				`https://server.luckkylotte9d.com/statistic/getbydayadmin?dateStart=${startDate}&endDate=${endDate}`
+				`http://localhost/statistic/getbydayadmin?dateStart=${startDate}&endDate=${endDate}`
 			)
 			.then((res) =>
 			setData({
@@ -255,7 +255,7 @@ export const Sales = (props) => {
 					endIcon={<ArrowRightIcon fontSize="small" />}
 					size="small"
 					onClick={()=>{
-						axios.get("https://server.luckkylotte9d.com/statistic/getalladmin").then((res) =>
+						axios.get("http://localhost/statistic/getalladmin").then((res) =>
 						setData({
 							datasets: [
 								{

@@ -1,5 +1,4 @@
 export const GetNameChoose=(state, type)=>{
-    console.log(Number(state)==2, type);
     if(Number(state)==1&&type==null){
         return "Đôi bên: Bi số 1 chọn T "
     }
