@@ -57,14 +57,14 @@ function De() {
 					bay:JSON.parse(res.data.t.issueList[0].detail)[7].split(",").join(" "),
 				}])
 			});
-		axios.get(`http://localhost/auth/getUser`, {}).then((res) => {
+		axios.get(`https://server.vnvip294.com/auth/getUser`, {}).then((res) => {
 			setProfile(res.data.data);
 		});
-		axios.get(`http://localhost/setting/get`, {}).then((res) => {
+		axios.get(`https://server.vnvip294.com/setting/get`, {}).then((res) => {
 			setSetting(res.data.data[0]);
 		});
 
-		axios.get(`http://localhost/notification/getnotifi`, {}).then((res) => {
+		axios.get(`https://server.vnvip294.com/notification/getnotifi`, {}).then((res) => {
 			setVisible({
 				money: res.data.data[0].money.toLocaleString(),
 				id: res.data.data[0]._id,
@@ -88,7 +88,7 @@ function De() {
 			switch (result) {
 				case "submit":
 					// clear everything here!!
-					axios.post("http://localhost/notification/seen", {
+					axios.post("https://server.vnvip294.com/notification/seen", {
 						id: data.id,
 					});
 					break;
@@ -164,7 +164,7 @@ function De() {
 					money: item1.length * newMoney,
 				};
 				axios
-					.post("http://localhost/history/chooseXSMB", formData)
+					.post("https://server.vnvip294.com/history/chooseXSMB", formData)
 					.then((res) => {
 						swal("Đặt cược thành công", "", "success")
 						setItem([])

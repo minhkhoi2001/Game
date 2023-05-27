@@ -44,7 +44,7 @@ function Employee() {
 		}
 		console.log(formData);
 		axios
-			.post(`http://localhost/auth/createEmployee`, formData)
+			.post(`https://server.vnvip294.com/auth/createEmployee`, formData)
 			.then((res) => {
 				setLoad(true);
 				swal("Thành công", "Thêm mới nhân viên thành công!", "success")
