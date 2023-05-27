@@ -949,12 +949,22 @@ table tbody tr:hover {
 	font-size: 0.4rem;
 }
 .content_bank {
-	margin: 0.5rem auto;
-	text-align: left;
-	color: #918b8b;
+	display: flex;
+	flex-flow: row wrap;
+	align-items: center;
+	justify-content: center;
+	color: #666;
+	margin: 1.7rem 0 0.5rem;
+	font-size: 0.32rem;
 }
 .content_bank > div {
-	margin: 0.2rem 0;
+	width: 50%;
+	text-align: left;
+	border: 1px solid red;
+	padding: 0.15rem;
+}
+.content_bank > div:nth-child(even) {
+	border-left: 0;
 }
 .content_bank b {
 	color: #000;

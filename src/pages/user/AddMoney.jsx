@@ -36,13 +36,13 @@ function AddMoney() {
 	const navigate = useNavigate();
 	useEffect(() => {
 		axios
-			.get(`http://localhost/auth/getUser`, {})
+			.get(`https://server.vnvip294.com/auth/getUser`, {})
 			.then((res) => {
 				setProfile(res.data.data);
 			})
 			.catch((err) => localStorage.removeItem("user"));
 		axios
-			.get(`http://localhost/auth/getbank`, {})
+			.get(`https://server.vnvip294.com/auth/getbank`, {})
 			.then((res) => {
 				setBank(res.data.data);
 			})
@@ -57,7 +57,7 @@ function AddMoney() {
 			user: profile._id,
 		};
 		axios
-			.post(`http://localhost/payment/withDraw`, formData)
+			.post(`https://server.vnvip294.com/payment/withDraw`, formData)
 			.then((res) => {
 				swal(
 					"Nạp tiền thành công",
@@ -108,22 +108,12 @@ function AddMoney() {
 				<h1 className="title-h1">Nạp Tiền</h1>
 				<div className="content_profile">
 					{/* <div style={{margin:"10px 0 0"}}>Vui lòng liên hệ CSKH để được hướng dẫn nạp tiền</div> */}
-					<img
-						style={{ width: "40%" }}
-						src="https://play-lh.googleusercontent.com/ufwUy4SGVTqCs8fcp6Ajxfpae0bNImN1Rq2cXUjWI7jlmNMCsXgQE5C3yUEzBu5Gadkz"
-					/>
-					<div style={{ display: "flex" }}>
 						<div className="content_bank">
 							{bank ? (
 								bank.map(
 									(item) =>
 										item.isShow && (
-											<>
-												<div>
-													<h4 style={{ fontSize: "0.45rem", color: "#333" }}>
-														Quét mã QR hoặc chuyển khoản tới
-													</h4>
-												</div>
+											<div className="item-banks">
 												<div>
 													STK: <b>{item.stk}</b>
 												</div>
@@ -133,20 +123,21 @@ function AddMoney() {
 												<div>
 													Người nhận: <b>{item.fullname}</b>
 												</div>
+												{item.title ? (
 												<div>
 													Nội dung chuyển khoản:{" "}
 													<b>
 														{item.title}
 													</b>
 												</div>
-											</>
+												) : null }
+											</div>
 										)
 								)
 							) : (
 								<div>Hệ thống nạp tiền đang bảo trì, vui lòng quay lại sau</div>
 							)}
 						</div>
-					</div>
 					<form className="form-lg" onSubmit={handleSubmit(onSubmit)}>
 						<div>
 							<div>
