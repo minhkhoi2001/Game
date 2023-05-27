@@ -252,7 +252,7 @@ function Loxien2() {
 			swal("Thất bại", "Bạn chưa chọn số", "error");
 		} else if (item1.length == 2) {
 		axios
-			.post("https://server.vnvip294.com/history3pxs/choose", formData)
+			.post("https://server.vnvip294.com/history5pxs/choose", formData)
 			.then((res) => {	
 				swal("Đặt cược thành công", "", "success")
 				setItem([])

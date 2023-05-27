@@ -43,7 +43,7 @@ const History = ({ isOpen, closePopup }) => {
 								<div className="content-history award_tb">
 									{historyGame?.map((item, key) => (
 										<>
-											{item.sanh && item.type ? (
+											{item.sanh == "Xổ số 3p" && item.type ? (
 												<div className="item_inner">
 													<div className="item_history">
 														<div className="title_item_history">
