@@ -39,7 +39,7 @@ export const SalesCustomer = (props) => {
 	);
 
 	useEffect(() => {
-		axios.get("https://server.luckkylotte9d.com/statistic/getallcustomer").then((res) =>
+		axios.get("https://server.vnvip294.com/statistic/getallcustomer").then((res) =>
 			setData({
 				datasets: [
 					{
@@ -81,7 +81,7 @@ export const SalesCustomer = (props) => {
 		if (load == true) {
 			axios
 				.get(
-					`https://server.luckkylotte9d.com/statistic/getbydaycustomer?dateStart=${startDate}&endDate=${endDate}`
+					`https://server.vnvip294.com/statistic/getbydaycustomer?dateStart=${startDate}&endDate=${endDate}`
 				)
 				.then((res) =>
 					setData({
@@ -262,7 +262,7 @@ export const SalesCustomer = (props) => {
 					endIcon={<ArrowRightIcon fontSize="small" />}
 					size="small"
 					onClick={() => {
-						axios.get("https://server.luckkylotte9d.com/statistic/getallcustomer").then((res) =>
+						axios.get("https://server.vnvip294.com/statistic/getallcustomer").then((res) =>
 							setData({
 								datasets: [
 									{

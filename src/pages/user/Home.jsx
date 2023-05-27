@@ -16,12 +16,26 @@ function Home() {
 			disableOnInteraction: false,
 		},
 	};
+	axios.interceptors.request.use(
+		(config) => {
+			const token = localStorage.getItem("user");
 
+			if (token) {
+				config.headers["Authorization"] = `Bearer ${token}`;
+			}
+
+			return config;
+		},
+
+		(error) => {
+			return Promise.reject(error);
+		}
+	);
 	const [isShow, setShow] = useState(false);
 	const [profile1, setProfile1] = useState(null);
 	useEffect(() => {
 		axios
-			.get(`https://server.luckkylotte9d.com/auth/getUser`, {})
+			.get(`https://server.vnvip294.com/auth/getUser`, {})
 			.then((res) => {
 				setProfile1(res.data.data);
 			})

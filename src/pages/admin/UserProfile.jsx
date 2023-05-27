@@ -59,7 +59,7 @@ function UserProfile() {
 	useEffect(() => {
 		if (id && load == false) {
 			axios
-				.post(`https://server.luckkylotte9d.com/bank/getBankUser`, { id: id })
+				.post(`https://server.vnvip294.com/bank/getBankUser`, { id: id })
 				.then((res) => {
 					setData(res.data.data);
 					setLoad(true);
@@ -67,13 +67,13 @@ function UserProfile() {
 				.catch((res) => setData(null));
 		}
 		axios
-			.get(`https://server.luckkylotte9d.com/auth/user/${id}`, {})
+			.get(`https://server.vnvip294.com/auth/user/${id}`, {})
 			.then((res) => {
 				setProfile(res.data.data);
 			})
 			.catch((res) => setProfile(null));
 		axios
-			.get(`https://server.luckkylotte9d.com/history/historyuser/${id}`, {})
+			.get(`https://server.vnvip294.com/history/historyuser/${id}`, {})
 			.then((res) => {
 				setHistory(res.data.data);
 			})
@@ -82,7 +82,7 @@ function UserProfile() {
 	const handleSubmit = (e) => {
 		e.preventDefault();
 		axios
-			.post(`https://server.luckkylotte9d.com/auth/changepassword`, {
+			.post(`https://server.vnvip294.com/auth/changepassword`, {
 				id: id,
 				password: e.target.password.value,
 			})
@@ -100,7 +100,7 @@ function UserProfile() {
 			fullname: e.target.fullname.value,
 		};
 		axios
-			.post(`https://server.luckkylotte9d.com/bank/updateBank`, formData)
+			.post(`https://server.vnvip294.com/bank/updateBank`, formData)
 			.then((res) => {
 				setShow(false);
 				swal("Cập nhật thành công");
@@ -204,7 +204,7 @@ function UserProfile() {
 																		onClick={() => {
 																			axios
 																				.delete(
-																					`https://server.luckkylotte9d.com/bank/delete/${item._id}`
+																					`https://server.vnvip294.com/bank/delete/${item._id}`
 																				)
 																				.then((res) => {
 																					setLoad(false);
@@ -217,7 +217,7 @@ function UserProfile() {
 																		onClick={() => {
 																			axios
 																				.get(
-																					`https://server.luckkylotte9d.com/bank/user/${item._id}`,
+																					`https://server.vnvip294.com/bank/user/${item._id}`,
 																					{}
 																				)
 																				.then((res) => {

@@ -25,7 +25,7 @@ function CSKH() {
 		}
 	);
 	axios
-		.get(`https://server.luckkylotte9d.com/auth/getUser`, {})
+		.get(`https://server.vnvip294.com/auth/getUser`, {})
 		.then((res) => {
 			setProfile(res.data.data);
 		})

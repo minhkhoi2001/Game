@@ -22,7 +22,7 @@ const PrivateRouteAdmin=()=>{
 	);
 	useEffect(()=>{
 		axios
-			.get(`https://server.luckkylotte9d.com/auth/getUser`,{
+			.get(`https://server.vnvip294.com/auth/getUser`,{
 			})
 			.then((res) => {
 					setChecking(false)

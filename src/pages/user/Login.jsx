@@ -37,7 +37,7 @@ function Login() {
 			return;
 		}
 		axios
-			.post(`https://server.luckkylotte9d.com/auth/login`, data)
+			.post(`https://server.vnvip294.com/auth/login`, data)
 			.then((res) => {
 				localStorage.setItem("user", res.data.data);
 				navigate("/");

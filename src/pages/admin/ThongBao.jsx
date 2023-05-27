@@ -43,7 +43,7 @@ function ThongBao() {
 	useEffect(() => {
 		if (load == false) {
 			axios
-				.get(`https://server.luckkylotte9d.com/notification/getSale`)
+				.get(`https://server.vnvip294.com/notification/getSale`)
 				.then((res) => {
 					setData(res.data.data);
 					setLoad(true);
@@ -57,7 +57,7 @@ function ThongBao() {
 			title: e.target.title1.value,
 		};
 		axios
-			.post(`https://server.luckkylotte9d.com/notification/create`, formData)
+			.post(`https://server.vnvip294.com/notification/create`, formData)
 			.then((res) => {
 				setShow(false);
 				swal("Thêm thông báo thành công");
@@ -97,7 +97,7 @@ function ThongBao() {
 													id: data[0]._id
 												};
 												axios
-													.post(`https://server.luckkylotte9d.com/notification/updatebyadmin`, formData)
+													.post(`https://server.vnvip294.com/notification/updatebyadmin`, formData)
 													.then((res) => {
 														setShow(false);
 														swal("Cập nhật thành công");

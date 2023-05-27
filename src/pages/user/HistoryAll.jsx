@@ -40,13 +40,13 @@ function HistoryAll() {
 	);
 	useEffect(() => {
 		axios
-			.get(`https://server.luckkylotte9d.com/auth/biendongsodu`, {})
+			.get(`https://server.vnvip294.com/auth/biendongsodu`, {})
 			.then((res) => {
 				setProfile(res.data.data);
 			})
 			.catch((err) => function () {});
 		axios
-			.get(`https://server.luckkylotte9d.com/auth/getUser`, {})
+			.get(`https://server.vnvip294.com/auth/getUser`, {})
 			.then((res) => {
 				setProfile1(res.data.data);
 			})

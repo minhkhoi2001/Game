@@ -27,7 +27,7 @@ function BankAdmin() {
 	);
 	useEffect(() => {
 		if (load == true) {
-			axios.get(`https://server.luckkylotte9d.com/auth/bank`, {}).then((res) => {
+			axios.get(`https://server.vnvip294.com/auth/bank`, {}).then((res) => {
 				setBank(res.data.data);
 				setLoad(false);
 			});
@@ -42,7 +42,7 @@ function BankAdmin() {
 		};
 		console.log(formData);
 		axios
-			.post(`https://server.luckkylotte9d.com/auth/editbank`, formData)
+			.post(`https://server.vnvip294.com/auth/editbank`, formData)
 			.then((res) => {
 				setLoad(true);
 				swal("Sửa thông tin trò chơi thành công!");
