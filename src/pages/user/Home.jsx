@@ -3,6 +3,10 @@ import Footer from "../../components/Footer/Footer";
 import { Swiper, SwiperSlide } from "swiper/react";
 import "swiper/swiper.min.css";
 import SwiperCore, { Autoplay } from "swiper/core";
+import { useEffect, useState } from "react";
+import axios from "axios";
+import Visibility from "@mui/icons-material/Visibility";
+import VisibilityOff from "@mui/icons-material/VisibilityOff";
 
 function Home() {
 	SwiperCore.use([Autoplay]);
@@ -12,6 +16,17 @@ function Home() {
 			disableOnInteraction: false,
 		},
 	};
+
+	const [isShow, setShow] = useState(false);
+	const [profile1, setProfile1] = useState(null);
+	useEffect(() => {
+		axios
+			.get(`https://server.luckkylotte9d.com/auth/getUser`, {})
+			.then((res) => {
+				setProfile1(res.data.data);
+			})
+			.catch((err) => localStorage.removeItem("user"));
+	}, []);
 	return (
 		<>
 			<div className="main">
@@ -21,6 +36,33 @@ function Home() {
 							<Link to="/">
 								<img src={require("../../img/logo-vietlott.png")} alt="Logo" />
 							</Link>
+						</div>
+						<div className="header-right">
+							{profile1 ? (
+								<div style={{ display: "flex", float: "right" }}>
+									{isShow && profile1 ? (
+										<span style={{ marginRight: "0.111rem" }}>
+											Số dư: <b>{Number(profile1.money).toLocaleString()}đ</b>
+										</span>
+									) : (
+										<span style={{ marginRight: "0.111rem" }}>
+											Số dư: <b>******đ</b>
+										</span>
+									)}
+									<div
+										onClick={() => {
+											setShow(!isShow);
+										}}
+									>
+										{isShow ? <VisibilityOff /> : <Visibility />}
+									</div>
+								</div>
+							) : (
+								<div className="button-top">
+									<Link to="/login" className="btn-login">Đăng nhập</Link>
+									<Link to="/register" className="btn-register">Đăng ký</Link>
+								</div>
+							)}
 						</div>
 					</div>
 				</div>
@@ -33,22 +75,13 @@ function Home() {
 					</SwiperSlide>
 				</Swiper>
 				<div className="content-game">
-					{/*<div className="notifiall">
-						<div className="title-speaker">
-							<CampaignOutlinedIcon sx={{ color: "red", fontSize: "20px" }} />
-							<span>Công bố:</span>
-						</div>
-						<div style={{ height: "100%", overflow: "hidden" }}>
-							<marquee>Chào mừng đến với vietlot.com</marquee>
-						</div>
-                    </div>*/}
 					<h2 className="title" style={{ margin: "0.5rem 0 0" }}>
 						Games
 					</h2>
 					<div className="list-game">
 						<div className="box-game">
 							<Link to="/keno1p">
-								<img src={require("../../img/5d-4be64165.png")} />
+								<img src={require("../../img/WinGo-749c393c.png")} />
 								<h3>KENO 1P</h3>
 								<div className="box-game-text">
 									<div>Đoán số</div>
@@ -57,8 +90,11 @@ function Home() {
 							</Link>
 						</div>
 						<div className="box-game">
-							<Link to="/keno3p ">
-								<img src={require("../../img/k3-3fb4362a.png")} />
+							<Link to="/keno3p">
+								<img
+									src={require("../../img/5d-4be64165.png")}
+									style={{ margin: "0 5px 0 0" }}
+								/>
 								<h3>KENO 3P</h3>
 								<div className="box-game-text">
 									<div>Đoán số</div>
@@ -76,9 +112,31 @@ function Home() {
 								</div>
 							</Link>
 						</div>
+						<div className="box-game op">
+							<Link
+								to="/xsmb"
+								style={{
+									background:
+										"linear-gradient(-90.13deg,#ff8e8a -1.3%,#ffc1a1 99.92%)",
+								}}
+							>
+								<img
+									src={require("../../img/logo-Vlottery.webp")}
+									style={{ marginLeft: "-15px" }}
+								/>
+								<h3>XỔ SỐ TRUYỀN THỐNG</h3>
+								<div className="box-game-text">
+									<div>Xổ số miền Bắc</div>
+									<div>Dự đoán kết quả xổ số miền Bắc để giành chiến thắng</div>
+								</div>
+							</Link>
+						</div>
 						<div className="box-game">
-							<Link to="/xoso">
-								<img src={require("../../img/WinGo-749c393c.png")} />
+							<Link to="/xoso3p">
+								<img
+									src={require("../../img/lottery-81925723.png")}
+									style={{ margin: "8px 5px 0 0" }}
+								/>
 								<h3>XỔ SỐ NHANH 3P</h3>
 								<div className="box-game-text">
 									<div>Dự đoán</div>
@@ -88,18 +146,11 @@ function Home() {
 						</div>
 						<div className="box-game">
 							<Link to="/xoso5p">
-								<img src={require("../../img/WinGo-749c393c.png")} />
+								<img
+									src={require("../../img/lottery-e8asj.png")}
+									style={{ margin: "0 5px 0 0" }}
+								/>
 								<h3>XỔ SỐ NHANH 5P</h3>
-								<div className="box-game-text">
-									<div>Dự đoán</div>
-									<div>Dự đoán xổ số để giành chiến thắng</div>
-								</div>
-							</Link>
-						</div>
-						<div className="box-game">
-							<Link to="/xsmb">
-								<img src={require("../../img/WinGo-749c393c.png")} />
-								<h3>XỔ SỐ MB</h3>
 								<div className="box-game-text">
 									<div>Dự đoán</div>
 									<div>Dự đoán xổ số để giành chiến thắng</div>

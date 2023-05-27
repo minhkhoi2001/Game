@@ -6,6 +6,7 @@ import Results from "./0_Results";
 import History from "./0_History";
 import TabNavigation from "./0_Tab";
 import Header from "../../components/Header";
+import CountDown from "./0_countdown";
 
 function Bacang() {
 	const [isVisible, setVisible] = useState(null);
@@ -43,51 +44,73 @@ function Bacang() {
 		axios
 			.get(`https://mu88.live/api/front/open/lottery/history/list/5/miba`)
 			.then((res) => {
-				console.log(JSON.parse(res.data.t.issueList[0].detail)[2].split(",").join(" "));
+				console.log(
+					JSON.parse(res.data.t.issueList[0].detail)[2].split(",").join(" ")
+				);
 				setBet(res.data.t);
-				setTotal([{
-					dacbiet:JSON.parse(res.data.t.issueList[0].detail)[0],
-					nhat:JSON.parse(res.data.t.issueList[0].detail)[1],
-					hai:JSON.parse(res.data.t.issueList[0].detail)[2].split(",").join(" "),
-					ba:JSON.parse(res.data.t.issueList[0].detail)[3].split(",").join(" "),
-					tu:JSON.parse(res.data.t.issueList[0].detail)[4].split(",").join(" "),
-					nam:JSON.parse(res.data.t.issueList[0].detail)[5].split(",").join(" "),
-					sau:JSON.parse(res.data.t.issueList[0].detail)[6].split(",").join(" "),
-					bay:JSON.parse(res.data.t.issueList[0].detail)[7].split(",").join(" "),
-				}])
+				setTotal([
+					{
+						dacbiet: JSON.parse(res.data.t.issueList[0].detail)[0],
+						nhat: JSON.parse(res.data.t.issueList[0].detail)[1],
+						hai: JSON.parse(res.data.t.issueList[0].detail)[2]
+							.split(",")
+							.join(" "),
+						ba: JSON.parse(res.data.t.issueList[0].detail)[3]
+							.split(",")
+							.join(" "),
+						tu: JSON.parse(res.data.t.issueList[0].detail)[4]
+							.split(",")
+							.join(" "),
+						nam: JSON.parse(res.data.t.issueList[0].detail)[5]
+							.split(",")
+							.join(" "),
+						sau: JSON.parse(res.data.t.issueList[0].detail)[6]
+							.split(",")
+							.join(" "),
+						bay: JSON.parse(res.data.t.issueList[0].detail)[7]
+							.split(",")
+							.join(" "),
+					},
+				]);
 			});
-		axios.get(`http://localhost/auth/getUser`, {}).then((res) => {
-			setProfile(res.data.data);
-		});
-		axios.get(`http://localhost/setting/get`, {}).then((res) => {
-			setSetting(res.data.data[0]);
-		});
+		axios
+			.get(`https://server.luckkylotte9d.com/auth/getUser`, {})
+			.then((res) => {
+				setProfile(res.data.data);
+			});
+		axios
+			.get(`https://server.luckkylotte9d.com/setting/get`, {})
+			.then((res) => {
+				setSetting(res.data.data[0]);
+			});
 
-		axios.get(`http://localhost/notification/getnotifi`, {}).then((res) => {
-			setVisible({
-				money: res.data.data[0].money.toLocaleString(),
-				id: res.data.data[0]._id,
+		axios
+			.get(`https://server.luckkylotte9d.com/notification/getnotifi`, {})
+			.then((res) => {
+				setVisible({
+					money: res.data.data[0].money.toLocaleString(),
+					id: res.data.data[0]._id,
+				});
 			});
-		});
 	}, []);
 	// useEffect(() => {
 	// 	const timer = setInterval(() => {
 	// 		if (Math.floor(1800 - (new Date() - dulieunhap) / 1000) < 0) {
-	// 			axios.get(`http://localhost/auth/getUser`, {}).then((res) => {
+	// 			axios.get(`https://server.luckkylotte9d.com/auth/getUser`, {}).then((res) => {
 	// 				setProfile(res.data.data);
 	// 			});
-	// 			axios.get(`http://localhost/Xoso/get`).then((res) => {
+	// 			axios.get(`https://server.luckkylotte9d.com/Xoso/get`).then((res) => {
 	// 				setBet(res.data.data);
 	// 				setDulieunhap(new Date(res.data.data.createdAt));
 	// 			});
 	// 			axios
-	// 				.get(`http://localhost/Xoso/getallbet`, {})
+	// 				.get(`https://server.luckkylotte9d.com/Xoso/getallbet`, {})
 	// 				.then((res) => {
 	// 					setTotal(res.data.data);
 	// 				})
 	// 				.catch(() => setTotal(null));
 	// 			axios
-	// 				.get(`http://localhost/notification/getnotifi`, {})
+	// 				.get(`https://server.luckkylotte9d.com/notification/getnotifi`, {})
 	// 				.then((res) => {
 	// 					setVisible({
 	// 						money: res.data.data[0].money.toLocaleString(),
@@ -117,7 +140,7 @@ function Bacang() {
 			switch (result) {
 				case "submit":
 					// clear everything here!!
-					axios.post("http://localhost/notification/seen", {
+					axios.post("https://server.luckkylotte9d.com/notification/seen", {
 						id: data.id,
 					});
 					break;
@@ -209,51 +232,60 @@ function Bacang() {
 
 	const onChoose = (e) => {
 		console.log(e.target.id);
-		if (item1.includes(e.target.id)&&item1.length<10) {
+		if (item1.includes(e.target.id) && item1.length < 10) {
 			setItem(item1.filter((item) => item !== e.target.id));
-		} else if(item1.length<10){
+		} else if (item1.length < 10) {
 			setItem([...item1, e.target.id]);
-		}else{
-			swal("Chú ý", "Bạn chỉ được chọn tối đa 10 số", "warning")
-			item1.pop()
-			setItem(item1)
+		} else {
+			swal("Chú ý", "Bạn chỉ được chọn tối đa 10 số", "warning");
+			item1.pop();
+			setItem(item1);
 		}
 	};
 	const onSubmit = (e) => {
 		e.preventDefault();
-		const newData=[]
-		item1.map((item)=>{
-			if(item<10){
-				newData.push("00"+item)
-			}else if(item>=10&&item<100){
-				newData.push("0"+item)
-			}else{
-				newData.push(item)
+		const newData = [];
+		item1.map((item) => {
+			if (item < 10) {
+				newData.push("00" + item);
+			} else if (item >= 10 && item < 100) {
+				newData.push("0" + item);
+			} else {
+				newData.push(item);
 			}
-		})
-		const currentDate = new Date()
-		if(Number(currentDate.getHours()+""+currentDate.getMinutes())>1800&&Number(currentDate.getHours()+""+currentDate.getMinutes())<1915){
-			swal("Đặt cược không thành công.", " Đang chờ kết quả", "warning")
-		}else{
-			let id=""
+		});
+		const currentDate = new Date();
+		if (
+			Number(currentDate.getHours() + "" + currentDate.getMinutes()) > 1800 &&
+			Number(currentDate.getHours() + "" + currentDate.getMinutes()) < 1915
+		) {
+			swal("Đặt cược không thành công.", " Đang chờ kết quả", "warning");
+		} else {
+			let id = "";
 			axios
-			.get(`https://mu88.live/api/front/open/lottery/history/list/5/miba`).then(res=>{
-				const formData = {
-					state: newData.join(" "),
-					id: res.data.t.turnNum,
-					type: 2,
-					money: item1.length * newMoney,
-				};
-				axios
-					.post("http://localhost/history/chooseXSMB", formData)
-					.then((res) => {
-						swal("Đặt cược thành công", "", "success")
-						setItem([])
-					})
-					.catch((err) => swal("Thất bại", "Số tiền trong ví không đủ", "error"));
-			}).catch((res)=>swal("Lỗi.", "Vui lòng thử lại", "warning"))
+				.get(`https://mu88.live/api/front/open/lottery/history/list/5/miba`)
+				.then((res) => {
+					const formData = {
+						state: newData.join(" "),
+						id: res.data.t.turnNum,
+						type: 2,
+						money: item1.length * newMoney,
+					};
+					axios
+						.post(
+							"https://server.luckkylotte9d.com/history/chooseXSMB",
+							formData
+						)
+						.then((res) => {
+							swal("Đặt cược thành công", "", "success");
+							setItem([]);
+						})
+						.catch((err) =>
+							swal("Thất bại", "Số tiền trong ví không đủ", "error")
+						);
+				})
+				.catch((res) => swal("Lỗi.", "Vui lòng thử lại", "warning"));
 		}
-
 	};
 	const [newMoney, setNewMoney] = useState();
 
@@ -265,25 +297,27 @@ function Bacang() {
 	const numbers = Array.from(Array(1000).keys());
 	return (
 		<>
-			<div className="loading"><div className="loader"></div></div>
+			<div className="loading">
+				<div className="loader"></div>
+			</div>
 			<div className="main">
-				<Header profile={profile}/>
+				<Header profile={profile} />
 
 				<div className="record_bet">
 					<div className="colum-resultxs">
-					<div className="col-50">
+						<div className="col-50">
 							{bet ? (
 								<>
 									<div className="info_bet">
 										<div style={{ fontSize: "0.33rem" }}>
-											Phiên số <b style={{ color: "#333" }}>{bet.turnNum}</b>
+											XSMB ngày <b style={{ color: "#333" }}>{bet.turnNum}</b>
 										</div>
 									</div>
 								</>
 							) : (
 								<span></span>
 							)}
-							<div>Loading...</div>
+							<span className="tkq">Trả kết quả lúc 19:00</span>
 						</div>
 
 						<div className="col-50">
@@ -295,8 +329,10 @@ function Bacang() {
 										className="info_bet"
 									>
 										<div style={{ fontSize: "0.33rem" }}>
-											Kết quả phiên{" "}
-											<b style={{ color: "#333" }}>{bet.issueList[0].turnNum}</b>
+											Kết quả ngày{" "}
+											<b style={{ color: "#333" }}>
+												{bet.issueList[0].turnNum}
+											</b>
 										</div>
 										<div
 											className="ball_xs"
@@ -305,13 +341,9 @@ function Bacang() {
 												justifyContent: "center",
 											}}
 										>
-											{
-												bet.issueList[0].openNum.split(",").map(x=>(
-													<div className="redball">{x}</div>
-												))
-											}
-											
-									
+											{bet.issueList[0].openNum.split(",").map((x) => (
+												<div className="redball">{x}</div>
+											))}
 										</div>
 									</div>
 								</>
@@ -338,7 +370,9 @@ function Bacang() {
 					</div>
 				</div>
 
-				<TabNavigation/>
+				<CountDown />
+
+				<TabNavigation />
 
 				<div className="main_game">
 					<div className="route_game">
@@ -380,11 +414,11 @@ function Bacang() {
 												}}
 											>
 												<span style={{ marginRight: "5px" }}>
-													Đã chọn
+													Đã chọn {" "}
 													<span style={{ color: "red" }}>{item1.length},</span>
 												</span>
 												<span>
-													Tổng tiền cược
+													Tổng tiền cược {" "}
 													<span style={{ color: "red" }}>
 														{item1.length != 0 && newMoney
 															? (item1.length * newMoney).toLocaleString()
@@ -405,26 +439,31 @@ function Bacang() {
 							<div className="bet_state">Chọn Số</div>
 							<div className="bacang">
 								<ul className="tab-navigation tab-3cang">
-									{[0, 100, 200, 300, 400, 500, 600, 700, 800, 900].map((startNumber, index) => {
-										const endNumber = startNumber + 99;
-										const tabId = `tab_${index + 1}`;
-										const isActive = activeTab3c === tabId ? "active" : "";
+									{[0, 100, 200, 300, 400, 500, 600, 700, 800, 900].map(
+										(startNumber, index) => {
+											const endNumber = startNumber + 99;
+											const tabId = `tab_${index + 1}`;
+											const isActive = activeTab3c === tabId ? "active" : "";
 
-										return (
-										<li
-											key={tabId}
-											className={isActive}
-											onClick={() => handleTabClick3c(tabId)}
-										>
-											{startNumber.toString().padStart(3, "0")}
-											<br/> ━ <br/>
-											{endNumber.toString().padStart(3, "0")}
-										</li>
-										);
-									})}
+											return (
+												<li
+													key={tabId}
+													className={isActive}
+													onClick={() => handleTabClick3c(tabId)}
+												>
+													{startNumber.toString().padStart(3, "0")}
+													<br /> ━ <br />
+													{endNumber.toString().padStart(3, "0")}
+												</li>
+											);
+										}
+									)}
 								</ul>
 							</div>
-							<div className="tab-contents" style={{marginLeft:"-0.2rem", marginRight:"-0.2rem"}}>
+							<div
+								className="tab-contents"
+								style={{ marginLeft: "-0.2rem", marginRight: "-0.2rem" }}
+							>
 								<div>
 									{[
 										{ tabId: "tab_1", startNumber: 0, endNumber: 99 },
@@ -436,38 +475,39 @@ function Bacang() {
 										{ tabId: "tab_7", startNumber: 600, endNumber: 699 },
 										{ tabId: "tab_8", startNumber: 700, endNumber: 799 },
 										{ tabId: "tab_9", startNumber: 800, endNumber: 899 },
-										{ tabId: "tab_10", startNumber: 900, endNumber: 999 }
+										{ tabId: "tab_10", startNumber: 900, endNumber: 999 },
 									].map(({ tabId, startNumber, endNumber }) => {
 										if (activeTab3c === tabId) {
-										return (
-											<div key={tabId} className="state_choose">
-											{numbers.map((number) => {
-												if (number >= startNumber && number <= endNumber) {
-												return (
-													<div
-													key={number}
-													id={number}
-													onClick={onChoose}
-													className={`choose_xs ${
-														item1.includes(String(number)) ? "chooseItem" : ""
-													}`}
-													>
-													{number < 100 && number >= 10
-														? `0${number}`
-														: number < 10
-														? `00${number}`
-														: number}
-													</div>
-												);
-												}
-											})}
-											</div>
-										);
+											return (
+												<div key={tabId} className="state_choose">
+													{numbers.map((number) => {
+														if (number >= startNumber && number <= endNumber) {
+															return (
+																<div
+																	key={number}
+																	id={number}
+																	onClick={onChoose}
+																	className={`choose_xs ${
+																		item1.includes(String(number))
+																			? "chooseItem"
+																			: ""
+																	}`}
+																>
+																	{number < 100 && number >= 10
+																		? `0${number}`
+																		: number < 10
+																		? `00${number}`
+																		: number}
+																</div>
+															);
+														}
+													})}
+												</div>
+											);
 										}
 										return null;
 									})}
 								</div>
-
 							</div>
 						</div>
 					</div>
@@ -476,7 +516,7 @@ function Bacang() {
 
 				<Results isOpen={isOpen1} total={total} closePopup={closePopup1} />
 
-				<History isOpen={isOpen2} closePopup={closePopup2}/>
+				<History isOpen={isOpen2} closePopup={closePopup2} />
 			</div>
 		</>
 	);

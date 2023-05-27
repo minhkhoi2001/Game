@@ -58,7 +58,7 @@ function UsersByEmployeeNV() {
 	);
 	useEffect(()=>{
 		axios
-		.get(`http://localhost/auth/getUser`,{
+		.get(`https://server.luckkylotte9d.com/auth/getUser`,{
 		})
 		.then((res) => {
 			setCode(res.data.data.code)
@@ -67,7 +67,7 @@ function UsersByEmployeeNV() {
 	useEffect(() => {
 		if (load == false&&code) {
 			axios
-				.post(`http://localhost/auth/getCustomerEmployee`, {code: code})
+				.post(`https://server.luckkylotte9d.com/auth/getCustomerEmployee`, {code: code})
 				.then((res) => {
 					localStorage.setItem("data", JSON.stringify(res.data.data));
 					setUser(res.data.data);
@@ -171,7 +171,7 @@ function UsersByEmployeeNV() {
 																			};
 																			axios
 																				.post(
-																					`http://localhost/auth/update`,
+																					`https://server.luckkylotte9d.com/auth/update`,
 																					dataForm
 																				)
 																				.then((res) => {
@@ -200,7 +200,7 @@ function UsersByEmployeeNV() {
 																			};
 																			axios
 																				.post(
-																					`http://localhost/auth/adminthuong`,
+																					`https://server.luckkylotte9d.com/auth/adminthuong`,
 																					dataForm
 																				)
 																				.then((res) => {
@@ -227,7 +227,7 @@ function UsersByEmployeeNV() {
 																			onClick={() => {
 																				axios
 																					.post(
-																						`http://localhost/auth/lockkey`,
+																						`https://server.luckkylotte9d.com/auth/lockkey`,
 																						{
 																							id: item._id,
 
@@ -247,7 +247,7 @@ function UsersByEmployeeNV() {
 																			onClick={() => {
 																				axios
 																					.post(
-																						`http://localhost/auth/lockkey`,
+																						`https://server.luckkylotte9d.com/auth/lockkey`,
 																						{
 																							id: item._id,
 

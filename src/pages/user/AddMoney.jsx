@@ -36,13 +36,13 @@ function AddMoney() {
 	const navigate = useNavigate();
 	useEffect(() => {
 		axios
-			.get(`http://localhost/auth/getUser`, {})
+			.get(`https://server.luckkylotte9d.com/auth/getUser`, {})
 			.then((res) => {
 				setProfile(res.data.data);
 			})
 			.catch((err) => localStorage.removeItem("user"));
 		axios
-			.get(`http://localhost/auth/bank`, {})
+			.get(`https://server.luckkylotte9d.com/auth/bank`, {})
 			.then((res) => {
 				setBank(res.data.data);
 			})
@@ -57,7 +57,7 @@ function AddMoney() {
 			user: profile._id,
 		};
 		axios
-			.post(`http://localhost/payment/withDraw`, formData)
+			.post(`https://server.luckkylotte9d.com/payment/withDraw`, formData)
 			.then((res) => {
 				swal("Nạp tiền thành công", "Tiền sẽ được cộng trong vòng 5 phút. Nếu quá lâu vui lòng liên hệ CSKH để được xử lý.", "success");
 				navigate("/historyadd");
@@ -127,7 +127,7 @@ function AddMoney() {
 							</div>
 							<div>
 								Nội dung chuyển khoản:{" "}
-								<b>addxs {profile ? <span>{profile.username}</span> : null}</b>
+								<b>{profile ? <span>{profile.username}</span> : null}</b>
 							</div>
 							</>):<div>Hệ thống nạp tiền đang bảo trì, vui lòng quay lại sau</div>}
 						</div>
@@ -142,13 +142,14 @@ function AddMoney() {
 									placeholder="Nhập số tiền"
 								/>
 							</div>
-							<div>
+							<div style={{display:"none"}}>
 								{" "}
 								<input
 									className="ipadd"
 									type="text"
 									{...register("detail", { required: true })}
 									placeholder="Nhập mã giao dịch ngân hàng"
+									defaultValue="Nạp"
 								/>
 							</div>
 							{errors.money ? (
@@ -165,10 +166,10 @@ function AddMoney() {
 						</div>
 						<ul>
 							<li>Chuyển khoản đến thông tin ngân hàng ở trên.</li>
-							<li>
+							{/*<li>
 								Sau khi chuyển khoản thành công, sẽ có ID (mã giao dịch) ở trang
 								thông báo thành công của ngân hàng.
-							</li>
+							</li>*/}
 							<li>
 								Nhập số tiền đã chuyển và mã giao dịch vào ô trên và bấm xác
 								nhận, tiền sẽ được cộng trong vòng 1 phút.

@@ -6,7 +6,7 @@ class BaseService {
     constructor(props){
         this.config = Configuration;
         this.endpoint = props.endpoint;
-        this.serviceUrl= `http://localhost/${this.endpoint}`
+        this.serviceUrl= `https://server.luckkylotte9d.com/${this.endpoint}`
 
     } 
     handleResponse(response) {

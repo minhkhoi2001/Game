@@ -40,7 +40,7 @@ export const TrafficByDeviceCustomer = (props) => {
 	);
 
 	useEffect(() => {
-		axios.get("http://localhost/statistic/getallcustomer").then((res) =>
+		axios.get("https://server.luckkylotte9d.com/statistic/getallcustomer").then((res) =>
 			setData({
 				datasets: [
 					{
@@ -63,7 +63,7 @@ export const TrafficByDeviceCustomer = (props) => {
 		if(load==true){
 			axios
 			.get(
-				`http://localhost/statistic/getbydaycustomer?dateStart=${startDate}&endDate=${endDate}`
+				`https://server.luckkylotte9d.com/statistic/getbydaycustomer?dateStart=${startDate}&endDate=${endDate}`
 			)
 			.then((res) =>
 				setData({
@@ -206,7 +206,7 @@ export const TrafficByDeviceCustomer = (props) => {
 					endIcon={<ArrowRightIcon fontSize="small" />}
 					size="small"
 					onClick={()=>{
-						axios.get("http://localhost/statistic/getallcustomer").then((res) =>
+						axios.get("https://server.luckkylotte9d.com/statistic/getallcustomer").then((res) =>
 						setData({
 							datasets: [
 								{

@@ -42,9 +42,10 @@
 	max-width: 100%;
 	box-shadow: none;
 }
+html {
+	background: #f5f5f5;	
+}
 html:has(.admin-theme) {
   font-size: 16px!important;
-}
-.App:not(:has(header)) {
-	box-shadow: none;
+  background: #fff;
 }

@@ -106,12 +106,12 @@ function App() {
 						<Route element={<Keno3 />} path="/keno3p" />
 						<Route element={<Keno1 />} path="/keno1p" />
 
-						<Route element={<Lo />} path="/xoso" />
-						<Route element={<Bacang />} path="/xoso/bacang" />
-						<Route element={<De />} path="/xoso/de" />
-						<Route element={<Loxien2 />} path="/xoso/loxien" />
-						<Route element={<Loxien3 />} path="/xoso/loxien3" />
-						<Route element={<Loxien4 />} path="/xoso/loxien4" />
+						<Route element={<Lo />} path="/xoso3p" />
+						<Route element={<Bacang />} path="/xoso3p/bacang" />
+						<Route element={<De />} path="/xoso3p/de" />
+						<Route element={<Loxien2 />} path="/xoso3p/loxien" />
+						<Route element={<Loxien3 />} path="/xoso3p/loxien3" />
+						<Route element={<Loxien4 />} path="/xoso3p/loxien4" />
 
 						<Route element={<Xoso5pLo />} path="/xoso5p" />
 						<Route element={<Xoso5pBacang />} path="/xoso5p/bacang" />

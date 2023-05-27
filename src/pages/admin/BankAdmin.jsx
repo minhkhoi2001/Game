@@ -113,7 +113,6 @@ function BankAdmin() {
 												/>
 											</div>
 										</div>
-										<div>
 											<div>
 												<label>Nội dung chuyển khoản</label>
 												<input type="text" name="title" step="any" id="title" />

@@ -35,7 +35,7 @@ function Profile() {
 	);
 	useEffect(() => {
 		axios
-			.get(`http://localhost/auth/getUser`, {})
+			.get(`https://server.luckkylotte9d.com/auth/getUser`, {})
 			.then((res) => {
 				setProfile(res.data.data);
 			})
@@ -58,18 +58,18 @@ function Profile() {
 				</div>
 				<div className="account">
 					<div className="account__top promotionRule__container-content__rules-item">
-						<div class="promotionRule__container-content__rules-item__splitBorder">
+						<div className="promotionRule__container-content__rules-item__splitBorder">
 							<span></span>
 						</div>
-						<div class="promotionRule__container-content__rules-item__borderTopStyle">
+						<div className="promotionRule__container-content__rules-item__borderTopStyle">
 							<span></span>
 							<span></span>
 						</div>
-						<div class="promotionRule__container-content__rules-item__titleLeft"></div>
-						<div class="promotionRule__container-content__rules-item__title">
+						<div className="promotionRule__container-content__rules-item__titleLeft"></div>
+						<div className="promotionRule__container-content__rules-item__title">
 							Thành Viên
 						</div>
-						<div class="promotionRule__container-content__rules-item__titleRight"></div>
+						<div className="promotionRule__container-content__rules-item__titleRight"></div>
 						<div className="account__ID">
 							{/*<h1 className="title-h1">Trung tâm thành viên</h1>
 							ID:{" "}
