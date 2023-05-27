@@ -957,6 +957,9 @@ table tbody tr:hover {
 	margin: 1.7rem 0 0.5rem;
 	font-size: 0.32rem;
 }
+.content_bank:not(:has(.item-banks:nth-child(2))){
+	font-size: 0.4rem
+}
 .content_bank > div {
 	width: 50%;
 	text-align: left;
