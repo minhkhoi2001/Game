@@ -93,37 +93,7 @@ function Bacang() {
 				});
 			});
 	}, []);
-	// useEffect(() => {
-	// 	const timer = setInterval(() => {
-	// 		if (Math.floor(1800 - (new Date() - dulieunhap) / 1000) < 0) {
-	// 			axios.get(`https://server.vnvip294.com/auth/getUser`, {}).then((res) => {
-	// 				setProfile(res.data.data);
-	// 			});
-	// 			axios.get(`https://server.vnvip294.com/Xoso/get`).then((res) => {
-	// 				setBet(res.data.data);
-	// 				setDulieunhap(new Date(res.data.data.createdAt));
-	// 			});
-	// 			axios
-	// 				.get(`https://server.vnvip294.com/Xoso/getallbet`, {})
-	// 				.then((res) => {
-	// 					setTotal(res.data.data);
-	// 				})
-	// 				.catch(() => setTotal(null));
-	// 			axios
-	// 				.get(`https://server.vnvip294.com/notification/getnotifi`, {})
-	// 				.then((res) => {
-	// 					setVisible({
-	// 						money: res.data.data[0].money.toLocaleString(),
-	// 						id: res.data.data[0]._id,
-	// 					});
-	// 				});
-	// 		}
-	// 	}, 500);
 
-	// 	return () => {
-	// 		clearInterval(timer);
-	// 	};
-	// }, [dulieunhap]);
 	useEffect(() => {
 		let swalInst;
 		const showAlert = async (data) => {
@@ -255,9 +225,12 @@ function Bacang() {
 			}
 		});
 		const currentDate = new Date();
+	
+		currentDate.setHours(18,5,0,0)
+		const minute =currentDate.getMinutes()<10?"0"+currentDate.getMinutes():currentDate.getMinutes()
 		if (
-			Number(currentDate.getHours() + "" + currentDate.getMinutes()) > 1800 &&
-			Number(currentDate.getHours() + "" + currentDate.getMinutes()) < 1915
+			Number(currentDate.getHours() + "" + minute) > 1800 &&
+			Number(currentDate.getHours() + "" + minute) < 1915
 		) {
 			swal("Đặt cược không thành công.", " Đang chờ kết quả", "warning");
 		} else {
