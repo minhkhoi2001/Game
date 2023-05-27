@@ -16,7 +16,7 @@ function Loxien2() {
 	const [start, setStart] = useState(false);
 	const [dulieunhap, setDulieunhap] = useState(new Date());
 	const [update, setUpdate] = useState(0);
-
+	const [newData, setNewData]=useState(null)
 	const date = new Date();
 	const currentMinute = date.getMinutes();
 	const currentSecond = date.getSeconds();
@@ -69,6 +69,7 @@ function Loxien2() {
 			.get(`https://server.vnvip294.com/Xoso3/getallbet`, {})
 			.then((res) => {
 				rollLottery(res);
+				setNewData(res.data.data)
 			})
 			.catch(() => setTotal(null));
 		axios
@@ -443,7 +444,7 @@ function Loxien2() {
 				</div>
 				<Footer />
 
-				<Results isOpen={isOpen1} total={total} closePopup={closePopup1} />
+				<Results isOpen={isOpen1} total={newData} closePopup={closePopup1} />
 
 				<History isOpen={isOpen2} closePopup={closePopup2}/>
 			</div>

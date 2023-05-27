@@ -4,7 +4,7 @@ const Results = ({ isOpen, total, closePopup }) => {
   if (!isOpen) {
     return null;
   }
-
+console.log(total);
   return (
     <div className="popup-backdrop">
       <div className="popup-main">

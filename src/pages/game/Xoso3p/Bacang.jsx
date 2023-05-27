@@ -9,6 +9,7 @@ import Header from "../../components/Header";
 
 function Bacang() {
 	const [isVisible, setVisible] = useState(null);
+	const [newData, setNewData]=useState(null)
 	const [bet, setBet] = useState(null);
 	const [profile, setProfile] = useState(null);
 	const [second, setSecond] = useState(0);
@@ -69,6 +70,7 @@ function Bacang() {
 			.get(`https://server.vnvip294.com/Xoso3/getallbet`, {})
 			.then((res) => {
 				rollLottery(res);
+				setNewData(res.data.data)
 			})
 			.catch(() => setTotal(null));
 		axios
@@ -94,6 +96,7 @@ function Bacang() {
 					.get(`https://server.vnvip294.com/Xoso3/getallbet`, {})
 					.then((res) => {
 						rollLottery(res);
+						setNewData(res.data.data)
 					})
 					.catch(() => setTotal(null));
 				axios
@@ -498,7 +501,7 @@ function Bacang() {
 				</div>
 				<Footer />
 
-				<Results isOpen={isOpen1} total={total} closePopup={closePopup1} />
+				<Results isOpen={isOpen1} total={newData} closePopup={closePopup1} />
 
 				<History isOpen={isOpen2} closePopup={closePopup2}/>
 			</div>

@@ -8,6 +8,7 @@ import TabNavigation from "./0_Tab";
 import Header from "../../components/Header";
 
 function Xoso3() {
+	const [newData, setNewData]=useState(null)
 	const [isVisible, setVisible] = useState(null);
 	const [bet, setBet] = useState(null);
 	const [profile, setProfile] = useState(null);
@@ -24,6 +25,7 @@ function Xoso3() {
 	const [total, setTotal] = useState(null);
 	const [setting, setSetting] = useState(null);
 	const [item1, setItem] = useState([]);
+
 	axios.interceptors.request.use(
 		(config) => {
 			const token = localStorage.getItem("user");
@@ -69,6 +71,7 @@ function Xoso3() {
 			.get(`https://server.vnvip294.com/Xoso3/getallbet`, {})
 			.then((res) => {
 				rollLottery(res);
+				setNewData(res.data.data)
 			})
 			.catch(() => setTotal(null));
 		axios
@@ -94,6 +97,7 @@ function Xoso3() {
 					.get(`https://server.vnvip294.com/Xoso3/getallbet`, {})
 					.then((res) => {
 						rollLottery(res);
+						setNewData(res.data.data)
 					})
 					.catch(() => setTotal(null));
 				axios
@@ -441,7 +445,7 @@ function Xoso3() {
 				</div>
 				<Footer />
 
-				<Results isOpen={isOpen1} total={total} closePopup={closePopup1} />
+				<Results isOpen={isOpen1} total={newData} closePopup={closePopup1} />
 
 				<History isOpen={isOpen2} closePopup={closePopup2}/>
 			</div>

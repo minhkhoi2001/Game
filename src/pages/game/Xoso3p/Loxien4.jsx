@@ -10,6 +10,7 @@ import Header from "../../components/Header";
 function Loxien4() {
 	const [isVisible, setVisible] = useState(null);
 	const [bet, setBet] = useState(null);
+	const [newData, setNewData]=useState(null)
 	const [profile, setProfile] = useState(null);
 	const [second, setSecond] = useState(0);
 	const [minute, setMinute] = useState(3);
@@ -70,6 +71,7 @@ function Loxien4() {
 			.get(`https://server.vnvip294.com/Xoso3/getallbet`, {})
 			.then((res) => {
 				rollLottery(res);
+				setNewData(res.data.data)
 			})
 			.catch(() => setTotal(null));
 		axios
@@ -95,6 +97,7 @@ function Loxien4() {
 					.get(`https://server.vnvip294.com/Xoso3/getallbet`, {})
 					.then((res) => {
 						rollLottery(res);
+						setNewData(res.data.data)
 					})
 					.catch(() => setTotal(null));
 				axios
@@ -445,7 +448,7 @@ function Loxien4() {
 				<Footer />
 
 
-				<Results isOpen={isOpen1} total={total} closePopup={closePopup1} />
+				<Results isOpen={isOpen1} total={newData} closePopup={closePopup1} />
 
 				<History isOpen={isOpen2} closePopup={closePopup2}/>
 			</div>
