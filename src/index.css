@@ -1231,6 +1231,10 @@ body:has(.admin-theme) .table-result th, body:has(.admin-theme) .table-result td
 	font-size: 20px!important;
 	margin: 10px 0;
 }
+body:has(.admin-theme) .table-result td input {
+	position: relative;
+	top: -10px;
+}
 .button-admin {
 	background: red!important;
 	color: #fff!important;

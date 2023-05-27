@@ -127,7 +127,7 @@ function App() {
 						<Route element={<MBLoxien3 />} path="/xsmb/loxien3" />
 						<Route element={<MBLoxien4 />} path="/xsmb/loxien4" />
 
-						<Route element={<MTLo />} path="/xsmt" />
+						{/*<Route element={<MTLo />} path="/xsmt" />
 						<Route element={<MTBacang />} path="/xsmt/bacang" />
 						<Route element={<MTDe />} path="/xsmt/de" />
 						<Route element={<MTLoxien2 />} path="/xsmt/loxien" />
@@ -139,7 +139,7 @@ function App() {
 						<Route element={<MNDe />} path="/xsmn/de" />
 						<Route element={<MNLoxien2 />} path="/xsmn/loxien" />
 						<Route element={<MNLoxien3 />} path="/xsmn/loxien3" />
-						<Route element={<MNLoxien4 />} path="/xsmn/loxien4" />
+						<Route element={<MNLoxien4 />} path="/xsmn/loxien4" />*/}
 
 						{/* User */}
 						<Route element={<Profile />} path="/profile" />

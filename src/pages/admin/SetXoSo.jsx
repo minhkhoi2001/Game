@@ -301,7 +301,7 @@ function SetXoSo() {
 																id="mb_prize_0"
 																className="special-prize div-horizontal"
 															>
-																{bet.dacbiet}
+																<input defaultValue={bet.dacbiet} name="dacbiet" style={{width:"60px"}}/>
 															</span>
 														</td>
 													</tr>
@@ -312,7 +312,7 @@ function SetXoSo() {
 																id="mb_prize_1"
 																className="prize1 div-horizontal"
 															>
-																{bet.nhat}
+																<input defaultValue={bet.nhat} name="nhat" style={{width:"60px"}}/>
 															</span>
 														</td>
 													</tr>
@@ -323,13 +323,13 @@ function SetXoSo() {
 																id="mb_prize_2"
 																className="prize2 div-horizontal"
 															>
-																{bet.hai.split(" ")[0]}
+																<input defaultValue={bet.hai.split(" ")[0]} name="hai" style={{width:"60px"}}/>
 															</span>
 															<span
 																id="mb_prize_3"
 																className="prize2 div-horizontal"
 															>
-																{bet.hai.split(" ")[1]}
+																<input defaultValue={bet.hai.split(" ")[1]} name="hai" style={{width:"60px"}}/>
 															</span>
 														</td>
 													</tr>
@@ -340,37 +340,37 @@ function SetXoSo() {
 																id="mb_prize_4"
 																className="prize3 div-horizontal"
 															>
-																{bet.ba.split(" ")[0]}
+																<input defaultValue={bet.ba.split(" ")[0]} name="ba" style={{width:"60px"}}/>
 															</span>
 															<span
 																id="mb_prize_5"
 																className="prize3 div-horizontal"
 															>
-																{bet.ba.split(" ")[1]}
+																<input defaultValue={bet.ba.split(" ")[1]} name="ba" style={{width:"60px"}}/>
 															</span>
 															<span
 																id="mb_prize_6"
 																className="prize3 div-horizontal"
 															>
-																{bet.ba.split(" ")[2]}
+																<input defaultValue={bet.ba.split(" ")[2]} name="ba" style={{width:"60px"}}/>
 															</span>
 															<span
 																id="mb_prize_7"
 																className="prize3 div-horizontal"
 															>
-																{bet.ba.split(" ")[3]}
+																<input defaultValue={bet.ba.split(" ")[3]} name="ba" style={{width:"60px"}}/>
 															</span>
 															<span
 																id="mb_prize_8"
 																className="prize3 div-horizontal"
 															>
-																{bet.ba.split(" ")[4]}
+																<input defaultValue={bet.ba.split(" ")[4]} name="ba" style={{width:"60px"}}/>
 															</span>
 															<span
 																id="mb_prize_9"
 																className="prize3 div-horizontal"
 															>
-																{bet.ba.split(" ")[5]}
+																<input defaultValue={bet.ba.split(" ")[5]} name="ba" style={{width:"60px"}}/>
 															</span>
 														</td>
 													</tr>
@@ -381,25 +381,25 @@ function SetXoSo() {
 																id="mb_prize_10"
 																className="prize4 div-horizontal"
 															>
-																{bet.tu.split(" ")[0]}
+																<input defaultValue={bet.tu.split(" ")[0]} name="tu" style={{width:"60px"}}/>
 															</span>
 															<span
 																id="mb_prize_11"
 																className="prize4 div-horizontal"
 															>
-																{bet.tu.split(" ")[1]}
+																<input defaultValue={bet.tu.split(" ")[1]} name="tu" style={{width:"60px"}}/>
 															</span>
 															<span
 																id="mb_prize_12"
 																className="prize4 div-horizontal"
 															>
-																{bet.tu.split(" ")[2]}
+																<input defaultValue={bet.tu.split(" ")[2]} name="tu" style={{width:"60px"}}/>
 															</span>
 															<span
 																id="mb_prize_13"
 																className="prize4 div-horizontal"
 															>
-																{bet.tu.split(" ")[3]}
+																<input defaultValue={bet.tu.split(" ")[3]} name="tu" style={{width:"60px"}}/>
 															</span>
 														</td>
 													</tr>
@@ -410,37 +410,37 @@ function SetXoSo() {
 																id="mb_prize_14"
 																className="prize5 div-horizontal"
 															>
-																{bet.nam.split(" ")[0]}
+																<input defaultValue={bet.nam.split(" ")[0]} name="nam" style={{width:"60px"}}/>
 															</span>
 															<span
 																id="mb_prize_15"
 																className="prize5 div-horizontal"
 															>
-																{bet.nam.split(" ")[1]}
+																<input defaultValue={bet.nam.split(" ")[1]} name="nam" style={{width:"60px"}}/>
 															</span>
 															<span
 																id="mb_prize_16"
 																className="prize5 div-horizontal"
 															>
-																{bet.nam.split(" ")[2]}
+																<input defaultValue={bet.nam.split(" ")[2]} name="nam" style={{width:"60px"}}/>
 															</span>
 															<span
 																id="mb_prize_17"
 																className="prize5 div-horizontal"
 															>
-																{bet.nam.split(" ")[3]}
+																<input defaultValue={bet.nam.split(" ")[3]} name="nam" style={{width:"60px"}}/>
 															</span>
 															<span
 																id="mb_prize_18"
 																className="prize5 div-horizontal"
 															>
-																{bet.nam.split(" ")[4]}
+																<input defaultValue={bet.nam.split(" ")[4]} name="nam" style={{width:"60px"}}/>
 															</span>
 															<span
 																id="mb_prize_19"
 																className="prize5 div-horizontal"
 															>
-																{bet.nam.split(" ")[5]}
+																<input defaultValue={bet.nam.split(" ")[5]} name="nam" style={{width:"60px"}}/>
 															</span>
 														</td>
 													</tr>
@@ -451,19 +451,19 @@ function SetXoSo() {
 																id="mb_prize_20"
 																className="prize6 div-horizontal"
 															>
-																{bet.sau.split(" ")[0]}
+																<input defaultValue={bet.sau.split(" ")[0]} name="sau" style={{width:"60px"}}/>
 															</span>
 															<span
 																id="mb_prize_21"
 																className="prize6 div-horizontal"
 															>
-																{bet.sau.split(" ")[1]}
+																<input defaultValue={bet.sau.split(" ")[1]} name="sau" style={{width:"60px"}}/>
 															</span>
 															<span
 																id="mb_prize_22"
 																className="prize6 div-horizontal"
 															>
-																{bet.sau.split(" ")[2]}
+																<input defaultValue={bet.sau.split(" ")[2]} name="sau" style={{width:"60px"}}/>
 															</span>
 														</td>
 													</tr>
@@ -474,25 +474,25 @@ function SetXoSo() {
 																id="mb_prize_23"
 																className="prize7 div-horizontal"
 															>
-																{bet.bay.split(" ")[0]}
+																<input defaultValue={bet.bay.split(" ")[0]} name="bay" style={{width:"60px"}}/>
 															</span>
 															<span
 																id="mb_prize_24"
 																className="prize7 div-horizontal"
 															>
-																{bet.bay.split(" ")[1]}
+																<input defaultValue={bet.bay.split(" ")[1]} name="bay" style={{width:"60px"}}/>
 															</span>
 															<span
 																id="mb_prize_25"
 																className="prize7 div-horizontal"
 															>
-																{bet.bay.split(" ")[2]}
+																<input defaultValue={bet.bay.split(" ")[2]} name="bay" style={{width:"60px"}}/>
 															</span>
 															<span
 																id="mb_prize_26"
 																className="prize7 div-horizontal"
 															>
-																{bet.bay.split(" ")[3]}
+																<input defaultValue={bet.bay.split(" ")[3]} name="bay" style={{width:"60px"}}/>
 															</span>
 														</td>
 													</tr>

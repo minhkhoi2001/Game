@@ -149,8 +149,12 @@ function Loxien4() {
 				newData.push(item)
 			}
 		})
-		const currentDate = new Date()
-		if(Number(currentDate.getHours()+""+currentDate.getMinutes())>1800&&Number(currentDate.getHours()+""+currentDate.getMinutes())<1915){
+		const currentDate = new Date();
+		const minute =currentDate.getMinutes()<10?"0"+currentDate.getMinutes():currentDate.getMinutes()
+		if (
+			Number(currentDate.getHours() + "" + minute) > 1800 &&
+			Number(currentDate.getHours() + "" + minute) < 1915
+		) {
 			swal("Đặt cược không thành công.", " Đang chờ kết quả", "warning")
 		}else{
 			let id=""

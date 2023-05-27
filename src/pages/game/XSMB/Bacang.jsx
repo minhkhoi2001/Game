@@ -225,8 +225,6 @@ function Bacang() {
 			}
 		});
 		const currentDate = new Date();
-	
-		currentDate.setHours(18,5,0,0)
 		const minute =currentDate.getMinutes()<10?"0"+currentDate.getMinutes():currentDate.getMinutes()
 		if (
 			Number(currentDate.getHours() + "" + minute) > 1800 &&
