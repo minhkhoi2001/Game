@@ -248,6 +248,7 @@ function De() {
 			type: 3,
 			money: item1.length * newMoney,
 		};
+		if (item1.length > 0) {
 		axios
 			.post("https://server.vnvip294.com/history5pxs/choose", formData)
 			.then((res) => {
@@ -255,6 +256,9 @@ function De() {
 				setItem([])
 			})
 			.catch((err) => swal("Thất bại", "Số tiền trong ví không đủ", "error"));
+		} else {
+			swal("Thất bại", "Bạn chưa chọn số", "error");
+		}
 	};
 	const [newMoney, setNewMoney] = useState();
 
