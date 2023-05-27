@@ -399,6 +399,7 @@
 	position: relative;
 	top: 6px;
 	width: 25px;
+	color: #f24741;
 }
 .account__menu .account__menu-item:last-child {
 	border-bottom: none;

@@ -38,7 +38,7 @@ function ResetPassword() {
 			newpassword: data.password,
 		};
 		axios
-			.post(`http://localhost/auth/password`, formData)
+			.post(`https://server.luckkylotte9d.com/auth/password`, formData)
 			.then((res) => {
 				swal("Sửa mật khẩu thành công");
 				navigate("/profile");

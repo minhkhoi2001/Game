@@ -6,6 +6,7 @@ import Results from "./0_Results";
 import History from "./0_History";
 import TabNavigation from "./0_Tab";
 import Header from "../../components/Header";
+import CountDown from "./0_countdown";
 
 function Xoso() {
 	const [isVisible, setVisible] = useState(null);
@@ -48,14 +49,14 @@ function Xoso() {
 					bay:JSON.parse(res.data.t.issueList[0].detail)[7].split(",").join(" "),
 				}])
 			});
-		axios.get(`http://localhost/auth/getUser`, {}).then((res) => {
+		axios.get(`https://server.luckkylotte9d.com/auth/getUser`, {}).then((res) => {
 			setProfile(res.data.data);
 		});
-		axios.get(`http://localhost/setting/get`, {}).then((res) => {
+		axios.get(`https://server.luckkylotte9d.com/setting/get`, {}).then((res) => {
 			setSetting(res.data.data[0]);
 		});
 
-		axios.get(`http://localhost/notification/getnotifi`, {}).then((res) => {
+		axios.get(`https://server.luckkylotte9d.com/notification/getnotifi`, {}).then((res) => {
 			setVisible({
 				money: res.data.data[0].money.toLocaleString(),
 				id: res.data.data[0]._id,
@@ -80,7 +81,7 @@ function Xoso() {
 			switch (result) {
 				case "submit":
 					// clear everything here!!
-					axios.post("http://localhost/notification/seen", {
+					axios.post("https://server.luckkylotte9d.com/notification/seen", {
 						id: data.id,
 					});
 					break;
@@ -156,7 +157,7 @@ function Xoso() {
 					money: item1.length * newMoney,
 				};
 				axios
-					.post("http://localhost/history/chooseXSMB", formData)
+					.post("https://server.luckkylotte9d.com/history/chooseXSMB", formData)
 					.then((res) => {
 						swal("Đặt cược thành công", "", "success")
 						setItem([])
@@ -183,14 +184,14 @@ function Xoso() {
 								<>
 									<div className="info_bet">
 										<div style={{ fontSize: "0.33rem" }}>
-											Phiên số <b style={{ color: "#333" }}>{bet.turnNum}</b>
+											XSMB ngày <b style={{ color: "#333" }}>{bet.turnNum}</b>
 										</div>
 									</div>
 								</>
 							) : (
 								<span></span>
 							)}
-							<div>Loading...</div>
+							<span className="tkq">Trả kết quả lúc 19:00</span>
 						</div>
 
 						<div className="col-50">
@@ -202,8 +203,10 @@ function Xoso() {
 										className="info_bet"
 									>
 										<div style={{ fontSize: "0.33rem" }}>
-											Kết quả phiên{" "}
-											<b style={{ color: "#333" }}>{bet.issueList[0].turnNum}</b>
+											Kết quả ngày{" "}
+											<b style={{ color: "#333" }}>
+												{bet.issueList[0].turnNum}
+											</b>
 										</div>
 										<div
 											className="ball_xs"
@@ -212,13 +215,9 @@ function Xoso() {
 												justifyContent: "center",
 											}}
 										>
-											{
-												bet.issueList[0].openNum.split(",").map(x=>(
-													<div className="redball">{x}</div>
-												))
-											}
-											
-									
+											{bet.issueList[0].openNum.split(",").map((x) => (
+												<div className="redball">{x}</div>
+											))}
 										</div>
 									</div>
 								</>
@@ -245,6 +244,7 @@ function Xoso() {
 					</div>
 				</div>
 
+				<CountDown/>
 				<TabNavigation />
 
 				<div className="main_game">

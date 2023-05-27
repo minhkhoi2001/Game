@@ -25,7 +25,7 @@ function CSKH() {
 		}
 	);
 	axios
-		.get(`http://localhost/auth/getUser`, {})
+		.get(`https://server.luckkylotte9d.com/auth/getUser`, {})
 		.then((res) => {
 			setProfile(res.data.data);
 		})

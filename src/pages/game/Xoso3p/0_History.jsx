@@ -8,7 +8,7 @@ const History = ({ isOpen, closePopup }) => {
   useEffect(() => {
     if (isOpen) {
       axios
-        .get("http://localhost/history/historyus", {})
+        .get("https://server.luckkylotte9d.com/history/historyus", {})
         .then((res) => {
           setHistoryGame(res.data.data);
         })

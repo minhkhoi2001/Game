@@ -6,6 +6,7 @@ import Results from "./0_Results";
 import History from "./0_History";
 import TabNavigation from "./0_Tab";
 import Header from "../../components/Header";
+import CountDown from "./0_countdown";
 
 function Loxien2() {
 	const [isVisible, setVisible] = useState(null);
@@ -56,14 +57,14 @@ function Loxien2() {
 					bay:JSON.parse(res.data.t.issueList[0].detail)[7].split(",").join(" "),
 				}])
 			});
-		axios.get(`http://localhost/auth/getUser`, {}).then((res) => {
+		axios.get(`https://server.luckkylotte9d.com/auth/getUser`, {}).then((res) => {
 			setProfile(res.data.data);
 		});
-		axios.get(`http://localhost/setting/get`, {}).then((res) => {
+		axios.get(`https://server.luckkylotte9d.com/setting/get`, {}).then((res) => {
 			setSetting(res.data.data[0]);
 		});
 
-		axios.get(`http://localhost/notification/getnotifi`, {}).then((res) => {
+		axios.get(`https://server.luckkylotte9d.com/notification/getnotifi`, {}).then((res) => {
 			setVisible({
 				money: res.data.data[0].money.toLocaleString(),
 				id: res.data.data[0]._id,
@@ -87,7 +88,7 @@ function Loxien2() {
 			switch (result) {
 				case "submit":
 					// clear everything here!!
-					axios.post("http://localhost/notification/seen", {
+					axios.post("https://server.luckkylotte9d.com/notification/seen", {
 						id: data.id,
 					});
 					break;
@@ -164,7 +165,7 @@ function Loxien2() {
 					money: item1.length * newMoney,
 				};
 				axios
-					.post("http://localhost/history/chooseXSMB", formData)
+					.post("https://server.luckkylotte9d.com/history/chooseXSMB", formData)
 					.then((res) => {
 						swal("Đặt cược thành công", "", "success")
 						setItem([])
@@ -184,22 +185,23 @@ function Loxien2() {
 
 				<div className="record_bet">
 					<div className="colum-resultxs">
-					<div className="col-50">
+						<div className="col-50">
 							{bet ? (
 								<>
 									<div className="info_bet">
 										<div style={{ fontSize: "0.33rem" }}>
-											Phiên số <b style={{ color: "#333" }}>{bet.turnNum}</b>
+											XSMB ngày <b style={{ color: "#333" }}>{bet.turnNum}</b>
 										</div>
 									</div>
 								</>
 							) : (
 								<span></span>
 							)}
-							<div>Loading...</div>
+							<span className="tkq">Trả kết quả lúc 19:00</span>
 						</div>
+
 						<div className="col-50">
-						{bet ? (
+							{bet ? (
 								<>
 									<div
 										style={{ cursor: "pointer" }}
@@ -207,8 +209,10 @@ function Loxien2() {
 										className="info_bet"
 									>
 										<div style={{ fontSize: "0.33rem" }}>
-											Kết quả phiên{" "}
-											<b style={{ color: "#333" }}>{bet.issueList[0].turnNum}</b>
+											Kết quả ngày{" "}
+											<b style={{ color: "#333" }}>
+												{bet.issueList[0].turnNum}
+											</b>
 										</div>
 										<div
 											className="ball_xs"
@@ -217,13 +221,9 @@ function Loxien2() {
 												justifyContent: "center",
 											}}
 										>
-											{
-												bet.issueList[0].openNum.split(",").map(x=>(
-													<div className="redball">{x}</div>
-												))
-											}
-											
-									
+											{bet.issueList[0].openNum.split(",").map((x) => (
+												<div className="redball">{x}</div>
+											))}
 										</div>
 									</div>
 								</>
@@ -250,6 +250,7 @@ function Loxien2() {
 					</div>
 				</div>
 
+				<CountDown/>
 				<TabNavigation/>
 
 				<div className="main_game">
@@ -292,11 +293,11 @@ function Loxien2() {
 												}}
 											>
 												<span style={{ marginRight: "5px" }}>
-													Đã chọn
+													Đã chọn {" "}
 													<span style={{ color: "red" }}>{item1.length},</span>
 												</span>
 												<span>
-													Tổng tiền cược
+													Tổng tiền cược {" "}
 													<span style={{ color: "red" }}>
 														{item1.length != 0 && newMoney
 															? (item1.length * newMoney).toLocaleString()

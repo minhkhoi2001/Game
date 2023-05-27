@@ -40,13 +40,13 @@ function HistoryAll() {
 	);
 	useEffect(() => {
 		axios
-			.get(`http://localhost/auth/biendongsodu`, {})
+			.get(`https://server.luckkylotte9d.com/auth/biendongsodu`, {})
 			.then((res) => {
 				setProfile(res.data.data);
 			})
 			.catch((err) => function () {});
 		axios
-			.get(`http://localhost/auth/getUser`, {})
+			.get(`https://server.luckkylotte9d.com/auth/getUser`, {})
 			.then((res) => {
 				setProfile1(res.data.data);
 			})
@@ -94,7 +94,7 @@ function HistoryAll() {
 										<div className="item_inner">
 											<div className="item_history">
 												<div className="title_item_history">
-													<span className="sanh">Kendo {item.sanh}</span>
+													<span className="sanh">Keno {item.sanh}</span>
 													<span
 														className={`type_state ${
 															item.status_bet === "Pending"

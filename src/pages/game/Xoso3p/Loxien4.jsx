@@ -55,25 +55,25 @@ function Loxien4() {
 		};
 	}
 	useEffect(() => {
-		axios.get(`http://localhost/auth/getUser`, {}).then((res) => {
+		axios.get(`https://server.luckkylotte9d.com/auth/getUser`, {}).then((res) => {
 			setProfile(res.data.data);
 		});
-		axios.get(`http://localhost/setting/get`, {}).then((res) => {
+		axios.get(`https://server.luckkylotte9d.com/setting/get`, {}).then((res) => {
 			setSetting(res.data.data[0]);
 		});
-		axios.get(`http://localhost/Xoso3/get`).then((res) => {
+		axios.get(`https://server.luckkylotte9d.com/Xoso3/get`).then((res) => {
 			setBet(res.data.data);
 			setDulieunhap(new Date(res.data.data.createdAt));
 			setStart(true);
 		});
 		axios
-			.get(`http://localhost/Xoso3/getallbet`, {})
+			.get(`https://server.luckkylotte9d.com/Xoso3/getallbet`, {})
 			.then((res) => {
 				rollLottery(res);
 			})
 			.catch(() => setTotal(null));
 		axios
-			.get(`http://localhost/notification/getnotifi`, {})
+			.get(`https://server.luckkylotte9d.com/notification/getnotifi`, {})
 			.then((res) => {
 				setVisible({
 					money: res.data.data[0].money.toLocaleString(),
@@ -84,21 +84,21 @@ function Loxien4() {
 	useEffect(() => {
 		const timer = setInterval(() => {
 			if (Math.floor(180 - (new Date() - dulieunhap) / 1000) < 0) {
-				axios.get(`http://localhost/auth/getUser`, {}).then((res) => {
+				axios.get(`https://server.luckkylotte9d.com/auth/getUser`, {}).then((res) => {
 					setProfile(res.data.data);
 				});
-				axios.get(`http://localhost/Xoso3/get`).then((res) => {
+				axios.get(`https://server.luckkylotte9d.com/Xoso3/get`).then((res) => {
 					setBet(res.data.data);
 					setDulieunhap(new Date(res.data.data.createdAt));
 				});
 				axios
-					.get(`http://localhost/Xoso3/getallbet`, {})
+					.get(`https://server.luckkylotte9d.com/Xoso3/getallbet`, {})
 					.then((res) => {
 						rollLottery(res);
 					})
 					.catch(() => setTotal(null));
 				axios
-					.get(`http://localhost/notification/getnotifi`, {})
+					.get(`https://server.luckkylotte9d.com/notification/getnotifi`, {})
 					.then((res) => {
 						setVisible({
 							money: res.data.data[0].money.toLocaleString(),
@@ -128,7 +128,7 @@ function Loxien4() {
 			switch (result) {
 				case "submit":
 					// clear everything here!!
-					axios.post("http://localhost/notification/seen", {
+					axios.post("https://server.luckkylotte9d.com/notification/seen", {
 						id: data.id,
 					});
 					break;
@@ -250,7 +250,7 @@ function Loxien4() {
 			swal("Thất bại", "Bạn chưa chọn số", "error");
 		} else if (item1.length == 4) {
 		axios
-			.post("http://localhost/history3pxs/choose", formData)
+			.post("https://server.luckkylotte9d.com/history3pxs/choose", formData)
 			.then((res) => {
 				swal("Đặt cược thành công", "", "success")
 				setItem([])
@@ -402,11 +402,11 @@ function Loxien4() {
 												}}
 											>
 												<span style={{ marginRight: "5px" }}>
-													Đã chọn
+													Đã chọn {" "}
 													<span style={{ color: "red" }}>{item1.length},</span>
 												</span>
 												<span>
-													Tổng tiền cược
+													Tổng tiền cược {" "}
 													<span style={{ color: "red" }}>
 														{item1.length != 0 && newMoney
 															? (item1.length * newMoney).toLocaleString()

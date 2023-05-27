@@ -40,13 +40,13 @@ function Rut() {
 	);
 	useEffect(() => {
 		axios
-			.get(`http://localhost/payment/paymentus`, {})
+			.get(`https://server.luckkylotte9d.com/payment/paymentus`, {})
 			.then((res) => {
 				setProfile(res.data.data);
 			})
 			.catch((err) => function () {});
 		axios
-			.get(`http://localhost/auth/getUser`, {})
+			.get(`https://server.luckkylotte9d.com/auth/getUser`, {})
 			.then((res) => {
 				setProfile1(res.data.data);
 			})

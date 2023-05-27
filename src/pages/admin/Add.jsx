@@ -50,7 +50,7 @@ function Add() {
 	);
 	useEffect(() => {
 		if (load === false) {
-			axios.get(`http://localhost/payment/nap`, {}).then((res) => {
+			axios.get(`https://server.luckkylotte9d.com/payment/nap`, {}).then((res) => {
 				setData(res.data.data);
 				localStorage.setItem("data", JSON.stringify(res.data.data));
 				setLoad(true);
@@ -162,7 +162,7 @@ function Add() {
 																		};
 																		axios
 																			.post(
-																				`http://localhost/payment/update`,
+																				`https://server.luckkylotte9d.com/payment/update`,
 																				formData
 																			)
 																			.then((res) => {
@@ -182,7 +182,7 @@ function Add() {
 																		};
 																		axios
 																			.post(
-																				`http://localhost/payment/update`,
+																				`https://server.luckkylotte9d.com/payment/update`,
 																				formData
 																			)
 																			.then((res) => {
