@@ -3,6 +3,8 @@ import { useForm } from "react-hook-form";
 import { useEffect, useState } from "react";
 import axios from "axios";
 import swal from "sweetalert";
+import Visibility from "@mui/icons-material/Visibility";
+import VisibilityOff from "@mui/icons-material/VisibilityOff";
 
 function Register() {
 	const [err, setErr] = useState(null);
@@ -64,7 +66,7 @@ function Register() {
 					}).then(() => navigate("/login"));
 				})
 				.catch((err) => {
-					setErr(err.message);
+					setErr("Tài khoản đã tồn tại");
 				});
 		} else if (data.code) {
 			axios
@@ -82,9 +84,17 @@ function Register() {
 					}).then(() => navigate("/login"));
 				})
 				.catch((err) => {
-					setErr(err.message);
+					setErr("Mã giới thiệu không đúng");
 				});
 		}
+	};
+	const [showPassword, setShowPassword] = useState(false);
+	const toggleShowPassword = () => {
+	  setShowPassword(!showPassword);
+	};
+	const [showPassword1, setShowPassword1] = useState(false);
+	const toggleShowPassword1 = () => {
+	  setShowPassword1(!showPassword1);
 	};
 	return (
 		<>
@@ -92,6 +102,7 @@ function Register() {
 				<form className="form-lg" onSubmit={handleSubmit(onSubmit)}>
 					<h1>Đăng ký</h1>
 					<div className="inputs">
+						<div className="input">
 						<input
 							type="text"
 							{...register("username", { required: true })}
@@ -99,28 +110,37 @@ function Register() {
 							placeholder="Tên đăng nhập"
 						/>
 						{errors.username ? <p>{errors.username.message}</p> : null}
+						</div>
+						<div className="input">
 						<input
-							type="password"
+							type={showPassword ? 'text' : 'password'}
 							className="ip-lg"
 							{...register("password", { required: true })}
 							placeholder="Mật Khẩu"
 						/>
+						<div onClick={toggleShowPassword}>{showPassword ? <Visibility/> : <VisibilityOff/>}</div>
 						{errors.password ? <p>{errors.password.message}</p> : null}
+						</div>
+						<div className="input">
 						<input
-							type="password"
+							type={showPassword1 ? 'text' : 'password'}
 							className="ip-lg"
 							{...register("ippassword", { required: true })}
 							placeholder="Nhập Lại Mật Khẩu"
 						/>
+						<div onClick={toggleShowPassword1}>{showPassword1 ? <Visibility/> : <VisibilityOff/>}</div>
+						{errors.ippassword ? <p>{errors.ippassword.message}</p> : null}
+						</div>
+						<div className="input">
 						<input
 							type="code"
 							className="ip-lg"
 							{...register("code")}
 							placeholder="Nhập mã giới thiệu"
 						/>
+						{err ? <p>{err}</p> : null}
+						</div>
 					</div>
-					{errors.ippassword ? <p>{errors.ippassword.message}</p> : null}
-					{err ? <p style={{ color: "#140707" }}>{err}</p> : null}
 					<button type="submit" className="btn-lg">
 						Đăng ký
 					</button>

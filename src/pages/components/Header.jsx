@@ -18,7 +18,7 @@ const Header = ({ profile }) => {
           <div style={{ display: "flex", float: "right" }}>
             {isShow && profile ? (
               <span style={{ marginRight: "0.111rem" }}>
-                Số dư: <b>{Number(profile.money).toLocaleString()}đ</b>
+                Số dư: <b>{Math.floor(profile.money).toLocaleString()}đ</b>
               </span>
             ) : (
               <span style={{ marginRight: "0.111rem" }}>

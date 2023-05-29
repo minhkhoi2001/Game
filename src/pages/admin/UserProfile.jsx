@@ -141,7 +141,7 @@ function UserProfile() {
 													<div className="detail_user">
 														<div className="username_">Tiền user</div>
 														<div className="username_">
-															{Number(profile.money).toLocaleString()}
+															{Math.floor(profile.money).toLocaleString()}
 														</div>
 													</div>
 													<form onSubmit={handleSubmit}>

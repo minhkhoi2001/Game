@@ -97,7 +97,7 @@ function Profile() {
 							</span>
 							{profile ? (
 								<strong id="account__balance">
-									{profile.money.toLocaleString()} <small>đ</small>
+									{Math.floor(profile.money).toLocaleString()} <small>đ</small>
 								</strong>
 							) : <strong>*****</strong>}
 						</div>

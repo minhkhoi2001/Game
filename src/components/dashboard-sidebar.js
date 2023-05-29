@@ -44,7 +44,7 @@ const items = [
 		icon: <ShoppingBagIcon fontSize="small" />,
 		title: "Set Kèo 5 ",
 	},
-	{
+	/*{
 		href: "/admin/xoso",
 		icon: <ShoppingBagIcon fontSize="small" />,
 		title: "Set Kèo Xổ Số 3p ",
@@ -53,7 +53,7 @@ const items = [
 		href: "/admin/xoso5",
 		icon: <ShoppingBagIcon fontSize="small" />,
 		title: "Set Kèo Xổ Số 5p ",
-	},
+	},*/
 	{
 		href: "/admin/request",
 		icon: <AutorenewIcon fontSize="small" />,

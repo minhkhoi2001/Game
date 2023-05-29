@@ -2,6 +2,8 @@ import { Link, useNavigate } from "react-router-dom";
 import { useForm } from "react-hook-form";
 import { useRef, useEffect, useState } from "react";
 import axios from "axios";
+import Visibility from "@mui/icons-material/Visibility";
+import VisibilityOff from "@mui/icons-material/VisibilityOff";
 
 function Login() {
 	const [err, setErr] = useState(null);
@@ -44,13 +46,17 @@ function Login() {
 			})
 			.catch((err) => setErr("Tên đăng nhập hoặc mật khẩu không chính xác"));
 	};
-
+	const [showPassword, setShowPassword] = useState(false);
+	const toggleShowPassword = () => {
+	  setShowPassword(!showPassword);
+	};
 	return (
 		<>
 			<div className="login">
 				<form className="form-lg" onSubmit={handleSubmit(onSubmit)}>
 					<h1>Đăng nhập</h1>
 					<div className="inputs">
+						<div className="input">
 						<input
 							type="text"
 							className="ip-lg"
@@ -58,15 +64,19 @@ function Login() {
 							placeholder="Tên đăng nhập"
 						/>
 						{errors.username ? <p>{errors.username.message}</p> : null}
+						</div>
+						<div className="input">
 						<input
-							type="password"
+							type={showPassword ? 'text' : 'password'}
 							className="ip-lg"
 							{...register("password", { required: true })}
 							placeholder="Mật Khẩu"
 						/>
+						<div onClick={toggleShowPassword}>{showPassword ? <Visibility/> : <VisibilityOff/>}</div>
 						{errors.password ? <p>{errors.password.message}</p> : null}
+						</div>
 					</div>
-					{err ? <p style={{ color: "white" }}>{err}</p> : null}
+					{err ? <p>{err}</p> : null}
 					<button className="btn-red-big" type="submit">
 						Đăng nhập
 					</button>

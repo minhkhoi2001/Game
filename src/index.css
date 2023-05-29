@@ -294,6 +294,16 @@ select:active {
 	width: 90%;
 	margin: 0.5rem auto;
 }
+.login form .input {
+	position: relative;
+}
+.login form svg {
+	font-size: 24px;
+	color: #666;
+	right: 35px;
+	top: 32px;
+	position: absolute;
+}
 .main {
 	background: #fff7f7;
 	padding: 0 0.32rem 2rem;
