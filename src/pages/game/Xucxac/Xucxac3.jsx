@@ -635,13 +635,14 @@ function Xucxac3() {
 													<tr key={index}>
 														<td>{item.id_bet}</td>
 														<td
+															className="history_xucxac"
 															style={{
 																display: "flex",
 																justifyContent: "center",
 															}}
 														>
-															{item.result.split(" ").map((x) => (
-																<div className="redball">{x}</div>
+															{item.result.split(" ").map((item) => (
+																<div className={`n${item}`}></div>
 															))}
 														</td>
 														<td>{formatDate(new Date(item.createdAt))}</td>
@@ -662,7 +663,7 @@ function Xucxac3() {
 													<div className="item_inner">
 														<div className="item_history">
 															<div className="title_item_history">
-																<span className="sanh">Keno {item.sanh}</span>
+																<span className="sanh">{item.sanh}</span>
 																<span
 																	className={`type_state ${
 																		item.status_bet === "Pending"

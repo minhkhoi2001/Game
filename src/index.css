@@ -1579,3 +1579,29 @@ body:has(.admin-theme) #webpack-dev-server-client-overlay {
 	width: 100%;
 	flex-basis: 100%;
 }
+.history_xucxac > div {
+    width: 0.53333rem;
+    height: 0.53333rem;
+    background-repeat: no-repeat;
+    background-size: 0.53333rem;
+    background-position: center;
+	margin: 0 0.05rem;
+}
+.history_xucxac > .n1 {
+	background-image: url(./img/n1.png);
+}
+.history_xucxac > .n2 {
+	background-image: url(./img/n2.png);
+}
+.history_xucxac > .n3 {
+	background-image: url(./img/n3.png);
+}
+.history_xucxac > .n4 {
+	background-image: url(./img/n4.png);
+}
+.history_xucxac > .n5 {
+	background-image: url(./img/n5.png);
+}
+.history_xucxac > .n6 {
+	background-image: url(./img/n6.png);
+}
