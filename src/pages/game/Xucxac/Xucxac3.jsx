@@ -54,7 +54,7 @@ function Xucxac3() {
 		axios
 			.get(`https://server.vnvip294.com/bet/getallbet`, {})
 			.then((res) => {
-				setTotal(res.data.data);
+				rollLottery(res);
 			})
 			.catch(() => setTotal(null));
 		axios
@@ -81,7 +81,7 @@ function Xucxac3() {
 				axios
 					.get(`https://server.vnvip294.com/bet/getallbet`, {})
 					.then((res) => {
-						setTotal(res.data.data);
+						rollLottery(res);
 					})
 					.catch(() => setTotal(null));
 				axios
@@ -236,21 +236,23 @@ function Xucxac3() {
 		setActiveTabXX(tabName);
 	};
 
-	useEffect(() => {
-		if (minute == 0 && second == 0) {
-			runSlotEffect();
-		}
-	}, [minute, second]);
-
-	const slotTransforms = document.querySelectorAll(".slot-transform");
-	function runSlotEffect() {
-		slotTransforms.forEach((slotTransform) => {
-			slotTransform.classList.add("slot-scroll");
-			setTimeout(() => {
-				slotTransform.classList.remove("slot-scroll");
-			}, 3000);
-		});
+	function rollLottery(res) {
+		const interval = setInterval(() => {
+			const randomDigits1 = Math.floor(Math.random() * 6) + 1;
+			const randomDigits2 = Math.floor(Math.random() * 6) + 1;
+			const randomDigits3 = Math.floor(Math.random() * 6) + 1;
+			setTotal([{id_bet: res.data.data[0].id_bet, result: String(randomDigits1) +' '+ String(randomDigits2) +' '+ String(randomDigits3) }]);
+		  }, 100);
+	  
+		  setTimeout(() => {
+			clearInterval(interval);
+			setTotal(res.data.data);
+		  }, 2000);
+		  return () => {
+			clearInterval(interval);
+		};
 	}
+
 	function getHistoryBet() {
 		axios
 			.get(`https://server.vnvip294.com/history/historyus`, {})
