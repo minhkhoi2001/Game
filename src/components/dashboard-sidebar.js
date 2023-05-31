@@ -39,6 +39,7 @@ const items = [
 		icon: <ShoppingBagIcon fontSize="small" />,
 		title: "Set Kèo 3 ",
 	},
+	
 	{
 		href: "/admin/set5",
 		icon: <ShoppingBagIcon fontSize="small" />,
@@ -53,6 +54,16 @@ const items = [
 		href: "/admin/xoso5",
 		icon: <ShoppingBagIcon fontSize="small" />,
 		title: "Set Kèo Xổ Số 5p ",
+	},
+	{
+		href: "/admin/setxs3",
+		icon: <ShoppingBagIcon fontSize="small" />,
+		title: "Set Kèo Xúc Sắc 3p ",
+	},
+	{
+		href: "/admin/setxs5",
+		icon: <ShoppingBagIcon fontSize="small" />,
+		title: "Set Kèo Xúc Sắc 5p ",
 	},
 	{
 		href: "/admin/request",

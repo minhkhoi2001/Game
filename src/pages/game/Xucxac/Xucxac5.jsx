@@ -5,13 +5,13 @@ import swal from "sweetalert";
 import Footer from "../../../components/Footer/Footer";
 import { GetNameChoose } from "../../../funcUtils";
 
-function Xucxac3() {
+function Xucxac5() {
 	const [isVisible, setVisible] = useState(null);
 	const [bet, setBet] = useState(null);
 	const [profile, setProfile] = useState(null);
 	const [historyGame, setHistoryGame] = useState(null);
 	const [second, setSecond] = useState(0);
-	const [minute, setMinute] = useState(3);
+	const [minute, setMinute] = useState(5);
 	const [start, setStart] = useState(false);
 	const [dulieunhap, setDulieunhap] = useState(new Date());
 	const [update, setUpdate] = useState(0);
@@ -46,13 +46,13 @@ function Xucxac3() {
 		axios.get(`https://server.vnvip294.com/setting/get`, {}).then((res) => {
 			setSetting(res.data.data[0]);
 		});
-		axios.get(`https://server.vnvip294.com/xucsac3/get`).then((res) => {
+		axios.get(`https://server.vnvip294.com/xucsac5/get`).then((res) => {
 			setBet(res.data.data);
 			setDulieunhap(new Date(res.data.data.createdAt));
 			setStart(true);
 		});
 		axios
-			.get(`https://server.vnvip294.com/xucsac3/getallbet`, {})
+			.get(`https://server.vnvip294.com/xucsac5/getallbet`, {})
 			.then((res) => {
 				rollLottery(res);
 			})
@@ -66,16 +66,16 @@ function Xucxac3() {
 	}, []);
 	useEffect(() => {
 		const timer = setInterval(() => {
-			if (Math.floor(180 - (new Date() - dulieunhap) / 1000) < 0) {
+			if (Math.floor(300 - (new Date() - dulieunhap) / 1000) < 0) {
 				axios.get(`https://server.vnvip294.com/auth/getUser`, {}).then((res) => {
 					setProfile(res.data.data);
 				});
-				axios.get(`https://server.vnvip294.com/xucsac3/get`).then((res) => {
+				axios.get(`https://server.vnvip294.com/xucsac5/get`).then((res) => {
 					setBet(res.data.data);
 					setDulieunhap(new Date(res.data.data.createdAt));
 				});
 				axios
-					.get(`https://server.vnvip294.com/xucsac3/getallbet`, {})
+					.get(`https://server.vnvip294.com/xucsac5/getallbet`, {})
 					.then((res) => {
 						rollLottery(res);
 					})
@@ -125,7 +125,7 @@ function Xucxac3() {
 		}
 	}, [isVisible]);
 	useEffect(() => {
-		let curTime_second = Math.floor(180 - (date - dulieunhap) / 1000);
+		let curTime_second = Math.floor(300 - (date - dulieunhap) / 1000);
 
 		let myTimeout;
 
@@ -138,7 +138,7 @@ function Xucxac3() {
 			return () => {
 				clearTimeout(myTimeout);
 			};
-		} else if (curTime_second < 180 && curTime_second >= 0) {
+		} else if (curTime_second < 300 && curTime_second >= 0) {
 			setSecond(curTime_second % 60);
 			setMinute((curTime_second - (curTime_second % 60)) / 60);
 			setStart(true);
@@ -154,15 +154,15 @@ function Xucxac3() {
 	}, [update, dulieunhap]);
 
 	useEffect(() => {
-		let curTime_second = Math.floor(180 - (date - dulieunhap) / 1000);
+		let curTime_second = Math.floor(300 - (date - dulieunhap) / 1000);
 		let myTimeout = 0;
 		if (start) {
 			setSecond(curTime_second % 60);
 			setMinute(Math.floor(curTime_second / 60));
 
-			if (curTime_second > 180 || curTime_second <= 0) {
+			if (curTime_second > 300 || curTime_second <= 0) {
 				setStart(false);
-				setMinute(3);
+				setMinute(5);
 				setSecond(0);
 				return () => {
 					clearTimeout(myTimeout);
@@ -202,7 +202,7 @@ function Xucxac3() {
 		};
 		console.log(formData);
 		axios
-			.post("https://server.vnvip294.com/historyxucsac3p/choose", formData)
+			.post("https://server.vnvip294.com/historyxucsac5p/choose", formData)
 			.then((res) => {
 				swal("Đặt cược thành công", "", "success");
 				setItem([]);
@@ -690,7 +690,7 @@ function Xucxac3() {
 									<div className="content-history award_tb">
 										{historyGame?.map((item, key) => (
 											<>
-												{item.sanh === "Xúc sắc 3p" ? (
+												{item.sanh === "Xúc sắc 5p" ? (
 													<div className="item_inner">
 														<div className="item_history">
 															<div className="title_item_history">
@@ -816,4 +816,4 @@ function Xucxac3() {
 		</>
 	);
 }
-export default Xucxac3;
+export default Xucxac5;

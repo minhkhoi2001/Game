@@ -24,20 +24,22 @@ function CSKH() {
 			return Promise.reject(error);
 		}
 	);
-	axios
-		.get(`https://server.vnvip294.com/auth/getUser`, {})
-		.then((res) => {
-			setProfile(res.data.data);
-		})
-		.catch((err) => localStorage.removeItem("user"));
+
 
 	const [isLoading, setIsLoading] = useState(false);
 	useEffect(() => {
 		setIsLoading(true);
 		const timer = setTimeout(() => {
+			axios
+			.get(`https://server.vnvip294.com/auth/getUser`, {})
+			.then((res) => {
+				setProfile(res.data.data);
+			})
+			.catch((err) => localStorage.removeItem("user"));
 		setIsLoading(false);
 		}, 2000);
 		return () => clearTimeout(timer);
+		
 	}, []);
 
 	return (

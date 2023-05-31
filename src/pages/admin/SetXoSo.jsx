@@ -209,9 +209,16 @@ function SetXoSo() {
 		e.preventDefault();
 		const formData = {
 			id_bet: bet._id,
-			result: String(e.target.bet.value).split("").join(" "),
+			dacbiet:e.target.dacbiet.value,
+			nhat:e.target.nhat.value,
+			hai:e.target.hai1.value+ " "+e.target.hai2.value,
+			ba:e.target.ba1.value+ " "+e.target.ba4.value+ " "+e.target.ba2.value+ " "+e.target.ba3.value+ " "+e.target.ba5.value+ " "+e.target.ba6.value,
+			tu:e.target.tu1.value+ " "+e.target.tu2.value+ " "+e.target.tu3.value+ " "+e.target.tu4.value,
+			sau:e.target.sau1.value+ " "+e.target.sau2.value+ " "+e.target.sau3.value,
+			bay:e.target.bay1.value+" "+e.target.bay2.value+" "+e.target.bay3.value+" "+e.target.bay4.value,
+			nam:e.target.nam1.value+ " "+e.target.nam2.value+ " "+e.target.nam3.value+ " "+e.target.nam4.value+ " "+e.target.nam5.value+ " "+e.target.nam6.value,
 		};
-		if(e.target.bet.value){
+		console.log(formData);
 		axios
 			.post("https://server.vnvip294.com/Xoso3/update", formData)
 			.then((res) => {
@@ -220,7 +227,7 @@ function SetXoSo() {
 				
 			})
 			.catch((res) => swal("Lỗi", "Update không thành công", "error"));
-		}
+	
 
 
 	};
@@ -301,7 +308,7 @@ function SetXoSo() {
 																id="mb_prize_0"
 																className="special-prize div-horizontal"
 															>
-																<input defaultValue={bet.dacbiet} name="dacbiet" style={{width:"60px"}}/>
+																<input defaultValue={bet.dacbiet} min="10000"max="99999" name="dacbiet" style={{width:"60px"}}/>
 															</span>
 														</td>
 													</tr>
@@ -312,7 +319,7 @@ function SetXoSo() {
 																id="mb_prize_1"
 																className="prize1 div-horizontal"
 															>
-																<input defaultValue={bet.nhat} name="nhat" style={{width:"60px"}}/>
+																<input defaultValue={bet.nhat} name="nhat" min="10000"max="99999" style={{width:"60px"}}/>
 															</span>
 														</td>
 													</tr>
@@ -323,13 +330,13 @@ function SetXoSo() {
 																id="mb_prize_2"
 																className="prize2 div-horizontal"
 															>
-																<input defaultValue={bet.hai.split(" ")[0]} name="hai" style={{width:"60px"}}/>
+																<input defaultValue={bet.hai.split(" ")[0]} name="hai1" min="10000"max="99999" style={{width:"60px"}}/>
 															</span>
 															<span
 																id="mb_prize_3"
 																className="prize2 div-horizontal"
 															>
-																<input defaultValue={bet.hai.split(" ")[1]} name="hai" style={{width:"60px"}}/>
+																<input defaultValue={bet.hai.split(" ")[1]} name="hai2" min="10000"max="99999" style={{width:"60px"}}/>
 															</span>
 														</td>
 													</tr>
@@ -340,37 +347,37 @@ function SetXoSo() {
 																id="mb_prize_4"
 																className="prize3 div-horizontal"
 															>
-																<input defaultValue={bet.ba.split(" ")[0]} name="ba" style={{width:"60px"}}/>
+																<input defaultValue={bet.ba.split(" ")[0]} min="10000"max="99999" name="ba1" style={{width:"60px"}}/>
 															</span>
 															<span
 																id="mb_prize_5"
 																className="prize3 div-horizontal"
 															>
-																<input defaultValue={bet.ba.split(" ")[1]} name="ba" style={{width:"60px"}}/>
+																<input defaultValue={bet.ba.split(" ")[1]} min="10000"max="99999" name="ba2" style={{width:"60px"}}/>
 															</span>
 															<span
 																id="mb_prize_6"
 																className="prize3 div-horizontal"
 															>
-																<input defaultValue={bet.ba.split(" ")[2]} name="ba" style={{width:"60px"}}/>
+																<input defaultValue={bet.ba.split(" ")[2]} min="10000"max="99999" name="ba3" style={{width:"60px"}}/>
 															</span>
 															<span
 																id="mb_prize_7"
 																className="prize3 div-horizontal"
 															>
-																<input defaultValue={bet.ba.split(" ")[3]} name="ba" style={{width:"60px"}}/>
+																<input defaultValue={bet.ba.split(" ")[3]} min="10000"max="99999" name="ba4" style={{width:"60px"}}/>
 															</span>
 															<span
 																id="mb_prize_8"
 																className="prize3 div-horizontal"
 															>
-																<input defaultValue={bet.ba.split(" ")[4]} name="ba" style={{width:"60px"}}/>
+																<input defaultValue={bet.ba.split(" ")[4]} min="10000"max="99999" name="ba5" style={{width:"60px"}}/>
 															</span>
 															<span
 																id="mb_prize_9"
 																className="prize3 div-horizontal"
 															>
-																<input defaultValue={bet.ba.split(" ")[5]} name="ba" style={{width:"60px"}}/>
+																<input defaultValue={bet.ba.split(" ")[5]} min="10000"max="99999" name="ba6" style={{width:"60px"}}/>
 															</span>
 														</td>
 													</tr>
@@ -381,25 +388,25 @@ function SetXoSo() {
 																id="mb_prize_10"
 																className="prize4 div-horizontal"
 															>
-																<input defaultValue={bet.tu.split(" ")[0]} name="tu" style={{width:"60px"}}/>
+																<input defaultValue={bet.tu.split(" ")[0]} min="1000"max="9999" name="tu1" style={{width:"60px"}}/>
 															</span>
 															<span
 																id="mb_prize_11"
 																className="prize4 div-horizontal"
 															>
-																<input defaultValue={bet.tu.split(" ")[1]} name="tu" style={{width:"60px"}}/>
+																<input defaultValue={bet.tu.split(" ")[1]} min="1000"max="9999" name="tu2" style={{width:"60px"}}/>
 															</span>
 															<span
 																id="mb_prize_12"
 																className="prize4 div-horizontal"
 															>
-																<input defaultValue={bet.tu.split(" ")[2]} name="tu" style={{width:"60px"}}/>
+																<input defaultValue={bet.tu.split(" ")[2]} min="1000"max="9999" name="tu3" style={{width:"60px"}}/>
 															</span>
 															<span
 																id="mb_prize_13"
 																className="prize4 div-horizontal"
 															>
-																<input defaultValue={bet.tu.split(" ")[3]} name="tu" style={{width:"60px"}}/>
+																<input defaultValue={bet.tu.split(" ")[3]} min="1000"max="9999" name="tu4" style={{width:"60px"}}/>
 															</span>
 														</td>
 													</tr>
@@ -410,37 +417,37 @@ function SetXoSo() {
 																id="mb_prize_14"
 																className="prize5 div-horizontal"
 															>
-																<input defaultValue={bet.nam.split(" ")[0]} name="nam" style={{width:"60px"}}/>
+																<input defaultValue={bet.nam.split(" ")[0]} min="1000"max="9999" name="nam1" style={{width:"60px"}}/>
 															</span>
 															<span
 																id="mb_prize_15"
 																className="prize5 div-horizontal"
 															>
-																<input defaultValue={bet.nam.split(" ")[1]} name="nam" style={{width:"60px"}}/>
+																<input defaultValue={bet.nam.split(" ")[1]} min="1000"max="9999" name="nam2" style={{width:"60px"}}/>
 															</span>
 															<span
 																id="mb_prize_16"
 																className="prize5 div-horizontal"
 															>
-																<input defaultValue={bet.nam.split(" ")[2]} name="nam" style={{width:"60px"}}/>
+																<input defaultValue={bet.nam.split(" ")[2]} min="1000"max="9999" name="nam6" style={{width:"60px"}}/>
 															</span>
 															<span
 																id="mb_prize_17"
 																className="prize5 div-horizontal"
 															>
-																<input defaultValue={bet.nam.split(" ")[3]} name="nam" style={{width:"60px"}}/>
+																<input defaultValue={bet.nam.split(" ")[3]} min="1000"max="9999" name="nam3" style={{width:"60px"}}/>
 															</span>
 															<span
 																id="mb_prize_18"
 																className="prize5 div-horizontal"
 															>
-																<input defaultValue={bet.nam.split(" ")[4]} name="nam" style={{width:"60px"}}/>
+																<input defaultValue={bet.nam.split(" ")[4]} min="1000"max="9999" name="nam4" style={{width:"60px"}}/>
 															</span>
 															<span
 																id="mb_prize_19"
 																className="prize5 div-horizontal"
 															>
-																<input defaultValue={bet.nam.split(" ")[5]} name="nam" style={{width:"60px"}}/>
+																<input defaultValue={bet.nam.split(" ")[5]} min="1000"max="9999" name="nam5" style={{width:"60px"}}/>
 															</span>
 														</td>
 													</tr>
@@ -451,19 +458,19 @@ function SetXoSo() {
 																id="mb_prize_20"
 																className="prize6 div-horizontal"
 															>
-																<input defaultValue={bet.sau.split(" ")[0]} name="sau" style={{width:"60px"}}/>
+																<input defaultValue={bet.sau.split(" ")[0]} min="100"max="999" name="sau1" style={{width:"60px"}}/>
 															</span>
 															<span
 																id="mb_prize_21"
 																className="prize6 div-horizontal"
 															>
-																<input defaultValue={bet.sau.split(" ")[1]} name="sau" style={{width:"60px"}}/>
+																<input defaultValue={bet.sau.split(" ")[1]} min="100"max="999" name="sau2" style={{width:"60px"}}/>
 															</span>
 															<span
 																id="mb_prize_22"
 																className="prize6 div-horizontal"
 															>
-																<input defaultValue={bet.sau.split(" ")[2]} name="sau" style={{width:"60px"}}/>
+																<input defaultValue={bet.sau.split(" ")[2]} min="100"max="999" name="sau3" style={{width:"60px"}}/>
 															</span>
 														</td>
 													</tr>
@@ -474,25 +481,25 @@ function SetXoSo() {
 																id="mb_prize_23"
 																className="prize7 div-horizontal"
 															>
-																<input defaultValue={bet.bay.split(" ")[0]} name="bay" style={{width:"60px"}}/>
+																<input defaultValue={bet.bay.split(" ")[0]} min="10"max="99" name="bay1" style={{width:"60px"}}/>
 															</span>
 															<span
 																id="mb_prize_24"
 																className="prize7 div-horizontal"
 															>
-																<input defaultValue={bet.bay.split(" ")[1]} name="bay" style={{width:"60px"}}/>
+																<input defaultValue={bet.bay.split(" ")[1]} min="10"max="99" name="bay2" style={{width:"60px"}}/>
 															</span>
 															<span
 																id="mb_prize_25"
 																className="prize7 div-horizontal"
 															>
-																<input defaultValue={bet.bay.split(" ")[2]} name="bay" style={{width:"60px"}}/>
+																<input defaultValue={bet.bay.split(" ")[2]} min="10"max="99" name="bay3" style={{width:"60px"}}/>
 															</span>
 															<span
 																id="mb_prize_26"
 																className="prize7 div-horizontal"
 															>
-																<input defaultValue={bet.bay.split(" ")[3]} name="bay" style={{width:"60px"}}/>
+																<input defaultValue={bet.bay.split(" ")[3]} min="10"max="99" name="bay4" style={{width:"60px"}}/>
 															</span>
 														</td>
 													</tr>
@@ -503,13 +510,6 @@ function SetXoSo() {
 										)}
 									</div>
 									<h2>Chọn kèo</h2>
-									<input
-										min="10000"
-										max="99999"
-										type="number"
-										name="bet"
-										id="bet"
-									/>
 									<button
 										type="submit"
 										className="btn-submit"

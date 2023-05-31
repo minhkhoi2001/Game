@@ -42,21 +42,32 @@ function Setting() {
 		const formData={
 			id: setting?._id,
 			doiben: Number(e.target.doiben.value),
-			banhdon: Number(e.target.banhdon.value),
-			bo3: Number(e.target.bo3.value),
-			culu: Number(e.target.culu.value),
-			sanh: Number(e.target.sanh.value),
-			bo4: Number(e.target.bo4.value),
-			bo5: Number(e.target.bo5.value),
-			haidoi: Number(e.target.haidoi.value),
-			motdoi: Number(e.target.motdoi.value),
-			tieutan: Number(e.target.tieutan.value),
-			tamco: Number(e.target.tamco.value),
-			sanhother: Number(e.target.sanhother.value),
-			doikhac: Number(e.target.doikhac.value),
-			nuasanh: Number(e.target.nuasanh.value),
-			rongho: Number(e.target.rongho.value),
-			hoa: Number(e.target.hoa.value),
+			// banhdon: Number(e.target.banhdon.value),
+
+
+			xucsac5p:Number(e.target.xucsac5p.value),
+			xucsac3p:Number(e.target.xucsac5p.value),
+			haitrung3:Number(e.target.haitrung3.value),
+			haitrung5:Number(e.target.haitrung5.value),
+
+			batrung3:Number(e.target.batrung3.value),
+			batrung5:Number(e.target.batrung5.value),
+
+
+			// bo3: Number(e.target.bo3.value),
+			// culu: Number(e.target.culu.value),
+			// sanh: Number(e.target.sanh.value),
+			// bo4: Number(e.target.bo4.value),
+			// bo5: Number(e.target.bo5.value),
+			// haidoi: Number(e.target.haidoi.value),
+			// motdoi: Number(e.target.motdoi.value),
+			// tieutan: Number(e.target.tieutan.value),
+			// tamco: Number(e.target.tamco.value),
+			// sanhother: Number(e.target.sanhother.value),
+			// doikhac: Number(e.target.doikhac.value),
+			// nuasanh: Number(e.target.nuasanh.value),
+			// rongho: Number(e.target.rongho.value),
+			// hoa: Number(e.target.hoa.value),
 			lothuong: Number(e.target.lothuong.value),
 			bacang: Number(e.target.bacang.value),
 			de: Number(e.target.de.value),
@@ -102,6 +113,84 @@ function Setting() {
 													name="doiben"
 													step="any"
 													id="doiben"
+													className="input_setting"
+												/>
+											</div>
+										</div>
+										<div className="form_col">
+											<div className="form_group">
+												<label >Súc xắc 3p</label>
+												<input
+													defaultValue={setting?.xucsac3p}
+													type="number"
+													name="xucsac3p"
+													step="any"
+													id="xucsac3p"
+													className="input_setting"
+												/>
+											</div>
+										</div>
+										<div className="form_col">
+											<div className="form_group">
+												<label >Hai số trùng xúc xắc 3p</label>
+												<input
+													defaultValue={setting?.haitrung3}
+													type="number"
+													name="haitrung3"
+													step="any"
+													id="haitrung3"
+													className="input_setting"
+												/>
+											</div>
+										</div>
+										<div className="form_col">
+											<div className="form_group">
+												<label >Ba số trùng xúc xắc 3p</label>
+												<input
+													defaultValue={setting?.batrung3}
+													type="number"
+													name="batrung3"
+													step="any"
+													id="batrung3"
+													className="input_setting"
+												/>
+											</div>
+										</div>
+										<div className="form_col">
+											<div className="form_group">
+												<label >Hai số trùng xúc xắc 5p</label>
+												<input
+													defaultValue={setting?.haitrung5}
+													type="number"
+													name="haitrung5"
+													step="any"
+													id="haitrung5"
+													className="input_setting"
+												/>
+											</div>
+										</div>
+										<div className="form_col">
+											<div className="form_group">
+												<label >Ba số trùng xúc xắc 5p</label>
+												<input
+													defaultValue={setting?.batrung5}
+													type="number"
+													name="batrung5"
+													step="any"
+													id="batrung5"
+													className="input_setting"
+												/>
+											</div>
+										</div>
+										<div className="form_col">
+											<div className="form_group">
+												<label >Súc xắc 5p</label>
+												<input
+													defaultValue={setting?.xucsac5p}
+													type="number"
+													name="xucsac5p"
+													step="any"
+													id="xucsac5p"
 													className="input_setting"
 												/>
 											</div>
@@ -380,7 +469,7 @@ function Setting() {
 											</div>
 										</div>
 										<div className="form_col">
-											<button className="btn_setting">Lưu</button>
+											<button type="submit" className="btn_setting">Lưu</button>
 										</div>
 									</form>
 								</div>

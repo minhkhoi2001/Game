@@ -94,7 +94,7 @@ function HistoryBet() {
 								<div className="item_inner">
 									<div className="item_history">
 										<div className="title_item_history">
-											<span className="sanh">Keno {item.sanh}</span>
+											<span className="sanh">{item.sanh=="3 phút"?"Keno 3 phút":item.sanh=="5 phút"?"Keno 5 phút":item.sanh=="1 phút"?"Keno 1 phút": item.sanh}</span>
 											<span
 												className={`type_state ${
 													item.status_bet === "Pending"
@@ -111,7 +111,7 @@ function HistoryBet() {
 											Phiên cược: {item.id_bet.id_bet?item.id_bet.id_bet:item.id_bet}
 										</div>
 										<div className="id_history_sanh">
-											{GetNameChoose(Number(item.state), null)}
+											{GetNameChoose(Number(item.state), null,item.sanh)}
 										</div>
 									</div>
 									<div className="money_history">

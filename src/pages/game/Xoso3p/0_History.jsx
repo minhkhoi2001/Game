@@ -47,7 +47,7 @@ const History = ({ isOpen, closePopup }) => {
 												<div className="item_inner">
 													<div className="item_history">
 														<div className="title_item_history">
-															<span className="sanh">Keno {item.sanh}</span>
+															<span className="sanh">{item.sanh}</span>
 															<span
 																className={`type_state ${
 																	item.status_bet === "Pending"

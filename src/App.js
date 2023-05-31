@@ -89,6 +89,9 @@ import Employee from "./pages/admin/Employee";
 import AllEmployee from "./pages/admin/AllEmployee";
 import UsersByEmployee from "./pages/admin/UsersByEmployee";
 import SetXoSo5 from "./pages/admin/SetXoSo5";
+import SetXS3p from "./pages/admin/SetXS3p";
+import Xucxac5 from "./pages/game/Xucxac/Xucxac5";
+import SetXS5p from "./pages/admin/SetXS5p";
 
 function App() {
 	return (
@@ -107,7 +110,7 @@ function App() {
 						<Route element={<Keno3 />} path="/keno3p" />
 						<Route element={<Keno1 />} path="/keno1p" />
 						<Route element={<Xucxac3 />} path="/xucxac" />
-
+						<Route element={<Xucxac5 />} path="/xucxac5" />
 						<Route element={<Lo />} path="/xoso3p" />
 						<Route element={<Bacang />} path="/xoso3p/bacang" />
 						<Route element={<De />} path="/xoso3p/de" />
@@ -165,6 +168,8 @@ function App() {
 
 						<Route element={<Set1 />} path="/admin/set1" exact />
 						<Route element={<Set3 />} path="/admin/set3" exact />
+						<Route element={<SetXS3p/>} path="/admin/setxs3" exact />
+						<Route element={<SetXS5p/>} path="/admin/setxs5" exact />
 						<Route element={<Set5 />} path="/admin/set5" exact />
 						<Route element={<SetXoSo />} path="/admin/xoso" exact />
 						<Route element={<SetXoSo5 />} path="/admin/xoso5" exact />
