@@ -171,6 +171,19 @@ function Home() {
 								</div>
 							</Link>
 						</div>
+						<div className="box-game">
+							<Link to="/xucxac">
+								<img
+									src={require("../../img/k3-3fb4362a.png")}
+									style={{ margin: "0 5px 0 0" }}
+								/>
+								<h3>ĐỔ XÚC XẮC 3P</h3>
+								<div className="box-game-text">
+									<div>Dự đoán</div>
+									<div>Dự đoán xúc xắc để giành chiến thắng</div>
+								</div>
+							</Link>
+						</div>
 					</div>
 				</div>
 				<Footer />

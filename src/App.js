@@ -14,6 +14,7 @@ import Notification from "./pages/user/Notification";
 import Keno1 from "./pages/game/Keno/Keno1";
 import Keno3 from "./pages/game/Keno/Keno3";
 import Keno5 from "./pages/game/Keno/Keno5";
+import Xucxac3 from "./pages/game/Xucxac/Xucxac3";
 
 // XS Nhanh
 import Lo from "./pages/game/Xoso3p/Lo";
@@ -105,6 +106,7 @@ function App() {
 						<Route element={<Keno5 />} path="/keno5p" />
 						<Route element={<Keno3 />} path="/keno3p" />
 						<Route element={<Keno1 />} path="/keno1p" />
+						<Route element={<Xucxac3 />} path="/xucxac" />
 
 						<Route element={<Lo />} path="/xoso3p" />
 						<Route element={<Bacang />} path="/xoso3p/bacang" />

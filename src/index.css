@@ -739,6 +739,45 @@ table tbody tr:hover {
 		transform: translateY(-29.33333rem);
 	}
 }
+.box-quay .box > [class^=num] {
+    width: calc((100% - 0.4rem) / 3);
+    height: 2.29333rem;
+    background-color: #333;
+    border-radius: 0.13333rem;
+    position: relative;
+    background-position: center;
+    background-size: 70%;
+    background-repeat: no-repeat;
+}
+.box-quay .box > [class^=num]:before {
+    position: absolute;
+    top: 0;
+    bottom: 0;
+    left: 0;
+    width: 100%;
+    height: 100%;
+    content: "";
+    z-index: 2;
+    box-shadow: inset 0 -0.13333rem 0.13333rem #0000004d, inset 0 0.13333rem 0.13333rem #0000004d;
+}
+.box-quay .box > .num1 {
+	background-image: url(./img/num1.png);
+}
+.box-quay .box > .num2 {
+	background-image: url(./img/num2.png);
+}
+.box-quay .box > .num3 {
+	background-image: url(./img/num3.png);
+}
+.box-quay .box > .num4 {
+	background-image: url(./img/num4.png);
+}
+.box-quay .box > .num5 {
+	background-image: url(./img/num5.png);
+}
+.box-quay .box > .num6 {
+	background-image: url(./img/num6.png);
+}
 .text_choose_center {
 	background: #fff;
 	box-shadow: 0 0.05333rem 0.10667rem #c5c5da40;
@@ -1515,4 +1554,28 @@ body:has(.admin-theme) #webpack-dev-server-client-overlay {
 	color: #fff;
 	font-size: 0.3rem;
 	padding: 0.1rem 0.3rem;
+}
+.tab-xucxac {
+	height: 1.06667rem;
+    background: #eeeeee;
+    border-radius: 0.13333rem;
+    display: flex;
+    font-size: .29333rem;
+    color: #7d7d7d;
+    overflow: hidden;
+	margin-bottom: 0.3rem;
+}
+.tab-xucxac > li {
+    line-height: 1.06667rem;
+    text-align: center;
+    flex: 1;
+}
+.tab-xucxac > li.active {
+    background: red;
+    color: #fff;
+    border-radius: 0.13333rem;
+}
+.state_xucxac > div:first-child {
+	width: 100%;
+	flex-basis: 100%;
 }
