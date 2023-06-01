@@ -1,5 +1,5 @@
 export const GetNameChoose=(state, type, sanh)=>{
-    if(sanh==="Xúc sắc 3p"||sanh==="Xúc sắc 5p"){
+    if(sanh==="Xúc xắc 3p"||sanh==="Xúc xắc 5p"){
         if(Number(state)==1&&type==null){
             return "Chọn T "
         }

@@ -58,12 +58,12 @@ const items = [
 	{
 		href: "/admin/setxs3",
 		icon: <ShoppingBagIcon fontSize="small" />,
-		title: "Set Kèo Xúc Sắc 3p ",
+		title: "Set Kèo Xúc Xắc 3p ",
 	},
 	{
 		href: "/admin/setxs5",
 		icon: <ShoppingBagIcon fontSize="small" />,
-		title: "Set Kèo Xúc Sắc 5p ",
+		title: "Set Kèo Xúc Xắc 5p ",
 	},
 	{
 		href: "/admin/request",

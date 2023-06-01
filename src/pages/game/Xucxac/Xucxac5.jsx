@@ -690,7 +690,7 @@ function Xucxac5() {
 									<div className="content-history award_tb">
 										{historyGame?.map((item, key) => (
 											<>
-												{item.sanh === "Xúc sắc 5p" ? (
+												{item.sanh === "Xúc xắc 5p" ? (
 													<div className="item_inner">
 														<div className="item_history">
 															<div className="title_item_history">
