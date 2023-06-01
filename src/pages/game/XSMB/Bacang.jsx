@@ -231,31 +231,50 @@ function Bacang() {
 			Number(currentDate.getHours() + "" + minute) < 1915
 		) {
 			swal("Đặt cược không thành công.", " Đang chờ kết quả", "warning");
-		} else {
-			let id = "";
+		} else if(Number(currentDate.getHours() + "" + minute) >1915){
+			const date=  new Date() 
+			const day = Number(date.getDate()+1)<10?"0"+Number(date.getDate()+1):Number(date.getDate()+1)
+			const month = date.getUTCMonth()<9?"0"+Number(date.getUTCMonth()+1):Number(date.getUTCMonth()+1)
+			
+			const formData = {
+				state: newData.join(" "),
+				id: day+"/"+month+"/"+date.getFullYear(),
+				type: 2,
+				money: item1.length * newMoney,
+			};	
+		
 			axios
-				.get(`https://mu88.live/api/front/open/lottery/history/list/5/miba`)
-				.then((res) => {
-					const formData = {
-						state: newData.join(" "),
-						id: res.data.t.turnNum,
-						type: 2,
-						money: item1.length * newMoney,
-					};
-					axios
-						.post(
-							"https://server.vnvip294.com/history/chooseXSMB",
-							formData
-						)
-						.then((res) => {
-							swal("Đặt cược thành công", "", "success");
-							setItem([]);
-						})
-						.catch((err) =>
-							swal("Thất bại", "Số tiền trong ví không đủ", "error")
-						);
-				})
-				.catch((res) => swal("Lỗi.", "Vui lòng thử lại", "warning"));
+			.post(
+				"https://server.vnvip294.com/history/chooseXSMB",
+				formData
+			)
+			.then((res) => {
+				swal("Đặt cược thành công", "", "success");
+				setItem([]);
+			})
+			.catch((err) =>
+				swal("Thất bại", "Số tiền trong ví không đủ", "error")
+			);
+		}else if(Number(currentDate.getHours() + "" + minute) <1800){
+			const formData = {
+				state: newData.join(" "),
+				id: bet.turnNum,
+				type: 2,
+				money: item1.length * newMoney,
+			};	
+		
+			axios
+			.post(
+				"https://server.vnvip294.com/history/chooseXSMB",
+				formData
+			)
+			.then((res) => {
+				swal("Đặt cược thành công", "", "success");
+				setItem([]);
+			})
+			.catch((err) =>
+				swal("Thất bại", "Số tiền trong ví không đủ", "error")
+			);
 		}
 	};
 	const [newMoney, setNewMoney] = useState();
