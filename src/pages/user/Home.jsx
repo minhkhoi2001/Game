@@ -187,7 +187,7 @@ function Home() {
 						<div className="box-game">
 							<Link to="/xucxac5">
 								<img
-									src={require("../../img/k3-3fb4362a.png")}
+									src={require("../../img/logo-k333.685bfbc8.png")}
 									style={{ margin: "0 5px 0 0" }}
 								/>
 								<h3>ĐỔ XÚC XẮC 5P</h3>

@@ -1009,6 +1009,9 @@ table tbody tr:hover {
 .content_bank:not(:has(.item-banks:nth-child(2))){
 	font-size: 0.4rem
 }
+.content_bank:not(:has(.item-banks:nth-child(2))) > div {
+	width: 70%
+}
 .content_bank > div {
 	width: 50%;
 	text-align: left;

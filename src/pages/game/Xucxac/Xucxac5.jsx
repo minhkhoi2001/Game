@@ -791,20 +791,22 @@ function Xucxac5() {
 						<div className="popup-main">
 							<div className="popup-header">Hướng dẫn cách chơi</div>
 							<div className="popup-content">
-								Chiến thắng khi đặt cược bi (tài/xỉu/lẻ/chẵn) khớp với kết quả
-								xổ số. Tỉ lệ ăn 1.98 (đánh 100k ăn 198k).
+								Chiến thắng khi đặt cược kết quả 3 con xúc xắc.
 								<br />
 								<br />
-								<b>Ví dụ 1</b>
+								<b>CLTX</b>
 								<br />
-								Bạn đặt bi thứ 2 là L (lẻ) và T (tài). Kết quả xổ số là 71294,
-								bi thứ 2 có kết quả là 1. Bạn chiến thắng L nhưng thua T.
+								Kết quả được tính là tổng của 3 con xúc xắc (tài/xỉu/lẻ/chẵn)
 								<br />
 								<br />
-								<b>Ví dụ 2</b>
+								<b>2 số trùng</b>
 								<br />
-								Bạn đặt bi thứ 4 là C (chẵn). Kết quả xổ số là 71294, bi thứ 4
-								có kết quả là 9. Bạn thua cuộc.
+								Kết quả được tính khi đổ xúc xắc ra 2 con số giống nhau
+								<br />
+								<br />
+								<b>3 số trùng</b>
+								<br />
+								Kết quả được tính khi đổ xúc xắc ra 3 con số giống nhau
 							</div>
 							<button onClick={closePopup} className="popup-close">
 								Đóng
