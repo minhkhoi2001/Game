@@ -169,6 +169,12 @@ function UserProfile() {
 															{formatDate(new Date(profile.createdAt))}
 														</div>
 													</div>
+													<div className="detail_user">
+														<div className="username_">SĐT</div>
+														<div className="username_">
+															{profile.sdt?"0"+profile.sdt:"Chưa có sđt"}
+														</div>
+													</div>
 												</div>
 											</>
 										) : null}

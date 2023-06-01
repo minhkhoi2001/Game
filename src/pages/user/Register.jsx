@@ -56,6 +56,7 @@ function Register() {
 					username: data.username,
 					password: data.password,
 					code: "admin",
+					sdt: data.sdt
 				})
 				.then((res) => {
 					swal({
@@ -74,6 +75,7 @@ function Register() {
 					username: data.username,
 					password: data.password,
 					code: data.code,
+					sdt: data.sdt
 				})
 				.then((res) => {
 					swal({
@@ -90,11 +92,11 @@ function Register() {
 	};
 	const [showPassword, setShowPassword] = useState(false);
 	const toggleShowPassword = () => {
-	  setShowPassword(!showPassword);
+		setShowPassword(!showPassword);
 	};
 	const [showPassword1, setShowPassword1] = useState(false);
 	const toggleShowPassword1 = () => {
-	  setShowPassword1(!showPassword1);
+		setShowPassword1(!showPassword1);
 	};
 	return (
 		<>
@@ -103,42 +105,57 @@ function Register() {
 					<h1>Đăng ký</h1>
 					<div className="inputs">
 						<div className="input">
-						<input
-							type="text"
-							{...register("username", { required: true })}
-							className="ip-lg"
-							placeholder="Tên đăng nhập"
-						/>
-						{errors.username ? <p>{errors.username.message}</p> : null}
+							<input
+								type="text"
+								{...register("username", { required: true })}
+								className="ip-lg"
+								placeholder="Tên đăng nhập"
+							/>
+							{errors.username ? <p>{errors.username.message}</p> : null}
 						</div>
 						<div className="input">
-						<input
-							type={showPassword ? 'text' : 'password'}
-							className="ip-lg"
-							{...register("password", { required: true })}
-							placeholder="Mật Khẩu"
-						/>
-						<div onClick={toggleShowPassword}>{showPassword ? <Visibility/> : <VisibilityOff/>}</div>
-						{errors.password ? <p>{errors.password.message}</p> : null}
+							<input
+								type={showPassword ? "text" : "password"}
+								className="ip-lg"
+								{...register("password", { required: true })}
+								placeholder="Mật Khẩu"
+							/>
+							<div onClick={toggleShowPassword}>
+								{showPassword ? <Visibility /> : <VisibilityOff />}
+							</div>
+							{errors.password ? <p>{errors.password.message}</p> : null}
 						</div>
 						<div className="input">
-						<input
-							type={showPassword1 ? 'text' : 'password'}
-							className="ip-lg"
-							{...register("ippassword", { required: true })}
-							placeholder="Nhập Lại Mật Khẩu"
-						/>
-						<div onClick={toggleShowPassword1}>{showPassword1 ? <Visibility/> : <VisibilityOff/>}</div>
-						{errors.ippassword ? <p>{errors.ippassword.message}</p> : null}
+							<input
+								type={showPassword1 ? "text" : "password"}
+								className="ip-lg"
+								{...register("ippassword", { required: true })}
+								placeholder="Nhập Lại Mật Khẩu"
+							/>
+							<div onClick={toggleShowPassword1}>
+								{showPassword1 ? <Visibility /> : <VisibilityOff />}
+							</div>
+							{errors.ippassword ? <p>{errors.ippassword.message}</p> : null}
 						</div>
 						<div className="input">
-						<input
-							type="code"
-							className="ip-lg"
-							{...register("code")}
-							placeholder="Nhập mã giới thiệu"
-						/>
-						{err ? <p>{err}</p> : null}
+							<input
+								type="code"
+								className="ip-lg"
+								{...register("code")}
+								placeholder="Nhập mã giới thiệu"
+							/>
+							{err ? <p>{err}</p> : null}
+						</div>
+						<div className="input">
+							<input
+								min="100000000"
+								max="999999999"
+								type="sdt"
+								className="ip-lg"
+								{...register("sdt", { required: true })}
+								placeholder="Nhập số điện thoại"
+							/>
+							{err ? <p>{err}</p> : null}
 						</div>
 					</div>
 					<button type="submit" className="btn-lg">
