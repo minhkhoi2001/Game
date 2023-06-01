@@ -30,18 +30,20 @@ function CSKH() {
 	useEffect(() => {
 		setIsLoading(true);
 		const timer = setTimeout(() => {
-			axios
-			.get(`https://server.vnvip294.com/auth/getUser`, {})
-			.then((res) => {
-				setProfile(res.data.data);
-			})
-			.catch((err) => localStorage.removeItem("user"));
+	
 		setIsLoading(false);
 		}, 2000);
 		return () => clearTimeout(timer);
 		
 	}, []);
-
+useEffect(()=>{
+	axios
+	.get(`https://server.vnvip294.com/auth/getUser`, {})
+	.then((res) => {
+		setProfile(res.data.data);
+	})
+	.catch((err) => localStorage.removeItem("user"));
+},[])
 	return (
 		<>
 			{isLoading ? (

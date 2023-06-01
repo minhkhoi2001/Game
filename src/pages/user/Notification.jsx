@@ -21,13 +21,15 @@ function Notification() {
 			return Promise.reject(error);
 		}
 	);
-	axios
+	useEffect(()=>{
+		axios
 		.get(`https://server.vnvip294.com/auth/getUser`, {})
 		.then((res) => {
 			setProfile(res.data.data);
 		})
 		.catch((err) => localStorage.removeItem("user"));
 
+	},[])
 	return (
 		<>
 			<div className="main">
