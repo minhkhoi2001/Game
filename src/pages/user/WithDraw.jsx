@@ -117,22 +117,15 @@ function WithDraw() {
 						</div>
 						<div className="header-right">
 							<div style={{ display: "flex", float: "right" }}>
-								{isShow && profile ? (
-									<span style={{ marginRight: "0.111rem" }}>
-										Số dư: <b>{Math.floor(profile.money).toLocaleString()}đ</b>
-									</span>
-								) : (
-									<span style={{ marginRight: "0.111rem" }}>
-										Số dư: <b>******đ</b>
-									</span>
-								)}
-								<div
-									onClick={() => {
-										setShow(!isShow);
-									}}
-								>
-									{isShow ? <VisibilityOff /> : <Visibility />}
-								</div>
+							{profile ? (
+              <span style={{ marginRight: "0.111rem" }}>
+                Số dư: <b>{Math.floor(profile.money).toLocaleString()}đ</b>
+              </span>
+            ) : (
+              <span style={{ marginRight: "0.111rem" }}>
+                Số dư: <b>******đ</b>
+              </span>
+            )}
 							</div>
 						</div>
 					</div>

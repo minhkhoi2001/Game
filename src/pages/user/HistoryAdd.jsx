@@ -65,22 +65,15 @@ function HistoryAdd() {
 						</div>
 						<div className="header-right">
 							<div style={{ display: "flex", float: "right" }}>
-								{isShow && profile1 ? (
-									<span style={{ marginRight: "0.111rem" }}>
-										Số dư: <b>{Math.floor(profile1.money).toLocaleString()}đ</b>
-									</span>
-								) : (
-									<span style={{ marginRight: "0.111rem" }}>
-										Số dư: <b>******đ</b>
-									</span>
-								)}
-								<div
-									onClick={() => {
-										setShow(!isShow);
-									}}
-								>
-									{isShow ? <VisibilityOff /> : <Visibility />}
-								</div>
+							{profile1 ? (
+              <span style={{ marginRight: "0.111rem" }}>
+                Số dư: <b>{Math.floor(profile1.money).toLocaleString()}đ</b>
+              </span>
+            ) : (
+              <span style={{ marginRight: "0.111rem" }}>
+                Số dư: <b>******đ</b>
+              </span>
+            )}
 							</div>
 						</div>
 					</div>

@@ -16,7 +16,7 @@ const Header = ({ profile }) => {
         </div>
         <div className="header-right">
           <div style={{ display: "flex", float: "right" }}>
-            {isShow && profile ? (
+            {profile ? (
               <span style={{ marginRight: "0.111rem" }}>
                 Số dư: <b>{Math.floor(profile.money).toLocaleString()}đ</b>
               </span>
@@ -25,13 +25,6 @@ const Header = ({ profile }) => {
                 Số dư: <b>******đ</b>
               </span>
             )}
-            <div
-              onClick={() => {
-                setShow(!isShow);
-              }}
-            >
-              {isShow ? <VisibilityOff /> : <Visibility />}
-            </div>
           </div>
         </div>
       </div>

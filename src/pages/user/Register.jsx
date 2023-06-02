@@ -137,19 +137,17 @@ function Register() {
 							</div>
 							{errors.ippassword ? <p>{errors.ippassword.message}</p> : null}
 						</div>
-						<div className="input">
+						<div className="input" style={{display:"none"}}>
 							<input
 								type="code"
 								className="ip-lg"
 								{...register("code")}
 								placeholder="Nhập mã giới thiệu"
 							/>
-							{err ? <p>{err}</p> : null}
 						</div>
 						<div className="input">
 							<input
-								min="100000000"
-								max="999999999"
+								pattern="(\+84|0)\d{9,10}"
 								type="sdt"
 								className="ip-lg"
 								{...register("sdt", { required: true })}
