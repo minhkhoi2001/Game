@@ -110,6 +110,7 @@ function HistoryBetAll() {
 													<TableCell>Số kỳ</TableCell>
 													<TableCell>User</TableCell>
 													<TableCell>ID User</TableCell>
+													<TableCell>Trò chơi</TableCell>
 													<TableCell>Người chơi đặt</TableCell>
 													<TableCell>Số tiền</TableCell>
 													<TableCell>Trạng thái</TableCell>
@@ -118,7 +119,7 @@ function HistoryBetAll() {
 											</TableHead>
 											{data != null ? (
 												<TableBody>
-													{data?.slice((pages - 1) * 10, (pages - 1) * 10 + 10).map((item) => (
+													{data?.slice((pages - 1) * 30, (pages - 1) * 30 + 30).map((item) => (
 														<>
 															<TableRow>
 																<TableCell sx={{ fontWeight: "600" }}>
@@ -129,6 +130,9 @@ function HistoryBetAll() {
 																</TableCell>
 																<TableCell sx={{ fontWeight: "600" }}>
 																	{item.user.iduser}
+																</TableCell>
+																<TableCell sx={{ fontWeight: "600" }}>
+																	{item.sanh=="3 phút"?"Keno 3p":item.sanh=="5 phút"?"Keno 5p":item.sanh=="1 phút"?"Keno 1p": item.sanh}
 																</TableCell>
 																<TableCell sx={{ fontWeight: "600" }}>
 																	{GetNameChoose(item.state,item.type)}
@@ -185,7 +189,7 @@ function HistoryBetAll() {
 										{data != null ? (
 											<Pagination
 												color="primary"
-												count={Math.floor(data.length / 10) + 1}
+												count={Math.floor(data.length / 30) + 1}
 												size="small"
 												onChange={handleChange}
 											/>

@@ -11,6 +11,7 @@ import {
 	Container,
 	Input,
 	Table,
+	Pagination,
 	TableBody,
 	TableCell,
 	TableHead,
@@ -81,6 +82,12 @@ function Users() {
 			setUser(JSON.parse(localStorage.getItem("data")));
 		}
 	};
+	const [pages, setPage] = useState(1);
+
+	const handleChange = (e, page) => {
+
+		setPage(page);
+	};
 	if (users !== null) {
 		return (
 			<>
@@ -112,7 +119,7 @@ function Users() {
 														<TableCell>ID User</TableCell>
 														<TableCell>Username</TableCell>
 														<TableCell>Số tiền</TableCell>
-														<TableCell>Ngày tạo</TableCell>
+														{/*<TableCell>Ngày tạo</TableCell>*/}
 														<TableCell>Admin Cộng</TableCell>
 
 														<TableCell>Admin Trừ</TableCell>
@@ -124,8 +131,9 @@ function Users() {
 														<TableCell>Xem thông tin</TableCell>
 													</TableRow>
 												</TableHead>
+												{users != null ? (
 												<TableBody>
-													{users.map((item) => (
+													{users?.slice((pages - 1) * 30, (pages - 1) * 30 + 30).map((item) => (
 														<>
 															<TableRow>
 																<TableCell sx={{ fontWeight: "600" }}>
@@ -137,9 +145,9 @@ function Users() {
 																<TableCell sx={{ fontWeight: "600" }}>
 																	{item.money.toLocaleString()} VNĐ
 																</TableCell>
-																<TableCell sx={{ fontWeight: "600" }}>
+																{/*<TableCell sx={{ fontWeight: "600" }}>
 																	{formatDate(new Date(item.createdAt))}
-																</TableCell>
+																</TableCell>*/}
 																<TableCell sx={{ fontWeight: "600" }}>
 																	{item.adminadd.toLocaleString()}
 																</TableCell>
@@ -269,9 +277,28 @@ function Users() {
 														</>
 													))}
 												</TableBody>
+												) : (
+													<div>Đang cập nhật</div>
+												)}
 											</Table>
 										</Box>
 									</div>
+									<Box
+										sx={{
+											display: "flex",
+											justifyContent: "center",
+											pt: 3,
+										}}
+									>
+										{users != null ? (
+											<Pagination
+												color="primary"
+												count={Math.floor(users.length / 30) + 1}
+												size="small"
+												onChange={handleChange}
+											/>
+										) : null}
+									</Box>
 								</Container>
 							</Box>
 						}
