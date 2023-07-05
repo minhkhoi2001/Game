@@ -35,7 +35,7 @@ function Home() {
 	const [profile1, setProfile1] = useState(null);
 	useEffect(() => {
 		axios
-			.get(`http://localhost/auth/getUser`, {})
+			.get(`https://server.vnvip294.com/auth/getUser`, {})
 			.then((res) => {
 				setProfile1(res.data.data);
 			})

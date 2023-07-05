@@ -6,22 +6,15 @@ import Results from "./0_Results";
 import History from "./0_History";
 import TabNavigation from "./0_Tab";
 import Header from "../../components/Header";
+import CountDown from "./0_countdown";
+import { useParams } from "react-router-dom";
 
 function Loxien4() {
 	const [isVisible, setVisible] = useState(null);
 	const [bet, setBet] = useState(null);
 	const [profile, setProfile] = useState(null);
-	const [second, setSecond] = useState(0);
-	const [minute, setMinute] = useState(30);
-	const [start, setStart] = useState(false);
-	const [dulieunhap, setDulieunhap] = useState(new Date());
-	const [update, setUpdate] = useState(0);
-
-	const date = new Date();
-	const currentMinute = date.getMinutes();
-	const currentSecond = date.getSeconds();
-	const [item, setState] = useState(null);
 	const [total, setTotal] = useState(null);
+	const {id} = useParams()
 	const [setting, setSetting] = useState(null);
 	const [item1, setItem] = useState([]);
 	
@@ -41,63 +34,36 @@ function Loxien4() {
 		}
 	);
 	useEffect(() => {
-		axios.get(`http://localhost/auth/getUser`, {}).then((res) => {
+		axios
+			.get(`https://mu88.live/api/front/open/lottery/history/list/5/${id}`)
+			.then((res) => {
+				console.log(JSON.parse(res.data.t.issueList[0].detail)[2].split(",").join(" "));
+				setBet(res.data.t);
+				setTotal([{
+					dacbiet:JSON.parse(res.data.t.issueList[0].detail)[0],
+					nhat:JSON.parse(res.data.t.issueList[0].detail)[1],
+					hai:JSON.parse(res.data.t.issueList[0].detail)[2].split(",").join(" "),
+					ba:JSON.parse(res.data.t.issueList[0].detail)[3].split(",").join(" "),
+					tu:JSON.parse(res.data.t.issueList[0].detail)[4].split(",").join(" "),
+					nam:JSON.parse(res.data.t.issueList[0].detail)[5].split(",").join(" "),
+					sau:JSON.parse(res.data.t.issueList[0].detail)[6].split(",").join(" "),
+					bay:JSON.parse(res.data.t.issueList[0].detail)[7].split(",").join(" "),
+				}])
+			});
+		axios.get(`https://server.vnvip294.com/auth/getUser`, {}).then((res) => {
 			setProfile(res.data.data);
 		});
-		axios.get(`http://localhost/setting/get`, {}).then((res) => {
+		axios.get(`https://server.vnvip294.com/setting/get`, {}).then((res) => {
 			setSetting(res.data.data[0]);
 		});
-		axios.get(`http://localhost/Xoso/get`).then((res) => {
-			setBet(res.data.data);
-			setDulieunhap(new Date(res.data.data.createdAt));
-			setStart(true);
-		});
-		axios
-			.get(`http://localhost/Xoso/getallbet`, {})
-			.then((res) => {
-				setTotal(res.data.data);
-			})
-			.catch(() => setTotal(null));
-		axios
-			.get(`http://localhost/notification/getnotifi`, {})
-			.then((res) => {
-				setVisible({
-					money: res.data.data[0].money.toLocaleString(),
-					id: res.data.data[0]._id,
-				});
-			});
-	}, []);
-	useEffect(() => {
-		const timer = setInterval(() => {
-			if (Math.floor(1800 - (new Date() - dulieunhap) / 1000) < 0) {
-				axios.get(`http://localhost/auth/getUser`, {}).then((res) => {
-					setProfile(res.data.data);
-				});
-				axios.get(`http://localhost/Xoso/get`).then((res) => {
-					setBet(res.data.data);
-					setDulieunhap(new Date(res.data.data.createdAt));
-				});
-				axios
-					.get(`http://localhost/Xoso/getallbet`, {})
-					.then((res) => {
-						setTotal(res.data.data);
-					})
-					.catch(() => setTotal(null));
-				axios
-					.get(`http://localhost/notification/getnotifi`, {})
-					.then((res) => {
-						setVisible({
-							money: res.data.data[0].money.toLocaleString(),
-							id: res.data.data[0]._id,
-						});
-					});
-			}
-		}, 500);
 
-		return () => {
-			clearInterval(timer);
-		};
-	}, [dulieunhap]);
+		axios.get(`https://server.vnvip294.com/notification/getnotifi`, {}).then((res) => {
+			setVisible({
+				money: res.data.data[0].money.toLocaleString(),
+				id: res.data.data[0]._id,
+			});
+		});
+	}, []);
 	useEffect(() => {
 		let swalInst;
 		const showAlert = async (data) => {
@@ -114,7 +80,7 @@ function Loxien4() {
 			switch (result) {
 				case "submit":
 					// clear everything here!!
-					axios.post("http://localhost/notification/seen", {
+					axios.post("https://server.vnvip294.com/notification/seen", {
 						id: data.id,
 					});
 					break;
@@ -127,58 +93,7 @@ function Loxien4() {
 			showAlert(isVisible);
 		}
 	}, [isVisible]);
-	useEffect(() => {
-		let curTime_second = Math.floor(1800 - (date - dulieunhap) / 1000);
 
-		let myTimeout;
-
-		if (
-			currentMinute === dulieunhap.getMinutes() &&
-			currentSecond === dulieunhap.getSeconds()
-		) {
-			setStart(true);
-			setSecond(second - 1);
-			return () => {
-				clearTimeout(myTimeout);
-			};
-		} else if (curTime_second < 1800 && curTime_second >= 0) {
-			setSecond(curTime_second % 60);
-			setMinute((curTime_second - (curTime_second % 60)) / 60);
-			setStart(true);
-			return () => {
-				clearTimeout(myTimeout);
-			};
-		} else {
-			//cập nhật thời gian hiện tại 0.5s/lần
-			myTimeout = setTimeout(() => {
-				setUpdate(update + 1);
-			}, 500);
-		}
-	}, [update, dulieunhap]);
-
-	useEffect(() => {
-		let curTime_second = Math.floor(1800 - (date - dulieunhap) / 1000);
-		let myTimeout = 0;
-		if (start) {
-			setSecond(curTime_second % 60);
-			setMinute(Math.floor(curTime_second / 60));
-
-			if (curTime_second > 1800 || curTime_second <= 0) {
-				setStart(false);
-				setMinute(30);
-				setSecond(0);
-				return () => {
-					clearTimeout(myTimeout);
-				};
-			}
-			myTimeout = setTimeout(() => {
-				setSecond(second - 1);
-			}, 1000);
-		}
-		return () => {
-			clearTimeout(myTimeout);
-		};
-	}, [second, start, dulieunhap]);
 
 	const [isOpen, setIsOpen] = useState(false);
 	const openPopup = () => {
@@ -218,32 +133,67 @@ function Loxien4() {
 	};
 	const onSubmit = (e) => {
 		e.preventDefault();
-		const newData=[]
-		item1.map((item)=>{
-			if(item<10){
-				newData.push("0"+item)
-			}else{
-				newData.push(item)
+		const newData = [];
+		item1.map((item) => {
+			if (item < 10) {
+				newData.push("0" + item);
+			} else {
+				newData.push(item);
 			}
-		})
-		const formData = {
-			state: newData.join(" "),
-			id: bet?._id,
-			type: 6,
-			money: item1.length * newMoney,
-		};
-		if (item1.length == 0) {
-			swal("Thất bại", "Bạn chưa chọn số", "error");
-		} else if (item1.length == 4) {
-		axios
-			.post("http://localhost/historyxs/choose", formData)
+		});
+		const currentDate = new Date();
+		const minute =currentDate.getMinutes()<10?"0"+currentDate.getMinutes():currentDate.getMinutes()
+		if (
+			Number(currentDate.getHours() + "" + minute) > 1600 &&
+			Number(currentDate.getHours() + "" + minute) < 1715
+		) {
+			swal("Đặt cược không thành công.", " Đang chờ kết quả", "warning");
+		} else if(Number(currentDate.getHours() + "" + minute) >1715){
+			const date=  new Date() 
+			const day = Number(date.getDate()+1)<10?"0"+Number(date.getDate()+1):Number(date.getDate()+1)
+			const month = date.getUTCMonth()<9?"0"+Number(date.getUTCMonth()+1):Number(date.getUTCMonth()+1)
+			
+			const formData = {
+				state: newData.join(" "),
+				id: bet.turnNum,
+				type:6,
+				money: item1.length * newMoney,
+				sanh: bet.name
+			};	
+		
+			axios
+			.post(
+				"https://server.vnvip294.com/history/chooseXSMB",
+				formData
+			)
 			.then((res) => {
-				swal("Đặt cược thành công", "", "success")
-				setItem([])
+				swal("Đặt cược thành công", "", "success");
+				setItem([]);
 			})
-			.catch((err) => swal("Thất bại", "Số tiền trong ví không đủ", "error"));
-		} else if (item1.length > 0 && item1.length < 4) {
-			swal("Thất bại", "Số đánh không hợp lệ", "error");
+			.catch((err) =>
+				swal("Thất bại", "Số tiền trong ví không đủ", "error")
+			);
+		}else if(Number(currentDate.getHours() + "" + minute) <1800){
+			const formData = {
+				state: newData.join(" "),
+				id: bet.turnNum,
+				type:6,
+				money: item1.length * newMoney,
+				sanh: bet.name
+			};	
+		
+			axios
+			.post(
+				"https://server.vnvip294.com/history/chooseXSMB",
+				formData
+			)
+			.then((res) => {
+				swal("Đặt cược thành công", "", "success");
+				setItem([]);
+			})
+			.catch((err) =>
+				swal("Thất bại", "Số tiền trong ví không đủ", "error")
+			);
 		}
 	};
 	const [newMoney, setNewMoney] = useState();
@@ -261,45 +211,18 @@ function Loxien4() {
 								<>
 									<div className="info_bet">
 										<div style={{ fontSize: "0.33rem" }}>
-											Phiên số <b style={{ color: "#333" }}>{bet.id_bet}</b>
+										{bet.name} ngày <b style={{ color: "#333" }}>{bet.turnNum}</b>
 										</div>
 									</div>
 								</>
 							) : (
 								<span></span>
 							)}
-							{total ? (
-								<>
-									<div className="info_bet">
-										<div
-											className="count"
-											style={{
-												margin: "0.3rem auto",
-												justifyContent: "center",
-											}}
-										>
-											<div>{minute<10?"0":null}</div>
-											{minute
-												.toString()
-												.split("")
-												.map((item, index) => (
-													<div key={index}>{item}</div>
-												))}
-											<div className="notime">:</div>
-											{second < 10 ? <div>0</div> : ""}
-											{second
-												.toString()
-												.split("")
-												.map((item, index) => (
-													<div key={index}>{item}</div>
-												))}
-										</div>
-									</div>
-								</>
-							) : null}
+							<span className="tkq">Trả kết quả lúc 19:00</span>
 						</div>
+
 						<div className="col-50">
-							{total ? (
+							{bet ? (
 								<>
 									<div
 										style={{ cursor: "pointer" }}
@@ -307,19 +230,21 @@ function Loxien4() {
 										className="info_bet"
 									>
 										<div style={{ fontSize: "0.33rem" }}>
-											Kết quả phiên {" "}
-											<b style={{ color: "#333" }}>{total[0]?.id_bet}</b>
+											Kết quả ngày{" "}
+											<b style={{ color: "#333" }}>
+												{bet.issueList[0].turnNum}
+											</b>
 										</div>
-											<div
+										<div
 											className="ball_xs"
 											style={{
 												margin: "0.3rem auto",
 												justifyContent: "center",
 											}}
 										>
-											{total[0].dacbiet.split("").map((x) => (
-																<div className="redball">{x}</div>
-															))}
+											{bet.issueList[0].openNum.split(",").map((x) => (
+												<div className="redball">{x}</div>
+											))}
 										</div>
 									</div>
 								</>
@@ -346,6 +271,7 @@ function Loxien4() {
 					</div>
 				</div>
 
+				<CountDown/>
 				<TabNavigation/>
 
 				<div className="main_game">

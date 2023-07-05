@@ -8,7 +8,7 @@ const History = ({ isOpen, closePopup }) => {
   useEffect(() => {
     if (isOpen) {
       axios
-        .get("http://localhost/history/historyus", {})
+        .get("https://server.vnvip294.com/history/historyus", {})
         .then((res) => {
           setHistoryGame(res.data.data);
         })
@@ -43,11 +43,11 @@ const History = ({ isOpen, closePopup }) => {
 								<div className="content-history award_tb">
 									{historyGame?.map((item, key) => (
 										<>
-											{item.sanh && item.type ? (
+											{item.sanh !== "XSMB" && item.type ? (
 												<div className="item_inner">
 													<div className="item_history">
 														<div className="title_item_history">
-															<span className="sanh">Keno {item.sanh}</span>
+															<span className="sanh"> {item.sanh}</span>
 															<span
 																className={`type_state ${
 																	item.status_bet === "Pending"
@@ -64,7 +64,7 @@ const History = ({ isOpen, closePopup }) => {
 															Phiên cược: {item.id_bet.id_bet?item.id_bet.id_bet:item.id_bet}
 														</div>
 														<div className="id_history_sanh">
-															{GetNameChoose(Number(item.state), null)}
+														{GetNameChoose(item.state,item.type)}
 														</div>
 													</div>
 													<div className="money_history">

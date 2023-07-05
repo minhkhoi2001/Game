@@ -65,56 +65,56 @@ function Set3() {
 		}
 	);
 	useEffect(() => {
-		axios.get(`http://localhost/auth/getUser`, {}).then((res) => {
+		axios.get(`https://server.vnvip294.com/auth/getUser`, {}).then((res) => {
 			setProfile(res.data.data);
 		});
-		axios.get(`http://localhost/setting/get`, {}).then((res) => {
+		axios.get(`https://server.vnvip294.com/setting/get`, {}).then((res) => {
 			setSetting(res.data.data[0]);
 		});
-		axios.get(`http://localhost/bet/getadmin`).then((res) => {
+		axios.get(`https://server.vnvip294.com/bet/getadmin`).then((res) => {
 			setBet(res.data.data[0]);
 			setDulieunhap(new Date(res.data.data[0].createdAt));
 			setStart(true);
 		});
 		axios
-			.get(`http://localhost/bet/getallbet`, {})
+			.get(`https://server.vnvip294.com/bet/getallbet`, {})
 			.then((res) => {
 				setTotal(res.data.data);
 			})
 			.catch(() => setTotal(null));
-		axios.get(`http://localhost/notification/getnotifi`, {}).then((res) => {
+		axios.get(`https://server.vnvip294.com/notification/getnotifi`, {}).then((res) => {
 			setVisible({
 				money: res.data.data[0].money.toLocaleString(),
 				id: res.data.data[0]._id,
 			});
 		});
-		axios.get(`http://localhost/bet/getcurrent`).then((res) => {
+		axios.get(`https://server.vnvip294.com/bet/getcurrent`).then((res) => {
 			setCurrent(res.data.data);
 		});
 	}, []);
 	useEffect(() => {
 		const timer = setInterval(() => {
 			if (Math.floor(180 - (new Date() - dulieunhap) / 1000) < 0) {
-				axios.get(`http://localhost/auth/getUser`, {}).then((res) => {
+				axios.get(`https://server.vnvip294.com/auth/getUser`, {}).then((res) => {
 					setProfile(res.data.data);
 				});
-				axios.get(`http://localhost/bet/getadmin`).then((res) => {
+				axios.get(`https://server.vnvip294.com/bet/getadmin`).then((res) => {
 					setBet(res.data.data[0]);
 					setDulieunhap(new Date(res.data.data[0].createdAt));
 				});
 				axios
-					.get(`http://localhost/bet/getallbet`, {})
+					.get(`https://server.vnvip294.com/bet/getallbet`, {})
 					.then((res) => {
 						setTotal(res.data.data);
 					})
 					.catch(() => setTotal(null));
-				axios.get(`http://localhost/notification/getnotifi`, {}).then((res) => {
+				axios.get(`https://server.vnvip294.com/notification/getnotifi`, {}).then((res) => {
 					setVisible({
 						money: res.data.data[0].money.toLocaleString(),
 						id: res.data.data[0]._id,
 					});
 				});
-				axios.get(`http://localhost/bet/getcurrent`).then((res) => {
+				axios.get(`https://server.vnvip294.com/bet/getcurrent`).then((res) => {
 					setCurrent(res.data.data);
 				});
 			}
@@ -140,7 +140,7 @@ function Set3() {
 			switch (result) {
 				case "submit":
 					// clear everything here!!
-					axios.post("http://localhost/notification/seen", {
+					axios.post("https://server.vnvip294.com/notification/seen", {
 						id: data.id,
 					});
 					break;
@@ -212,7 +212,7 @@ function Set3() {
 		};
 		if(e.target.bet.value){
 		axios
-			.post("http://localhost/bet/update", formData)
+			.post("https://server.vnvip294.com/bet/update", formData)
 			.then((res) => {
 				setBet(res.data.data)
 				swal("Thành công", "Update thành công", "success")

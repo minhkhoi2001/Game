@@ -42,20 +42,20 @@ import MBLoxien3 from "./pages/game/XSMB/Loxien3";
 import MBLoxien4 from "./pages/game/XSMB/Loxien4";
 
 //XSMT
-import MTLo from "./pages/game/XSMTNew/Lo";
-import MTBacang from "./pages/game/XSMTNew/Bacang";
-import MTDe from "./pages/game/XSMTNew/De";
-import MTLoxien2 from "./pages/game/XSMTNew/Loxien2";
-import MTLoxien3 from "./pages/game/XSMTNew/Loxien3";
-import MTLoxien4 from "./pages/game/XSMTNew/Loxien4";
+import MTLo from "./pages/game/XSMT/Lo";
+import MTBacang from "./pages/game/XSMT/Bacang";
+import MTDe from "./pages/game/XSMT/De";
+import MTLoxien2 from "./pages/game/XSMT/Loxien2";
+import MTLoxien3 from "./pages/game/XSMT/Loxien3";
+import MTLoxien4 from "./pages/game/XSMT/Loxien4";
 
 //XSMN
-import MNLo from "./pages/game/XSMNNew/Lo";
-import MNBacang from "./pages/game/XSMNNew/Bacang";
-import MNDe from "./pages/game/XSMNNew/De";
-import MNLoxien2 from "./pages/game/XSMNNew/Loxien2";
-import MNLoxien3 from "./pages/game/XSMNNew/Loxien3";
-import MNLoxien4 from "./pages/game/XSMNNew/Loxien4";
+import MNLo from "./pages/game/XSMN/Lo";
+import MNBacang from "./pages/game/XSMN/Bacang";
+import MNDe from "./pages/game/XSMN/De";
+import MNLoxien2 from "./pages/game/XSMN/Loxien2";
+import MNLoxien3 from "./pages/game/XSMN/Loxien3";
+import MNLoxien4 from "./pages/game/XSMN/Loxien4";
 
 // User
 import Profile from "./pages/user/Profile";
