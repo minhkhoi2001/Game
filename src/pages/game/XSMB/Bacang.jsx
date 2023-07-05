@@ -74,18 +74,18 @@ function Bacang() {
 				]);
 			});
 		axios
-			.get(`https://server.vnvip294.com/auth/getUser`, {})
+			.get(`http://localhost/auth/getUser`, {})
 			.then((res) => {
 				setProfile(res.data.data);
 			});
 		axios
-			.get(`https://server.vnvip294.com/setting/get`, {})
+			.get(`http://localhost/setting/get`, {})
 			.then((res) => {
 				setSetting(res.data.data[0]);
 			});
 
 		axios
-			.get(`https://server.vnvip294.com/notification/getnotifi`, {})
+			.get(`http://localhost/notification/getnotifi`, {})
 			.then((res) => {
 				setVisible({
 					money: res.data.data[0].money.toLocaleString(),
@@ -110,7 +110,7 @@ function Bacang() {
 			switch (result) {
 				case "submit":
 					// clear everything here!!
-					axios.post("https://server.vnvip294.com/notification/seen", {
+					axios.post("http://localhost/notification/seen", {
 						id: data.id,
 					});
 					break;
@@ -245,7 +245,7 @@ function Bacang() {
 		
 			axios
 			.post(
-				"https://server.vnvip294.com/history/chooseXSMB",
+				"http://localhost/history/chooseXSMB",
 				formData
 			)
 			.then((res) => {
@@ -265,7 +265,7 @@ function Bacang() {
 		
 			axios
 			.post(
-				"https://server.vnvip294.com/history/chooseXSMB",
+				"http://localhost/history/chooseXSMB",
 				formData
 			)
 			.then((res) => {

@@ -1,0 +1,17 @@
+.choose_day_xs{
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    padding: 10px;
+    background: #fff;
+    border-radius: 8px;
+    box-shadow: 0 0 20px 0 rgba(0,0,0,.1);
+    font-size: 16px;
+}
+.item-xs{
+   display: flex; 
+   font-size: 16px;
+   padding: 10px;
+   justify-content: space-between;
+   border-bottom: 1px solid gray;
+}

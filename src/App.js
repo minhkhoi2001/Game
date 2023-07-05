@@ -42,20 +42,20 @@ import MBLoxien3 from "./pages/game/XSMB/Loxien3";
 import MBLoxien4 from "./pages/game/XSMB/Loxien4";
 
 //XSMT
-import MTLo from "./pages/game/XSMT/Lo";
-import MTBacang from "./pages/game/XSMT/Bacang";
-import MTDe from "./pages/game/XSMT/De";
-import MTLoxien2 from "./pages/game/XSMT/Loxien2";
-import MTLoxien3 from "./pages/game/XSMT/Loxien3";
-import MTLoxien4 from "./pages/game/XSMT/Loxien4";
+import MTLo from "./pages/game/XSMTNew/Lo";
+import MTBacang from "./pages/game/XSMTNew/Bacang";
+import MTDe from "./pages/game/XSMTNew/De";
+import MTLoxien2 from "./pages/game/XSMTNew/Loxien2";
+import MTLoxien3 from "./pages/game/XSMTNew/Loxien3";
+import MTLoxien4 from "./pages/game/XSMTNew/Loxien4";
 
 //XSMN
-import MNLo from "./pages/game/XSMN/Lo";
-import MNBacang from "./pages/game/XSMN/Bacang";
-import MNDe from "./pages/game/XSMN/De";
-import MNLoxien2 from "./pages/game/XSMN/Loxien2";
-import MNLoxien3 from "./pages/game/XSMN/Loxien3";
-import MNLoxien4 from "./pages/game/XSMN/Loxien4";
+import MNLo from "./pages/game/XSMNNew/Lo";
+import MNBacang from "./pages/game/XSMNNew/Bacang";
+import MNDe from "./pages/game/XSMNNew/De";
+import MNLoxien2 from "./pages/game/XSMNNew/Loxien2";
+import MNLoxien3 from "./pages/game/XSMNNew/Loxien3";
+import MNLoxien4 from "./pages/game/XSMNNew/Loxien4";
 
 // User
 import Profile from "./pages/user/Profile";
@@ -92,6 +92,8 @@ import SetXoSo5 from "./pages/admin/SetXoSo5";
 import SetXS3p from "./pages/admin/SetXS3p";
 import Xucxac5 from "./pages/game/Xucxac/Xucxac5";
 import SetXS5p from "./pages/admin/SetXS5p";
+import ListXSMT from "./pages/game/ListXSMT";
+import ListXSMN from "./pages/game/ListXSMN";
 
 function App() {
 	return (
@@ -147,6 +149,26 @@ function App() {
 						<Route element={<MNLoxien4 />} path="/xsmn/loxien4" />*/}
 
 						{/* User */}
+						<Route element={<ListXSMN />} path="/xsmn" />
+						<Route element={<MNLo />} path="/xsmn/lo/:id" />
+						<Route element={<MNBacang />} path="/xsmn/bacang/:id" />
+						<Route element={<MNDe />} path="/xsmn/de/:id" />
+						<Route element={<MNLoxien2	 />} path="/xsmn/loxien/:id" />
+						<Route element={<MNLoxien3	 />} path="/xsmn/loxien3/:id" />
+						<Route element={<MNLoxien4	 />} path="/xsmn/loxien4/:id" />
+
+
+
+						<Route element={<ListXSMT />} path="/xsmt" />
+						<Route element={<MTLo />} path="/xsmt/lo/:id" />
+						<Route element={<MTBacang />} path="/xsmt/bacang/:id" />
+						<Route element={<MTDe />} path="/xsmt/de/:id" />
+						<Route element={<MTLoxien2	 />} path="/xsmt/loxien/:id" />
+						<Route element={<MTLoxien3	 />} path="/xsmt/loxien3/:id" />
+						<Route element={<MTLoxien4	 />} path="/xsmt/loxien4/:id" />
+
+
+
 						<Route element={<Profile />} path="/profile" />
 						<Route element={<HistoryAll />} path="/history" />
 						<Route element={<HistoryBet />} path="/historyplay" />

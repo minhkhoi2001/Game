@@ -31,7 +31,7 @@ function Setting() {
 	);
 	useEffect(()=>{
 		if(load==true){
-			axios.get(`https://server.vnvip294.com/setting/get`, {}).then((res) => {
+			axios.get(`http://localhost/setting/get`, {}).then((res) => {
 				setSetting(res.data.data[0]);
 				setLoad(false)
 			});		
@@ -78,7 +78,7 @@ function Setting() {
 		}
 		console.log(formData);
 		axios
-			.put(`https://server.vnvip294.com/setting/update`, formData)
+			.put(`http://localhost/setting/update`, formData)
 			.then((res) => {
 				setLoad(true);
 				swal("Sửa thông tin trò chơi thành công!")

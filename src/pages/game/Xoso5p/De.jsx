@@ -55,26 +55,26 @@ function De() {
 		};
 	}
 	useEffect(() => {
-		axios.get(`https://server.vnvip294.com/auth/getUser`, {}).then((res) => {
+		axios.get(`http://localhost/auth/getUser`, {}).then((res) => {
 			setProfile(res.data.data);
 		});
-		axios.get(`https://server.vnvip294.com/setting/get`, {}).then((res) => {
+		axios.get(`http://localhost/setting/get`, {}).then((res) => {
 			setSetting(res.data.data[0]);
 		});
-		axios.get(`https://server.vnvip294.com/Xoso5/get`).then((res) => {
+		axios.get(`http://localhost/Xoso5/get`).then((res) => {
 			setBet(res.data.data);
 			setDulieunhap(new Date(res.data.data.createdAt));
 			setStart(true);
 		});
 		axios
-			.get(`https://server.vnvip294.com/Xoso5/getallbet`, {})
+			.get(`http://localhost/Xoso5/getallbet`, {})
 			.then((res) => {
 				rollLottery(res);
 				setNewData(res.data.data)
 			})
 			.catch(() => setTotal(null));
 		axios
-			.get(`https://server.vnvip294.com/notification/getnotifi`, {})
+			.get(`http://localhost/notification/getnotifi`, {})
 			.then((res) => {
 				setVisible({
 					money: res.data.data[0].money.toLocaleString(),
@@ -85,22 +85,22 @@ function De() {
 	useEffect(() => {
 		const timer = setInterval(() => {
 			if (Math.floor(300 - (new Date() - dulieunhap) / 1000) < 0) {
-				axios.get(`https://server.vnvip294.com/auth/getUser`, {}).then((res) => {
+				axios.get(`http://localhost/auth/getUser`, {}).then((res) => {
 					setProfile(res.data.data);
 				});
-				axios.get(`https://server.vnvip294.com/Xoso5/get`).then((res) => {
+				axios.get(`http://localhost/Xoso5/get`).then((res) => {
 					setBet(res.data.data);
 					setDulieunhap(new Date(res.data.data.createdAt));
 				});
 				axios
-					.get(`https://server.vnvip294.com/Xoso5/getallbet`, {})
+					.get(`http://localhost/Xoso5/getallbet`, {})
 					.then((res) => {
 						rollLottery(res);
 						setNewData(res.data.data)
 					})
 					.catch(() => setTotal(null));
 				axios
-					.get(`https://server.vnvip294.com/notification/getnotifi`, {})
+					.get(`http://localhost/notification/getnotifi`, {})
 					.then((res) => {
 						setVisible({
 							money: res.data.data[0].money.toLocaleString(),
@@ -130,7 +130,7 @@ function De() {
 			switch (result) {
 				case "submit":
 					// clear everything here!!
-					axios.post("https://server.vnvip294.com/notification/seen", {
+					axios.post("http://localhost/notification/seen", {
 						id: data.id,
 					});
 					break;
@@ -250,7 +250,7 @@ function De() {
 		};
 		if (item1.length > 0) {
 		axios
-			.post("https://server.vnvip294.com/history5pxs/choose", formData)
+			.post("http://localhost/history5pxs/choose", formData)
 			.then((res) => {
 				swal("Đặt cược thành công", "", "success")
 				setItem([])
