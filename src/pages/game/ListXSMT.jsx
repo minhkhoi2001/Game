@@ -95,8 +95,8 @@ function ListXSMT() {
 											<div className="item-xs">
 												<span>{item.name}</span>
 												
-												<span>Ngày sổ: {item.issueList[0].turnNum}</span>
-												<span>Ngày sổ kế tiếp: {item.turnNum}</span>
+												<span>Ngày xổ: {item.issueList[0].turnNum}</span>
+												<span>Ngày xổ kế tiếp: {item.turnNum}</span>
 											</div>
 										</Link>
 									</>

@@ -239,9 +239,7 @@ function Bacang() {
 	const numbers = Array.from(Array(1000).keys());
 	return (
 		<>
-			<div className="loading">
-				<div className="loader"></div>
-			</div>
+			
 			<div className="main">
 				<Header profile={profile} />
 
@@ -257,7 +255,7 @@ function Bacang() {
 									</div>
 								</>
 							) : (
-								<span></span>
+								<div className="loading"><div className="loader"></div></div>
 							)}
 							<span className="tkq">Trả kết quả lúc 17:15</span>
 						</div>

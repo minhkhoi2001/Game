@@ -258,7 +258,7 @@ function De() {
 	const numbers = Array.from(Array(100).keys());
 	return (
 		<>
-			<div className="loading"><div className="loader"></div></div>
+			
 			<div className="main">
 				<Header profile={profile}/>
 
@@ -274,7 +274,7 @@ function De() {
 									</div>
 								</>
 							) : (
-								<span></span>
+								<div className="loading"><div className="loader"></div></div>
 							)}
 							{total ? (
 								<>

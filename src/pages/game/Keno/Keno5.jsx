@@ -255,7 +255,7 @@ function Keno5() {
 	}
 	return (
 		<>
-			<div className="loading"><div className="loader"></div></div>
+			
 			<div className="main">
 				<Header profile={profile}/>
 
@@ -272,7 +272,7 @@ function Keno5() {
 									</button>
 								</>
 							) : (
-								<span></span>
+								<div className="loading"><div className="loader"></div></div>
 							)}
 						</div>
 						<div className="col-50">

@@ -274,9 +274,7 @@ function Xucxac5() {
 	}
 	return (
 		<>
-			<div className="loading">
-				<div className="loader"></div>
-			</div>
+			
 			<div className="main">
 				<Header profile={profile} />
 
@@ -293,7 +291,7 @@ function Xucxac5() {
 									</button>
 								</>
 							) : (
-								<span></span>
+								<div className="loading"><div className="loader"></div></div>
 							)}
 						</div>
 						<div className="col-50">
