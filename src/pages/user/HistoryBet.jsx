@@ -87,7 +87,7 @@ function HistoryBet() {
 								<div className="item_inner">
 									<div className="item_history">
 										<div className="title_item_history">
-											<span className="sanh">{item.sanh=="3 phút"?"Keno 3 phút":item.sanh=="5 phút"?"Keno 5 phút":item.sanh=="1 phút"?"Keno 1 phút": item.sanh}</span>
+											<span className="sanh">{item.sanh=="3 phút"?"Keno 3p":item.sanh=="5 phút"?"Keno 5p":item.sanh=="1 phút"?"Keno 1p": item.sanh}</span>
 											<span
 												className={`type_state ${
 													item.status_bet === "Pending"

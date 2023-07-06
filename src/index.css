@@ -1167,6 +1167,9 @@ table tbody tr:hover {
 	font-size: 0.48rem;
 	color: #ed1c25;
 }
+[class*=prize]:empty {
+	display: none;
+}
 .bacang {
 	margin-bottom: 0.3rem;
 	padding-bottom: 0.3rem;
