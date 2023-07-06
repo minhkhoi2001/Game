@@ -81,10 +81,10 @@ function HistoryBetAll() {
 		setPage(page);
 	};
 	const [table, setTable] = useState("");
-	const handleChangeTalbe = (e) => {
+	const handleChangeTable = (e) => {
 		setTable(e.target.value);
 	};
-	console.log(table);
+
 	return (
 		<>
 			<ThemeProvider theme={theme}>
@@ -111,18 +111,21 @@ function HistoryBetAll() {
 										/>
 										<span>Chọn trò chơi </span>
 										<select
-											onChange={handleChangeTalbe}
+											onChange={handleChangeTable}
 											value={table}
 											id="table"
 										>
-											<option value="1">Thứ 2</option>
-											<option value="XSMB">XSMB</option>
-
+											<option value="">Tất cả</option>
+											<option value="1 phút">Keno 1p</option>
+											<option value="3 phút">Keno 3p</option>
+											<option value="5 phút">Keno 5p</option>
+											<option value="Xúc sắc 3p">Xúc sắc 3p</option>
 											<option value="Xúc sắc 5p">Xúc sắc 5p</option>
-											<option value="3">Thứ 4</option>
-											<option value="4">Thứ 5</option>
-											<option value="5">Thứ 6</option>
-											<option value="6">Thứ 7</option>
+											<option value="Xổ số 3p">Xổ số 3p</option>
+											<option value="Xổ số 5p">Xổ số 5p</option>
+											<option value="XSMB">XSMB</option>
+											<option value="XSMN">XSMN</option>
+											<option value="XSMT">XSMN</option>
 										</select>
 										<Table sx={{ width: 1200 }}>
 											<TableHead>
