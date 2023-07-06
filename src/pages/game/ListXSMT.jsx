@@ -92,7 +92,7 @@ function ListXSMT() {
 											<div className="item-xs">
 												<div>{item.name}</div>
 												{/*<span>Ngày xổ: {item.issueList[0].turnNum}</span>*/}
-												<div>Ngày xổ kế tiếp: {item.turnNum}</div>
+												<div>Ngày xổ: {item.turnNum}</div>
 												<img src={`https://www.666mu88.com/static/img/gameicons/cp/${item.code}.png`}/>
 											</div>
 										</Link>
