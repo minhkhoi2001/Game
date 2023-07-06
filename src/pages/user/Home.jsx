@@ -55,19 +55,24 @@ function Home() {
 							{profile1 ? (
 								<div style={{ display: "flex", float: "right" }}>
 									{profile1 ? (
-              <span style={{ marginRight: "0.111rem" }}>
-                Số dư: <b>{Math.floor(profile1.money).toLocaleString()}đ</b>
-              </span>
-            ) : (
-              <span style={{ marginRight: "0.111rem" }}>
-                Số dư: <b>******đ</b>
-              </span>
-            )}
+										<span style={{ marginRight: "0.111rem" }}>
+											Số dư:{" "}
+											<b>{Math.floor(profile1.money).toLocaleString()}đ</b>
+										</span>
+									) : (
+										<span style={{ marginRight: "0.111rem" }}>
+											Số dư: <b>******đ</b>
+										</span>
+									)}
 								</div>
 							) : (
 								<div className="button-top">
-									<Link to="/login" className="btn-login">Đăng nhập</Link>
-									<Link to="/register" className="btn-register">Đăng ký</Link>
+									<Link to="/login" className="btn-login">
+										Đăng nhập
+									</Link>
+									<Link to="/register" className="btn-register">
+										Đăng ký
+									</Link>
 								</div>
 							)}
 						</div>
@@ -119,14 +124,8 @@ function Home() {
 								</div>
 							</Link>
 						</div>
-						<div className="box-game op">
-							<Link
-								to="/xsmb"
-								style={{
-									background:
-										"linear-gradient(-90.13deg,#ff8e8a -1.3%,#ffc1a1 99.92%)",
-								}}
-							>
+						<div className="box-game op xsmb">
+							<Link to="/xsmb">
 								<img
 									src={require("../../img/logo-Vlottery.webp")}
 									style={{ marginLeft: "-15px" }}
@@ -138,14 +137,23 @@ function Home() {
 								</div>
 							</Link>
 						</div>
-						<div className="box-game op">
-							<Link
-								to="/xsmn"
-								style={{
-									background:
-										"linear-gradient(-90.13deg,#ff8e8a -1.3%,#ffc1a1 99.92%)",
-								}}
-							>
+						<div className="box-game op xsmt">
+							<Link to="/xsmt">
+								<img
+									src={require("../../img/logo-Vlottery.webp")}
+									style={{ marginLeft: "-15px" }}
+								/>
+								<h3>XỔ SỐ TRUYỀN THỐNG</h3>
+								<div className="box-game-text">
+									<div>Xổ số miền Trung</div>
+									<div>
+										Dự đoán kết quả xổ số miền Trung để giành chiến thắng
+									</div>
+								</div>
+							</Link>
+						</div>
+						<div className="box-game op xsmn">
+							<Link to="/xsmn">
 								<img
 									src={require("../../img/logo-Vlottery.webp")}
 									style={{ marginLeft: "-15px" }}
@@ -154,25 +162,6 @@ function Home() {
 								<div className="box-game-text">
 									<div>Xổ số miền Nam</div>
 									<div>Dự đoán kết quả xổ số miền Nam để giành chiến thắng</div>
-								</div>
-							</Link>
-						</div>
-						<div className="box-game op">
-							<Link
-								to="/xsmt"
-								style={{
-									background:
-										"linear-gradient(-90.13deg,#ff8e8a -1.3%,#ffc1a1 99.92%)",
-								}}
-							>
-								<img
-									src={require("../../img/logo-Vlottery.webp")}
-									style={{ marginLeft: "-15px" }}
-								/>
-								<h3>XỔ SỐ TRUYỀN THỐNG</h3>
-								<div className="box-game-text">
-									<div>Xổ số miền Trung</div>
-									<div>Dự đoán kết quả xổ số miền Trung để giành chiến thắng</div>
 								</div>
 							</Link>
 						</div>

@@ -1608,3 +1608,18 @@ body:has(.admin-theme) #webpack-dev-server-client-overlay {
 .history_xucxac > .n6 {
 	background-image: url(./img/n6.png);
 }
+.main .box-game.op.xsmb > a{
+	background: url(./img/mien-bac.png);
+	background-size: cover;
+}
+.main .box-game.op.xsmt > a{
+	background: url(./img/mien-trung.png);
+	background-size: cover;
+}
+.main .box-game.op.xsmn > a{
+	background: url(./img/mien-nam.png);
+	background-size: cover;
+}
+.main .box-game.op.xsmb a > * , .main .box-game.op.xsmt a > *, .main .box-game.op.xsmn a > * {
+	display: none;
+}

@@ -134,21 +134,7 @@ function App() {
 						<Route element={<MBLoxien3 />} path="/xsmb/loxien3" />
 						<Route element={<MBLoxien4 />} path="/xsmb/loxien4" />
 
-						{/*<Route element={<MTLo />} path="/xsmt" />
-						<Route element={<MTBacang />} path="/xsmt/bacang" />
-						<Route element={<MTDe />} path="/xsmt/de" />
-						<Route element={<MTLoxien2 />} path="/xsmt/loxien" />
-						<Route element={<MTLoxien3 />} path="/xsmt/loxien3" />
-						<Route element={<MTLoxien4 />} path="/xsmt/loxien4" />
-						
-						<Route element={<MNLo />} path="/xsmn" />
-						<Route element={<MNBacang />} path="/xsmn/bacang" />
-						<Route element={<MNDe />} path="/xsmn/de" />
-						<Route element={<MNLoxien2 />} path="/xsmn/loxien" />
-						<Route element={<MNLoxien3 />} path="/xsmn/loxien3" />
-						<Route element={<MNLoxien4 />} path="/xsmn/loxien4" />*/}
 
-						{/* User */}
 						<Route element={<ListXSMN />} path="/xsmn" />
 						<Route element={<MNLo />} path="/xsmn/lo/:id" />
 						<Route element={<MNBacang />} path="/xsmn/bacang/:id" />

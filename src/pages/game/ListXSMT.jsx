@@ -1,5 +1,4 @@
 import Footer from "../../components/Footer/Footer";
-import "../user/profile.css";
 import { useEffect, useState } from "react";
 import axios from "axios";
 import { Link, useNavigate } from "react-router-dom";
@@ -70,9 +69,7 @@ function ListXSMT() {
 					</div>
 				</div>
 				<div className="account">
-					<div style={{ marginBottom: "100px", fontSize: 40 }}>
-						Xổ số miền trung
-					</div>
+					<h1 class="title-h1" style={{color:"#fff"}}>Xổ số miền Trung</h1>
 					<div className="account__menu">
 						<div className="choose_day_xs">
 							Chọn ngày xổ{" "}
@@ -93,10 +90,10 @@ function ListXSMT() {
 									<>
 										<Link to={`/xsmt/lo/${item.code}`}>
 											<div className="item-xs">
-												<span>{item.name}</span>
-												
-												<span>Ngày xổ: {item.issueList[0].turnNum}</span>
-												<span>Ngày xổ kế tiếp: {item.turnNum}</span>
+												<div>{item.name}</div>
+												{/*<span>Ngày xổ: {item.issueList[0].turnNum}</span>*/}
+												<div>Ngày xổ kế tiếp: {item.turnNum}</div>
+												<img src={`https://www.666mu88.com/static/img/gameicons/cp/${item.code}.png`}/>
 											</div>
 										</Link>
 									</>

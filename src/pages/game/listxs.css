@@ -9,9 +9,35 @@
     font-size: 16px;
 }
 .item-xs{
-   display: flex; 
-   font-size: 16px;
-   padding: 10px;
-   justify-content: space-between;
-   border-bottom: 1px solid gray;
+   background: #fff;
+   border-radius: 5px;
+   box-shadow: 0 2px 6px 0 rgba(0, 0, 0, 0.15);
+   margin-bottom: 20px;
+   font-size: 14px;
+   padding:20px;
+   text-align: left;
+   position: relative;
+}
+.item-xs > div:first-child {
+    font-size: 18px;
+    color: #333;
+    font-weight: 600;
+}
+.item-xs > div:nth-child(2) {
+    font-size: 14px;
+    color: #666;
+    margin-top: 10px;
+}
+select#date {
+    border: 1px solid #bfbfbf;
+    padding: 3px 6px;
+    border-radius: 3px;
+}
+.item-xs img {
+    height: 70px;
+    width: 70px;
+    display: inline-block;
+    position: absolute;
+    right: 15px;
+    top: 10px;
 }

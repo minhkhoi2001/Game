@@ -207,7 +207,7 @@
 	position: relative;
 }
 .account h1 {
-	color: red !important;
+	color: red;
 	margin: 0.4rem 0 !important;
 }
 .account__top {
