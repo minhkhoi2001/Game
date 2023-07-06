@@ -41,8 +41,8 @@ const Countdown = ({ targetTime }) => {
 	);
 };
 
-const CountDown = () => {
-	const targetTime18 = new Date();
+const CountDown = ({date}) => {
+	const targetTime18 = new Date(date);
 	targetTime18.setHours(18, 0, 0, 0);
 
 	const targetTime19 = new Date();

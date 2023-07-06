@@ -2,7 +2,7 @@ import React, { useState, useEffect } from "react";
 
 const Countdown = ({ targetTime }) => {
 	const [countdown, setCountdown] = useState({
-		hours: 0,
+			hours: 0,
 		minutes: 0,
 		seconds: 0,
 	});
@@ -41,12 +41,12 @@ const Countdown = ({ targetTime }) => {
 	);
 };
 
-const CountDown = () => {
-	const targetTime18 = new Date();
-	targetTime18.setHours(18, 0, 0, 0);
+const CountDown = ({date}) => {
 
-	const targetTime19 = new Date();
-	targetTime19.setHours(19, 0, 0, 0);
+	const targetTime18 = new Date(date?date.split('/')[1]+'/'+date.split('/')[0]+'/'+date.split('/')[2]:'');
+	targetTime18.setHours(16, 0, 0, 0);
+	const targetTime19 = new Date(date?date.split('/')[1]+'/'+date.split('/')[0]+'/'+date.split('/')[2]:'');
+	targetTime19.setHours(17, 0, 0, 0);
 
 	return (
 		<>

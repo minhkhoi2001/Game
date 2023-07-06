@@ -281,7 +281,9 @@ function Loxien2() {
 					</div>
 				</div>
 
-				<CountDown/>
+				
+				<CountDown date={bet?.turnNum} />
+
 				<TabNavigation/>
 
 				<div className="main_game">

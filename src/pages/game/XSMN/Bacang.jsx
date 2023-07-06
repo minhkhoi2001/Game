@@ -304,7 +304,7 @@ function Bacang() {
 					</div>
 				</div>
 
-				<CountDown />
+				<CountDown date={bet?.turnNum} />
 
 				<TabNavigation />
 

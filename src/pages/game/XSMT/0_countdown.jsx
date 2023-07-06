@@ -41,12 +41,14 @@ const Countdown = ({ targetTime }) => {
 	);
 };
 
-const CountDown = () => {
-	const targetTime18 = new Date();
+const CountDown = ({date}) => {
+	console.log();
+	const targetTime18 = new Date(date?date.split('/')[1]+'/'+date.split('/')[0]+'/'+date.split('/')[2]:'');
+
 	targetTime18.setHours(18, 0, 0, 0);
 
-	const targetTime19 = new Date();
-	targetTime19.setHours(19, 0, 0, 0);
+	const targetTime19 = new Date(date?date.split('/')[1]+'/'+date.split('/')[0]+'/'+date.split('/')[2]:'');
+	targetTime19.setHours(17, 0, 0, 0);
 
 	return (
 		<>
