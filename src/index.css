@@ -842,7 +842,6 @@ table tbody tr:hover {
 	max-width: 540px;
 	z-index: 101;
 	padding: 0.3rem;
-	display: none;
 }
 .main:has(.chooseItem) .popup-bet {
 	display: block;

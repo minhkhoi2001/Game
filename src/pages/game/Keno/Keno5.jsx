@@ -816,6 +816,7 @@ function Keno5() {
 
 				<Footer />
 
+				{item1.length != 0 && (
 				<div className="popup-bet">
 					<form onSubmit={onSubmit}>
 						<div className="footer_choose">
@@ -861,6 +862,7 @@ function Keno5() {
 						</div>
 					</form>
 				</div>
+				)}
 
 				{isOpen && (
 					<div className="popup-backdrop">

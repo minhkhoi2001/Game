@@ -197,10 +197,10 @@ function Home() {
 									src={require("../../img/k3-3fb4362a.png")}
 									style={{ margin: "0 5px 0 0" }}
 								/>
-								<h3>ĐỔ XÚC XẮC 3P</h3>
+								<h3>ĐỔ XÚC SẮC 3P</h3>
 								<div className="box-game-text">
 									<div>Dự đoán</div>
-									<div>Dự đoán xúc xắc để giành chiến thắng</div>
+									<div>Dự đoán Xúc sắc để giành chiến thắng</div>
 								</div>
 							</Link>
 						</div>
@@ -210,10 +210,10 @@ function Home() {
 									src={require("../../img/logo-k333.685bfbc8.png")}
 									style={{ margin: "0 5px 0 0" }}
 								/>
-								<h3>ĐỔ XÚC XẮC 5P</h3>
+								<h3>ĐỔ XÚC SẮC 5P</h3>
 								<div className="box-game-text">
 									<div>Dự đoán</div>
-									<div>Dự đoán xúc xắc để giành chiến thắng</div>
+									<div>Dự đoán Xúc sắc để giành chiến thắng</div>
 								</div>
 							</Link>
 						</div>

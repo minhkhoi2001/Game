@@ -688,7 +688,7 @@ function Xucxac5() {
 									<div className="content-history award_tb">
 										{historyGame?.map((item, key) => (
 											<>
-												{item.sanh === "Xúc xắc 5p" ? (
+												{item.sanh === "Xúc sắc 5p" ? (
 													<div className="item_inner">
 														<div className="item_history">
 															<div className="title_item_history">
@@ -738,6 +738,7 @@ function Xucxac5() {
 
 				<Footer />
 
+				{item1.length != 0 && (
 				<div className="popup-bet">
 					<form onSubmit={onSubmit}>
 						<div className="footer_choose">
@@ -783,28 +784,29 @@ function Xucxac5() {
 						</div>
 					</form>
 				</div>
+				)}
 
 				{isOpen && (
 					<div className="popup-backdrop">
 						<div className="popup-main">
 							<div className="popup-header">Hướng dẫn cách chơi</div>
 							<div className="popup-content">
-								Chiến thắng khi đặt cược kết quả 3 con xúc xắc.
+								Chiến thắng khi đặt cược kết quả 3 con Xúc sắc.
 								<br />
 								<br />
 								<b>CLTX</b>
 								<br />
-								Kết quả được tính là tổng của 3 con xúc xắc (tài/xỉu/lẻ/chẵn)
+								Kết quả được tính là tổng của 3 con Xúc sắc (tài/xỉu/lẻ/chẵn)
 								<br />
 								<br />
 								<b>2 số trùng</b>
 								<br />
-								Kết quả được tính khi đổ xúc xắc ra 2 con số giống nhau
+								Kết quả được tính khi đổ Xúc sắc ra 2 con số giống nhau
 								<br />
 								<br />
 								<b>3 số trùng</b>
 								<br />
-								Kết quả được tính khi đổ xúc xắc ra 3 con số giống nhau
+								Kết quả được tính khi đổ Xúc sắc ra 3 con số giống nhau
 							</div>
 							<button onClick={closePopup} className="popup-close">
 								Đóng

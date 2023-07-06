@@ -132,7 +132,7 @@ function Setting() {
 										</div>
 										<div className="form_col">
 											<div className="form_group">
-												<label >Hai số trùng xúc xắc 3p</label>
+												<label >Hai số trùng Xúc sắc 3p</label>
 												<input
 													defaultValue={setting?.haitrung3}
 													type="number"
@@ -145,7 +145,7 @@ function Setting() {
 										</div>
 										<div className="form_col">
 											<div className="form_group">
-												<label >Ba số trùng xúc xắc 3p</label>
+												<label >Ba số trùng Xúc sắc 3p</label>
 												<input
 													defaultValue={setting?.batrung3}
 													type="number"
@@ -158,7 +158,7 @@ function Setting() {
 										</div>
 										<div className="form_col">
 											<div className="form_group">
-												<label >Hai số trùng xúc xắc 5p</label>
+												<label >Hai số trùng Xúc sắc 5p</label>
 												<input
 													defaultValue={setting?.haitrung5}
 													type="number"
@@ -171,7 +171,7 @@ function Setting() {
 										</div>
 										<div className="form_col">
 											<div className="form_group">
-												<label >Ba số trùng xúc xắc 5p</label>
+												<label >Ba số trùng Xúc sắc 5p</label>
 												<input
 													defaultValue={setting?.batrung5}
 													type="number"
