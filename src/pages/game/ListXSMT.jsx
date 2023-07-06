@@ -9,6 +9,7 @@ function ListXSMT() {
 	const [data, setData] = useState();
 	const handleChange = (e) => {
 		setDate(e.target.value);
+		setData(null);
 	};
 	useEffect(() => {
 		if (date == 0) {
@@ -98,7 +99,7 @@ function ListXSMT() {
 										</Link>
 									</>
 							  ))
-							: null}
+							: <div className="loading"><div className="loader"></div></div>}
 					</div>
 				</div>
 			</div>

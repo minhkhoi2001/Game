@@ -9,6 +9,7 @@ function ListXSMN() {
 	const [data, setData] = useState();
 	const handleChange = (e) => {
 		setDate(e.target.value);
+		setData(null);
 	};
 	useEffect(() => {
 		if (date == 0) {
