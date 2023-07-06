@@ -104,7 +104,11 @@ function HistoryBet() {
 											Phiên cược: {item.id_bet.id_bet?item.id_bet.id_bet:item.id_bet}
 										</div>
 										<div className="id_history_sanh">
-											{GetNameChoose(Number(item.state), null,item.sanh)}
+											{
+												(GetNameChoose(Number(item.state), null,item.sanh)) ? (
+													GetNameChoose(Number(item.state), null,item.sanh)
+												) : "Chọn " + item.state
+											}
 										</div>
 									</div>
 									<div className="money_history">
