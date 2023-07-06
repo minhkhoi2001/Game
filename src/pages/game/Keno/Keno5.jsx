@@ -392,8 +392,8 @@ function Keno5() {
 										item1.includes("4") ? "chooseItem" : ""
 									}`}
 								>
-									<i className="state">C</i>
-									<span className="setting_type">
+									<i id="4" className="state">C</i>
+									<span id="4" className="setting_type">
 										{setting && setting.doiben}
 									</span>
 								</div>
