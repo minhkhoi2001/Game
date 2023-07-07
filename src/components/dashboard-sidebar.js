@@ -32,18 +32,18 @@ const items = [
 	{
 		href: "/admin/set1",
 		icon: <ShoppingBagIcon fontSize="small" />,
-		title: "Set Kèo 1 ",
+		title: "Set Kèo Keno 1p ",
 	},
 	{
 		href: "/admin/set3",
 		icon: <ShoppingBagIcon fontSize="small" />,
-		title: "Set Kèo 3 ",
+		title: "Set Kèo Keno 3p ",
 	},
 	
 	{
 		href: "/admin/set5",
 		icon: <ShoppingBagIcon fontSize="small" />,
-		title: "Set Kèo 5 ",
+		title: "Set Kèo Keno 5p ",
 	},
 	{
 		href: "/admin/xoso",

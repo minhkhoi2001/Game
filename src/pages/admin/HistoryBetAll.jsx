@@ -85,6 +85,9 @@ function HistoryBetAll() {
 		setTable(e.target.value);
 	};
 
+	const XSMN = ["Bạc Liêu", "Vũng Tàu", "Tiền Giang", "Kiên Giang", "Đà Lạt", "Bình Phước", "Bình Dương", "An Giang", "Bình Thuận", "Cà Mau", "Cần Thơ", "Hậu Giang", "Đồng Tháp", "Tây Ninh", "Vĩnh Long", "Trà Vinh", "Sóc Trăng", "Long An", "TP. HCM", "Đồng Nai"];
+	const XSMT = ["Đà Nẵng", "Thừa T. Huế", "Quảng Trị", "Phú Yên", "Quảng Bình", "Quảng Nam", "Quảng Ngãi", "Ninh Thuận", "Kon Tum", "Khánh Hòa", "Gia Lai", "Bình Định", "Đắk Lắk", "Đắk Nông"];
+
 	return (
 		<>
 			<ThemeProvider theme={theme}>
@@ -125,7 +128,7 @@ function HistoryBetAll() {
 											<option value="Xổ số 5p">Xổ số 5p</option>
 											<option value="XSMB">XSMB</option>
 											<option value="XSMN">XSMN</option>
-											<option value="XSMT">XSMN</option>
+											<option value="XSMT">XSMT</option>
 										</select>
 										<Table sx={{ width: 1200 }}>
 											<TableHead>
@@ -203,6 +206,62 @@ function HistoryBetAll() {
 																		</TableRow>
 																	</>
 																) : table !== "" && table == item.sanh ? (
+																	<>
+																		<TableRow>
+																			<TableCell sx={{ fontWeight: "600" }}>
+																				{item.id_bet.id_bet
+																					? item.id_bet.id_bet
+																					: item.id_bet}
+																			</TableCell>
+																			<TableCell sx={{ fontWeight: "600" }}>
+																				{item.user.username}
+																			</TableCell>
+																			<TableCell sx={{ fontWeight: "600" }}>
+																				{item.user.iduser}
+																			</TableCell>
+																			<TableCell sx={{ fontWeight: "600" }}>
+																				{item.sanh == "3 phút"
+																					? "Keno 3p"
+																					: item.sanh == "5 phút"
+																					? "Keno 5p"
+																					: item.sanh == "1 phút"
+																					? "Keno 1p"
+																					: item.sanh}
+																			</TableCell>
+																			<TableCell sx={{ fontWeight: "600" }}>
+																				{GetNameChoose(item.state, item.type)}
+																			</TableCell>
+																			<TableCell sx={{ fontWeight: "600" }}>
+																				{" "}
+																				{item.money.toLocaleString()} VNĐ
+																			</TableCell>
+																			{item.status_bet === "Win" ? (
+																				<TableCell sx={{ fontWeight: "600" }}>
+																					<Button color="success">
+																						{item.status_bet}
+																					</Button>
+																				</TableCell>
+																			) : null}
+																			{item.status_bet === "Lose" ? (
+																				<TableCell sx={{ fontWeight: "600" }}>
+																					<Button color="error">
+																						{item.status_bet}
+																					</Button>
+																				</TableCell>
+																			) : null}
+																			{item.status_bet === "Pending" ? (
+																				<TableCell sx={{ fontWeight: "600" }}>
+																					<Button color="warning">
+																						{item.status_bet}
+																					</Button>
+																				</TableCell>
+																			) : null}
+																			<TableCell sx={{ fontWeight: "600" }}>
+																				{formatDate(new Date(item.createdAt))}
+																			</TableCell>
+																		</TableRow>
+																	</>
+																) : table == "XSMN" && XSMN.includes(item.sanh) || table == "XSMT" && XSMT.includes(item.sanh) ? (
 																	<>
 																		<TableRow>
 																			<TableCell sx={{ fontWeight: "600" }}>
