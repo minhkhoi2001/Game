@@ -79,6 +79,15 @@ const Results = ({ isOpen, total, closePopup }) => {
                   <span id="mb_prize_13" className="prize4 div-horizontal">
                     {total[0].tu.split(" ")[3]}
                   </span>
+                  <span id="mb_prize_13" className="prize4 div-horizontal">
+                    {total[0].tu.split(" ")[4]}
+                  </span>
+                  <span id="mb_prize_13" className="prize4 div-horizontal">
+                    {total[0].tu.split(" ")[5]}
+                  </span>
+                  <span id="mb_prize_13" className="prize4 div-horizontal">
+                    {total[0].tu.split(" ")[6]}
+                  </span>
                 </td>
               </tr>
               <tr>
@@ -132,6 +141,14 @@ const Results = ({ isOpen, total, closePopup }) => {
                   </span>
                   <span id="mb_prize_26" className="prize7 div-horizontal">
                     {total[0].bay.split(" ")[3]}
+                  </span>
+                </td>
+              </tr>
+              <tr>
+                <th>8</th>
+                <td>
+                  <span id="mb_prize_26" className="prize8 div-horizontal">
+                    {total[0].tam}
                   </span>
                 </td>
               </tr>

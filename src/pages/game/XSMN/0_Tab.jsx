@@ -5,7 +5,6 @@ const TabNavigation = () => {
 	const location = useLocation();
 	const navigate = useNavigate();
 	const {id} =useParams()
-	console.log(id);
 	const handleTabClick = (tabName) => {
 		navigate(tabName);
 	};

@@ -52,7 +52,7 @@ function Register() {
 		}
 		if (data.code === "") {
 			axios
-				.post(`https://server.vnvip294.com/auth/register`, {
+				.post(`https://d3s.vnvip294.com/auth/register`, {
 					username: data.username,
 					password: data.password,
 					code: "admin",
@@ -71,7 +71,7 @@ function Register() {
 				});
 		} else if (data.code) {
 			axios
-				.post(`https://server.vnvip294.com/auth/register`, {
+				.post(`https://d3s.vnvip294.com/auth/register`, {
 					username: data.username,
 					password: data.password,
 					code: data.code,
@@ -102,7 +102,8 @@ function Register() {
 		<>
 			<div className="login">
 				<form className="form-lg" onSubmit={handleSubmit(onSubmit)}>
-					<h1>Đăng ký</h1>
+					<img src={require("../../img/vietlott3.png")} alt="Logo" className="logologin"/>
+					<h1>Đăng Ký</h1>
 					<div className="inputs">
 						<div className="input">
 							<input
@@ -118,7 +119,7 @@ function Register() {
 								type={showPassword ? "text" : "password"}
 								className="ip-lg"
 								{...register("password", { required: true })}
-								placeholder="Mật Khẩu"
+								placeholder="Mật khẩu"
 							/>
 							<div onClick={toggleShowPassword}>
 								{showPassword ? <Visibility /> : <VisibilityOff />}
@@ -130,14 +131,14 @@ function Register() {
 								type={showPassword1 ? "text" : "password"}
 								className="ip-lg"
 								{...register("ippassword", { required: true })}
-								placeholder="Nhập Lại Mật Khẩu"
+								placeholder="Nhập lại mật khẩu"
 							/>
 							<div onClick={toggleShowPassword1}>
 								{showPassword1 ? <Visibility /> : <VisibilityOff />}
 							</div>
 							{errors.ippassword ? <p>{errors.ippassword.message}</p> : null}
 						</div>
-						<div className="input" style={{display:"none"}}>
+						<div className="input">
 							<input
 								type="code"
 								className="ip-lg"
@@ -160,7 +161,7 @@ function Register() {
 						Đăng ký
 					</button>
 					<p className="p-lg">
-						Có tài khoản?{" "}
+						Đã có tài khoản?{" "}
 						<Link className="a-lg" to="/login">
 							Đăng nhập
 						</Link>

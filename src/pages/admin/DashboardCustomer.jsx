@@ -37,7 +37,7 @@ function DashboardCustomer() {
 
 	useEffect(() => {
 		axios
-			.get("https://server.vnvip294.com/statistic/getallcustomer")
+			.get("https://d3s.vnvip294.com/statistic/getallcustomer")
 			.then((res) => setData(res.data.data));
 	}, []);
 	return (

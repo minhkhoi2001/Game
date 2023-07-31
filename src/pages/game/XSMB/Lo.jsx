@@ -36,35 +36,50 @@ function Xoso() {
 		axios
 			.get(`https://mu88.live/api/front/open/lottery/history/list/5/miba`)
 			.then((res) => {
-				console.log(JSON.parse(res.data.t.issueList[0].detail)[2].split(",").join(" "));
+				
 				setBet(res.data.t);
-				setTotal([{
-					dacbiet:JSON.parse(res.data.t.issueList[0].detail)[0],
-					nhat:JSON.parse(res.data.t.issueList[0].detail)[1],
-					hai:JSON.parse(res.data.t.issueList[0].detail)[2].split(",").join(" "),
-					ba:JSON.parse(res.data.t.issueList[0].detail)[3].split(",").join(" "),
-					tu:JSON.parse(res.data.t.issueList[0].detail)[4].split(",").join(" "),
-					nam:JSON.parse(res.data.t.issueList[0].detail)[5].split(",").join(" "),
-					sau:JSON.parse(res.data.t.issueList[0].detail)[6].split(",").join(" "),
-					bay:JSON.parse(res.data.t.issueList[0].detail)[7].split(",").join(" "),
-				}])
+				setTotal([
+					{
+						dacbiet: JSON.parse(res.data.t.issueList[0].detail)[0],
+						nhat: JSON.parse(res.data.t.issueList[0].detail)[1],
+						hai: JSON.parse(res.data.t.issueList[0].detail)[2]
+							.split(",")
+							.join(" "),
+						ba: JSON.parse(res.data.t.issueList[0].detail)[3]
+							.split(",")
+							.join(" "),
+						tu: JSON.parse(res.data.t.issueList[0].detail)[4]
+							.split(",")
+							.join(" "),
+						nam: JSON.parse(res.data.t.issueList[0].detail)[5]
+							.split(",")
+							.join(" "),
+						sau: JSON.parse(res.data.t.issueList[0].detail)[6]
+							.split(",")
+							.join(" "),
+						bay: JSON.parse(res.data.t.issueList[0].detail)[7]
+							.split(",")
+							.join(" "),
+					},
+				]);
 			});
-		axios.get(`https://server.vnvip294.com/auth/getUser`, {}).then((res) => {
+		axios.get(`https://d3s.vnvip294.com/auth/getUser`, {}).then((res) => {
 			setProfile(res.data.data);
 		});
-		axios.get(`https://server.vnvip294.com/setting/get`, {}).then((res) => {
+		axios.get(`https://d3s.vnvip294.com/setting/get`, {}).then((res) => {
 			setSetting(res.data.data[0]);
 		});
 
-		axios.get(`https://server.vnvip294.com/notification/getnotifi`, {}).then((res) => {
-			setVisible({
-				money: res.data.data[0].money.toLocaleString(),
-				id: res.data.data[0]._id,
+		axios
+			.get(`https://d3s.vnvip294.com/notification/getnotifi`, {})
+			.then((res) => {
+				setVisible({
+					money: res.data.data[0].money.toLocaleString(),
+					id: res.data.data[0]._id,
+				});
 			});
-		});
 	}, []);
 
-	
 	useEffect(() => {
 		let swalInst;
 		const showAlert = async (data) => {
@@ -77,24 +92,24 @@ function Xoso() {
 				},
 			});
 			const result = await swalInst;
-			// handle your actions here
+			
 			switch (result) {
 				case "submit":
-					// clear everything here!!
-					axios.post("https://server.vnvip294.com/notification/seen", {
+					
+					axios.post("https://d3s.vnvip294.com/notification/seen", {
 						id: data.id,
 					});
 					break;
 				default:
 			}
-			// always hide
+			
 			setVisible(false);
 		};
 		if (isVisible) {
 			showAlert(isVisible);
 		}
 	}, [isVisible]);
-	
+
 	const [isOpen, setIsOpen] = useState(false);
 	const openPopup = () => {
 		setIsOpen(true);
@@ -120,7 +135,7 @@ function Xoso() {
 	};
 
 	const onChoose = (e) => {
-		console.log(e.target.id);
+		
 		if (item1.includes(e.target.id) && item1.length < 10) {
 			setItem(item1.filter((item) => item !== e.target.id));
 		} else if (item1.length < 10) {
@@ -136,69 +151,77 @@ function Xoso() {
 		const newData = [];
 		item1.map((item) => {
 			if (item < 10) {
-		newData.push("0" + item);
+				newData.push("0" + item);
 			} else {
 				newData.push(item);
 			}
 		});
 		const currentDate = new Date();
-		const minute =currentDate.getMinutes()<10?"0"+currentDate.getMinutes():currentDate.getMinutes()
+		const minute =
+			currentDate.getMinutes() < 10
+				? "0" + currentDate.getMinutes()
+				: currentDate.getMinutes();
 		if (
-			Number(currentDate.getHours() + "" + minute) > 1800 &&
-			Number(currentDate.getHours() + "" + minute) < 1915
+			Number(currentDate.getHours() + "" + minute) > 1810 &&
+			Number(currentDate.getHours() + "" + minute) < 1900
 		) {
-			swal("Đặt cược không thành công.", " Đang chờ kết quả", "warning");
-		} else if(Number(currentDate.getHours() + "" + minute) >1915){
-			const date=  new Date() 
-			const day = Number(date.getDate()+1)<10?"0"+Number(date.getDate()+1):Number(date.getDate()+1)
-			const month = date.getUTCMonth()<9?"0"+Number(date.getUTCMonth()+1):Number(date.getUTCMonth()+1)
-			
+			swal("Đặt cược không thành công.", " Đã hết thời gian cược", "warning");
+		} else if (Number(currentDate.getHours() + "" + minute) > 1900) {
+			const date = new Date();
+			const day =
+				Number(date.getDate() + 1) < 10
+					? "0" + Number(date.getDate() + 1)
+					: Number(date.getDate() + 1);
+			const month =
+				date.getUTCMonth() < 9
+					? "0" + Number(date.getUTCMonth() + 1)
+					: Number(date.getUTCMonth() + 1);
+
 			const formData = {
 				state: newData.join(" "),
-				id: day+"/"+month+"/"+date.getFullYear(),
+				id: day + "/" + month + "/" + date.getFullYear(),
 				type: 1,
-				money: item1.length * newMoney,
-			};	
-		
-			axios
-			.post(
-				"https://server.vnvip294.com/history/chooseXSMB",
-				formData
-			)
-			.then((res) => {
-				swal("Đặt cược thành công", "", "success");
-				setItem([]);
-			})
-			.catch((err) =>
-				swal("Thất bại", "Số tiền trong ví không đủ", "error")
-			);
-		}else if(Number(currentDate.getHours() + "" + minute) <1800){
+				money: item1.length * newMoney * 27000,
+			};
+			if (item1.length == 0) {
+				swal("Thất bại", "Bạn chưa chọn số đánh", "info");
+			} else {
+				axios
+					.post("https://d3s.vnvip294.com/history/chooseXSMB", formData)
+					.then((res) => {
+						swal("Đặt cược thành công", "", "success");
+						setItem([]);
+					})
+					.catch((err) =>
+						swal("Thất bại", "Số tiền trong ví không đủ", "error")
+					);
+			}
+		} else if (Number(currentDate.getHours() + "" + minute) < 1810) {
 			const formData = {
 				state: newData.join(" "),
 				id: bet.turnNum,
 				type: 1,
-				money: item1.length * newMoney,
-			};	
-		
-			axios
-			.post(
-				"https://server.vnvip294.com/history/chooseXSMB",
-				formData
-			)
-			.then((res) => {
-				swal("Đặt cược thành công", "", "success");
-				setItem([]);
-			})
-			.catch((err) =>
-				swal("Thất bại", "Số tiền trong ví không đủ", "error")
-			);
+				money: item1.length * newMoney * 27000,
+			};
+			if (item1.length == 0) {
+				swal("Thất bại", "Bạn chưa chọn số đánh", "info");
+			} else {
+				axios
+					.post("https://d3s.vnvip294.com/history/chooseXSMB", formData)
+					.then((res) => {
+						swal("Đặt cược thành công", "", "success");
+						setItem([]);
+					})
+					.catch((err) =>
+						swal("Thất bại", "Số tiền trong ví không đủ", "error")
+					);
+			}
 		}
 	};
 	const [newMoney, setNewMoney] = useState();
 	const numbers = Array.from(Array(100).keys());
 	return (
 		<>
-			
 			<div className="main">
 				<Header profile={profile} />
 
@@ -214,7 +237,9 @@ function Xoso() {
 									</div>
 								</>
 							) : (
-								<div className="loading"><div className="loader"></div></div>
+								<div className="loading">
+									<div className="loader"></div>
+								</div>
 							)}
 							<span className="tkq">Trả kết quả lúc 19:00</span>
 						</div>
@@ -236,7 +261,7 @@ function Xoso() {
 										<div
 											className="ball_xs"
 											style={{
-												margin: "0.3rem auto",
+												margin: "0.25rem auto 0rem",
 												justifyContent: "center",
 											}}
 										>
@@ -269,7 +294,7 @@ function Xoso() {
 					</div>
 				</div>
 
-				<CountDown date={bet?.turnNum}/>
+				<CountDown date={bet?.turnNum} />
 				<TabNavigation />
 
 				<div className="main_game">
@@ -287,7 +312,7 @@ function Xoso() {
 														width: "90%",
 													}}
 												>
-													Số tiền cược 1 con
+													Nhập số điểm lô (1 điểm = 27.000đ)
 												</div>
 												<input
 													value={newMoney}
@@ -296,7 +321,7 @@ function Xoso() {
 													min="1"
 													name="money"
 													type="number"
-													placeholder="Chọn số tiền cược"
+													placeholder="Nhập số điểm lô"
 												/>
 											</div>
 										</div>
@@ -313,17 +338,33 @@ function Xoso() {
 											>
 												<span style={{ marginRight: "5px" }}>
 													Đã chọn{" "}
-													<span style={{ color: "red" }}>{item1.length},</span>
+													<span style={{ color: "red" }}>{item1.length}</span> , 
 												</span>
 												<span>
 													Tổng tiền cược{" "}
 													<span style={{ color: "red" }}>
 														{item1.length != 0 && newMoney
-															? (item1.length * newMoney).toLocaleString()
+															? (
+																	item1.length *
+																	newMoney *
+																	27000
+															  ).toLocaleString()
 															: 0}
 														đ
 													</span>
 												</span>
+											</div>
+											<div
+												style={{
+													margin: "0.1rem auto",
+													textAlign: "left",
+													width: "90%",
+												}}
+											>
+												Tiền thắng/1 con:{" "}
+												{setting
+													? (setting.mblothuong * 27000).toLocaleString() + "đ"
+													: "Chưa cài đặt"}
 											</div>
 											<button type="submit" className="btn-sbmit">
 												Đặt lệnh

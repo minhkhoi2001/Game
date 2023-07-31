@@ -7,6 +7,7 @@ import { useEffect, useState } from "react";
 import axios from "axios";
 import Visibility from "@mui/icons-material/Visibility";
 import VisibilityOff from "@mui/icons-material/VisibilityOff";
+import CampaignIcon from '@mui/icons-material/Campaign';
 
 function Home() {
 	SwiperCore.use([Autoplay]);
@@ -33,13 +34,17 @@ function Home() {
 	);
 	const [isShow, setShow] = useState(false);
 	const [profile1, setProfile1] = useState(null);
+	const [notify, setNotify] = useState();
 	useEffect(() => {
 		axios
-			.get(`https://server.vnvip294.com/auth/getUser`, {})
+			.get(`https://d3s.vnvip294.com/auth/getUser`, {})
 			.then((res) => {
 				setProfile1(res.data.data);
 			})
 			.catch((err) => localStorage.removeItem("user"));
+		axios.get(`https://d3s.vnvip294.com/auth/getnotify`, {}).then((res) => {
+			setNotify(res.data.data[0]);
+			});
 	}, []);
 	return (
 		<>
@@ -86,44 +91,22 @@ function Home() {
 						<img src={require("../../img/banner3.jpg")} />
 					</SwiperSlide>
 				</Swiper>
+				{notify ? (
+				<>				
+				{notify.isShow == true && notify.title == "marquee" ? (		
+					<div className="marquees">
+						<div><CampaignIcon sx={{fontSize:"22px"}}/></div>
+						<div><div className="marquee"><p dangerouslySetInnerHTML={{ __html: notify.content }} /></div></div>
+					</div>	
+				) : null }		
+				</>	
+				) : null}
+
 				<div className="content-game">
 					<h2 className="title" style={{ margin: "0.5rem 0 0" }}>
 						Games
 					</h2>
 					<div className="list-game">
-						<div className="box-game">
-							<Link to="/keno1p">
-								<img src={require("../../img/WinGo-749c393c.png")} />
-								<h3>KENO 1P</h3>
-								<div className="box-game-text">
-									<div>Đoán số</div>
-									<div>Lớn/Nhỏ/Lẻ/Chẵn để giành chiến thắng</div>
-								</div>
-							</Link>
-						</div>
-						<div className="box-game">
-							<Link to="/keno3p">
-								<img
-									src={require("../../img/5d-4be64165.png")}
-									style={{ margin: "0 5px 0 0" }}
-								/>
-								<h3>KENO 3P</h3>
-								<div className="box-game-text">
-									<div>Đoán số</div>
-									<div>Lớn/Nhỏ/Lẻ/Chẵn để giành chiến thắng</div>
-								</div>
-							</Link>
-						</div>
-						<div className="box-game">
-							<Link to="/keno5p">
-								<img src={require("../../img/TrxWingo-7fc426b2.png")} />
-								<h3>KENO 5P</h3>
-								<div className="box-game-text">
-									<div>Đoán số</div>
-									<div>Lớn/Nhỏ/Lẻ/Chẵn để giành chiến thắng</div>
-								</div>
-							</Link>
-						</div>
 						<div className="box-game op xsmb">
 							<Link to="/xsmb">
 								<img
@@ -192,7 +175,40 @@ function Home() {
 							</Link>
 						</div>
 						<div className="box-game">
-							<Link to="/xucxac">
+							<Link to="/keno1p">
+								<img src={require("../../img/WinGo-749c393c.png")} />
+								<h3>KENO 1P</h3>
+								<div className="box-game-text">
+									<div>Đoán số</div>
+									<div>Lớn/Nhỏ/Lẻ/Chẵn để giành chiến thắng</div>
+								</div>
+							</Link>
+						</div>
+						<div className="box-game">
+							<Link to="/keno3p">
+								<img
+									src={require("../../img/5d-4be64165.png")}
+									style={{ margin: "0 5px 0 0" }}
+								/>
+								<h3>KENO 3P</h3>
+								<div className="box-game-text">
+									<div>Đoán số</div>
+									<div>Lớn/Nhỏ/Lẻ/Chẵn để giành chiến thắng</div>
+								</div>
+							</Link>
+						</div>
+						<div className="box-game">
+							<Link to="/keno5p">
+								<img src={require("../../img/TrxWingo-7fc426b2.png")} />
+								<h3>KENO 5P</h3>
+								<div className="box-game-text">
+									<div>Đoán số</div>
+									<div>Lớn/Nhỏ/Lẻ/Chẵn để giành chiến thắng</div>
+								</div>
+							</Link>
+						</div>
+						<div className="box-game">
+							<Link to="/xucxac3">
 								<img
 									src={require("../../img/k3-3fb4362a.png")}
 									style={{ margin: "0 5px 0 0" }}

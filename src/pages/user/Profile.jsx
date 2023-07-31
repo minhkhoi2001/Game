@@ -3,7 +3,7 @@ import "../user/profile.css";
 import { useEffect, useState } from "react";
 import axios from "axios";
 import { Link, useNavigate } from "react-router-dom";
-
+import MoveUpIcon from "@mui/icons-material/MoveUp";
 import AddCardOutlinedIcon from "@mui/icons-material/AddCardOutlined";
 import PriceChangeOutlinedIcon from "@mui/icons-material/PriceChangeOutlined";
 import LocalAtmOutlinedIcon from "@mui/icons-material/LocalAtmOutlined";
@@ -35,7 +35,7 @@ function Profile() {
 	);
 	useEffect(() => {
 		axios
-			.get(`https://server.vnvip294.com/auth/getUser`, {})
+			.get(`https://d3s.vnvip294.com/auth/getUser`, {})
 			.then((res) => {
 				setProfile(res.data.data);
 			})
@@ -70,23 +70,7 @@ function Profile() {
 							Thành Viên
 						</div>
 						<div className="promotionRule__container-content__rules-item__titleRight"></div>
-						<div className="account__ID">
-							{/*<h1 className="title-h1">Trung tâm thành viên</h1>
-							ID:{" "}
-							<span id="account__ID">
-								{profile ? <span>{profile.iduser}</span> : null}
-							</span>
-							<span
-								id="user"
-								style={{
-									position: "absolute",
-									right: "0.26667rem",
-									margin: "0",
-								}}
-							>
-								{profile ? <span>{profile.username}</span> : null}
-							</span>*/}
-						</div>
+						<div className="account__ID"></div>
 						<div className="account__balance">
 							<span style={{ margin: "0" }}>
 								<img
@@ -94,6 +78,15 @@ function Profile() {
 									alt="Profile"
 								/>
 								{profile ? <span>{profile.username}</span> : <span>...</span>}
+							</span>
+							<span style={{ margin: "0" }}>
+								{profile ? (
+									<span>
+										Mã giới thiệu <b>{profile.code}</b>
+									</span>
+								) : (
+									<span>...</span>
+								)}
 							</span>
 							{profile ? (
 								<strong id="account__balance">
@@ -104,7 +97,7 @@ function Profile() {
 					</div>
 					<div className="account__transaction">
 						<div className="account__transaction-box">
-							<Link to="/addmoney" className="account__transaction-item">
+							<Link to="/recharge" className="account__transaction-item">
 								<AddCardOutlinedIcon />
 								<span>Nạp tiền</span>
 							</Link>
@@ -148,6 +141,13 @@ function Profile() {
 							<span>
 								<AccountBalanceOutlinedIcon sx={{ fontSize: "25px" }} />
 								Liên kết ngân hàng
+							</span>
+							<KeyboardArrowRightOutlinedIcon />
+						</Link>
+						<Link to="/transfer" className="account__menu-item">
+							<span>
+								<MoveUpIcon sx={{ fontSize: "25px" }} />
+								Chuyển tiền
 							</span>
 							<KeyboardArrowRightOutlinedIcon />
 						</Link>

@@ -4,11 +4,12 @@ import axios from "axios";
 
 const History = ({ isOpen, closePopup }) => {
   const [historyGame, setHistoryGame] = useState(null);
-
+  const [isShow, setShow] = useState(false);
+  const [ls, setLs] = useState(null);
   useEffect(() => {
     if (isOpen) {
       axios
-        .get("https://server.vnvip294.com/history/historyus", {})
+        .get("https://d3s.vnvip294.com/history/historyus", {})
         .then((res) => {
           setHistoryGame(res.data.data);
         })
@@ -44,7 +45,10 @@ const History = ({ isOpen, closePopup }) => {
 									{historyGame?.map((item, key) => (
 										<>
 											{item.sanh == "XSMB" && item.type ? (
-												<div className="item_inner">
+												<div className="item_inner" onClick={() => {
+													setLs(item);
+													setShow(true);
+												}}>
 													<div className="item_history">
 														<div className="title_item_history">
 															<span className="sanh"> {item.sanh}</span>
@@ -98,6 +102,71 @@ const History = ({ isOpen, closePopup }) => {
 					</div>
 				</div>
 			)}
+			{isShow === true && ls.status_bet != "Pending" ? (
+				<>
+					<div className="modal" style={{ zIndex: "9999999" }}>
+						<div className="modaloverlay">
+							<i className="ti-close closelogin"></i>
+						</div>
+						<div className="modalbody">
+							<div>
+								<div className="modalinner" style={{ padding: "10px 15px" }}>
+									<div
+										className="modalheader"
+										style={{ padding: "10px 0 20px" }}
+									>
+										Chi tiết cược
+									</div>
+
+									{ls.id_bet ? (
+										<>
+											<div className="lsgd-table">
+												<div>Trò chơi</div>
+												<div>{ls.sanh}</div>
+											</div>
+											<div className="lsgd-table">
+												<div>Phiên</div>
+												<div>{ls.id_bet}</div>
+											</div>
+											<div className="lsgd-table">
+												<div>Thời gian</div>
+												<div>{formatDate(new Date(ls.createdAt))}</div>
+											</div>
+											<div className="lsgd-table">
+												<div>Đặt cược</div>
+												<div>{GetNameChoose(ls.state, ls.type, ls.sanh)}</div>
+											</div>
+											<div className="lsgd-table">
+												<div>Tổng đặt</div>
+												<div>{Number(ls.money).toLocaleString()} đ</div>
+											</div>
+											<div className="lsgd-table">
+												<div>Tổng thắng</div>
+												<div>{Number(ls.moneythang).toLocaleString()} đ</div>
+											</div>
+										</>
+									) : null}
+									<div>
+										<div className="modalformcontrols">
+											<button
+												onClick={() => setShow(false)}
+												className="popup-close"
+												style={{
+													background: "red",
+													boxShadow: "none",
+													textShadow: "none",
+												}}
+											>
+												ĐÓNG
+											</button>
+										</div>
+									</div>
+								</div>
+							</div>
+						</div>
+					</div>
+				</>
+			) : null}
 		</>
 	);
 };

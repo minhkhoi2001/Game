@@ -40,13 +40,13 @@ function HistoryAll() {
 	);
 	useEffect(() => {
 		axios
-			.get(`https://server.vnvip294.com/auth/biendongsodu`, {})
+			.get(`https://d3s.vnvip294.com/auth/biendongsodu`, {})
 			.then((res) => {
 				setProfile(res.data.data);
 			})
 			.catch((err) => function () {});
 		axios
-			.get(`https://server.vnvip294.com/auth/getUser`, {})
+			.get(`https://d3s.vnvip294.com/auth/getUser`, {})
 			.then((res) => {
 				setProfile1(res.data.data);
 			})
@@ -64,15 +64,15 @@ function HistoryAll() {
 						</div>
 						<div className="header-right">
 							<div style={{ display: "flex", float: "right" }}>
-							{profile1 ? (
-              <span style={{ marginRight: "0.111rem" }}>
-                Số dư: <b>{Math.floor(profile1.money).toLocaleString()}đ</b>
-              </span>
-            ) : (
-              <span style={{ marginRight: "0.111rem" }}>
-                Số dư: <b>******đ</b>
-              </span>
-            )}
+								{profile1 ? (
+									<span style={{ marginRight: "0.111rem" }}>
+										Số dư: <b>{Math.floor(profile1.money).toLocaleString()}đ</b>
+									</span>
+								) : (
+									<span style={{ marginRight: "0.111rem" }}>
+										Số dư: <b>******đ</b>
+									</span>
+								)}
 							</div>
 						</div>
 					</div>
@@ -111,7 +111,8 @@ function HistoryAll() {
 														: item.status_bet === "Lose"
 														? "-"
 														: ""}
-													{Number(item.money).toLocaleString()}đ</span>
+													{Number(item.money).toLocaleString()}đ
+												</span>
 												<div className="time_choose">
 													{formatDate(new Date(item.createdAt))}
 												</div>
@@ -149,7 +150,7 @@ function HistoryAll() {
 													</span>
 												</div>
 												<div className="id_history_sanh">
-													STK : {item?.detail}
+													{item?.detail}
 												</div>
 											</div>
 											<div className="money_history">
@@ -172,8 +173,7 @@ function HistoryAll() {
 						))}
 					</div>
 				) : (
-					<div>
-					</div>
+					<div></div>
 				)}
 
 				<Footer profile={profile1} />

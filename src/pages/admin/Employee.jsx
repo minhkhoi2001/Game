@@ -42,9 +42,9 @@ function Employee() {
 			username: e.target.username.value,
 			password: e.target.password.value
 		}
-		console.log(formData);
+		
 		axios
-			.post(`https://server.vnvip294.com/auth/createEmployee`, formData)
+			.post(`https://d3s.vnvip294.com/auth/createEmployee`, formData)
 			.then((res) => {
 				setLoad(true);
 				swal("Thành công", "Thêm mới nhân viên thành công!", "success")

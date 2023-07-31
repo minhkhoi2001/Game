@@ -19,7 +19,6 @@ export const TotalCustomers = (props) => (
           </Typography>
           <Typography color="textPrimary" variant="h4">
             {props.user}
-            {console.log(props)}
           </Typography>
         </Grid>
         <Grid item>

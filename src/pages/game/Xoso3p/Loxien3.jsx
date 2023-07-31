@@ -9,7 +9,7 @@ import Header from "../../components/Header";
 
 function Loxien3() {
 	const [isVisible, setVisible] = useState(null);
-	const [newData, setNewData]=useState(null)
+	const [newData, setNewData] = useState(null);
 	const [bet, setBet] = useState(null);
 	const [profile, setProfile] = useState(null);
 	const [second, setSecond] = useState(0);
@@ -43,38 +43,40 @@ function Loxien3() {
 	function rollLottery(res) {
 		const interval = setInterval(() => {
 			const randomDigits = Math.floor(Math.random() * 90000) + 10000;
-			setTotal([{id_bet: res.data.data[0].id_bet, dacbiet: String(randomDigits) }]);
-		  }, 100);
-	  
-		  setTimeout(() => {
+			setTotal([
+				{ id_bet: res.data.data[0].id_bet, dacbiet: String(randomDigits) },
+			]);
+		}, 100);
+
+		setTimeout(() => {
 			clearInterval(interval);
 			setTotal(res.data.data);
-		  }, 2000);
-		  return () => {
+		}, 2000);
+		return () => {
 			clearInterval(interval);
 		};
 	}
 	useEffect(() => {
-		axios.get(`https://server.vnvip294.com/auth/getUser`, {}).then((res) => {
+		axios.get(`https://d3s.vnvip294.com/auth/getUser`, {}).then((res) => {
 			setProfile(res.data.data);
 		});
-		axios.get(`https://server.vnvip294.com/setting/get`, {}).then((res) => {
+		axios.get(`https://d3s.vnvip294.com/setting/get`, {}).then((res) => {
 			setSetting(res.data.data[0]);
 		});
-		axios.get(`https://server.vnvip294.com/Xoso3/get`).then((res) => {
+		axios.get(`https://d3s.vnvip294.com/Xoso3/get`).then((res) => {
 			setBet(res.data.data);
 			setDulieunhap(new Date(res.data.data.createdAt));
 			setStart(true);
 		});
 		axios
-			.get(`https://server.vnvip294.com/Xoso3/getallbet`, {})
+			.get(`https://d3s.vnvip294.com/Xoso3/getallbet`, {})
 			.then((res) => {
 				rollLottery(res);
-				setNewData(res.data.data)
+				setNewData(res.data.data);
 			})
 			.catch(() => setTotal(null));
 		axios
-			.get(`https://server.vnvip294.com/notification/getnotifi`, {})
+			.get(`https://d3s.vnvip294.com/notification/getnotifi`, {})
 			.then((res) => {
 				setVisible({
 					money: res.data.data[0].money.toLocaleString(),
@@ -85,22 +87,24 @@ function Loxien3() {
 	useEffect(() => {
 		const timer = setInterval(() => {
 			if (Math.floor(180 - (new Date() - dulieunhap) / 1000) < 0) {
-				axios.get(`https://server.vnvip294.com/auth/getUser`, {}).then((res) => {
-					setProfile(res.data.data);
-				});
-				axios.get(`https://server.vnvip294.com/Xoso3/get`).then((res) => {
+				axios
+					.get(`https://d3s.vnvip294.com/auth/getUser`, {})
+					.then((res) => {
+						setProfile(res.data.data);
+					});
+				axios.get(`https://d3s.vnvip294.com/Xoso3/get`).then((res) => {
 					setBet(res.data.data);
 					setDulieunhap(new Date(res.data.data.createdAt));
 				});
 				axios
-					.get(`https://server.vnvip294.com/Xoso3/getallbet`, {})
+					.get(`https://d3s.vnvip294.com/Xoso3/getallbet`, {})
 					.then((res) => {
 						rollLottery(res);
-						setNewData(res.data.data)
+						setNewData(res.data.data);
 					})
 					.catch(() => setTotal(null));
 				axios
-					.get(`https://server.vnvip294.com/notification/getnotifi`, {})
+					.get(`https://d3s.vnvip294.com/notification/getnotifi`, {})
 					.then((res) => {
 						setVisible({
 							money: res.data.data[0].money.toLocaleString(),
@@ -126,17 +130,16 @@ function Loxien3() {
 				},
 			});
 			const result = await swalInst;
-			// handle your actions here
+
 			switch (result) {
 				case "submit":
-					// clear everything here!!
-					axios.post("https://server.vnvip294.com/notification/seen", {
+					axios.post("https://d3s.vnvip294.com/notification/seen", {
 						id: data.id,
 					});
 					break;
 				default:
 			}
-			// always hide
+
 			setVisible(false);
 		};
 		if (isVisible) {
@@ -221,27 +224,27 @@ function Loxien3() {
 	};
 
 	const onChoose = (e) => {
-		console.log(e.target.id);
-		if (item1.includes(e.target.id)&&item1.length<3) {
+		
+		if (item1.includes(e.target.id) && item1.length < 3) {
 			setItem(item1.filter((item) => item !== e.target.id));
-		} else if(item1.length<3){
+		} else if (item1.length < 3) {
 			setItem([...item1, e.target.id]);
-		}else{
-			swal("Chú ý", "Bạn chỉ được chọn tối đa 3 số", "warning")
-			item1.pop()
-			setItem(item1)
+		} else {
+			swal("Chú ý", "Bạn chỉ được chọn tối đa 3 số", "warning");
+			item1.pop();
+			setItem(item1);
 		}
 	};
 	const onSubmit = (e) => {
 		e.preventDefault();
-		const newData=[]
-		item1.map((item)=>{
-			if(item<10){
-				newData.push("0"+item)
-			}else{
-				newData.push(item)
+		const newData = [];
+		item1.map((item) => {
+			if (item < 10) {
+				newData.push("0" + item);
+			} else {
+				newData.push(item);
 			}
-		})
+		});
 		const formData = {
 			state: newData.join(" "),
 			id: bet?._id,
@@ -249,15 +252,15 @@ function Loxien3() {
 			money: item1.length * newMoney,
 		};
 		if (item1.length == 0) {
-			swal("Thất bại", "Bạn chưa chọn số", "error");
+			swal("Thất bại", "Bạn chưa chọn số đánh", "info");
 		} else if (item1.length == 3) {
-		axios
-			.post("https://server.vnvip294.com/history3pxs/choose", formData)
-			.then((res) => {
-				swal("Đặt cược thành công", "", "success")
-				setItem([])
-			})
-			.catch((err) => swal("Thất bại", "Số tiền trong ví không đủ", "error"));
+			axios
+				.post("https://d3s.vnvip294.com/history3pxs/choose", formData)
+				.then((res) => {
+					swal("Đặt cược thành công", "", "success");
+					setItem([]);
+				})
+				.catch((err) => swal("Thất bại", "Số tiền trong ví không đủ", "error"));
 		} else if (item1.length > 0 && item1.length < 3) {
 			swal("Thất bại", "Số đánh không hợp lệ", "error");
 		}
@@ -266,9 +269,8 @@ function Loxien3() {
 	const numbers = Array.from(Array(100).keys());
 	return (
 		<>
-			
 			<div className="main">
-				<Header profile={profile}/>
+				<Header profile={profile} />
 
 				<div className="record_bet">
 					<div className="colum-resultxs">
@@ -282,7 +284,9 @@ function Loxien3() {
 									</div>
 								</>
 							) : (
-								<div className="loading"><div className="loader"></div></div>
+								<div className="loading">
+									<div className="loader"></div>
+								</div>
 							)}
 							{total ? (
 								<>
@@ -294,7 +298,7 @@ function Loxien3() {
 												justifyContent: "center",
 											}}
 										>
-											<div>{minute<10?"0":null}</div>
+											<div>{minute < 10 ? "0" : null}</div>
 											{minute
 												.toString()
 												.split("")
@@ -323,7 +327,7 @@ function Loxien3() {
 										className="info_bet"
 									>
 										<div style={{ fontSize: "0.33rem" }}>
-											Kết quả phiên {" "}
+											Kết quả phiên{" "}
 											<b style={{ color: "#333" }}>{total[0]?.id_bet}</b>
 										</div>
 										<div
@@ -334,8 +338,8 @@ function Loxien3() {
 											}}
 										>
 											{total[0].dacbiet.split("").map((x) => (
-																<div className="redball">{x}</div>
-															))}
+												<div className="redball">{x}</div>
+											))}
 										</div>
 									</div>
 								</>
@@ -362,7 +366,7 @@ function Loxien3() {
 					</div>
 				</div>
 
-				<TabNavigation/>
+				<TabNavigation />
 
 				<div className="main_game">
 					<div className="route_game">
@@ -388,7 +392,7 @@ function Loxien3() {
 													min="1"
 													name="money"
 													type="number"
-													placeholder="Chọn số tiền cược"
+													placeholder="Nhập số tiền cược"
 												/>
 											</div>
 										</div>
@@ -404,11 +408,11 @@ function Loxien3() {
 												}}
 											>
 												<span style={{ marginRight: "5px" }}>
-													Đã chọn {" "}
-													<span style={{ color: "red" }}>{item1.length},</span>
+													Đã chọn{" "}
+													<span style={{ color: "red" }}>{item1.length}</span> , 
 												</span>
 												<span>
-													Tổng tiền cược {" "}
+													Tổng tiền cược{" "}
 													<span style={{ color: "red" }}>
 														{item1.length != 0 && newMoney
 															? (item1.length * newMoney).toLocaleString()
@@ -416,6 +420,18 @@ function Loxien3() {
 														đ
 													</span>
 												</span>
+											</div>
+											<div
+												style={{
+													margin: "0.1rem auto",
+													textAlign: "left",
+													width: "90%",
+												}}
+											>
+												Tỉ lệ cược{" "}
+												{setting
+													? "1 : " + setting.loxien3
+													: "Chưa cài đặt"}
 											</div>
 											<button type="submit" className="btn-sbmit">
 												Đặt lệnh
@@ -445,10 +461,10 @@ function Loxien3() {
 					</div>
 				</div>
 				<Footer />
-				
+
 				<Results isOpen={isOpen1} total={newData} closePopup={closePopup1} />
 
-				<History isOpen={isOpen2} closePopup={closePopup2}/>
+				<History isOpen={isOpen2} closePopup={closePopup2} />
 			</div>
 		</>
 	);

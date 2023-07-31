@@ -38,7 +38,7 @@ function CSKH() {
 	}, []);
 useEffect(()=>{
 	axios
-	.get(`https://server.vnvip294.com/auth/getUser`, {})
+	.get(`https://d3s.vnvip294.com/auth/getUser`, {})
 	.then((res) => {
 		setProfile(res.data.data);
 	})
@@ -62,8 +62,8 @@ useEffect(()=>{
 					</div>
 				</div>
 				<h1 className="title-h1">Chăm Sóc Khách Hàng</h1>
-				<div style={{position:"relative", height: "100vh"}}>
-					<iframe src="https://tawk.to/chat/64563b4c6a9aad4bc5793cfd/1gvodf9bp" frameborder="0" width="100%" height="100%"></iframe>
+				<div style={{position:"relative", height: "70vh"}}>
+					<iframe src="https://tawk.to/chat/64b7fa5c94cf5d49dc649a9e/1h5najupn" frameborder="0" width="100%" height="100%"></iframe>
 				</div>
 			</div>
 			<Footer />

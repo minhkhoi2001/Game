@@ -56,17 +56,28 @@ function Users() {
 		}
 	);
 
+	const [ employee , setEmployee] =useState()
 	useEffect(() => {
 		if (load == false) {
 			axios
-				.get(`https://server.vnvip294.com/auth/getall`, {})
+				.get(`https://d3s.vnvip294.com/auth/getall`, {})
 				.then((res) => {
 					localStorage.setItem("data", JSON.stringify(res.data.data));
 					setUser(res.data.data);
 					setLoad(true);
 				})
 				.then((res) => setLoad(true));
+				axios
+				.get(`https://d3s.vnvip294.com/auth/getEmployee`, {})
+				.then((res) => {
+					localStorage.setItem("data1", JSON.stringify(res.data.data));
+					setEmployee(res.data.data);
+					setLoad(true);
+				})
+				.then((res) => setLoad(true));
+
 		}
+
 	}, [load]);
 	const requestSearch = (searchedVal) => {
 		setSearched(searchedVal);
@@ -118,17 +129,18 @@ function Users() {
 													<TableRow>
 														<TableCell>ID User</TableCell>
 														<TableCell>Username</TableCell>
-														<TableCell>Số tiền</TableCell>
+														<TableCell>Người Giới Thiệu</TableCell>
+														<TableCell>Số Dư</TableCell>
 														{/*<TableCell>Ngày tạo</TableCell>*/}
 														<TableCell>Admin Cộng</TableCell>
 
 														<TableCell>Admin Trừ</TableCell>
 														<TableCell>Admin Thưởng</TableCell>
-														<TableCell>Tổng đặt</TableCell>
-														<TableCell>Tổng win</TableCell>
+														<TableCell>Tổng Đặt</TableCell>
+														<TableCell>Tổng Thắng</TableCell>
 														<TableCell>Rút/ Nạp Tiền</TableCell>
 														<TableCell>Thưởng</TableCell>
-														<TableCell>Xem thông tin</TableCell>
+														<TableCell>Xem Thông Tin</TableCell>
 													</TableRow>
 												</TableHead>
 												{users != null ? (
@@ -141,6 +153,9 @@ function Users() {
 																</TableCell>
 																<TableCell sx={{ fontWeight: "600" }}>
 																	{item.username}
+																</TableCell>
+																<TableCell sx={{ fontWeight: "600" }}>
+																	{employee && employee.find((x=>x.code===item.aff))?.username}
 																</TableCell>
 																<TableCell sx={{ fontWeight: "600" }}>
 																	{item.money.toLocaleString()} VNĐ
@@ -173,7 +188,7 @@ function Users() {
 																			};
 																			axios
 																				.post(
-																					`https://server.vnvip294.com/auth/update`,
+																					`https://d3s.vnvip294.com/auth/update`,
 																					dataForm
 																				)
 																				.then((res) => {
@@ -202,7 +217,7 @@ function Users() {
 																			};
 																			axios
 																				.post(
-																					`https://server.vnvip294.com/auth/adminthuong`,
+																					`https://d3s.vnvip294.com/auth/adminthuong`,
 																					dataForm
 																				)
 																				.then((res) => {
@@ -229,7 +244,7 @@ function Users() {
 																			onClick={() => {
 																				axios
 																					.post(
-																						`https://server.vnvip294.com/auth/lockkey`,
+																						`https://d3s.vnvip294.com/auth/lockkey`,
 																						{
 																							id: item._id,
 
@@ -249,7 +264,7 @@ function Users() {
 																			onClick={() => {
 																				axios
 																					.post(
-																						`https://server.vnvip294.com/auth/lockkey`,
+																						`https://d3s.vnvip294.com/auth/lockkey`,
 																						{
 																							id: item._id,
 

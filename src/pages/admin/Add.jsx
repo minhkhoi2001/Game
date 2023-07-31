@@ -50,7 +50,7 @@ function Add() {
 	);
 	useEffect(() => {
 		if (load === false) {
-			axios.get(`https://server.vnvip294.com/payment/nap`, {}).then((res) => {
+			axios.get(`https://d3s.vnvip294.com/payment/nap`, {}).then((res) => {
 				setData(res.data.data);
 				localStorage.setItem("data", JSON.stringify(res.data.data));
 				setLoad(true);
@@ -115,6 +115,7 @@ function Add() {
 													<TableCell>Thời gian</TableCell>
 												</TableRow>
 											</TableHead>
+											{data && (
 											<TableBody>
 												{data?.slice((pages - 1) * 10, (pages - 1) * 10 + 10).map((item) => (
 													<>
@@ -162,7 +163,7 @@ function Add() {
 																		};
 																		axios
 																			.post(
-																				`https://server.vnvip294.com/payment/update`,
+																				`https://d3s.vnvip294.com/payment/update`,
 																				formData
 																			)
 																			.then((res) => {
@@ -182,7 +183,7 @@ function Add() {
 																		};
 																		axios
 																			.post(
-																				`https://server.vnvip294.com/payment/update`,
+																				`https://d3s.vnvip294.com/payment/update`,
 																				formData
 																			)
 																			.then((res) => {
@@ -202,6 +203,7 @@ function Add() {
 													</>
 												))}
 											</TableBody>
+											)}
 										</Table>
 									</Box>
 								</div>

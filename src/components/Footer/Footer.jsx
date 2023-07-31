@@ -12,21 +12,23 @@ import AddBusinessOutlinedIcon from '@mui/icons-material/AddBusinessOutlined';
 import HeadsetMicIcon from '@mui/icons-material/HeadsetMic';
 import HomeIcon from '@mui/icons-material/Home';
 import AddBusinessIcon from '@mui/icons-material/AddBusiness';
+import RedeemIcon from '@mui/icons-material/Redeem';
+import RedeemOutlinedIcon from '@mui/icons-material/RedeemOutlined';
 function Footer(props) {
 	var profile = props.profile
 	const location = useLocation()
 	const data = [
 		{
-			icon: <NotificationsNoneIcon />,
-			iconactive: <NotificationsIcon/>,
-			title: "Thông báo",
+			icon: <RedeemOutlinedIcon />,
+			iconactive: <RedeemIcon/>,
+			title: "Khuyến mãi",
 			to: "/notification",
 		},
 		{
 			icon: <AddBusinessOutlinedIcon />,
 			iconactive: <AddBusinessIcon/>,
 			title: "Nạp tiền",
-			to: "/addmoney",
+			to: "/recharge",
 		},
 		{
 			icon: <HomeOutlinedIcon />,
@@ -37,7 +39,7 @@ function Footer(props) {
 		{
 			icon: <AccountCircleOutlinedIcon />,
 			iconactive: <AccountCircleIcon/>,
-			title: "Trang cá nhân",
+			title: "Cá nhân",
 			to: "/profile",
 		},
 		{

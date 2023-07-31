@@ -23,6 +23,8 @@ function Keno1() {
 	const [total, setTotal] = useState(null);
 	const [setting, setSetting] = useState(null);
 	const [item1, setItem] = useState([]);
+	const [isShow, setShow] = useState(false);
+	const [ls, setLs] = useState(null);
 
 	axios.interceptors.request.use(
 		(config) => {
@@ -40,25 +42,25 @@ function Keno1() {
 		}
 	);
 	useEffect(() => {
-		axios.get(`https://server.vnvip294.com/auth/getUser`, {}).then((res) => {
+		axios.get(`https://d3s.vnvip294.com/auth/getUser`, {}).then((res) => {
 			setProfile(res.data.data);
 		});
-		axios.get(`https://server.vnvip294.com/setting/get`, {}).then((res) => {
+		axios.get(`https://d3s.vnvip294.com/setting/get`, {}).then((res) => {
 			setSetting(res.data.data[0]);
 		});
-		axios.get(`https://server.vnvip294.com/bet1/get`).then((res) => {
+		axios.get(`https://d3s.vnvip294.com/bet1/get`).then((res) => {
 			setBet(res.data.data);
 			setDulieunhap(new Date(res.data.data.createdAt));
 			setStart(true);
 		});
 		axios
-			.get(`https://server.vnvip294.com/bet1/getallbet`, {})
+			.get(`https://d3s.vnvip294.com/bet1/getallbet`, {})
 			.then((res) => {
 				setTotal(res.data.data);
 			})
 			.catch(() => setTotal(null));
 		axios
-			.get(`https://server.vnvip294.com/notification/getnotifi`, {})
+			.get(`https://d3s.vnvip294.com/notification/getnotifi`, {})
 			.then((res) => {
 				setVisible({
 					money: res.data.data[0].money.toLocaleString(),
@@ -69,21 +71,23 @@ function Keno1() {
 	useEffect(() => {
 		const timer = setInterval(() => {
 			if (Math.floor(60 - (new Date() - dulieunhap) / 1000) < 0) {
-				axios.get(`https://server.vnvip294.com/auth/getUser`, {}).then((res) => {
-					setProfile(res.data.data);
-				});
-				axios.get(`https://server.vnvip294.com/bet1/get`).then((res) => {
+				axios
+					.get(`https://d3s.vnvip294.com/auth/getUser`, {})
+					.then((res) => {
+						setProfile(res.data.data);
+					});
+				axios.get(`https://d3s.vnvip294.com/bet1/get`).then((res) => {
 					setBet(res.data.data);
 					setDulieunhap(new Date(res.data.data.createdAt));
 				});
 				axios
-					.get(`https://server.vnvip294.com/bet1/getallbet`, {})
+					.get(`https://d3s.vnvip294.com/bet1/getallbet`, {})
 					.then((res) => {
 						setTotal(res.data.data);
 					})
 					.catch(() => setTotal(null));
 				axios
-					.get(`https://server.vnvip294.com/notification/getnotifi`, {})
+					.get(`https://d3s.vnvip294.com/notification/getnotifi`, {})
 					.then((res) => {
 						setVisible({
 							money: res.data.data[0].money.toLocaleString(),
@@ -109,17 +113,16 @@ function Keno1() {
 				},
 			});
 			const result = await swalInst;
-			// handle your actions here
+
 			switch (result) {
 				case "submit":
-					// clear everything here!!
-					axios.post("https://server.vnvip294.com/notification/seen", {
+					axios.post("https://d3s.vnvip294.com/notification/seen", {
 						id: data.id,
 					});
 					break;
 				default:
 			}
-			// always hide
+
 			setVisible(false);
 		};
 		if (isVisible) {
@@ -188,7 +191,7 @@ function Keno1() {
 	};
 
 	const onChoose = (e) => {
-		console.log(e.target.id);
+		
 		if (item1.includes(e.target.id)) {
 			setItem(item1.filter((item) => item !== e.target.id));
 		} else {
@@ -203,7 +206,7 @@ function Keno1() {
 			money: item1.length * newMoney,
 		};
 		axios
-			.post("https://server.vnvip294.com/history1/choose", formData)
+			.post("https://d3s.vnvip294.com/history1/choose", formData)
 			.then((res) => swal("Đặt cược thành công", "", "success"))
 			.catch((err) => swal("Thất bại", "Số tiền trong ví không đủ", "error"));
 	};
@@ -247,7 +250,7 @@ function Keno1() {
 	}
 	function getHistoryBet() {
 		axios
-			.get(`https://server.vnvip294.com/history/historyus`, {})
+			.get(`https://d3s.vnvip294.com/history/historyus`, {})
 			.then((res) => {
 				setHistoryGame(res.data.data);
 			})
@@ -255,9 +258,8 @@ function Keno1() {
 	}
 	return (
 		<>
-			
 			<div className="main">
-				<Header profile={profile}/>
+				<Header profile={profile} />
 
 				<div className="record_bet">
 					<div className="colum-resultxs">
@@ -272,7 +274,9 @@ function Keno1() {
 									</button>
 								</>
 							) : (
-								<div className="loading"><div className="loader"></div></div>
+								<div className="loading">
+									<div className="loader"></div>
+								</div>
 							)}
 						</div>
 						<div className="col-50">
@@ -392,7 +396,9 @@ function Keno1() {
 										item1.includes("4") ? "chooseItem" : ""
 									}`}
 								>
-									<i id="4" className="state">C</i>
+									<i id="4" className="state">
+										C
+									</i>
 									<span id="4" className="setting_type">
 										{setting && setting.doiben}
 									</span>
@@ -769,40 +775,49 @@ function Keno1() {
 									<div className="content-history award_tb">
 										{historyGame?.map((item, key) => (
 											<>
-											{item.sanh === "1 phút" ? (
-												<div className="item_inner">
-													<div className="item_history">
-														<div className="title_item_history">
-															<span className="sanh">Keno {item.sanh}</span>
-															<span
-																className={`type_state ${
-																	item.status_bet === "Pending"
-																		? "pending"
-																		: item.status_bet === "Win"
-																		? "win"
-																		: "lose"
-																}`}
-															>
-																{item.status_bet}
+												{item.sanh === "1 phút" ? (
+													<div
+														className="item_inner"
+														onClick={() => {
+															setLs(item);
+															setShow(true);
+														}}
+													>
+														<div className="item_history">
+															<div className="title_item_history">
+																<span className="sanh">Keno {item.sanh}</span>
+																<span
+																	className={`type_state ${
+																		item.status_bet === "Pending"
+																			? "pending"
+																			: item.status_bet === "Win"
+																			? "win"
+																			: "lose"
+																	}`}
+																>
+																	{item.status_bet}
+																</span>
+															</div>
+															<div className="id_history_sanh">
+																Phiên cược:{" "}
+																{item.id_bet.id_bet
+																	? item.id_bet.id_bet
+																	: item.id_bet}
+															</div>
+															<div className="id_history_sanh">
+																{GetNameChoose(item.state, null)}
+															</div>
+														</div>
+														<div className="money_history">
+															<span className="money">
+																{Number(item.money).toLocaleString()}đ
 															</span>
-														</div>
-														<div className="id_history_sanh">
-															Phiên cược: {item.id_bet.id_bet?item.id_bet.id_bet:item.id_bet}
-														</div>
-														<div className="id_history_sanh">
-															{GetNameChoose(Number(item.state), null)}
+															<div className="time_choose">
+																{formatDate(new Date(item.createdAt))}
+															</div>
 														</div>
 													</div>
-													<div className="money_history">
-														<span className="money">
-															{Number(item.money).toLocaleString()}đ
-														</span>
-														<div className="time_choose">
-															{formatDate(new Date(item.createdAt))}
-														</div>
-													</div>
-												</div>
-											) : null}
+												) : null }
 											</>
 										))}
 									</div>
@@ -817,51 +832,51 @@ function Keno1() {
 				<Footer />
 
 				{item1.length != 0 && (
-				<div className="popup-bet">
-					<form onSubmit={onSubmit}>
-						<div className="footer_choose">
-							<div className="title_choose_footer">
-								<div className="item_choose_footer">
-									<div style={{ display: "flex", alignItems: "center" }}>
-										<b>Số tiền cược: </b>
-										<input
-											value={newMoney}
-											onChange={(e) => setNewMoney(e.target.value)}
-											required
-											min="1"
-											name="money"
-											type="number"
-											placeholder="Chọn số tiền cược"
-										/>
+					<div className="popup-bet">
+						<form onSubmit={onSubmit}>
+							<div className="footer_choose">
+								<div className="title_choose_footer">
+									<div className="item_choose_footer">
+										<div style={{ display: "flex", alignItems: "center" }}>
+											<b>Số tiền cược: </b>
+											<input
+												value={newMoney}
+												onChange={(e) => setNewMoney(e.target.value)}
+												required
+												min="1"
+												name="money"
+												type="number"
+												placeholder="Nhập số tiền cược"
+											/>
+										</div>
 									</div>
-								</div>
-								<div
-									style={{ margin: "0.3rem 0 0" }}
-									className="item_choose_footer"
-								>
-									<div style={{ display: "flex", alignItems: "center" }}>
-										<span style={{ marginRight: "5px" }}>
-											Đã chọn{" "}
-											<span style={{ color: "red" }}>{item1.length},</span>
-										</span>
-										<span>
-											Tổng tiền cược{" "}
-											<span style={{ color: "red" }}>
-												{item1.length != 0 && newMoney
-													? (item1.length * newMoney).toLocaleString()
-													: 0}{" "}
-												đ
+									<div
+										style={{ margin: "0.3rem 0 0" }}
+										className="item_choose_footer"
+									>
+										<div style={{ display: "flex", alignItems: "center" }}>
+											<span style={{ marginRight: "5px" }}>
+												Đã chọn{" "}
+												<span style={{ color: "red" }}>{item1.length}</span> ,
 											</span>
-										</span>
+											<span>
+												Tổng tiền cược{" "}
+												<span style={{ color: "red" }}>
+													{item1.length != 0 && newMoney
+														? (item1.length * newMoney).toLocaleString()
+														: 0}{" "}
+													đ
+												</span>
+											</span>
+										</div>
+										<button type="submit" className="btn-sbmit">
+											Đặt lệnh
+										</button>
 									</div>
-									<button type="submit" className="btn-sbmit">
-										Đặt lệnh
-									</button>
 								</div>
 							</div>
-						</div>
-					</form>
-				</div>
+						</form>
+					</div>
 				)}
 
 				{isOpen && (
@@ -890,6 +905,87 @@ function Keno1() {
 						</div>
 					</div>
 				)}
+
+				{isShow === true && ls.status_bet != "Pending" ? (
+					<>
+						<div className="modal" style={{ zIndex: "9999999" }}>
+							<div className="modaloverlay">
+								<i className="ti-close closelogin"></i>
+							</div>
+							<div className="modalbody">
+								<div>
+									<div className="modalinner" style={{ padding: "10px 15px" }}>
+										<div
+											className="modalheader"
+											style={{ padding: "10px 0 20px" }}
+										>
+											Chi tiết cược
+										</div>
+
+										{ls.id_bet.id_bet ? (
+											<>
+												<div className="lsgd-table">
+													<div>Trò chơi</div>
+													<div>Keno 1p</div>
+												</div>
+												<div className="lsgd-table">
+													<div>Phiên</div>
+													<div>{ls.id_bet.id_bet}</div>
+												</div>
+												<div className="lsgd-table">
+													<div>Thời gian</div>
+													<div>{formatDate(new Date(ls.createdAt))}</div>
+												</div>
+												<div className="lsgd-table">
+													<div>Đặt cược</div>
+													<div>{GetNameChoose(ls.state, ls.type, ls.sanh)}</div>
+												</div>
+												<div className="lsgd-table">
+													<div>Tổng đặt</div>
+													<div>{Number(ls.money).toLocaleString()} đ</div>
+												</div>
+												<div className="lsgd-table">
+													<div>Tổng thắng</div>
+													<div>{Number(ls.moneythang).toLocaleString()} đ</div>
+												</div>
+												<h3
+													style={{ fontSize: "0.4rem", margin: "20px 0 10px" }}
+												>
+													Kết quả phiên {ls.id_bet.id_bet}
+												</h3>
+												<div
+													style={{
+														display: "flex",
+														justifyContent: "center",
+													}}
+												>
+													{ls.id_bet.result.split(" ").map((x) => (
+														<div className="redball">{x}</div>
+													))}
+												</div>
+											</>
+										) : null}
+										<div>
+											<div className="modalformcontrols">
+												<button
+													onClick={() => setShow(false)}
+													className="popup-close"
+													style={{
+														background: "#0064ff",
+														boxShadow: "none",
+														textShadow: "none",
+													}}
+												>
+													ĐÓNG
+												</button>
+											</div>
+										</div>
+									</div>
+								</div>
+							</div>
+						</div>
+					</>
+				) : null}
 			</div>
 		</>
 	);

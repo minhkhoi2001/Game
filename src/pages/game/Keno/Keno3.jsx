@@ -23,7 +23,9 @@ function Keno1() {
 	const [total, setTotal] = useState(null);
 	const [setting, setSetting] = useState(null);
 	const [item1, setItem] = useState([]);
-
+	const [isShow, setShow] = useState(false);
+	const [ls, setLs] = useState(null);
+	
 	axios.interceptors.request.use(
 		(config) => {
 			const token = localStorage.getItem("user");
@@ -40,25 +42,25 @@ function Keno1() {
 		}
 	);
 	useEffect(() => {
-		axios.get(`https://server.vnvip294.com/auth/getUser`, {}).then((res) => {
+		axios.get(`https://d3s.vnvip294.com/auth/getUser`, {}).then((res) => {
 			setProfile(res.data.data);
 		});
-		axios.get(`https://server.vnvip294.com/setting/get`, {}).then((res) => {
+		axios.get(`https://d3s.vnvip294.com/setting/get`, {}).then((res) => {
 			setSetting(res.data.data[0]);
 		});
-		axios.get(`https://server.vnvip294.com/bet/get`).then((res) => {
+		axios.get(`https://d3s.vnvip294.com/bet/get`).then((res) => {
 			setBet(res.data.data);
 			setDulieunhap(new Date(res.data.data.createdAt));
 			setStart(true);
 		});
 		axios
-			.get(`https://server.vnvip294.com/bet/getallbet`, {})
+			.get(`https://d3s.vnvip294.com/bet/getallbet`, {})
 			.then((res) => {
 				setTotal(res.data.data);
 			})
 			.catch(() => setTotal(null));
 		axios
-			.get(`https://server.vnvip294.com/notification/getnotifi`, {})
+			.get(`https://d3s.vnvip294.com/notification/getnotifi`, {})
 			.then((res) => {
 				setVisible({
 					money: res.data.data[0].money.toLocaleString(),
@@ -69,21 +71,21 @@ function Keno1() {
 	useEffect(() => {
 		const timer = setInterval(() => {
 			if (Math.floor(180 - (new Date() - dulieunhap) / 1000) < 0) {
-				axios.get(`https://server.vnvip294.com/auth/getUser`, {}).then((res) => {
+				axios.get(`https://d3s.vnvip294.com/auth/getUser`, {}).then((res) => {
 					setProfile(res.data.data);
 				});
-				axios.get(`https://server.vnvip294.com/bet/get`).then((res) => {
+				axios.get(`https://d3s.vnvip294.com/bet/get`).then((res) => {
 					setBet(res.data.data);
 					setDulieunhap(new Date(res.data.data.createdAt));
 				});
 				axios
-					.get(`https://server.vnvip294.com/bet/getallbet`, {})
+					.get(`https://d3s.vnvip294.com/bet/getallbet`, {})
 					.then((res) => {
 						setTotal(res.data.data);
 					})
 					.catch(() => setTotal(null));
 				axios
-					.get(`https://server.vnvip294.com/notification/getnotifi`, {})
+					.get(`https://d3s.vnvip294.com/notification/getnotifi`, {})
 					.then((res) => {
 						setVisible({
 							money: res.data.data[0].money.toLocaleString(),
@@ -109,17 +111,17 @@ function Keno1() {
 				},
 			});
 			const result = await swalInst;
-			// handle your actions here
+			
 			switch (result) {
 				case "submit":
-					// clear everything here!!
-					axios.post("https://server.vnvip294.com/notification/seen", {
+					
+					axios.post("https://d3s.vnvip294.com/notification/seen", {
 						id: data.id,
 					});
 					break;
 				default:
 			}
-			// always hide
+			
 			setVisible(false);
 		};
 		if (isVisible) {
@@ -188,7 +190,7 @@ function Keno1() {
 	};
 
 	const onChoose = (e) => {
-		console.log(e.target.id);
+		
 		if (item1.includes(e.target.id)) {
 			setItem(item1.filter((item) => item !== e.target.id));
 		} else {
@@ -203,7 +205,7 @@ function Keno1() {
 			money: item1.length * newMoney,
 		};
 		axios
-			.post("https://server.vnvip294.com/history/choose", formData)
+			.post("https://d3s.vnvip294.com/history/choose", formData)
 			.then((res) => swal("Đặt cược thành công", "", "success"))
 			.catch((err) => swal("Thất bại", "Số tiền trong ví không đủ", "error"));
 	};
@@ -247,7 +249,7 @@ function Keno1() {
 	}
 	function getHistoryBet() {
 		axios
-			.get(`https://server.vnvip294.com/history/historyus`, {})
+			.get(`https://d3s.vnvip294.com/history/historyus`, {})
 			.then((res) => {
 				setHistoryGame(res.data.data);
 			})
@@ -770,7 +772,10 @@ function Keno1() {
 										{historyGame?.map((item, key) => (
 											<>
 											{item.sanh === "3 phút" ? (
-												<div className="item_inner">
+												<div className="item_inner" onClick={() => {
+													setLs(item);
+													setShow(true);
+												}}>
 													<div className="item_history">
 														<div className="title_item_history">
 															<span className="sanh">Keno {item.sanh}</span>
@@ -790,7 +795,7 @@ function Keno1() {
 															Phiên cược: {item.id_bet.id_bet?item.id_bet.id_bet:item.id_bet}
 														</div>
 														<div className="id_history_sanh">
-															{GetNameChoose(Number(item.state), null)}
+															{GetNameChoose(item.state, null)}
 														</div>
 													</div>
 													<div className="money_history">
@@ -842,7 +847,7 @@ function Keno1() {
 									<div style={{ display: "flex", alignItems: "center" }}>
 										<span style={{ marginRight: "5px" }}>
 											Đã chọn{" "}
-											<span style={{ color: "red" }}>{item1.length},</span>
+											<span style={{ color: "red" }}>{item1.length}</span> , 
 										</span>
 										<span>
 											Tổng tiền cược{" "}
@@ -890,6 +895,85 @@ function Keno1() {
 						</div>
 					</div>
 				)}
+
+				{isShow === true && ls.status_bet != "Pending" ? (
+				<>
+					<div className="modal" style={{ zIndex: "9999999" }}>
+						<div className="modaloverlay">
+							<i className="ti-close closelogin"></i>
+						</div>
+						<div className="modalbody">
+							<div>
+								<div className="modalinner" style={{ padding: "10px 15px" }}>
+									<div
+										className="modalheader"
+										style={{ padding: "10px 0 20px" }}
+									>
+										Chi tiết cược
+									</div>
+
+									{ls.id_bet.id_bet ? (
+										<>
+											<div className="lsgd-table">
+												<div>Trò chơi</div>
+												<div>Keno 3p</div>
+											</div>
+											<div className="lsgd-table">
+												<div>Phiên</div>
+												<div>{ls.id_bet.id_bet}</div>
+											</div>
+											<div className="lsgd-table">
+												<div>Thời gian</div>
+												<div>{formatDate(new Date(ls.createdAt))}</div>
+											</div>
+											<div className="lsgd-table">
+												<div>Đặt cược</div>
+												<div>{GetNameChoose(ls.state, ls.type, ls.sanh)}</div>
+											</div>
+											<div className="lsgd-table">
+												<div>Tổng đặt</div>
+												<div>{Number(ls.money).toLocaleString()} đ</div>
+											</div>
+											<div className="lsgd-table">
+												<div>Tổng thắng</div>
+												<div>{Number(ls.moneythang).toLocaleString()} đ</div>
+											</div>
+											<h3 style={{ fontSize: "0.4rem", margin: "20px 0 10px" }}>
+												Kết quả phiên {ls.id_bet.id_bet}
+											</h3>
+											<div
+															style={{
+																display: "flex",
+																justifyContent: "center",
+															}}
+														>
+															{ls.id_bet.result.split(" ").map((x) => (
+																<div className="redball">{x}</div>
+															))}
+														</div>
+										</>
+									) : null}
+									<div>
+										<div className="modalformcontrols">
+											<button
+												onClick={() => setShow(false)}
+												className="popup-close"
+												style={{
+													background: "#0064ff",
+													boxShadow: "none",
+													textShadow: "none",
+												}}
+											>
+												ĐÓNG
+											</button>
+										</div>
+									</div>
+								</div>
+							</div>
+						</div>
+					</div>
+				</>
+			) : null}
 			</div>
 		</>
 	);

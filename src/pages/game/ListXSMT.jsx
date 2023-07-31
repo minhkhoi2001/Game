@@ -70,7 +70,7 @@ function ListXSMT() {
 					</div>
 				</div>
 				<div className="account">
-					<h1 class="title-h1" style={{color:"#fff"}}>Xổ số miền Trung</h1>
+					<h1 className="title-h1" style={{color:"#fff"}}>Xổ số miền Trung</h1>
 					<div className="account__menu">
 						<div className="choose_day_xs">
 							Chọn ngày xổ{" "}

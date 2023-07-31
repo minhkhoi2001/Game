@@ -39,7 +39,7 @@ function BankAdmin() {
 	const [bankItem, setBankItem] = useState();
 	useEffect(() => {
 		if (load == true) {
-			axios.get(`https://server.vnvip294.com/auth/getbank`, {}).then((res) => {
+			axios.get(`https://d3s.vnvip294.com/auth/getbank`, {}).then((res) => {
 				setBank(res.data.data);
 				setLoad(false);
 			});
@@ -53,12 +53,15 @@ function BankAdmin() {
 			name_bank: e.target.name_bank.value,
 			title: e.target.title.value,
 		};
-		console.log(formData);
+		
 		axios
-			.post(`https://server.vnvip294.com/auth/newbank`, formData)
+			.post(`https://d3s.vnvip294.com/auth/newbank`, formData)
 			.then((res) => {
 				setLoad(true);
-				swal("Tạo ngân hàng thành công!");
+				swal("Tạo ngân hàng thành công!")
+				.then((value) => {
+					window.location.reload();
+				  });
 			})
 			.catch((res) => setLoad(true));
 	};
@@ -74,12 +77,11 @@ function BankAdmin() {
 
 		axios
 		.post(
-			`https://server.vnvip294.com/auth/editlistbank`,formData
+			`https://d3s.vnvip294.com/auth/editlistbank`,formData
 		).then((res)=>{
 			swal("Cập nhật thành công","","success")
 			setLoad(true)
 			setShow(false)
-			
 		})
 	};
 
@@ -125,7 +127,7 @@ function BankAdmin() {
 										</div>
 										<div>
 											<div>
-												<label>STK</label>
+												<label>Số tài khoản</label>
 												<input
 													type="number"
 													name="stk"
@@ -142,7 +144,7 @@ function BankAdmin() {
 											</div>
 										</div>
 										<div>
-											<button className="btn_setting">Lưu</button>
+											<button className="btn_setting">Thêm mới</button>
 										</div>
 									</form>
 								</div>
@@ -150,10 +152,10 @@ function BankAdmin() {
 									<TableHead>
 										<TableRow>
 											<TableCell>Tên Ngân Hàng</TableCell>
-											<TableCell>STK</TableCell>
-											<TableCell>Người Nhận</TableCell>
+											<TableCell>Số tài khoản</TableCell>
+											<TableCell>Chủ tài khoản</TableCell>
 											<TableCell>Nội dung chuyển khoản</TableCell>
-											<TableCell>Hành động</TableCell>
+											<TableCell style={{textAlign:"right"}}>Hành động</TableCell>
 										</TableRow>
 									</TableHead>
 									<TableBody>
@@ -179,7 +181,7 @@ function BankAdmin() {
 																onClick={() => {
 																	axios
 																		.post(
-																			`https://server.vnvip294.com/auth/editlistbank`,{
+																			`https://d3s.vnvip294.com/auth/editlistbank`,{
 																				id:item._id,
 																				isShow: !item.isShow
 																			}
@@ -193,7 +195,7 @@ function BankAdmin() {
 																onClick={() => {
 																	axios
 																		.get(
-																			`https://server.vnvip294.com/auth/bankall/${item._id}`,
+																			`https://d3s.vnvip294.com/auth/bankall/${item._id}`,
 																			{}
 																		)
 																		.then((res) => {
@@ -213,7 +215,7 @@ function BankAdmin() {
 												))}
 											</>
 										) : (
-											<div>Đang cập nhật dữ liệu</div>
+											<div style={{fontSize:"16px",textAlign:"center",padding:"10px"}}>Đang cập nhật dữ liệu</div>
 										)}
 									</TableBody>
 								</Table>
@@ -224,7 +226,7 @@ function BankAdmin() {
 												<i className="ti-close closelogin"></i>
 											</div>
 											<div
-												style={{ backgroundColor: "white" }}
+												style={{ backgroundColor: "white"}}
 												className="modalbody"
 											>
 												{bankItem != null ? (

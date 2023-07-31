@@ -39,7 +39,7 @@ function Login() {
 			return;
 		}
 		axios
-			.post(`https://server.vnvip294.com/auth/login`, data)
+			.post(`https://d3s.vnvip294.com/auth/login`, data)
 			.then((res) => {
 				localStorage.setItem("user", res.data.data);
 				navigate("/");
@@ -54,7 +54,8 @@ function Login() {
 		<>
 			<div className="login">
 				<form className="form-lg" onSubmit={handleSubmit(onSubmit)}>
-					<h1>Đăng nhập</h1>
+					<img src={require("../../img/vietlott3.png")} alt="Logo" className="logologin"/>
+					<h1>Đăng Nhập</h1>
 					<div className="inputs">
 						<div className="input">
 						<input
@@ -70,7 +71,7 @@ function Login() {
 							type={showPassword ? 'text' : 'password'}
 							className="ip-lg"
 							{...register("password", { required: true })}
-							placeholder="Mật Khẩu"
+							placeholder="Mật khẩu"
 						/>
 						<div onClick={toggleShowPassword}>{showPassword ? <Visibility/> : <VisibilityOff/>}</div>
 						{errors.password ? <p>{errors.password.message}</p> : null}
@@ -81,9 +82,9 @@ function Login() {
 						Đăng nhập
 					</button>
 					<p className="p-lg">
-						Không có tài khoản?{" "}
+						Chưa có tài khoản?{" "}
 						<Link className="bold" to="/register">
-							Đăng ký ngay
+							Đăng ký
 						</Link>
 					</p>
 				</form>

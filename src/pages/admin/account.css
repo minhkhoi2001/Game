@@ -59,6 +59,9 @@
     padding-left: calc(var(--bs-gutter-x)/ 2);
     margin-top: var(--bs-gutter-y);
 }
+.setting .form_col {
+	width: 33.33%;
+}
 .input_setting{
     display: block;
     width: 100%;
@@ -212,7 +215,8 @@
 	position: relative;
 	margin: auto;
 	border-radius: 5px;
-	width: 400px;
+	width: 85%;
+	max-width: 400px;
 }
 .closelogin {
 	color: white;
@@ -225,4 +229,29 @@
 }
 .closelogin:hover {
 	color: rgb(239 191 110);
+}
+.modalformgroup.d-flex {
+	display: flex;
+	align-items: center;
+	flex-flow: row wrap;
+}
+.modalformgroup.d-flex > div {
+	flex: 1;
+	text-align: left;
+}
+.modalformgroup.d-flex > div:first-child {
+	flex: 0 0 120px;
+	text-align: left;
+}
+.modalbody:has(.modalformgroup.d-flex) {
+	width: 500px
+}
+select, textarea {
+	border: 1px solid #ccc!important;
+	padding:5px;
+	border-radius: 5px;
+	max-width: 100%;
+}
+.form-admin input, .form-admin textarea {
+	width: 100%;
 }

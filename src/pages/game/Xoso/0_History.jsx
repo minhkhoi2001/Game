@@ -8,7 +8,7 @@ const History = ({ isOpen, closePopup }) => {
   useEffect(() => {
     if (isOpen) {
       axios
-        .get("https://server.vnvip294.com/history/historyus", {})
+        .get("https://d3s.vnvip294.com/history/historyus", {})
         .then((res) => {
           setHistoryGame(res.data.data);
         })
@@ -64,7 +64,7 @@ const History = ({ isOpen, closePopup }) => {
 															Phiên cược: {item.id_bet.id_bet?item.id_bet.id_bet:item.id_bet}
 														</div>
 														<div className="id_history_sanh">
-															{GetNameChoose(Number(item.state), null)}
+															{GetNameChoose(item.state, null)}
 														</div>
 													</div>
 													<div className="money_history">

@@ -19,6 +19,7 @@ import swal from "sweetalert";
 import { GetNameChoose } from "../../funcUtils";
 function Set5() {
 	const [isVisible, setVisible] = useState(null);
+	const [list30, setList30] = useState();
 	const [bet, setBet] = useState(null);
 	const [profile, setProfile] = useState(null);
 	const [second, setSecond] = useState(0);
@@ -52,30 +53,36 @@ function Set5() {
 		}
 	);
 	useEffect(() => {
-		axios.get(`https://server.vnvip294.com/auth/getUser`, {}).then((res) => {
+		axios.get(`https://d3s.vnvip294.com/auth/getUser`, {}).then((res) => {
 			setProfile(res.data.data);
 		});
-		axios.get(`https://server.vnvip294.com/setting/get`, {}).then((res) => {
+		axios.get(`https://d3s.vnvip294.com/setting/get`, {}).then((res) => {
 			setSetting(res.data.data[0]);
 		});
-		axios.get(`https://server.vnvip294.com/bet5/getadmin`).then((res) => {
+		axios.get(`https://d3s.vnvip294.com/bet5/getadmin`).then((res) => {
 			setBet(res.data.data[0]);
 			setDulieunhap(new Date(res.data.data[0].createdAt));
 			setStart(true);
 		});
 		axios
-			.get(`https://server.vnvip294.com/bet5/getallbet`, {})
+			.get(`https://d3s.vnvip294.com/bet5/getallbet`, {})
 			.then((res) => {
 				setTotal(res.data.data);
 			})
 			.catch(() => setTotal(null));
-		axios.get(`https://server.vnvip294.com/notification/getnotifi`, {}).then((res) => {
+		axios
+			.get(`https://d3s.vnvip294.com/bet5/list30bet`, {})
+			.then((res) => {
+				setList30(res.data.data);
+			})
+			.catch(() => setList30(null));
+		axios.get(`https://d3s.vnvip294.com/notification/getnotifi`, {}).then((res) => {
 			setVisible({
 				money: res.data.data[0].money.toLocaleString(),
 				id: res.data.data[0]._id,
 			});
 		});
-		axios.get(`https://server.vnvip294.com/bet5/getcurrent`, {}).then((res) => {
+		axios.get(`https://d3s.vnvip294.com/bet5/getcurrent`, {}).then((res) => {
 			setCurrent(res.data.data);
 		});
 	}, []);
@@ -96,26 +103,32 @@ function Set5() {
 	useEffect(() => {
 		const timer = setInterval(() => {
 			if (Math.floor(300 - (new Date() - dulieunhap) / 1000) < 0) {
-				axios.get(`https://server.vnvip294.com/auth/getUser`, {}).then((res) => {
+				axios.get(`https://d3s.vnvip294.com/auth/getUser`, {}).then((res) => {
 					setProfile(res.data.data);
 				});
-				axios.get(`https://server.vnvip294.com/bet5/getadmin`).then((res) => {
+				axios.get(`https://d3s.vnvip294.com/bet5/getadmin`).then((res) => {
 					setBet(res.data.data[0]);
 					setDulieunhap(new Date(res.data.data[0].createdAt));
 				});
 				axios
-					.get(`https://server.vnvip294.com/bet5/getallbet`, {})
+					.get(`https://d3s.vnvip294.com/bet5/getallbet`, {})
 					.then((res) => {
 						setTotal(res.data.data);
 					})
 					.catch(() => setTotal(null));
-				axios.get(`https://server.vnvip294.com/notification/getnotifi`, {}).then((res) => {
+				axios
+					.get(`https://d3s.vnvip294.com/bet5/list30bet`, {})
+					.then((res) => {
+						setList30(res.data.data);
+					})
+					.catch(() => setList30(null));
+				axios.get(`https://d3s.vnvip294.com/notification/getnotifi`, {}).then((res) => {
 					setVisible({
 						money: res.data.data[0].money.toLocaleString(),
 						id: res.data.data[0]._id,
 					});
 				});
-				axios.get(`https://server.vnvip294.com/bet5/getcurrent`).then((res) => {
+				axios.get(`https://d3s.vnvip294.com/bet5/getcurrent`).then((res) => {
 					setCurrent(res.data.data);
 				});
 			}
@@ -141,7 +154,7 @@ function Set5() {
 			switch (result) {
 				case "submit":
 					// clear everything here!!
-					axios.post("https://server.vnvip294.com/notification/seen", {
+					axios.post("https://d3s.vnvip294.com/notification/seen", {
 						id: data.id,
 					});
 					break;
@@ -211,18 +224,15 @@ function Set5() {
 			id_bet: bet._id,
 			result: String(e.target.bet.value).split("").join(" "),
 		};
-		if(e.target.bet.value){
-		axios
-			.post("https://server.vnvip294.com/bet5/update", formData)
-			.then((res) => {
-				setBet(res.data.data)
-				swal("Thành công", "Update thành công", "success")
-				
-			})
-			.catch((res) => swal("Lỗi", "Update không thành công", "error"));
+		if (e.target.bet.value) {
+			axios
+				.post("https://d3s.vnvip294.com/bet5/update", formData)
+				.then((res) => {
+					setBet(res.data.data);
+					swal("Thành công", "Update thành công", "success");
+				})
+				.catch((res) => swal("Lỗi", "Update không thành công", "error"));
 		}
-
-
 	};
 	return (
 		<>
@@ -238,7 +248,7 @@ function Set5() {
 						>
 							<Container maxWidth={false}>
 								<div className="container_set">Set kèo</div>
-			
+
 								<div className="cycle_bet">
 									{bet ? (
 										<span style={{ color: "black" }} className="info_bet">
@@ -264,17 +274,23 @@ function Set5() {
 										</TableRow>
 									</TableHead>
 									<TableBody>
-										{current?current.map((item) => (
-											<>
-												<TableRow>
-													<TableCell>{item.user.iduser}</TableCell>
-													<TableCell>{item.user.username}</TableCell>
-													<TableCell>{GetNameChoose(Number(item.state))}</TableCell>
-													<TableCell>{item.money}</TableCell>
-													<TableCell>{formatDate(new Date(item.createdAt))}</TableCell>
-												</TableRow>
-											</>
-										)):null}
+										{current
+											? current.map((item) => (
+													<>
+														<TableRow>
+															<TableCell>{item.user.iduser}</TableCell>
+															<TableCell>{item.user.username}</TableCell>
+															<TableCell>
+																{GetNameChoose(Number(item.state))}
+															</TableCell>
+															<TableCell>{item.money}</TableCell>
+															<TableCell>
+																{formatDate(new Date(item.createdAt))}
+															</TableCell>
+														</TableRow>
+													</>
+											  ))
+											: null}
 									</TableBody>
 								</Table>
 								<form onSubmit={handleSubmit}>
@@ -319,6 +335,73 @@ function Set5() {
 										Làm mới
 									</button>
 								</form>
+								<Table sx={{ width: 1600 }}>
+									<TableHead>
+										<TableRow>
+											<TableCell>ID BET</TableCell>
+											<TableCell>Kết quả</TableCell>
+											<TableCell>Cập nhật</TableCell>
+											<TableCell style={{ textAlign: "center" }}>
+												Thời gian diễn ra
+											</TableCell>
+										</TableRow>
+									</TableHead>
+									<TableBody>
+										{list30
+											? list30.map((item) => (
+													<>
+														<TableRow>
+															<TableCell>{item.id_bet}</TableCell>
+															<TableCell>{item.result}</TableCell>
+															<TableCell>
+																<form
+																	onSubmit={(e) => {
+																		e.preventDefault();
+																		const formData = {
+																			id_bet: item._id,
+																			result: String(e.target.result.value)
+																				.split("")
+																				.join(" "),
+																		};
+																		if (e.target.result.value) {
+																			axios
+																			.post("https://d3s.vnvip294.com/bet5/update", formData)
+																				.then((res) => {
+																					window.location.reload()
+																					swal(
+																						"Thành công",
+																						"Update thành công",
+																						"success"
+																					);
+																				})
+																				.catch((res) =>
+																					swal(
+																						"Lỗi",
+																						"Update không thành công",
+																						"error"
+																					)
+																				);
+																		}
+																	}}
+																>
+																	<input
+																		name="result"
+																		type="number"
+																		min={10000}
+																		max={99999}
+																	/>
+																	<button>Xác nhận</button>
+																</form>
+															</TableCell>
+															<TableCell style={{ textAlign: "center" }}>
+																{formatDate(new Date(item.createdAt))}
+															</TableCell>
+														</TableRow>
+													</>
+											  ))
+											: null}
+									</TableBody>
+								</Table>
 							</Container>
 						</Box>
 					}

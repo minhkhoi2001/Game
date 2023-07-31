@@ -21,8 +21,11 @@ function Xucxac3() {
 	const currentSecond = date.getSeconds();
 	const [item, setState] = useState(null);
 	const [total, setTotal] = useState(null);
+	const [total2, setTotal2] = useState(null);
 	const [setting, setSetting] = useState(null);
 	const [item1, setItem] = useState([]);
+	const [isShow, setShow] = useState(false);
+	const [ls, setLs] = useState(null);
 
 	axios.interceptors.request.use(
 		(config) => {
@@ -40,24 +43,24 @@ function Xucxac3() {
 		}
 	);
 	useEffect(() => {
-		axios.get(`https://server.vnvip294.com/auth/getUser`, {}).then((res) => {
+		axios.get(`https://d3s.vnvip294.com/auth/getUser`, {}).then((res) => {
 			setProfile(res.data.data);
 		});
-		axios.get(`https://server.vnvip294.com/setting/get`, {}).then((res) => {
+		axios.get(`https://d3s.vnvip294.com/setting/get`, {}).then((res) => {
 			setSetting(res.data.data[0]);
 		});
-		axios.get(`https://server.vnvip294.com/xucsac3/get`).then((res) => {
+		axios.get(`https://d3s.vnvip294.com/xucsac3/get`).then((res) => {
 			setBet(res.data.data);
 			setDulieunhap(new Date(res.data.data.createdAt));
 			setStart(true);
 		});
 		axios
-			.get(`https://server.vnvip294.com/xucsac3/getallbet`, {})
+			.get(`https://d3s.vnvip294.com/xucsac3/getallbet`, {})
 			.then((res) => {
 				rollLottery(res);
 			})
 			.catch(() => setTotal(null));
-		axios.get(`https://server.vnvip294.com/notification/getnotifi`, {}).then((res) => {
+		axios.get(`https://d3s.vnvip294.com/notification/getnotifi`, {}).then((res) => {
 			setVisible({
 				money: res.data.data[0].money.toLocaleString(),
 				id: res.data.data[0]._id,
@@ -67,21 +70,21 @@ function Xucxac3() {
 	useEffect(() => {
 		const timer = setInterval(() => {
 			if (Math.floor(180 - (new Date() - dulieunhap) / 1000) < 0) {
-				axios.get(`https://server.vnvip294.com/auth/getUser`, {}).then((res) => {
+				axios.get(`https://d3s.vnvip294.com/auth/getUser`, {}).then((res) => {
 					setProfile(res.data.data);
 				});
-				axios.get(`https://server.vnvip294.com/xucsac3/get`).then((res) => {
+				axios.get(`https://d3s.vnvip294.com/xucsac3/get`).then((res) => {
 					setBet(res.data.data);
 					setDulieunhap(new Date(res.data.data.createdAt));
 				});
 				axios
-					.get(`https://server.vnvip294.com/xucsac3/getallbet`, {})
+					.get(`https://d3s.vnvip294.com/xucsac3/getallbet`, {})
 					.then((res) => {
 						rollLottery(res);
 					})
 					.catch(() => setTotal(null));
 				axios
-					.get(`https://server.vnvip294.com/notification/getnotifi`, {})
+					.get(`https://d3s.vnvip294.com/notification/getnotifi`, {})
 					.then((res) => {
 						setVisible({
 							money: res.data.data[0].money.toLocaleString(),
@@ -107,17 +110,17 @@ function Xucxac3() {
 				},
 			});
 			const result = await swalInst;
-			// handle your actions here
+			
 			switch (result) {
 				case "submit":
-					// clear everything here!!
-					axios.post("https://server.vnvip294.com/notification/seen", {
+					
+					axios.post("https://d3s.vnvip294.com/notification/seen", {
 						id: data.id,
 					});
 					break;
 				default:
 			}
-			// always hide
+			
 			setVisible(false);
 		};
 		if (isVisible) {
@@ -186,7 +189,7 @@ function Xucxac3() {
 	};
 
 	const onChoose = (e) => {
-		console.log(e.target.id);
+		
 		if (item1.includes(e.target.id)) {
 			setItem(item1.filter((item) => item !== e.target.id));
 		} else {
@@ -200,9 +203,9 @@ function Xucxac3() {
 			id: bet?._id,
 			money: item1.length * newMoney,
 		};
-		console.log(formData);
+		
 		axios
-			.post("https://server.vnvip294.com/historyxucsac3p/choose", formData)
+			.post("https://d3s.vnvip294.com/historyxucsac3p/choose", formData)
 			.then((res) => {
 				swal("Đặt cược thành công", "", "success");
 				setItem([]);
@@ -238,6 +241,7 @@ function Xucxac3() {
 	};
 
 	function rollLottery(res) {
+		setTotal2(res.data.data);
 		const interval = setInterval(() => {
 			const randomDigits1 = Math.floor(Math.random() * 6) + 1;
 			const randomDigits2 = Math.floor(Math.random() * 6) + 1;
@@ -266,7 +270,7 @@ function Xucxac3() {
 
 	function getHistoryBet() {
 		axios
-			.get(`https://server.vnvip294.com/history/historyus`, {})
+			.get(`https://d3s.vnvip294.com/history/historyus`, {})
 			.then((res) => {
 				setHistoryGame(res.data.data);
 			})
@@ -658,8 +662,8 @@ function Xucxac3() {
 											<td style={{ textAlign: "center" }}>Đang chờ kết quả</td>
 											<td>{bet && formatDate(new Date(bet.createdAt))}</td>
 										</tr>
-										{total &&
-											total.map((item, index) => (
+										{total2 &&
+											total2.map((item, index) => (
 												<>
 													<tr key={index}>
 														<td>{item.id_bet}</td>
@@ -689,7 +693,10 @@ function Xucxac3() {
 										{historyGame?.map((item, key) => (
 											<>
 												{item.sanh === "Xúc sắc 3p" ? (
-													<div className="item_inner">
+													<div className="item_inner" onClick={() => {
+														setLs(item);
+														setShow(true);
+													}}>
 														<div className="item_history">
 															<div className="title_item_history">
 																<span className="sanh">{item.sanh}</span>
@@ -712,7 +719,7 @@ function Xucxac3() {
 																	: item.id_bet}
 															</div>
 															<div className="id_history_sanh">
-																{GetNameChoose(Number(item.state), null,item.sanh)}
+																{GetNameChoose(item.state, null,item.sanh)}
 															</div>
 														</div>
 														<div className="money_history">
@@ -753,7 +760,7 @@ function Xucxac3() {
 											min="1"
 											name="money"
 											type="number"
-											placeholder="Chọn số tiền cược"
+											placeholder="Nhập số tiền cược"
 										/>
 									</div>
 								</div>
@@ -764,7 +771,7 @@ function Xucxac3() {
 									<div style={{ display: "flex", alignItems: "center" }}>
 										<span style={{ marginRight: "5px" }}>
 											Đã chọn{" "}
-											<span style={{ color: "red" }}>{item1.length},</span>
+											<span style={{ color: "red" }}>{item1.length}</span> , 
 										</span>
 										<span>
 											Tổng tiền cược{" "}
@@ -814,6 +821,86 @@ function Xucxac3() {
 						</div>
 					</div>
 				)}
+
+				{isShow === true && ls.status_bet != "Pending" ? (
+				<>
+					<div className="modal" style={{ zIndex: "9999999" }}>
+						<div className="modaloverlay">
+							<i className="ti-close closelogin"></i>
+						</div>
+						<div className="modalbody">
+							<div>
+								<div className="modalinner" style={{ padding: "10px 15px" }}>
+									<div
+										className="modalheader"
+										style={{ padding: "10px 0 20px" }}
+									>
+										Chi tiết cược
+									</div>
+
+									{ls.id_bet.id_bet ? (
+										<>
+											<div className="lsgd-table">
+												<div>Trò chơi</div>
+												<div>Xúc sắc 3p</div>
+											</div>
+											<div className="lsgd-table">
+												<div>Phiên</div>
+												<div>{ls.id_bet.id_bet}</div>
+											</div>
+											<div className="lsgd-table">
+												<div>Thời gian</div>
+												<div>{formatDate(new Date(ls.createdAt))}</div>
+											</div>
+											<div className="lsgd-table">
+												<div>Đặt cược</div>
+												<div>{GetNameChoose(ls.state, ls.type, ls.sanh)}</div>
+											</div>
+											<div className="lsgd-table">
+												<div>Tổng đặt</div>
+												<div>{Number(ls.money).toLocaleString()} đ</div>
+											</div>
+											<div className="lsgd-table">
+												<div>Tổng thắng</div>
+												<div>{Number(ls.moneythang).toLocaleString()} đ</div>
+											</div>
+											<h3 style={{ fontSize: "0.4rem", margin: "20px 0 10px" }}>
+												Kết quả phiên {ls.id_bet.id_bet}
+											</h3>
+											<div
+															className="history_xucxac"
+															style={{
+																display: "flex",
+																justifyContent: "center",
+															}}
+														>
+															{ls.id_bet.result.split(" ").map((item) => (
+																<div className={`n${item}`}></div>
+															))}
+														</div>
+										</>
+									) : null}
+									<div>
+										<div className="modalformcontrols">
+											<button
+												onClick={() => setShow(false)}
+												className="popup-close"
+												style={{
+													background: "#0064ff",
+													boxShadow: "none",
+													textShadow: "none",
+												}}
+											>
+												ĐÓNG
+											</button>
+										</div>
+									</div>
+								</div>
+							</div>
+						</div>
+					</div>
+				</>
+			) : null}
 			</div>
 		</>
 	);

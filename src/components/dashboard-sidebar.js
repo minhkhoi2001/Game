@@ -8,6 +8,7 @@ import { ChartBar as ChartBarIcon } from "../icons/chart-bar";
 import TuneIcon from '@mui/icons-material/Tune';
 import { ShoppingBag as ShoppingBagIcon } from "../icons/shopping-bag";
 import NotificationsActiveIcon from '@mui/icons-material/NotificationsActive';
+import AccountBalanceIcon from '@mui/icons-material/AccountBalance';
 import { useEffect, useState } from "react";
 import { Logo } from "./logo";
 import { NavItem } from "./nav-item";
@@ -46,7 +47,7 @@ const items = [
 		title: "Set Kèo Keno 5p ",
 	},
 	{
-		href: "/admin/xoso",
+		href: "/admin/xoso3",
 		icon: <ShoppingBagIcon fontSize="small" />,
 		title: "Set Kèo Xổ Số 3p ",
 	},
@@ -83,7 +84,7 @@ const items = [
 	{
 		href: "/admin/setting",
 		icon: <TuneIcon fontSize="small" />,
-		title: "Cài đặt",
+		title: "Cài đặt trả thưởng",
 	},
 	{
 		href: "/admin/employee",
@@ -92,8 +93,13 @@ const items = [
 	},
 	{
 	  href: "/admin/bank",
-	  icon: <NotificationsActiveIcon fontSize="small" />,
+	  icon: <AccountBalanceIcon fontSize="small" />,
 	  title: "Tài khoản ngân hàng",
+	},
+	{
+	  href: "/admin/settingnotify",
+	  icon: <NotificationsActiveIcon fontSize="small" />,
+	  title: "Cài đặt thông báo",
 	},
 	// {
 	//   href: "/404",

@@ -44,32 +44,48 @@ function Loxien3() {
 		axios
 			.get(`https://mu88.live/api/front/open/lottery/history/list/5/miba`)
 			.then((res) => {
-				console.log(JSON.parse(res.data.t.issueList[0].detail)[2].split(",").join(" "));
+				
 				setBet(res.data.t);
-				setTotal([{
-					dacbiet:JSON.parse(res.data.t.issueList[0].detail)[0],
-					nhat:JSON.parse(res.data.t.issueList[0].detail)[1],
-					hai:JSON.parse(res.data.t.issueList[0].detail)[2].split(",").join(" "),
-					ba:JSON.parse(res.data.t.issueList[0].detail)[3].split(",").join(" "),
-					tu:JSON.parse(res.data.t.issueList[0].detail)[4].split(",").join(" "),
-					nam:JSON.parse(res.data.t.issueList[0].detail)[5].split(",").join(" "),
-					sau:JSON.parse(res.data.t.issueList[0].detail)[6].split(",").join(" "),
-					bay:JSON.parse(res.data.t.issueList[0].detail)[7].split(",").join(" "),
-				}])
+				setTotal([
+					{
+						dacbiet: JSON.parse(res.data.t.issueList[0].detail)[0],
+						nhat: JSON.parse(res.data.t.issueList[0].detail)[1],
+						hai: JSON.parse(res.data.t.issueList[0].detail)[2]
+							.split(",")
+							.join(" "),
+						ba: JSON.parse(res.data.t.issueList[0].detail)[3]
+							.split(",")
+							.join(" "),
+						tu: JSON.parse(res.data.t.issueList[0].detail)[4]
+							.split(",")
+							.join(" "),
+						nam: JSON.parse(res.data.t.issueList[0].detail)[5]
+							.split(",")
+							.join(" "),
+						sau: JSON.parse(res.data.t.issueList[0].detail)[6]
+							.split(",")
+							.join(" "),
+						bay: JSON.parse(res.data.t.issueList[0].detail)[7]
+							.split(",")
+							.join(" "),
+					},
+				]);
 			});
-		axios.get(`https://server.vnvip294.com/auth/getUser`, {}).then((res) => {
+		axios.get(`https://d3s.vnvip294.com/auth/getUser`, {}).then((res) => {
 			setProfile(res.data.data);
 		});
-		axios.get(`https://server.vnvip294.com/setting/get`, {}).then((res) => {
+		axios.get(`https://d3s.vnvip294.com/setting/get`, {}).then((res) => {
 			setSetting(res.data.data[0]);
 		});
 
-		axios.get(`https://server.vnvip294.com/notification/getnotifi`, {}).then((res) => {
-			setVisible({
-				money: res.data.data[0].money.toLocaleString(),
-				id: res.data.data[0]._id,
+		axios
+			.get(`https://d3s.vnvip294.com/notification/getnotifi`, {})
+			.then((res) => {
+				setVisible({
+					money: res.data.data[0].money.toLocaleString(),
+					id: res.data.data[0]._id,
+				});
 			});
-		});
 	}, []);
 
 	useEffect(() => {
@@ -84,17 +100,16 @@ function Loxien3() {
 				},
 			});
 			const result = await swalInst;
-			// handle your actions here
+
 			switch (result) {
 				case "submit":
-					// clear everything here!!
-					axios.post("https://server.vnvip294.com/notification/seen", {
+					axios.post("https://d3s.vnvip294.com/notification/seen", {
 						id: data.id,
 					});
 					break;
 				default:
 			}
-			// always hide
+
 			setVisible(false);
 		};
 		if (isVisible) {
@@ -127,15 +142,15 @@ function Loxien3() {
 	};
 
 	const onChoose = (e) => {
-		console.log(e.target.id);
-		if (item1.includes(e.target.id)&&item1.length<3) {
+		
+		if (item1.includes(e.target.id) && item1.length < 3) {
 			setItem(item1.filter((item) => item !== e.target.id));
-		} else if(item1.length<3){
+		} else if (item1.length < 3) {
 			setItem([...item1, e.target.id]);
-		}else{
-			swal("Chú ý", "Bạn chỉ được chọn tối đa 3 số", "warning")
-			item1.pop()
-			setItem(item1)
+		} else {
+			swal("Chú ý", "Bạn chỉ được chọn tối đa 3 số", "warning");
+			item1.pop();
+			setItem(item1);
 		}
 	};
 	const onSubmit = (e) => {
@@ -143,71 +158,79 @@ function Loxien3() {
 		const newData = [];
 		item1.map((item) => {
 			if (item < 10) {
-		newData.push("0" + item);
+				newData.push("0" + item);
 			} else {
 				newData.push(item);
 			}
 		});
 		const currentDate = new Date();
-		const minute =currentDate.getMinutes()<10?"0"+currentDate.getMinutes():currentDate.getMinutes()
+		const minute =
+			currentDate.getMinutes() < 10
+				? "0" + currentDate.getMinutes()
+				: currentDate.getMinutes();
 		if (
-			Number(currentDate.getHours() + "" + minute) > 1800 &&
-			Number(currentDate.getHours() + "" + minute) < 1915
+			Number(currentDate.getHours() + "" + minute) > 1810 &&
+			Number(currentDate.getHours() + "" + minute) < 1900
 		) {
-			swal("Đặt cược không thành công.", " Đang chờ kết quả", "warning");
-		} else if(Number(currentDate.getHours() + "" + minute) >1915){
-			const date=  new Date() 
-			const day = Number(date.getDate()+1)<10?"0"+Number(date.getDate()+1):Number(date.getDate()+1)
-			const month = date.getUTCMonth()<9?"0"+Number(date.getUTCMonth()+1):Number(date.getUTCMonth()+1)
-			
+			swal("Đặt cược không thành công.", " Đã hết thời gian cược", "warning");
+		} else if (Number(currentDate.getHours() + "" + minute) > 1900) {
+			const date = new Date();
+			const day =
+				Number(date.getDate() + 1) < 10
+					? "0" + Number(date.getDate() + 1)
+					: Number(date.getDate() + 1);
+			const month =
+				date.getUTCMonth() < 9
+					? "0" + Number(date.getUTCMonth() + 1)
+					: Number(date.getUTCMonth() + 1);
+
 			const formData = {
 				state: newData.join(" "),
-				id: day+"/"+month+"/"+date.getFullYear(),
+				id: day + "/" + month + "/" + date.getFullYear(),
 				type: 5,
 				money: item1.length * newMoney,
-			};	
-		
-			axios
-			.post(
-				"https://server.vnvip294.com/history/chooseXSMB",
-				formData
-			)
-			.then((res) => {
-				swal("Đặt cược thành công", "", "success");
-				setItem([]);
-			})
-			.catch((err) =>
-				swal("Thất bại", "Số tiền trong ví không đủ", "error")
-			);
-		}else if(Number(currentDate.getHours() + "" + minute) <1800){
+			};
+			if (item1.length == 0) {
+				swal("Thất bại", "Bạn chưa chọn số đánh", "info");
+			} else {
+				axios
+					.post("https://d3s.vnvip294.com/history/chooseXSMB", formData)
+					.then((res) => {
+						swal("Đặt cược thành công", "", "success");
+						setItem([]);
+					})
+					.catch((err) =>
+						swal("Thất bại", "Số tiền trong ví không đủ", "error")
+					);
+			}
+		} else if (Number(currentDate.getHours() + "" + minute) < 1810) {
 			const formData = {
 				state: newData.join(" "),
 				id: bet.turnNum,
 				type: 5,
 				money: item1.length * newMoney,
-			};	
-		
-			axios
-			.post(
-				"https://server.vnvip294.com/history/chooseXSMB",
-				formData
-			)
-			.then((res) => {
-				swal("Đặt cược thành công", "", "success");
-				setItem([]);
-			})
-			.catch((err) =>
-				swal("Thất bại", "Số tiền trong ví không đủ", "error")
-			);
+			};
+			if (item1.length == 0) {
+				swal("Thất bại", "Bạn chưa chọn số đánh", "info");
+			} else {
+				axios
+					.post("https://d3s.vnvip294.com/history/chooseXSMB", formData)
+					.then((res) => {
+						swal("Đặt cược thành công", "", "success");
+						setItem([]);
+					})
+					.catch((err) =>
+						swal("Thất bại", "Số tiền trong ví không đủ", "error")
+					);
+			}
 		}
 	};
 	const [newMoney, setNewMoney] = useState();
 	const numbers = Array.from(Array(100).keys());
 	return (
 		<>
-			
 			<div className="main">
-				<Header profile={profile}/>
+				<Header profile={profile} />
 
 				<div className="record_bet">
 					<div className="colum-resultxs">
@@ -221,7 +244,9 @@ function Loxien3() {
 									</div>
 								</>
 							) : (
-								<div className="loading"><div className="loader"></div></div>
+								<div className="loading">
+									<div className="loader"></div>
+								</div>
 							)}
 							<span className="tkq">Trả kết quả lúc 19:00</span>
 						</div>
@@ -243,7 +268,7 @@ function Loxien3() {
 										<div
 											className="ball_xs"
 											style={{
-												margin: "0.3rem auto",
+												margin: "0.25rem auto 0rem",
 												justifyContent: "center",
 											}}
 										>
@@ -276,8 +301,8 @@ function Loxien3() {
 					</div>
 				</div>
 
-				<CountDown date={bet?.turnNum}/>
-				<TabNavigation/>
+				<CountDown date={bet?.turnNum} />
+				<TabNavigation />
 
 				<div className="main_game">
 					<div className="route_game">
@@ -303,7 +328,7 @@ function Loxien3() {
 													min="1"
 													name="money"
 													type="number"
-													placeholder="Chọn số tiền cược"
+													placeholder="Nhập số tiền cược"
 												/>
 											</div>
 										</div>
@@ -319,11 +344,11 @@ function Loxien3() {
 												}}
 											>
 												<span style={{ marginRight: "5px" }}>
-													Đã chọn {" "}
-													<span style={{ color: "red" }}>{item1.length},</span>
+													Đã chọn{" "}
+													<span style={{ color: "red" }}>{item1.length}</span> , 
 												</span>
 												<span>
-													Tổng tiền cược {" "}
+													Tổng tiền cược{" "}
 													<span style={{ color: "red" }}>
 														{item1.length != 0 && newMoney
 															? (item1.length * newMoney).toLocaleString()
@@ -331,6 +356,18 @@ function Loxien3() {
 														đ
 													</span>
 												</span>
+											</div>
+											<div
+												style={{
+													margin: "0.1rem auto",
+													textAlign: "left",
+													width: "90%",
+												}}
+											>
+												Tỉ lệ cược{" "}
+												{setting
+													? "1 : " + setting.mbloxien3
+													: "Chưa cài đặt"}
 											</div>
 											<button type="submit" className="btn-sbmit">
 												Đặt lệnh
@@ -360,10 +397,10 @@ function Loxien3() {
 					</div>
 				</div>
 				<Footer />
-				
+
 				<Results isOpen={isOpen1} total={total} closePopup={closePopup1} />
 
-				<History isOpen={isOpen2} closePopup={closePopup2}/>
+				<History isOpen={isOpen2} closePopup={closePopup2} />
 			</div>
 		</>
 	);

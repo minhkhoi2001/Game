@@ -5,6 +5,7 @@ import { toast, ToastContainer } from "react-toastify";
 import {
 	Box,
 	Button,
+	Select,
 	Container,
 	Table,
 	Pagination,
@@ -15,11 +16,14 @@ import {
 	TextField,
 } from "@mui/material";
 import axios from "axios";
+import swal from "sweetalert";
 import { useEffect, useState } from "react";
 import { GetNameChoose } from "../../funcUtils";
 function HistoryBetAll() {
 	const [data, setData] = useState(null);
 	const [searched, setSearched] = useState("");
+	const [isShow, setShow] = useState(false);
+	const [ls, setLs] = useState(null);
 	function formatDate(m) {
 		new Date(m);
 		const dateString =
@@ -68,7 +72,7 @@ function HistoryBetAll() {
 	};
 	useEffect(() => {
 		axios
-			.get(`https://server.vnvip294.com/history/all`, {})
+			.get(`https://d3s.vnvip294.com/history/all`, {})
 			.then((res) => {
 				localStorage.setItem("data", JSON.stringify(res.data.data));
 				setData(res.data.data);
@@ -87,7 +91,49 @@ function HistoryBetAll() {
 
 	const XSMN = ["Bạc Liêu", "Vũng Tàu", "Tiền Giang", "Kiên Giang", "Đà Lạt", "Bình Phước", "Bình Dương", "An Giang", "Bình Thuận", "Cà Mau", "Cần Thơ", "Hậu Giang", "Đồng Tháp", "Tây Ninh", "Vĩnh Long", "Trà Vinh", "Sóc Trăng", "Long An", "TP. HCM", "Đồng Nai"];
 	const XSMT = ["Đà Nẵng", "Thừa T. Huế", "Quảng Trị", "Phú Yên", "Quảng Bình", "Quảng Nam", "Quảng Ngãi", "Ninh Thuận", "Kon Tum", "Khánh Hòa", "Gia Lai", "Bình Định", "Đắk Lắk", "Đắk Nông"];
+	
+	const [st, setSt] = useState(0);
+	const handleChangeStatus = (e) => {
+		if (ls.status_bet == "Lose" || ls.status_bet == "Pending") {
+			if (e.target.value == "Win") {
+				setSt(1);
+			}
+		} else {
+			if (e.target.value == "Lose" || e.target.value == "Pending") {
+				setSt(2);
+			}
+		}
+		setLs((prevLs) => ({
+		  ...prevLs,
+		  status_bet: e.target.value,
+		}));
+	};
 
+	const handleSubmitLs = (e) => {
+		e.preventDefault();
+		const formData = {
+			id: ls._id,
+			userId: ls.user._id,
+			status_bet: e.target.status_bet.value,
+			state: e.target.state.value,
+			money: e.target.money.value,
+			moneyuser: st==1?e.target.moneythang.value:st==2?(Number(ls.moneythang) * -1):0,
+			moneythang: e.target.moneythang.value,
+		};
+		axios
+			.patch(`https://d3s.vnvip294.com/history`, formData)
+			.then((res) => {
+				setShow(false);
+				swal("Cập nhật thành công")
+				.then((value) => {
+					window.location.reload();
+				  });
+			})
+			.catch((err) => {
+				setShow(false);
+				swal("Có lỗi vui lòng thử lại!");
+			});
+	};
 	return (
 		<>
 			<ThemeProvider theme={theme}>
@@ -103,7 +149,8 @@ function HistoryBetAll() {
 							<Container maxWidth={false}>
 								<div className="container_set">Lịch sử giao dịch</div>
 								<div className="form_set">
-									<Box sx={{ minWidth: 600 }}>
+									<Box>
+										<div style={{display:"flex", justifyContent:"space-between"}}>
 										<TextField
 											value={searched}
 											onChange={(searchVal) =>
@@ -112,6 +159,7 @@ function HistoryBetAll() {
 											placeholder="Tìm kiếm"
 											sx={{ marginBottom: "5px", paddingRight: "700px" }}
 										/>
+										<div>
 										<span>Chọn trò chơi </span>
 										<select
 											onChange={handleChangeTable}
@@ -130,6 +178,8 @@ function HistoryBetAll() {
 											<option value="XSMN">XSMN</option>
 											<option value="XSMT">XSMT</option>
 										</select>
+										</div>
+										</div>
 										<Table sx={{ width: 1200 }}>
 											<TableHead>
 												<TableRow>
@@ -139,8 +189,10 @@ function HistoryBetAll() {
 													<TableCell>Trò chơi</TableCell>
 													<TableCell>Người chơi đặt</TableCell>
 													<TableCell>Số tiền</TableCell>
+													<TableCell>Số tiền thắng</TableCell>
 													<TableCell>Trạng thái</TableCell>
 													<TableCell>Thời gian</TableCell>
+													<TableCell>Sửa</TableCell>
 												</TableRow>
 											</TableHead>
 											{data != null ? (
@@ -173,11 +225,15 @@ function HistoryBetAll() {
 																					: item.sanh}
 																			</TableCell>
 																			<TableCell sx={{ fontWeight: "600" }}>
-																				{GetNameChoose(item.state, item.type)}
+																				{GetNameChoose(item.state, item.type, item.sanh)}
 																			</TableCell>
 																			<TableCell sx={{ fontWeight: "600" }}>
 																				{" "}
-																				{item.money.toLocaleString()} VNĐ
+																				{item.money.toLocaleString()}
+																			</TableCell>
+																			<TableCell sx={{ fontWeight: "600" }}>
+																				{" "}
+																				{item.moneythang.toLocaleString()}
 																			</TableCell>
 																			{item.status_bet === "Win" ? (
 																				<TableCell sx={{ fontWeight: "600" }}>
@@ -202,6 +258,9 @@ function HistoryBetAll() {
 																			) : null}
 																			<TableCell sx={{ fontWeight: "600" }}>
 																				{formatDate(new Date(item.createdAt))}
+																			</TableCell>
+																			<TableCell>
+																				<Button onClick={()=>{setShow(true);setLs(item)}}>Sửa</Button>
 																			</TableCell>
 																		</TableRow>
 																	</>
@@ -229,11 +288,15 @@ function HistoryBetAll() {
 																					: item.sanh}
 																			</TableCell>
 																			<TableCell sx={{ fontWeight: "600" }}>
-																				{GetNameChoose(item.state, item.type)}
+																				{GetNameChoose(item.state, item.type, item.sanh)}
 																			</TableCell>
 																			<TableCell sx={{ fontWeight: "600" }}>
 																				{" "}
-																				{item.money.toLocaleString()} VNĐ
+																				{item.money.toLocaleString()}
+																			</TableCell>
+																			<TableCell sx={{ fontWeight: "600" }}>
+																				{" "}
+																				{item.moneythang.toLocaleString()}
 																			</TableCell>
 																			{item.status_bet === "Win" ? (
 																				<TableCell sx={{ fontWeight: "600" }}>
@@ -258,6 +321,9 @@ function HistoryBetAll() {
 																			) : null}
 																			<TableCell sx={{ fontWeight: "600" }}>
 																				{formatDate(new Date(item.createdAt))}
+																			</TableCell>
+																			<TableCell>
+																				<Button onClick={()=>{setShow(true);setLs(item)}}>Sửa</Button>
 																			</TableCell>
 																		</TableRow>
 																	</>
@@ -285,7 +351,7 @@ function HistoryBetAll() {
 																					: item.sanh}
 																			</TableCell>
 																			<TableCell sx={{ fontWeight: "600" }}>
-																				{GetNameChoose(item.state, item.type)}
+																				{GetNameChoose(item.state, item.type, item.sanh)}
 																			</TableCell>
 																			<TableCell sx={{ fontWeight: "600" }}>
 																				{" "}
@@ -314,6 +380,9 @@ function HistoryBetAll() {
 																			) : null}
 																			<TableCell sx={{ fontWeight: "600" }}>
 																				{formatDate(new Date(item.createdAt))}
+																			</TableCell>
+																			<TableCell>
+																				<Button onClick={()=>{setShow(true);setLs(item)}}>Sửa</Button>
 																			</TableCell>
 																		</TableRow>
 																	</>
@@ -347,6 +416,105 @@ function HistoryBetAll() {
 						</Box>
 					}
 					<ToastContainer />
+					{isShow === true ? (
+						<>
+							<div className="modal">
+								<div className="modaloverlay">
+									<i className="ti-close closelogin"></i>
+								</div>
+								<div className="modalbody">
+											<form onSubmit={handleSubmitLs}>
+												<div className="modalinner">
+													<div className="modalheader"> Sửa lịch sử </div>
+
+													<div className="modalform">
+														<div
+															className="modalformgroup d-flex"
+															style={{ padding: "9px" }}
+														>
+															<div>Người chơi: </div>
+															<div><b>{ls.user.username}</b></div>
+														</div>
+														<div
+															className="modalformgroup d-flex"
+															style={{ padding: "9px" }}
+														>
+															<div>Trò chơi: </div>
+															<div><b>{ls.sanh == "3 phút"
+																					? "Keno 3p"
+																					: ls.sanh == "5 phút"
+																					? "Keno 5p"
+																					: ls.sanh == "1 phút"
+																					? "Keno 1p"
+																					: ls.sanh}</b></div>
+														</div>
+														<div
+															style={{ padding: "9px" }}
+															className="modalformgroup d-flex"
+														>
+															<div>Lựa chọn: </div>
+															<TextField
+																name="state"
+																defaultValue={ls.state}
+																sx={{ width: "100%" }}
+																type="text"
+															/>
+														</div>
+														<div
+															style={{ padding: "9px" }}
+															className="modalformgroup d-flex"
+														>
+															<div>Số tiền cược: </div>
+															<TextField
+																name="money"
+																defaultValue={ls.money}
+																sx={{ width: "100%" }}
+																type="number"
+															/>
+														</div>
+														<div
+															style={{ padding: "9px" }}
+															className="modalformgroup d-flex"
+														>
+															<div>Số tiền thắng: </div>
+															<TextField
+																name="moneythang"
+																defaultValue={ls.moneythang}
+																sx={{ width: "100%" }}
+																type="number"
+															/>
+														</div>
+														<div
+															style={{ padding: "9px" }}
+															className="modalformgroup d-flex"
+														>
+															<div>Trạng thái: </div>
+															<div>
+															<select name="status_bet" value={ls.status_bet} onChange={handleChangeStatus}>
+																<option value="Win" selected={ls.status_bet === 'Win'} style={{color:"#14B8A6"}}>Win</option>
+																<option value="Lose" selected={ls.status_bet === 'Lose'} style={{color:"#D14343"}}>Lose</option>
+																<option value="Pending" selected={ls.status_bet === 'Pending'} style={{color:"#FFB020"}}>Pending</option>
+															</select>
+															</div>
+														</div>
+													</div>
+
+													<div className="item_btn_form">
+														<div className="modalformcontrols">
+															<Button type="submit">XÁC NHẬN</Button>
+														</div>
+														<div className="modalformcontrols">
+															<Button onClick={() => setShow(false)}>
+																ĐÓNG
+															</Button>
+														</div>
+													</div>
+												</div>
+											</form>
+								</div>
+							</div>
+						</>
+					) : null}
 				</DashboardLayout>
 			</ThemeProvider>
 		</>

@@ -31,7 +31,7 @@ function Setting() {
 	);
 	useEffect(()=>{
 		if(load==true){
-			axios.get(`https://server.vnvip294.com/setting/get`, {}).then((res) => {
+			axios.get(`https://d3s.vnvip294.com/setting/get`, {}).then((res) => {
 				setSetting(res.data.data[0]);
 				setLoad(false)
 			});		
@@ -42,8 +42,6 @@ function Setting() {
 		const formData={
 			id: setting?._id,
 			doiben: Number(e.target.doiben.value),
-			// banhdon: Number(e.target.banhdon.value),
-
 
 			xucsac5p:Number(e.target.xucsac5p.value),
 			xucsac3p:Number(e.target.xucsac5p.value),
@@ -53,21 +51,6 @@ function Setting() {
 			batrung3:Number(e.target.batrung3.value),
 			batrung5:Number(e.target.batrung5.value),
 
-
-			// bo3: Number(e.target.bo3.value),
-			// culu: Number(e.target.culu.value),
-			// sanh: Number(e.target.sanh.value),
-			// bo4: Number(e.target.bo4.value),
-			// bo5: Number(e.target.bo5.value),
-			// haidoi: Number(e.target.haidoi.value),
-			// motdoi: Number(e.target.motdoi.value),
-			// tieutan: Number(e.target.tieutan.value),
-			// tamco: Number(e.target.tamco.value),
-			// sanhother: Number(e.target.sanhother.value),
-			// doikhac: Number(e.target.doikhac.value),
-			// nuasanh: Number(e.target.nuasanh.value),
-			// rongho: Number(e.target.rongho.value),
-			// hoa: Number(e.target.hoa.value),
 			lothuong: Number(e.target.lothuong.value),
 			bacang: Number(e.target.bacang.value),
 			de: Number(e.target.de.value),
@@ -75,10 +58,32 @@ function Setting() {
 			loxien3: Number(e.target.loxien3.value),
 			loxien4: Number(e.target.loxien4.value),
 			
+			mblothuong: Number(e.target.mblothuong.value),
+			mbbacang: Number(e.target.mbbacang.value),
+			mbde: Number(e.target.mbde.value),
+			mbloxien2: Number(e.target.mbloxien2.value),
+			mbloxien3: Number(e.target.mbloxien3.value),
+			mbloxien4: Number(e.target.mbloxien4.value),
+
+			mtlothuong: Number(e.target.mtlothuong.value),
+			mtbacang: Number(e.target.mtbacang.value),
+			mtde: Number(e.target.mtde.value),
+			mtloxien2: Number(e.target.mtloxien2.value),
+			mtloxien3: Number(e.target.mtloxien3.value),
+			mtloxien4: Number(e.target.mtloxien4.value),
+
+			mnlothuong: Number(e.target.mnlothuong.value),
+			mnbacang: Number(e.target.mnbacang.value),
+			mnde: Number(e.target.mnde.value),
+			mnloxien2: Number(e.target.mnloxien2.value),
+			mnloxien3: Number(e.target.mnloxien3.value),
+			mnloxien4: Number(e.target.mnloxien4.value),
+			
+			aff: Number(e.target.aff.value)
 		}
-		console.log(formData);
+		
 		axios
-			.put(`https://server.vnvip294.com/setting/update`, formData)
+			.put(`https://d3s.vnvip294.com/setting/update`, formData)
 			.then((res) => {
 				setLoad(true);
 				swal("Sửa thông tin trò chơi thành công!")
@@ -100,10 +105,11 @@ function Setting() {
 						>
 							<Container maxWidth={false}>
 								<div style={{ fontSize: "25px", fontWeight: 700 }}>
-									Cài đặt hệ thống
+									Cài đặt trả thưởng
 								</div>
 								<div style={{ marginTop: "20px" }}>
 									<form className="setting" onSubmit={handleSubmit}>
+										<h3 style={{width:"100%", flex:"0 0 100%",textAlign:"left",fontWeight:"bold",margin:"30px 10px 10px"}}>Keno</h3>
 										<div className="form_col">
 											<div className="form_group">
 												<label >Đôi bên</label>
@@ -117,6 +123,7 @@ function Setting() {
 												/>
 											</div>
 										</div>
+										<h3 style={{width:"100%", flex:"0 0 100%",textAlign:"left",fontWeight:"bold",margin:"30px 10px 10px"}}>Xúc sắc</h3>
 										<div className="form_col">
 											<div className="form_group">
 												<label >Súc xắc 3p</label>
@@ -158,6 +165,19 @@ function Setting() {
 										</div>
 										<div className="form_col">
 											<div className="form_group">
+												<label >Súc xắc 5p</label>
+												<input
+													defaultValue={setting?.xucsac5p}
+													type="number"
+													name="xucsac5p"
+													step="any"
+													id="xucsac5p"
+													className="input_setting"
+												/>
+											</div>
+										</div>
+										<div className="form_col">
+											<div className="form_group">
 												<label >Hai số trùng Xúc sắc 5p</label>
 												<input
 													defaultValue={setting?.haitrung5}
@@ -182,214 +202,7 @@ function Setting() {
 												/>
 											</div>
 										</div>
-										<div className="form_col">
-											<div className="form_group">
-												<label >Súc xắc 5p</label>
-												<input
-													defaultValue={setting?.xucsac5p}
-													type="number"
-													name="xucsac5p"
-													step="any"
-													id="xucsac5p"
-													className="input_setting"
-												/>
-											</div>
-										</div>
-										{/*<div className="form_col">
-											<div className="form_group">
-												<label >Banh đơn</label>
-												<input
-													defaultValue={setting?.banhdon}
-													type="number"
-													name="banhdon"
-													step="any"
-													id="banhdon"
-													className="input_setting"
-												/>
-											</div>
-										</div>
-										<div className="form_col">
-											<div className="form_group">
-												<label >Bộ 3</label>
-												<input
-													defaultValue={setting?.bo3}
-													type="number"
-													name="bo3"
-													step="any"
-													id="bo3"
-													className="input_setting"
-												/>
-											</div>
-										</div>
-										<div className="form_col">
-											<div className="form_group">
-												<label >Cù lũ</label>
-												<input
-													defaultValue={setting?.culu}
-													type="number"
-													step="any"
-													name="culu"
-													id="culu"
-													className="input_setting"
-												/>
-											</div>
-										</div>
-										<div className="form_col">
-											<div className="form_group">
-												<label >Sảnh</label>
-												<input
-													defaultValue={setting?.sanh}
-													type="number"
-													name="sanh"
-													step="any"
-													id="sanh"
-													className="input_setting"
-												/>
-											</div>
-										</div>
-										<div className="form_col">
-											<div className="form_group">
-												<label >Bộ 4</label>
-												<input
-													defaultValue={setting?.bo4}
-													type="number"
-													name="bo4"
-													id="bo4"
-													step="any"
-													className="input_setting"
-												/>
-											</div>
-										</div>
-										<div className="form_col">
-											<div className="form_group">
-												<label >Bộ 5</label>
-												<input
-													defaultValue={setting?.bo5}
-													type="number"
-													step="any"
-													name="bo5"
-													id="bo5"
-													className="input_setting"
-												/>
-											</div>
-										</div>
-										<div className="form_col">
-											<div className="form_group">
-												<label >2 đôi</label>
-												<input
-													defaultValue={setting?.haidoi}
-													type="number"
-													name="haidoi"
-													step="any"
-													id="haidoi"
-													className="input_setting"
-												/>
-											</div>
-										</div>
-										<div className="form_col">
-											<div className="form_group">
-												<label >1 đoi</label>
-												<input
-													defaultValue={setting?.motdoi}
-													type="number"
-													name="motdoi"
-													id="motdoi"
-													step="any"
-													className="input_setting"
-												/>
-											</div>
-										</div>
-										<div className="form_col">
-											<div className="form_group">
-												<label >Tiêu tan</label>
-												<input
-													defaultValue={setting?.tieutan}
-													type="number"
-													name="tieutan"
-													step="any"
-													id="tieutan"
-													className="input_setting"
-												/>
-											</div>
-										</div>
-										<div className="form_col">
-											<div className="form_group">
-												<label >Tam cô</label>
-												<input
-													defaultValue={setting?.tamco}
-													type="number"
-													name="tamco"
-													id="tamco"
-													step="any"
-													className="input_setting"
-												/>
-											</div>
-										</div>
-										<div className="form_col">
-											<div className="form_group">
-												<label >Sảnh (khác)</label>
-												<input
-													defaultValue={setting?.sanhother}
-													type="number"
-													name="sanhother"
-													step="any"
-													id="sanhother"
-													className="input_setting"
-												/>
-											</div>
-										</div>
-										<div className="form_col">
-											<div className="form_group">
-												<label >Đôi (khác)</label>
-												<input
-													defaultValue={setting?.doikhac}
-													type="number"
-													name="doikhac"
-													step="any"
-													id="doikhac"
-													className="input_setting"
-												/>
-											</div>
-										</div>
-										<div className="form_col">
-											<div className="form_group">
-												<label >Nữa sảnh</label>
-												<input
-													defaultValue={setting?.nuasanh}
-													type="number"
-													step="any"
-													name="nuasanh"
-													id="nuasanh"
-													className="input_setting"
-												/>
-											</div>
-										</div>
-										<div className="form_col">
-											<div className="form_group">
-												<label >Rồng hổ</label>
-												<input
-													defaultValue={setting?.rongho}
-													type="number"
-													name="rongho"
-													step="any"
-													id="rongho"
-													className="input_setting"
-												/>
-											</div>
-										</div>
-										<div className="form_col">
-											<div className="form_group">
-												<label >Hòa</label>
-												<input
-													defaultValue={setting?.hoa}
-													type="number"
-													name="hoa"
-													step="any"
-													id="hoa"
-													className="input_setting"
-												/>
-											</div>
-										</div>*/}
+										<h3 style={{width:"100%", flex:"0 0 100%",textAlign:"left",fontWeight:"bold",margin:"30px 10px 10px"}}>Xổ số nhanh</h3>
 										<div className="form_col">
 											<div className="form_group">
 												<label >Lô thường</label>
@@ -468,6 +281,258 @@ function Setting() {
 												/>
 											</div>
 										</div>
+										<h3 style={{width:"100%", flex:"0 0 100%",textAlign:"left",fontWeight:"bold",margin:"30px 10px 10px"}}>XSMB</h3>
+										<div className="form_col">
+											<div className="form_group">
+												<label>Lô thường</label>
+												<input
+													defaultValue={setting?.mblothuong}
+													type="number"
+													name="mblothuong"
+													step="any"
+													id="mblothuong"
+													className="input_setting"
+												/>
+											</div>
+										</div>
+										<div className="form_col">
+											<div className="form_group">
+												<label >Ba càng</label>
+												<input
+													defaultValue={setting?.mbbacang}
+													type="number"
+													name="mbbacang"
+													step="any"
+													id="mbbacang"
+													className="input_setting"
+												/>
+											</div>
+										</div>
+										<div className="form_col">
+											<div className="form_group">
+												<label >Đề</label>
+												<input
+													defaultValue={setting?.mbde}
+													type="number"
+													step="any"
+													name="mbde"
+													id="mbde"
+													className="input_setting"
+												/>
+											</div>
+										</div>
+										<div className="form_col">
+											<div className="form_group">
+												<label >Lô xiên 2</label>
+												<input
+													defaultValue={setting?.mbloxien2}
+													type="number"
+													name="mbloxien2"
+													step="any"
+													id="mbloxien2"
+													className="input_setting"
+												/>
+											</div>
+										</div>
+										<div className="form_col">
+											<div className="form_group">
+												<label >Lô xiên 3</label>
+												<input
+													defaultValue={setting?.mbloxien3}
+													type="number"
+													name="mbloxien3"
+													step="any"
+													id="mbloxien3"
+													className="input_setting"
+												/>
+											</div>
+										</div>
+										<div className="form_col">
+											<div className="form_group">
+												<label >Lô xiên 4</label>
+												<input
+													defaultValue={setting?.mbloxien4}
+													type="number"
+													name="mbloxien4"
+													step="any"
+													id="mbloxien4"
+													className="input_setting"
+												/>
+											</div>
+										</div>
+										<h3 style={{width:"100%", flex:"0 0 100%",textAlign:"left",fontWeight:"bold",margin:"30px 10px 10px"}}>XSMT</h3>
+										<div className="form_col">
+											<div className="form_group">
+												<label >Lô thường</label>
+												<input
+													defaultValue={setting?.mtlothuong}
+													type="number"
+													name="mtlothuong"
+													step="any"
+													id="mtlothuong"
+													className="input_setting"
+												/>
+											</div>
+										</div>
+										<div className="form_col">
+											<div className="form_group">
+												<label >Ba càng</label>
+												<input
+													defaultValue={setting?.mtbacang}
+													type="number"
+													name="mtbacang"
+													step="any"
+													id="mtbacang"
+													className="input_setting"
+												/>
+											</div>
+										</div>
+										<div className="form_col">
+											<div className="form_group">
+												<label >Đề</label>
+												<input
+													defaultValue={setting?.mtde}
+													type="number"
+													step="any"
+													name="mtde"
+													id="mtde"
+													className="input_setting"
+												/>
+											</div>
+										</div>
+										<div className="form_col">
+											<div className="form_group">
+												<label >Lô xiên 2</label>
+												<input
+													defaultValue={setting?.mtloxien2}
+													type="number"
+													name="mtloxien2"
+													step="any"
+													id="mtloxien2"
+													className="input_setting"
+												/>
+											</div>
+										</div>
+										<div className="form_col">
+											<div className="form_group">
+												<label >Lô xiên 3</label>
+												<input
+													defaultValue={setting?.mtloxien3}
+													type="number"
+													name="mtloxien3"
+													step="any"
+													id="mtloxien3"
+													className="input_setting"
+												/>
+											</div>
+										</div>
+										<div className="form_col">
+											<div className="form_group">
+												<label >Lô xiên 4</label>
+												<input
+													defaultValue={setting?.mtloxien4}
+													type="number"
+													name="mtloxien4"
+													step="any"
+													id="mtloxien4"
+													className="input_setting"
+												/>
+											</div>
+										</div>
+										<h3 style={{width:"100%", flex:"0 0 100%",textAlign:"left",fontWeight:"bold",margin:"30px 10px 10px"}}>XSMN</h3>
+										<div className="form_col">
+											<div className="form_group">
+												<label >Lô thường</label>
+												<input
+													defaultValue={setting?.mnlothuong}
+													type="number"
+													name="mnlothuong"
+													step="any"
+													id="mnlothuong"
+													className="input_setting"
+												/>
+											</div>
+										</div>
+										<div className="form_col">
+											<div className="form_group">
+												<label >Ba càng</label>
+												<input
+													defaultValue={setting?.mnbacang}
+													type="number"
+													name="mnbacang"
+													step="any"
+													id="mnbacang"
+													className="input_setting"
+												/>
+											</div>
+										</div>
+										<div className="form_col">
+											<div className="form_group">
+												<label >Đề</label>
+												<input
+													defaultValue={setting?.mnde}
+													type="number"
+													step="any"
+													name="mnde"
+													id="mnde"
+													className="input_setting"
+												/>
+											</div>
+										</div>
+										<div className="form_col">
+											<div className="form_group">
+												<label >Lô xiên 2</label>
+												<input
+													defaultValue={setting?.mnloxien2}
+													type="number"
+													name="mnloxien2"
+													step="any"
+													id="mnloxien2"
+													className="input_setting"
+												/>
+											</div>
+										</div>
+										<div className="form_col">
+											<div className="form_group">
+												<label >Lô xiên 3</label>
+												<input
+													defaultValue={setting?.mnloxien3}
+													type="number"
+													name="mnloxien3"
+													step="any"
+													id="mnloxien3"
+													className="input_setting"
+												/>
+											</div>
+										</div>
+										<div className="form_col">
+											<div className="form_group">
+												<label >Lô xiên 4</label>
+												<input
+													defaultValue={setting?.mnloxien4}
+													type="number"
+													name="mnloxien4"
+													step="any"
+													id="mnloxien4"
+													className="input_setting"
+												/>
+											</div>
+										</div>
+										<h3 style={{width:"100%", flex:"0 0 100%",textAlign:"left",fontWeight:"bold",margin:"30px 10px 10px"}}>Khác</h3>
+										<div className="form_col">
+											<div className="form_group">
+												<label >Hoa hồng</label>
+												<input
+													defaultValue={setting?.aff}
+													type="number"
+													name="aff"
+													step="any"
+													id="aff"
+													className="input_setting"
+												/>
+											</div>
+										</div>
+										<div style={{clear:"both"}}></div>
 										<div className="form_col">
 											<button type="submit" className="btn_setting">Lưu</button>
 										</div>

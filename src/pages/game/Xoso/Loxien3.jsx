@@ -54,25 +54,25 @@ function Loxien3() {
 		};
 	}
 	useEffect(() => {
-		axios.get(`https://server.vnvip294.com/auth/getUser`, {}).then((res) => {
+		axios.get(`https://d3s.vnvip294.com/auth/getUser`, {}).then((res) => {
 			setProfile(res.data.data);
 		});
-		axios.get(`https://server.vnvip294.com/setting/get`, {}).then((res) => {
+		axios.get(`https://d3s.vnvip294.com/setting/get`, {}).then((res) => {
 			setSetting(res.data.data[0]);
 		});
-		axios.get(`https://server.vnvip294.com/Xoso/get`).then((res) => {
+		axios.get(`https://d3s.vnvip294.com/Xoso/get`).then((res) => {
 			setBet(res.data.data);
 			setDulieunhap(new Date(res.data.data.createdAt));
 			setStart(true);
 		});
 		axios
-			.get(`https://server.vnvip294.com/Xoso/getallbet`, {})
+			.get(`https://d3s.vnvip294.com/Xoso/getallbet`, {})
 			.then((res) => {
 				rollLottery(res);
 			})
 			.catch(() => setTotal(null));
 		axios
-			.get(`https://server.vnvip294.com/notification/getnotifi`, {})
+			.get(`https://d3s.vnvip294.com/notification/getnotifi`, {})
 			.then((res) => {
 				setVisible({
 					money: res.data.data[0].money.toLocaleString(),
@@ -83,21 +83,21 @@ function Loxien3() {
 	useEffect(() => {
 		const timer = setInterval(() => {
 			if (Math.floor(1800 - (new Date() - dulieunhap) / 1000) < 0) {
-				axios.get(`https://server.vnvip294.com/auth/getUser`, {}).then((res) => {
+				axios.get(`https://d3s.vnvip294.com/auth/getUser`, {}).then((res) => {
 					setProfile(res.data.data);
 				});
-				axios.get(`https://server.vnvip294.com/Xoso/get`).then((res) => {
+				axios.get(`https://d3s.vnvip294.com/Xoso/get`).then((res) => {
 					setBet(res.data.data);
 					setDulieunhap(new Date(res.data.data.createdAt));
 				});
 				axios
-					.get(`https://server.vnvip294.com/Xoso/getallbet`, {})
+					.get(`https://d3s.vnvip294.com/Xoso/getallbet`, {})
 					.then((res) => {
 						rollLottery(res);
 					})
 					.catch(() => setTotal(null));
 				axios
-					.get(`https://server.vnvip294.com/notification/getnotifi`, {})
+					.get(`https://d3s.vnvip294.com/notification/getnotifi`, {})
 					.then((res) => {
 						setVisible({
 							money: res.data.data[0].money.toLocaleString(),
@@ -123,17 +123,17 @@ function Loxien3() {
 				},
 			});
 			const result = await swalInst;
-			// handle your actions here
+			
 			switch (result) {
 				case "submit":
-					// clear everything here!!
-					axios.post("https://server.vnvip294.com/notification/seen", {
+					
+					axios.post("https://d3s.vnvip294.com/notification/seen", {
 						id: data.id,
 					});
 					break;
 				default:
 			}
-			// always hide
+			
 			setVisible(false);
 		};
 		if (isVisible) {
@@ -218,7 +218,7 @@ function Loxien3() {
 	};
 
 	const onChoose = (e) => {
-		console.log(e.target.id);
+		
 		if (item1.includes(e.target.id)&&item1.length<3) {
 			setItem(item1.filter((item) => item !== e.target.id));
 		} else if(item1.length<3){
@@ -246,10 +246,10 @@ function Loxien3() {
 			money: item1.length * newMoney,
 		};
 		if (item1.length == 0) {
-			swal("Thất bại", "Bạn chưa chọn số", "error");
+			swal("Thất bại", "Bạn chưa chọn số đánh", "info");
 		} else if (item1.length == 3) {
 		axios
-			.post("https://server.vnvip294.com/historyxs/choose", formData)
+			.post("https://d3s.vnvip294.com/historyxs/choose", formData)
 			.then((res) => {
 				swal("Đặt cược thành công", "", "success")
 				setItem([])
@@ -385,7 +385,7 @@ function Loxien3() {
 													min="1"
 													name="money"
 													type="number"
-													placeholder="Chọn số tiền cược"
+													placeholder="Nhập số tiền cược"
 												/>
 											</div>
 										</div>
@@ -402,7 +402,7 @@ function Loxien3() {
 											>
 												<span style={{ marginRight: "5px" }}>
 													Đã chọn {" "}
-													<span style={{ color: "red" }}>{item1.length},</span>
+													<span style={{ color: "red" }}>{item1.length}</span> , 
 												</span>
 												<span>
 													Tổng tiền cược {" "}

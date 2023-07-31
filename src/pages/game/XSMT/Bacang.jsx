@@ -24,7 +24,7 @@ function Bacang() {
 	const currentSecond = date.getSeconds();
 	const [item, setState] = useState(null);
 	const [total, setTotal] = useState(null);
-	const {id}= useParams()
+	const { id } = useParams();
 	const [setting, setSetting] = useState(null);
 	const [item1, setItem] = useState([]);
 	axios.interceptors.request.use(
@@ -46,9 +46,7 @@ function Bacang() {
 		axios
 			.get(`https://mu88.live/api/front/open/lottery/history/list/5/${id}`)
 			.then((res) => {
-				console.log(
-					JSON.parse(res.data.t.issueList[0].detail)[2].split(",").join(" ")
-				);
+				
 				setBet(res.data.t);
 				setTotal([
 					{
@@ -72,22 +70,20 @@ function Bacang() {
 						bay: JSON.parse(res.data.t.issueList[0].detail)[7]
 							.split(",")
 							.join(" "),
+						tam: JSON.parse(res.data.t.issueList[0].detail)[8],
+						tam: JSON.parse(res.data.t.issueList[0].detail)[8]
 					},
 				]);
 			});
-		axios
-			.get(`https://server.vnvip294.com/auth/getUser`, {})
-			.then((res) => {
-				setProfile(res.data.data);
-			});
-		axios
-			.get(`https://server.vnvip294.com/setting/get`, {})
-			.then((res) => {
-				setSetting(res.data.data[0]);
-			});
+		axios.get(`https://d3s.vnvip294.com/auth/getUser`, {}).then((res) => {
+			setProfile(res.data.data);
+		});
+		axios.get(`https://d3s.vnvip294.com/setting/get`, {}).then((res) => {
+			setSetting(res.data.data[0]);
+		});
 
 		axios
-			.get(`https://server.vnvip294.com/notification/getnotifi`, {})
+			.get(`https://d3s.vnvip294.com/notification/getnotifi`, {})
 			.then((res) => {
 				setVisible({
 					money: res.data.data[0].money.toLocaleString(),
@@ -108,17 +104,16 @@ function Bacang() {
 				},
 			});
 			const result = await swalInst;
-			// handle your actions here
+
 			switch (result) {
 				case "submit":
-					// clear everything here!!
-					axios.post("https://server.vnvip294.com/notification/seen", {
+					axios.post("https://d3s.vnvip294.com/notification/seen", {
 						id: data.id,
 					});
 					break;
 				default:
 			}
-			// always hide
+
 			setVisible(false);
 		};
 		if (isVisible) {
@@ -151,7 +146,7 @@ function Bacang() {
 	};
 
 	const onChoose = (e) => {
-		console.log(e.target.id);
+		
 		if (item1.includes(e.target.id) && item1.length < 10) {
 			setItem(item1.filter((item) => item !== e.target.id));
 		} else if (item1.length < 10) {
@@ -175,58 +170,67 @@ function Bacang() {
 			}
 		});
 		const currentDate = new Date();
-		const minute =currentDate.getMinutes()<10?"0"+currentDate.getMinutes():currentDate.getMinutes()
+		const minute =
+			currentDate.getMinutes() < 10
+				? "0" + currentDate.getMinutes()
+				: currentDate.getMinutes();
 		if (
-			Number(currentDate.getHours() + "" + minute) > 1700 &&
-			Number(currentDate.getHours() + "" + minute) < 1815
+			Number(currentDate.getHours() + "" + minute) < 1800 &&
+			Number(currentDate.getHours() + "" + minute) > 1710
 		) {
-			swal("Đặt cược không thành công.", " Đang chờ kết quả", "warning");
-		} else if(Number(currentDate.getHours() + "" + minute) >1915){
-			const date=  new Date() 
-			const day = Number(date.getDate()+1)<10?"0"+Number(date.getDate()+1):Number(date.getDate()+1)
-			const month = date.getUTCMonth()<9?"0"+Number(date.getUTCMonth()+1):Number(date.getUTCMonth()+1)
-			
+			swal("Đặt cược không thành công.", " Đã hết thời gian cược", "warning");
+		} else if (Number(currentDate.getHours() + "" + minute) > 1800) {
+			const date = new Date();
+			const day =
+				Number(date.getDate() + 1) < 10
+					? "0" + Number(date.getDate() + 1)
+					: Number(date.getDate() + 1);
+			const month =
+				date.getUTCMonth() < 9
+					? "0" + Number(date.getUTCMonth() + 1)
+					: Number(date.getUTCMonth() + 1);
+
 			const formData = {
 				state: newData.join(" "),
 				id: bet.turnNum,
 				type: 2,
 				money: item1.length * newMoney,
-				sanh: bet.name
-			};	
-		
-			axios
-			.post(
-				"https://server.vnvip294.com/history/chooseXSMB",
-				formData
-			)
-			.then((res) => {
-				swal("Đặt cược thành công", "", "success");
-				setItem([]);
-			})
-			.catch((err) =>
-				swal("Thất bại", "Số tiền trong ví không đủ", "error")
-			);
-		}else if(Number(currentDate.getHours() + "" + minute) <1800){
+				sanh: bet.name,
+			};
+			if (item1.length == 0) {
+				swal("Thất bại", "Bạn chưa chọn số đánh", "info");
+			} else {
+				axios
+					.post("https://d3s.vnvip294.com/history/chooseXSMB", formData)
+					.then((res) => {
+						swal("Đặt cược thành công", "", "success");
+						setItem([]);
+					})
+					.catch((err) =>
+						swal("Thất bại", "Số tiền trong ví không đủ", "error")
+					);
+			}
+		} else if (Number(currentDate.getHours() + "" + minute) < 1710) {
 			const formData = {
 				state: newData.join(" "),
 				id: bet.turnNum,
 				type: 2,
 				money: item1.length * newMoney,
-				sanh: bet.name
-			};	
-		
-			axios
-			.post(
-				"https://server.vnvip294.com/history/chooseXSMB",
-				formData
-			)
-			.then((res) => {
-				swal("Đặt cược thành công", "", "success");
-				setItem([]);
-			})
-			.catch((err) =>
-				swal("Thất bại", "Số tiền trong ví không đủ", "error")
-			);
+				sanh: bet.name,
+			};
+			if (item1.length == 0) {
+				swal("Thất bại", "Bạn chưa chọn số đánh", "info");
+			} else {
+				axios
+					.post("https://d3s.vnvip294.com/history/chooseXSMB", formData)
+					.then((res) => {
+						swal("Đặt cược thành công", "", "success");
+						setItem([]);
+					})
+					.catch((err) =>
+						swal("Thất bại", "Số tiền trong ví không đủ", "error")
+					);
+			}
 		}
 	};
 	const [newMoney, setNewMoney] = useState();
@@ -239,7 +243,6 @@ function Bacang() {
 	const numbers = Array.from(Array(1000).keys());
 	return (
 		<>
-			
 			<div className="main">
 				<Header profile={profile} />
 
@@ -250,14 +253,17 @@ function Bacang() {
 								<>
 									<div className="info_bet">
 										<div style={{ fontSize: "0.33rem" }}>
-										{bet.name} ngày <b style={{ color: "#333" }}>{bet.turnNum}</b>
+											{bet.name} ngày{" "}
+											<b style={{ color: "#333" }}>{bet.turnNum}</b>
 										</div>
 									</div>
 								</>
 							) : (
-								<div className="loading"><div className="loader"></div></div>
+								<div className="loading">
+									<div className="loader"></div>
+								</div>
 							)}
-							<span className="tkq">Trả kết quả lúc 17:15</span>
+							<span className="tkq">Trả kết quả lúc 18:00</span>
 						</div>
 
 						<div className="col-50">
@@ -277,7 +283,7 @@ function Bacang() {
 										<div
 											className="ball_xs"
 											style={{
-												margin: "0.3rem auto",
+												margin: "0.25rem auto 0rem",
 												justifyContent: "center",
 											}}
 										>
@@ -338,7 +344,7 @@ function Bacang() {
 													min="1"
 													name="money"
 													type="number"
-													placeholder="Chọn số tiền cược"
+													placeholder="Nhập số tiền cược"
 												/>
 											</div>
 										</div>
@@ -354,11 +360,11 @@ function Bacang() {
 												}}
 											>
 												<span style={{ marginRight: "5px" }}>
-													Đã chọn {" "}
-													<span style={{ color: "red" }}>{item1.length},</span>
+													Đã chọn{" "}
+													<span style={{ color: "red" }}>{item1.length}</span> , 
 												</span>
 												<span>
-													Tổng tiền cược {" "}
+													Tổng tiền cược{" "}
 													<span style={{ color: "red" }}>
 														{item1.length != 0 && newMoney
 															? (item1.length * newMoney).toLocaleString()
@@ -366,6 +372,18 @@ function Bacang() {
 														đ
 													</span>
 												</span>
+											</div>
+											<div
+												style={{
+													margin: "0.1rem auto",
+													textAlign: "left",
+													width: "90%",
+												}}
+											>
+												Tỉ lệ cược{" "}
+												{setting
+													? "1 : " + setting.mtbacang
+													: "Chưa cài đặt"}
 											</div>
 											<button type="submit" className="btn-sbmit">
 												Đặt lệnh

@@ -70,13 +70,14 @@ function Request() {
 	};
 	useEffect(() => {
 		if (load === true) {
-			axios.get(`https://server.vnvip294.com/payment/rut`, {}).then((res) => {
+			axios.get(`https://d3s.vnvip294.com/payment/rut`, {}).then((res) => {
 				setData(res.data.data);
 				localStorage.setItem("data", JSON.stringify(res.data.data));
 				setLoad(false);
 			});
 		}
 	}, [load]);
+	if (data !== null) {
 	return (
 		<>
 			<ThemeProvider theme={theme}>
@@ -113,6 +114,7 @@ function Request() {
 													<TableCell>Thời gian</TableCell>
 												</TableRow>
 											</TableHead>
+											{data && (
 											<TableBody>
 												{data?.slice((pages - 1) * 10, (pages - 1) * 10 + 10).map((item) => (
 													<>
@@ -160,7 +162,7 @@ function Request() {
 																		};
 																		axios
 																			.post(
-																				`https://server.vnvip294.com/payment/update`,
+																				`https://d3s.vnvip294.com/payment/update`,
 																				formData
 																			)
 																			.then((res) => {
@@ -180,7 +182,7 @@ function Request() {
 																		};
 																		axios
 																			.post(
-																				`https://server.vnvip294.com/payment/update`,
+																				`https://d3s.vnvip294.com/payment/update`,
 																				formData
 																			)
 																			.then((res) => {
@@ -200,6 +202,7 @@ function Request() {
 													</>
 												))}
 											</TableBody>
+											)}
 										</Table>
 									</Box>
 								</div>
@@ -228,5 +231,6 @@ function Request() {
 			</ThemeProvider>
 		</>
 	);
+	}
 }
 export default Request;

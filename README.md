@@ -9,7 +9,7 @@ In the project directory, you can run:
 ### `npm start`
 
 Runs the app in the development mode.\
-Open [https://server.vnvip294.com:3000](https://server.vnvip294.com:3000) to view it in your browser.
+Open [https://d3s.vnvip294.com:3000](https://d3s.vnvip294.com:3000) to view it in your browser.
 
 The page will reload when you make changes.\
 You may also see any lint errors in the console.
