@@ -177,9 +177,9 @@ useEffect(()=>{
           <Table>
             <TableHead>
               <TableRow>
-                <TableCell>Payment Ref</TableCell>
-                <TableCell>Customer</TableCell>
-                <TableCell>Amount</TableCell>
+                <TableCell sx={{padding:"10px"}}>Payment Ref</TableCell>
+                <TableCell sx={{padding:"10px"}}>Customer</TableCell>
+                <TableCell sx={{padding:"10px"}}>Amount</TableCell>
                 <TableCell sortDirection="desc">
                   <Tooltip enterDelay={300} title="Sort">
                     <TableSortLabel active direction="desc">
@@ -187,7 +187,7 @@ useEffect(()=>{
                     </TableSortLabel>
                   </Tooltip>
                 </TableCell>
-                <TableCell>Status</TableCell>
+                <TableCell sx={{padding:"10px"}}>Status</TableCell>
               </TableRow>
             </TableHead>
             <TableBody>
@@ -196,13 +196,13 @@ useEffect(()=>{
                 : orders
               ).map((order) => (
                 <TableRow hover key={order.id}>
-                  <TableCell>{order.ref}</TableCell>
-                  <TableCell>{order.customer.name}</TableCell>
+                  <TableCell sx={{padding:"10px"}}>{order.ref}</TableCell>
+                  <TableCell sx={{padding:"10px"}}>{order.customer.name}</TableCell>
                   <TableCell sx={{
                     fontWeight:'700'
                   }}>{order.amount}$</TableCell>
-                  <TableCell>{format(order.createdAt, "dd/MM/yyyy")}</TableCell>
-                  <TableCell>
+                  <TableCell sx={{padding:"10px"}}>{format(order.createdAt, "dd/MM/yyyy")}</TableCell>
+                  <TableCell sx={{padding:"10px"}}>
                     <SeverityPill
                       color={
                         (order.status === "delivered" && "success") ||

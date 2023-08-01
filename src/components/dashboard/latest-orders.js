@@ -62,14 +62,14 @@ useEffect(()=>{
       <Card>
         <CardHeader title="Latest Orders" />
         <PerfectScrollbar>
-          <Box sx={{ minWidth: 800 }}>
+          <Box>
             <Table>
               <TableHead>
                 <TableRow>
-                  <TableCell>ID Đơn Hàng</TableCell>
-                  <TableCell>Người chơi</TableCell>
-                  <TableCell>Tổng đơn hàng</TableCell>
-                  <TableCell>Địa chỉ</TableCell>
+                  <TableCell sx={{padding:"10px"}}>ID Đơn Hàng</TableCell>
+                  <TableCell sx={{padding:"10px"}}>Người chơi</TableCell>
+                  <TableCell sx={{padding:"10px"}}>Tổng đơn hàng</TableCell>
+                  <TableCell sx={{padding:"10px"}}>Địa chỉ</TableCell>
                   <TableCell sortDirection="desc">
                     <Tooltip enterDelay={300} title="Sort">
                       <TableSortLabel active direction="desc">
@@ -77,7 +77,7 @@ useEffect(()=>{
                       </TableSortLabel>
                     </Tooltip>
                   </TableCell>
-                  <TableCell>Trạng Thái</TableCell>
+                  <TableCell sx={{padding:"10px"}}>Trạng Thái</TableCell>
                 </TableRow>
               </TableHead>
               <TableBody>
@@ -86,13 +86,13 @@ useEffect(()=>{
                   : purchase.data
                 ).map((order) => (
                   <TableRow hover key={order.id} onClick={()=>{navigate(`/seller/statusOrders/${order._id}`)}} >
-                    <TableCell>{order._id}</TableCell>
-                    <TableCell>{order.customer.fullname}</TableCell>
-                    <TableCell>{order.total_amount.toLocaleString(undefined, { maximumFractionDigits: 2 })}đ</TableCell>
-                    <TableCell>{order.address}</TableCell>
+                    <TableCell sx={{padding:"10px"}}>{order._id}</TableCell>
+                    <TableCell sx={{padding:"10px"}}>{order.customer.fullname}</TableCell>
+                    <TableCell sx={{padding:"10px"}}>{order.total_amount.toLocaleString(undefined, { maximumFractionDigits: 2 })}đ</TableCell>
+                    <TableCell sx={{padding:"10px"}}>{order.address}</TableCell>
                     
-                    <TableCell>{formatDate(order.createdAt)}</TableCell>
-                    <TableCell>
+                    <TableCell sx={{padding:"10px"}}>{formatDate(order.createdAt)}</TableCell>
+                    <TableCell sx={{padding:"10px"}}>
                       <SeverityPill
                         color={
                           (order.status === "delivered" && "success") ||

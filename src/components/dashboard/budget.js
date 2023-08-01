@@ -4,7 +4,7 @@ import MoneyIcon from '@mui/icons-material/Money';
 
 export const Budget = (props) => (
   <Card
-    sx={{ height: '100%' , backgroundColor:'#3ba1c5'}}
+    sx={{ height: '100%' , backgroundColor:'#e5e5e5'}}
     {...props}
   >
     <CardContent >

@@ -183,16 +183,16 @@ function HistoryBetAll() {
 										<Table sx={{ width: 1200 }}>
 											<TableHead>
 												<TableRow>
-													<TableCell>Số kỳ</TableCell>
-													<TableCell>User</TableCell>
-													<TableCell>ID User</TableCell>
-													<TableCell>Trò chơi</TableCell>
-													<TableCell>Người chơi đặt</TableCell>
-													<TableCell>Số tiền</TableCell>
-													<TableCell>Số tiền thắng</TableCell>
-													<TableCell>Trạng thái</TableCell>
-													<TableCell>Thời gian</TableCell>
-													<TableCell>Sửa</TableCell>
+													<TableCell sx={{padding:"10px"}}>Số kỳ</TableCell>
+													<TableCell sx={{padding:"10px"}}>User</TableCell>
+													<TableCell sx={{padding:"10px"}}>ID User</TableCell>
+													<TableCell sx={{padding:"10px"}}>Trò chơi</TableCell>
+													<TableCell sx={{padding:"10px"}}>Người chơi đặt</TableCell>
+													<TableCell sx={{padding:"10px"}}>Số tiền</TableCell>
+													<TableCell sx={{padding:"10px"}}>Số tiền thắng</TableCell>
+													<TableCell sx={{padding:"10px"}}>Trạng thái</TableCell>
+													<TableCell sx={{padding:"10px"}}>Thời gian</TableCell>
+													<TableCell sx={{padding:"10px"}}>Sửa</TableCell>
 												</TableRow>
 											</TableHead>
 											{data != null ? (
@@ -204,18 +204,18 @@ function HistoryBetAll() {
 																{table == "" ? (
 																	<>
 																		<TableRow>
-																			<TableCell sx={{ fontWeight: "600" }}>
+																			<TableCell sx={{ fontWeight: "600", padding: "10px" }}>
 																				{item.id_bet.id_bet
 																					? item.id_bet.id_bet
 																					: item.id_bet}
 																			</TableCell>
-																			<TableCell sx={{ fontWeight: "600" }}>
+																			<TableCell sx={{ fontWeight: "600", padding: "10px" }}>
 																				{item.user.username}
 																			</TableCell>
-																			<TableCell sx={{ fontWeight: "600" }}>
+																			<TableCell sx={{ fontWeight: "600", padding: "10px" }}>
 																				{item.user.iduser}
 																			</TableCell>
-																			<TableCell sx={{ fontWeight: "600" }}>
+																			<TableCell sx={{ fontWeight: "600", padding: "10px" }}>
 																				{item.sanh == "3 phút"
 																					? "Keno 3p"
 																					: item.sanh == "5 phút"
@@ -224,42 +224,42 @@ function HistoryBetAll() {
 																					? "Keno 1p"
 																					: item.sanh}
 																			</TableCell>
-																			<TableCell sx={{ fontWeight: "600" }}>
+																			<TableCell sx={{ fontWeight: "600", padding: "10px" }}>
 																				{GetNameChoose(item.state, item.type, item.sanh)}
 																			</TableCell>
-																			<TableCell sx={{ fontWeight: "600" }}>
+																			<TableCell sx={{ fontWeight: "600", padding: "10px" }}>
 																				{" "}
 																				{item.money.toLocaleString()}
 																			</TableCell>
-																			<TableCell sx={{ fontWeight: "600" }}>
+																			<TableCell sx={{ fontWeight: "600", padding: "10px" }}>
 																				{" "}
 																				{item.moneythang.toLocaleString()}
 																			</TableCell>
 																			{item.status_bet === "Win" ? (
-																				<TableCell sx={{ fontWeight: "600" }}>
+																				<TableCell sx={{ fontWeight: "600", padding: "10px" }}>
 																					<Button color="success">
 																						{item.status_bet}
 																					</Button>
 																				</TableCell>
 																			) : null}
 																			{item.status_bet === "Lose" ? (
-																				<TableCell sx={{ fontWeight: "600" }}>
+																				<TableCell sx={{ fontWeight: "600", padding: "10px" }}>
 																					<Button color="error">
 																						{item.status_bet}
 																					</Button>
 																				</TableCell>
 																			) : null}
 																			{item.status_bet === "Pending" ? (
-																				<TableCell sx={{ fontWeight: "600" }}>
+																				<TableCell sx={{ fontWeight: "600", padding: "10px" }}>
 																					<Button color="warning">
 																						{item.status_bet}
 																					</Button>
 																				</TableCell>
 																			) : null}
-																			<TableCell sx={{ fontWeight: "600" }}>
+																			<TableCell sx={{ fontWeight: "600", padding: "10px" }}>
 																				{formatDate(new Date(item.createdAt))}
 																			</TableCell>
-																			<TableCell>
+																			<TableCell sx={{padding:"10px"}}>
 																				<Button onClick={()=>{setShow(true);setLs(item)}}>Sửa</Button>
 																			</TableCell>
 																		</TableRow>
@@ -267,18 +267,18 @@ function HistoryBetAll() {
 																) : table !== "" && table == item.sanh ? (
 																	<>
 																		<TableRow>
-																			<TableCell sx={{ fontWeight: "600" }}>
+																			<TableCell sx={{ fontWeight: "600", padding: "10px" }}>
 																				{item.id_bet.id_bet
 																					? item.id_bet.id_bet
 																					: item.id_bet}
 																			</TableCell>
-																			<TableCell sx={{ fontWeight: "600" }}>
+																			<TableCell sx={{ fontWeight: "600", padding: "10px" }}>
 																				{item.user.username}
 																			</TableCell>
-																			<TableCell sx={{ fontWeight: "600" }}>
+																			<TableCell sx={{ fontWeight: "600", padding: "10px" }}>
 																				{item.user.iduser}
 																			</TableCell>
-																			<TableCell sx={{ fontWeight: "600" }}>
+																			<TableCell sx={{ fontWeight: "600", padding: "10px" }}>
 																				{item.sanh == "3 phút"
 																					? "Keno 3p"
 																					: item.sanh == "5 phút"
@@ -287,42 +287,42 @@ function HistoryBetAll() {
 																					? "Keno 1p"
 																					: item.sanh}
 																			</TableCell>
-																			<TableCell sx={{ fontWeight: "600" }}>
+																			<TableCell sx={{ fontWeight: "600", padding: "10px" }}>
 																				{GetNameChoose(item.state, item.type, item.sanh)}
 																			</TableCell>
-																			<TableCell sx={{ fontWeight: "600" }}>
+																			<TableCell sx={{ fontWeight: "600", padding: "10px" }}>
 																				{" "}
 																				{item.money.toLocaleString()}
 																			</TableCell>
-																			<TableCell sx={{ fontWeight: "600" }}>
+																			<TableCell sx={{ fontWeight: "600", padding: "10px" }}>
 																				{" "}
 																				{item.moneythang.toLocaleString()}
 																			</TableCell>
 																			{item.status_bet === "Win" ? (
-																				<TableCell sx={{ fontWeight: "600" }}>
+																				<TableCell sx={{ fontWeight: "600", padding: "10px" }}>
 																					<Button color="success">
 																						{item.status_bet}
 																					</Button>
 																				</TableCell>
 																			) : null}
 																			{item.status_bet === "Lose" ? (
-																				<TableCell sx={{ fontWeight: "600" }}>
+																				<TableCell sx={{ fontWeight: "600", padding: "10px" }}>
 																					<Button color="error">
 																						{item.status_bet}
 																					</Button>
 																				</TableCell>
 																			) : null}
 																			{item.status_bet === "Pending" ? (
-																				<TableCell sx={{ fontWeight: "600" }}>
+																				<TableCell sx={{ fontWeight: "600", padding: "10px" }}>
 																					<Button color="warning">
 																						{item.status_bet}
 																					</Button>
 																				</TableCell>
 																			) : null}
-																			<TableCell sx={{ fontWeight: "600" }}>
+																			<TableCell sx={{ fontWeight: "600", padding: "10px" }}>
 																				{formatDate(new Date(item.createdAt))}
 																			</TableCell>
-																			<TableCell>
+																			<TableCell sx={{padding:"10px"}}>
 																				<Button onClick={()=>{setShow(true);setLs(item)}}>Sửa</Button>
 																			</TableCell>
 																		</TableRow>
@@ -330,18 +330,18 @@ function HistoryBetAll() {
 																) : table == "XSMN" && XSMN.includes(item.sanh) || table == "XSMT" && XSMT.includes(item.sanh) ? (
 																	<>
 																		<TableRow>
-																			<TableCell sx={{ fontWeight: "600" }}>
+																			<TableCell sx={{ fontWeight: "600", padding: "10px" }}>
 																				{item.id_bet.id_bet
 																					? item.id_bet.id_bet
 																					: item.id_bet}
 																			</TableCell>
-																			<TableCell sx={{ fontWeight: "600" }}>
+																			<TableCell sx={{ fontWeight: "600", padding: "10px" }}>
 																				{item.user.username}
 																			</TableCell>
-																			<TableCell sx={{ fontWeight: "600" }}>
+																			<TableCell sx={{ fontWeight: "600", padding: "10px" }}>
 																				{item.user.iduser}
 																			</TableCell>
-																			<TableCell sx={{ fontWeight: "600" }}>
+																			<TableCell sx={{ fontWeight: "600", padding: "10px" }}>
 																				{item.sanh == "3 phút"
 																					? "Keno 3p"
 																					: item.sanh == "5 phút"
@@ -350,38 +350,38 @@ function HistoryBetAll() {
 																					? "Keno 1p"
 																					: item.sanh}
 																			</TableCell>
-																			<TableCell sx={{ fontWeight: "600" }}>
+																			<TableCell sx={{ fontWeight: "600", padding: "10px" }}>
 																				{GetNameChoose(item.state, item.type, item.sanh)}
 																			</TableCell>
-																			<TableCell sx={{ fontWeight: "600" }}>
+																			<TableCell sx={{ fontWeight: "600", padding: "10px" }}>
 																				{" "}
 																				{item.money.toLocaleString()} VNĐ
 																			</TableCell>
 																			{item.status_bet === "Win" ? (
-																				<TableCell sx={{ fontWeight: "600" }}>
+																				<TableCell sx={{ fontWeight: "600", padding: "10px" }}>
 																					<Button color="success">
 																						{item.status_bet}
 																					</Button>
 																				</TableCell>
 																			) : null}
 																			{item.status_bet === "Lose" ? (
-																				<TableCell sx={{ fontWeight: "600" }}>
+																				<TableCell sx={{ fontWeight: "600", padding: "10px" }}>
 																					<Button color="error">
 																						{item.status_bet}
 																					</Button>
 																				</TableCell>
 																			) : null}
 																			{item.status_bet === "Pending" ? (
-																				<TableCell sx={{ fontWeight: "600" }}>
+																				<TableCell sx={{ fontWeight: "600", padding: "10px" }}>
 																					<Button color="warning">
 																						{item.status_bet}
 																					</Button>
 																				</TableCell>
 																			) : null}
-																			<TableCell sx={{ fontWeight: "600" }}>
+																			<TableCell sx={{ fontWeight: "600", padding: "10px" }}>
 																				{formatDate(new Date(item.createdAt))}
 																			</TableCell>
-																			<TableCell>
+																			<TableCell sx={{padding:"10px"}}>
 																				<Button onClick={()=>{setShow(true);setLs(item)}}>Sửa</Button>
 																			</TableCell>
 																		</TableRow>

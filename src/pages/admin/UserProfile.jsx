@@ -162,13 +162,13 @@ function UserProfile() {
 														</div>
 													</div>
 													<div className="detail_user">
-														<div className="username_">Tiền đã win</div>
+														<div className="username_">Tiền đã thắng</div>
 														<div className="username_">
 															{Number(profile.totalwin).toLocaleString()}
 														</div>
 													</div>
 													<div className="detail_user">
-														<div className="username_">Ngày lập nick</div>
+														<div className="username_">Ngày tạo</div>
 														<div className="username_">
 															{formatDate(new Date(profile.createdAt))}
 														</div>
@@ -188,10 +188,10 @@ function UserProfile() {
 										<Table sx={{ width: 700 }}>
 											<TableHead>
 												<TableRow>
-													<TableCell>Tên Ngân Hàng</TableCell>
-													<TableCell>STK</TableCell>
-													<TableCell>Người Nhận</TableCell>
-													<TableCell>Hành động</TableCell>
+													<TableCell sx={{padding:"10px"}}>Tên Ngân Hàng</TableCell>
+													<TableCell sx={{padding:"10px"}}>STK</TableCell>
+													<TableCell sx={{padding:"10px"}}>Người Nhận</TableCell>
+													<TableCell sx={{padding:"10px"}}>Hành động</TableCell>
 												</TableRow>
 											</TableHead>
 											<TableBody>
@@ -199,17 +199,17 @@ function UserProfile() {
 													<>
 														{data.map((item) => (
 															<TableRow>
-																<TableCell sx={{ fontWeight: "600" }}>
+																<TableCell sx={{ fontWeight: "600", padding: "10px" }}>
 																	{item.name_bank}
 																</TableCell>
-																<TableCell sx={{ fontWeight: "600" }}>
+																<TableCell sx={{ fontWeight: "600", padding: "10px" }}>
 																	{" "}
 																	{item.stk}
 																</TableCell>
-																<TableCell sx={{ fontWeight: "600" }}>
+																<TableCell sx={{ fontWeight: "600", padding: "10px" }}>
 																	{item.fullname}
 																</TableCell>
-																<TableCell sx={{ fontWeight: "600" }}>
+																<TableCell sx={{ fontWeight: "600", padding: "10px" }}>
 																	<Button
 																		onClick={() => {
 																			axios
@@ -258,12 +258,12 @@ function UserProfile() {
 								<Table sx={{ width: "100%" }}>
 									<TableHead>
 										<TableRow>
-											<TableCell>Tên người chơi</TableCell>
-											<TableCell>Game</TableCell>
-											<TableCell>Loại</TableCell>
-											<TableCell>Coin</TableCell>
-											<TableCell>Coin nhận</TableCell>
-											<TableCell>Thời gian</TableCell>
+											<TableCell sx={{padding:"10px"}}>Tên người chơi</TableCell>
+											<TableCell sx={{padding:"10px"}}>Game</TableCell>
+											<TableCell sx={{padding:"10px"}}>Loại</TableCell>
+											<TableCell sx={{padding:"10px"}}>Coin</TableCell>
+											<TableCell sx={{padding:"10px"}}>Coin nhận</TableCell>
+											<TableCell sx={{padding:"10px"}}>Thời gian</TableCell>
 										</TableRow>
 									</TableHead>
 									<TableBody>
@@ -271,23 +271,23 @@ function UserProfile() {
 											<>
 												{history.map((item) => (
 													<TableRow>
-														<TableCell sx={{ fontWeight: "600" }}>
+														<TableCell sx={{ fontWeight: "600", padding: "10px" }}>
 															{item.name}
 														</TableCell>
-														<TableCell sx={{ fontWeight: "600" }}>
+														<TableCell sx={{ fontWeight: "600", padding: "10px" }}>
 															{" "}
 															{item.game}
 														</TableCell>
-														<TableCell sx={{ fontWeight: "600" }}>
+														<TableCell sx={{ fontWeight: "600", padding: "10px" }}>
 															{item.detail}
 														</TableCell>
-														<TableCell sx={{ fontWeight: "600" }}>
+														<TableCell sx={{ fontWeight: "600", padding: "10px" }}>
 															{item.money}
 														</TableCell>
-														<TableCell sx={{ fontWeight: "600" }}>
+														<TableCell sx={{ fontWeight: "600", padding: "10px" }}>
 															{item.money_recv}
 														</TableCell>
-														<TableCell sx={{ fontWeight: "600" }}>
+														<TableCell sx={{ fontWeight: "600", padding: "10px" }}>
 															{formatDate(new Date(item.time))}
 														</TableCell>
 													</TableRow>

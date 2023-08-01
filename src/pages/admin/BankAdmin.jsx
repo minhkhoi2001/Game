@@ -151,10 +151,10 @@ function BankAdmin() {
 								<Table sx={{ width: "100%" }}>
 									<TableHead>
 										<TableRow>
-											<TableCell>Tên Ngân Hàng</TableCell>
-											<TableCell>Số tài khoản</TableCell>
-											<TableCell>Chủ tài khoản</TableCell>
-											<TableCell>Nội dung chuyển khoản</TableCell>
+											<TableCell sx={{padding:"10px"}}>Tên Ngân Hàng</TableCell>
+											<TableCell sx={{padding:"10px"}}>Số tài khoản</TableCell>
+											<TableCell sx={{padding:"10px"}}>Chủ tài khoản</TableCell>
+											<TableCell sx={{padding:"10px"}}>Nội dung chuyển khoản</TableCell>
 											<TableCell style={{textAlign:"right"}}>Hành động</TableCell>
 										</TableRow>
 									</TableHead>
@@ -163,20 +163,20 @@ function BankAdmin() {
 											<>
 												{bank.map((item) => (
 													<TableRow>
-														<TableCell sx={{ fontWeight: "600" }}>
+														<TableCell sx={{ fontWeight: "600", padding: "10px" }}>
 															{item.name_bank}
 														</TableCell>
-														<TableCell sx={{ fontWeight: "600" }}>
+														<TableCell sx={{ fontWeight: "600", padding: "10px" }}>
 															{" "}
 															{item.stk}
 														</TableCell>
-														<TableCell sx={{ fontWeight: "600" }}>
+														<TableCell sx={{ fontWeight: "600", padding: "10px" }}>
 															{item.fullname}
 														</TableCell>
-														<TableCell sx={{ fontWeight: "600" }}>
+														<TableCell sx={{ fontWeight: "600", padding: "10px" }}>
 															{item.title}
 														</TableCell>
-														<TableCell sx={{ fontWeight: "600" }}>
+														<TableCell sx={{ fontWeight: "600", padding: "10px" }}>
 															<Button
 																onClick={() => {
 																	axios

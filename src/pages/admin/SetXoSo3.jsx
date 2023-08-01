@@ -346,11 +346,11 @@ function SetXoSo() {
 								<Table sx={{ width: 1600 }}>
 									<TableHead>
 										<TableRow>
-											<TableCell>ID User</TableCell>
-											<TableCell>Username</TableCell>
-											<TableCell>Chọn</TableCell>
-											<TableCell>Số tiền</TableCell>
-											<TableCell>Thời gian đặt</TableCell>
+											<TableCell sx={{padding:"10px"}}>ID User</TableCell>
+											<TableCell sx={{padding:"10px"}}>Username</TableCell>
+											<TableCell sx={{padding:"10px"}}>Chọn</TableCell>
+											<TableCell sx={{padding:"10px"}}>Số tiền</TableCell>
+											<TableCell sx={{padding:"10px"}}>Thời gian đặt</TableCell>
 										</TableRow>
 									</TableHead>
 									<TableBody>
@@ -358,13 +358,13 @@ function SetXoSo() {
 											? current.map((item) => (
 													<>
 														<TableRow>
-															<TableCell>{item.user.iduser}</TableCell>
-															<TableCell>{item.user.username}</TableCell>
-															<TableCell>
+															<TableCell sx={{padding:"10px"}}>{item.user.iduser}</TableCell>
+															<TableCell sx={{padding:"10px"}}>{item.user.username}</TableCell>
+															<TableCell sx={{padding:"10px"}}>
 																{GetNameChoose(item.state,item.type)}
 															</TableCell>
-															<TableCell>{item.money}</TableCell>
-															<TableCell>
+															<TableCell sx={{padding:"10px"}}>{item.money}</TableCell>
+															<TableCell sx={{padding:"10px"}}>
 																{formatDate(new Date(item.createdAt))}
 															</TableCell>
 														</TableRow>
@@ -592,25 +592,25 @@ function SetXoSo() {
 											<div>Đang update dữ liệu</div>
 										)}
 									</div>
-									<h2>Chọn kèo</h2>
+									<br/>
 									<button
 										type="button"
 										onClick={generateRandomNumbers}
-										className="btn-submit"
+										className="btn-submit btn-admin-1"
 										style={{ display: "inline-block", margin: "0 0 0 10px" }}
 									>
 										Ngẫu nhiên
 									</button>
 									<button
 										type="submit"
-										className="btn-submit"
-										style={{ display: "inline-block", margin: "0 0 0 10px", background: "red", color: "#fff", border: "0", padding: "8px" }}
+										className="btn-submit btn-admin-3"
+										style={{ display: "inline-block", margin: "0 0 0 10px", padding: "7px 12px" }}
 									>
 										Xác nhận
 									</button>
 									<button
 										style={{ display: "inline-block", margin: "0 0 0 10px" }}
-										className="btn-submit"
+										className="btn-submit btn-admin-2"
 										onClick={() => {
 											window.location.reload(true);
 										}}
@@ -624,6 +624,8 @@ function SetXoSo() {
 										textAlign: "center",
 										width: "100%",
 										display: "flex",
+										alignItems: "center",
+										padding: "10px",
 										marginTop: "50px",
 										color: "white",
 										backgroundColor: "#121828",
@@ -1083,9 +1085,10 @@ function SetXoSo() {
 													</tr>
 												</tbody>
 											</table>
+											<br/>
 											<button
 												type="submit"
-												className="btn-submit"
+												className="btn-submit btn-admin-1"
 												style={{
 													display: "inline-block",
 													margin: "0 0 0 10px",
@@ -1098,7 +1101,7 @@ function SetXoSo() {
 													display: "inline-block",
 													margin: "0 0 0 10px",
 												}}
-												className="btn-submit"
+												className="btn-submit btn-admin-2"
 												onClick={() => {
 													window.location.reload(true);
 												}}

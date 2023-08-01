@@ -266,11 +266,11 @@ function Set5() {
 								<Table sx={{ width: 1600 }}>
 									<TableHead>
 										<TableRow>
-											<TableCell>ID User</TableCell>
-											<TableCell>Username</TableCell>
-											<TableCell>Chọn</TableCell>
-											<TableCell>Số tiền</TableCell>
-											<TableCell>Thời gian đặt</TableCell>
+											<TableCell sx={{padding:"10px"}}>ID User</TableCell>
+											<TableCell sx={{padding:"10px"}}>Username</TableCell>
+											<TableCell sx={{padding:"10px"}}>Chọn</TableCell>
+											<TableCell sx={{padding:"10px"}}>Số tiền</TableCell>
+											<TableCell sx={{padding:"10px"}}>Thời gian đặt</TableCell>
 										</TableRow>
 									</TableHead>
 									<TableBody>
@@ -278,13 +278,13 @@ function Set5() {
 											? current.map((item) => (
 													<>
 														<TableRow>
-															<TableCell>{item.user.iduser}</TableCell>
-															<TableCell>{item.user.username}</TableCell>
-															<TableCell>
+															<TableCell sx={{padding:"10px"}}>{item.user.iduser}</TableCell>
+															<TableCell sx={{padding:"10px"}}>{item.user.username}</TableCell>
+															<TableCell sx={{padding:"10px"}}>
 																{GetNameChoose(Number(item.state))}
 															</TableCell>
-															<TableCell>{item.money}</TableCell>
-															<TableCell>
+															<TableCell sx={{padding:"10px"}}>{item.money}</TableCell>
+															<TableCell sx={{padding:"10px"}}>
 																{formatDate(new Date(item.createdAt))}
 															</TableCell>
 														</TableRow>
@@ -310,7 +310,7 @@ function Set5() {
 											<div>Đang update dữ liệu</div>
 										)}
 									</div>
-									<h2>Chọn kèo</h2>
+									<h2>Sửa kết quả</h2>
 									<input
 										min="10000"
 										max="99999"
@@ -320,14 +320,14 @@ function Set5() {
 									/>
 									<button
 										type="submit"
-										className="btn-submit"
+										className="btn-submit btn-admin-1"
 										style={{ display: "inline-block", margin: "0 0 0 10px" }}
 									>
 										Xác nhận
 									</button>
 									<button
 										style={{ display: "inline-block", margin: "0 0 0 10px" }}
-										className="btn-submit"
+										className="btn-submit btn-admin-2"
 										onClick={() => {
 											window.location.reload(true);
 										}}
@@ -338,9 +338,9 @@ function Set5() {
 								<Table sx={{ width: 1600 }}>
 									<TableHead>
 										<TableRow>
-											<TableCell>ID BET</TableCell>
-											<TableCell>Kết quả</TableCell>
-											<TableCell>Cập nhật</TableCell>
+											<TableCell sx={{padding:"10px"}}>ID BET</TableCell>
+											<TableCell sx={{padding:"10px"}}>Kết quả</TableCell>
+											<TableCell sx={{padding:"10px"}}>Cập nhật</TableCell>
 											<TableCell style={{ textAlign: "center" }}>
 												Thời gian diễn ra
 											</TableCell>
@@ -351,9 +351,9 @@ function Set5() {
 											? list30.map((item) => (
 													<>
 														<TableRow>
-															<TableCell>{item.id_bet}</TableCell>
-															<TableCell>{item.result}</TableCell>
-															<TableCell>
+															<TableCell sx={{padding:"10px"}}>{item.id_bet}</TableCell>
+															<TableCell sx={{padding:"10px"}}>{item.result}</TableCell>
+															<TableCell sx={{padding:"10px"}}>
 																<form
 																	onSubmit={(e) => {
 																		e.preventDefault();
@@ -390,7 +390,7 @@ function Set5() {
 																		min={10000}
 																		max={99999}
 																	/>
-																	<button>Xác nhận</button>
+																	<button className="btn-admin-3">Xác nhận</button>
 																</form>
 															</TableCell>
 															<TableCell style={{ textAlign: "center" }}>

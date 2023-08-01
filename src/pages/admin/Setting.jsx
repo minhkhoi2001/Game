@@ -532,8 +532,7 @@ function Setting() {
 												/>
 											</div>
 										</div>
-										<div style={{clear:"both"}}></div>
-										<div className="form_col">
+										<div className="form_col" style={{clear:"both",width:"100%"}}>
 											<button type="submit" className="btn_setting">Lưu</button>
 										</div>
 									</form>

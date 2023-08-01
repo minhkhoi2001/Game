@@ -119,49 +119,49 @@ function UsersByEmployeeNV() {
 											<Table sx={{ width: 1600 }}>
 												<TableHead>
 													<TableRow>
-														<TableCell>ID User</TableCell>
-														<TableCell>Username</TableCell>
-														<TableCell>Số tiền</TableCell>
-														<TableCell>Ngày tạo</TableCell>
-														<TableCell>Admin Cộng</TableCell>
+														<TableCell sx={{padding:"10px"}}>ID User</TableCell>
+														<TableCell sx={{padding:"10px"}}>Username</TableCell>
+														<TableCell sx={{padding:"10px"}}>Số tiền</TableCell>
+														<TableCell sx={{padding:"10px"}}>Ngày tạo</TableCell>
+														<TableCell sx={{padding:"10px"}}>Admin Cộng</TableCell>
 
-														<TableCell>Admin Trừ</TableCell>
-														<TableCell>Admin Thưởng</TableCell>
-														<TableCell>Tổng đặt</TableCell>
-														{/* <TableCell>Rút/ Nạp Tiền</TableCell>
-														<TableCell>Thưởng</TableCell>
-														<TableCell>Xem thông tin</TableCell> */}
+														<TableCell sx={{padding:"10px"}}>Admin Trừ</TableCell>
+														<TableCell sx={{padding:"10px"}}>Admin Thưởng</TableCell>
+														<TableCell sx={{padding:"10px"}}>Tổng đặt</TableCell>
+														{/* <TableCell sx={{padding:"10px"}}>Rút/ Nạp Tiền</TableCell>
+														<TableCell sx={{padding:"10px"}}>Thưởng</TableCell>
+														<TableCell sx={{padding:"10px"}}>Xem thông tin</TableCell> */}
 													</TableRow>
 												</TableHead>
 												<TableBody>
 													{users.map((item) => (
 														<>
 															<TableRow>
-																<TableCell sx={{ fontWeight: "600" }}>
+																<TableCell sx={{ fontWeight: "600", padding: "10px" }}>
 																	{item.iduser}
 																</TableCell>
-																<TableCell sx={{ fontWeight: "600" }}>
+																<TableCell sx={{ fontWeight: "600", padding: "10px" }}>
 																	{item.username}
 																</TableCell>
-																<TableCell sx={{ fontWeight: "600" }}>
+																<TableCell sx={{ fontWeight: "600", padding: "10px" }}>
 																	{item.money.toLocaleString()} VNĐ
 																</TableCell>
-																<TableCell sx={{ fontWeight: "600" }}>
+																<TableCell sx={{ fontWeight: "600", padding: "10px" }}>
 																	{formatDate(new Date(item.createdAt))}
 																</TableCell>
-																<TableCell sx={{ fontWeight: "600" }}>
+																<TableCell sx={{ fontWeight: "600", padding: "10px" }}>
 																	{item.adminadd.toLocaleString()}
 																</TableCell>
-																<TableCell sx={{ fontWeight: "600" }}>
+																<TableCell sx={{ fontWeight: "600", padding: "10px" }}>
 																	{item.admintru.toLocaleString()}
 																</TableCell>
-																<TableCell sx={{ fontWeight: "600" }}>
+																<TableCell sx={{ fontWeight: "600", padding: "10px" }}>
 																	{item.adminthuong.toLocaleString()}
 																</TableCell>
-																<TableCell sx={{ fontWeight: "600" }}>
+																<TableCell sx={{ fontWeight: "600", padding: "10px" }}>
 																	{item.totalbet.toLocaleString()}
 																</TableCell>
-																{/* <TableCell sx={{ fontWeight: "600" }}>
+																{/* <TableCell sx={{ fontWeight: "600", padding: "10px" }}>
 																	<form
 																		onSubmit={(e) => {
 																			e.preventDefault();
@@ -190,7 +190,7 @@ function UsersByEmployeeNV() {
 																		<Button type="submit">Xác nhận</Button>
 																	</form>
 																</TableCell> */}
-																{/* <TableCell sx={{ fontWeight: "600" }}>
+																{/* <TableCell sx={{ fontWeight: "600", padding: "10px" }}>
 																	<form
 																		onSubmit={(e) => {
 																			e.preventDefault();

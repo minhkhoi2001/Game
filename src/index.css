@@ -1769,3 +1769,29 @@ body:has(.admin-theme) #webpack-dev-server-client-overlay {
 	align-items: center;
 	justify-content: center;
 }
+.MuiBox-root form + table {
+	margin-top: 20px;
+}
+[class*="btn-admin"] {
+	border: 0;
+	border-radius: 5px;
+	color: #fff;
+	background: red;
+	box-shadow: none;
+	padding: 7px 12px;
+	margin-left: 3px;
+}
+.btn-submit.btn-admin-1 {
+	background: #54bd33;
+	padding: 7px 12px;
+}
+.btn-submit.btn-admin-2 {
+	background: #9d8ae7;
+	padding: 7px 12px;
+}
+.MuiTable-root th:last-child {
+	text-align: center
+}
+.MuiTable-root td:last-child {
+	text-align: right;
+}

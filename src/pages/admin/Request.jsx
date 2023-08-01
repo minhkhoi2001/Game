@@ -105,13 +105,13 @@ function Request() {
 										<Table sx={{ width: 1200 }}>
 											<TableHead>
 												<TableRow>
-													<TableCell>Tên tài khoản</TableCell>
-													<TableCell>ID USER</TableCell>
-													<TableCell>Thông tin thanh toán</TableCell>
-													<TableCell>Số tiền</TableCell>
-													<TableCell>Trạng thái</TableCell>
-													<TableCell>Hành Động</TableCell>
-													<TableCell>Thời gian</TableCell>
+													<TableCell sx={{padding:"10px"}}>Tên tài khoản</TableCell>
+													<TableCell sx={{padding:"10px"}}>ID USER</TableCell>
+													<TableCell sx={{padding:"10px"}}>Thông tin thanh toán</TableCell>
+													<TableCell sx={{padding:"10px"}}>Số tiền</TableCell>
+													<TableCell sx={{padding:"10px"}}>Trạng thái</TableCell>
+													<TableCell sx={{padding:"10px"}}>Hành Động</TableCell>
+													<TableCell sx={{padding:"10px"}}>Thời gian</TableCell>
 												</TableRow>
 											</TableHead>
 											{data && (
@@ -119,41 +119,41 @@ function Request() {
 												{data?.slice((pages - 1) * 10, (pages - 1) * 10 + 10).map((item) => (
 													<>
 														<TableRow>
-															<TableCell sx={{ fontWeight: "600" }}>
+															<TableCell sx={{ fontWeight: "600", padding: "10px" }}>
 																{item.user.username}
 															</TableCell>
-															<TableCell sx={{ fontWeight: "600" }}>
+															<TableCell sx={{ fontWeight: "600", padding: "10px" }}>
 																{item.user.iduser}
 															</TableCell>
-															<TableCell sx={{ fontWeight: "600" }}>
+															<TableCell sx={{ fontWeight: "600", padding: "10px" }}>
 																{item.detail}
 															</TableCell>
 
-															<TableCell sx={{ fontWeight: "600" }}>
+															<TableCell sx={{ fontWeight: "600", padding: "10px" }}>
 																{item.money.toLocaleString()} VNĐ
 															</TableCell>
 															{item.status_payment === "Pending" ? (
-																<TableCell>
+																<TableCell sx={{padding:"10px"}}>
 																	<Button type="text" color="warning">
 																		{item.status_payment}
 																	</Button>
 																</TableCell>
 															) : null}
 															{item.status_payment === "Success" ? (
-																<TableCell>
+																<TableCell sx={{padding:"10px"}}>
 																	<Button type="text" color="success">
 																		{item.status_payment}
 																	</Button>
 																</TableCell>
 															) : null}
 															{item.status_payment === "Deny" ? (
-																<TableCell>
+																<TableCell sx={{padding:"10px"}}>
 																	<Button type="text" color="error">
 																		{item.status_payment}
 																	</Button>
 																</TableCell>
 															) : null}
-															<TableCell>
+															<TableCell sx={{padding:"10px"}}>
 																<Button
 																	onClick={() => {
 																		const formData = {
@@ -195,7 +195,7 @@ function Request() {
 																	Từ chối
 																</Button>
 															</TableCell>
-															<TableCell sx={{ fontWeight: "600" }}>
+															<TableCell sx={{ fontWeight: "600", padding: "10px" }}>
 																{formatDate(new Date(item.createdAt))}
 															</TableCell>
 														</TableRow>

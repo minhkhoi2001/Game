@@ -181,9 +181,9 @@ function SettingNotify() {
 								<Table sx={{ width: "100%" }}>
 									<TableHead>
 										<TableRow>
-											<TableCell>Tiêu đề thông báo</TableCell>
-											<TableCell>Hình ảnh</TableCell>
-											<TableCell>Nội dung thông báo</TableCell>
+											<TableCell sx={{padding:"10px"}}>Tiêu đề thông báo</TableCell>
+											<TableCell sx={{padding:"10px"}}>Hình ảnh</TableCell>
+											<TableCell sx={{padding:"10px"}}>Nội dung thông báo</TableCell>
 											<TableCell style={{textAlign:"right"}}>Hành động</TableCell>
 										</TableRow>
 									</TableHead>
@@ -194,16 +194,16 @@ function SettingNotify() {
 													<>
 													{index != 0 && item.title != "marquee" ? (
 													<TableRow>
-														<TableCell sx={{ fontWeight: "600" }}>
+														<TableCell sx={{ fontWeight: "600", padding: "10px" }}>
 															{item.title}
 														</TableCell>
-														<TableCell sx={{ fontWeight: "600" }}>
+														<TableCell sx={{ fontWeight: "600", padding: "10px" }}>
 															<img src={item.image} style={{width:"200px",height:"auto"}}/>
 														</TableCell>
-														<TableCell sx={{ fontWeight: "600" }}>
+														<TableCell sx={{ fontWeight: "600", padding: "10px" }}>
 															<div className="contentHtml" dangerouslySetInnerHTML={{ __html: item.content }} />
 														</TableCell>
-														<TableCell sx={{ fontWeight: "600" }}>
+														<TableCell sx={{ fontWeight: "600", padding: "10px" }}>
 															<Button
 																onClick={() => {
 																	axios

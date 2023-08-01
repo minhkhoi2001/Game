@@ -314,11 +314,11 @@ function SetXoSo() {
 								<Table sx={{ width: 1600 }}>
 									<TableHead>
 										<TableRow>
-											<TableCell>ID User</TableCell>
-											<TableCell>Username</TableCell>
-											<TableCell>Chọn</TableCell>
-											<TableCell>Số tiền</TableCell>
-											<TableCell>Thời gian đặt</TableCell>
+											<TableCell sx={{padding:"10px"}}>ID User</TableCell>
+											<TableCell sx={{padding:"10px"}}>Username</TableCell>
+											<TableCell sx={{padding:"10px"}}>Chọn</TableCell>
+											<TableCell sx={{padding:"10px"}}>Số tiền</TableCell>
+											<TableCell sx={{padding:"10px"}}>Thời gian đặt</TableCell>
 										</TableRow>
 									</TableHead>
 									<TableBody>
@@ -326,13 +326,13 @@ function SetXoSo() {
 											? current.map((item) => (
 													<>
 														<TableRow>
-															<TableCell>{item.user.iduser}</TableCell>
-															<TableCell>{item.user.username}</TableCell>
-															<TableCell>
+															<TableCell sx={{padding:"10px"}}>{item.user.iduser}</TableCell>
+															<TableCell sx={{padding:"10px"}}>{item.user.username}</TableCell>
+															<TableCell sx={{padding:"10px"}}>
 																{GetNameChoose(item.state, item.type)}
 															</TableCell>
-															<TableCell>{item.money}</TableCell>
-															<TableCell>
+															<TableCell sx={{padding:"10px"}}>{item.money}</TableCell>
+															<TableCell sx={{padding:"10px"}}>
 																{formatDate(new Date(item.createdAt))}
 															</TableCell>
 														</TableRow>
@@ -722,7 +722,7 @@ function SetXoSo() {
 											<div>Đang update dữ liệu</div>
 										)}
 									</div>
-									<h2>Chọn kèo</h2>
+									<h2>Sửa kết quả</h2>
 									<button
 										type="submit"
 										className="btn-submit"

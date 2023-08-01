@@ -10,7 +10,7 @@ import ArrowUpwardIcon from "@mui/icons-material/ArrowUpward";
 import PeopleIcon from "@mui/icons-material/PeopleOutlined";
 
 export const TotalCustomers = (props) => (
-  <Card {...props} sx={{ backgroundColor: "#3ba1c5", height: "100%" }}>
+  <Card {...props} sx={{ backgroundColor: "#e5e5e5", height: "100%" }}>
     <CardContent>
       <Grid container spacing={3} sx={{ justifyContent: "space-between" }}>
         <Grid item>
