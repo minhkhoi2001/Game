@@ -263,7 +263,7 @@ function Set3() {
 									</div>
 								</div>
 								<div className="form_set"></div>
-								<Table sx={{ width: 1600 }}>
+								<Table>
 									<TableHead>
 										<TableRow>
 											<TableCell sx={{padding:"10px"}}>ID User</TableCell>
@@ -335,7 +335,7 @@ function Set3() {
 										Làm mới
 									</button>
 								</form>
-								<Table sx={{ width: 1600 }}>
+								<Table>
 									<TableHead>
 										<TableRow>
 											<TableCell sx={{padding:"10px"}}>ID BET</TableCell>

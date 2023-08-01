@@ -56,7 +56,7 @@ function Request() {
 		if (searchedVal !== "") {
 			const filteredRows = JSON.parse(localStorage.getItem("data")).filter(
 				(row) => {
-					return row.user.iduser.toString()
+					return row.user.username.toString()
 						.includes(searchedVal.toLowerCase());
 				}
 			);

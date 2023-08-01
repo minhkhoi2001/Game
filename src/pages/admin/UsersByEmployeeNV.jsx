@@ -116,7 +116,7 @@ function UsersByEmployeeNV() {
 												placeholder="Tìm kiếm"
 												sx={{ marginBottom: "5px", paddingRight: "700px" }}
 											/>
-											<Table sx={{ width: 1600 }}>
+											<Table>
 												<TableHead>
 													<TableRow>
 														<TableCell sx={{padding:"10px"}}>ID User</TableCell>

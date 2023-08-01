@@ -59,7 +59,7 @@ function HistoryBetAll() {
 		if (searchedVal !== "") {
 			const filteredRows = JSON.parse(localStorage.getItem("data")).filter(
 				(row) => {
-					return row.user.iduser
+					return row.user.username
 						.toString()
 						.toLowerCase()
 						.includes(searchedVal.toLowerCase());
@@ -185,7 +185,7 @@ function HistoryBetAll() {
 												<TableRow>
 													<TableCell sx={{padding:"10px"}}>Số kỳ</TableCell>
 													<TableCell sx={{padding:"10px"}}>User</TableCell>
-													<TableCell sx={{padding:"10px"}}>ID User</TableCell>
+													{/*<TableCell sx={{padding:"10px"}}>ID User</TableCell>*/}
 													<TableCell sx={{padding:"10px"}}>Trò chơi</TableCell>
 													<TableCell sx={{padding:"10px"}}>Người chơi đặt</TableCell>
 													<TableCell sx={{padding:"10px"}}>Số tiền</TableCell>
@@ -212,9 +212,9 @@ function HistoryBetAll() {
 																			<TableCell sx={{ fontWeight: "600", padding: "10px" }}>
 																				{item.user.username}
 																			</TableCell>
-																			<TableCell sx={{ fontWeight: "600", padding: "10px" }}>
+																			{/*<TableCell sx={{ fontWeight: "600", padding: "10px" }}>
 																				{item.user.iduser}
-																			</TableCell>
+																				</TableCell>*/}
 																			<TableCell sx={{ fontWeight: "600", padding: "10px" }}>
 																				{item.sanh == "3 phút"
 																					? "Keno 3p"

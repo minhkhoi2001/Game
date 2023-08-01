@@ -343,7 +343,7 @@ function SetXoSo() {
 									</div>
 								</div>
 								<div className="form_set"></div>
-								<Table sx={{ width: 1600 }}>
+								<Table>
 									<TableHead>
 										<TableRow>
 											<TableCell sx={{padding:"10px"}}>ID User</TableCell>

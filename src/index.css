@@ -1789,9 +1789,22 @@ body:has(.admin-theme) #webpack-dev-server-client-overlay {
 	background: #9d8ae7;
 	padding: 7px 12px;
 }
+.MuiTable-root {
+	width: 100%!important;
+}
+@media (min-width: 1200px) {
+	.MuiTable-root {
+		min-width: 1200px;
+	}
+}
 .MuiTable-root th:last-child {
-	text-align: center
+	text-align: center;
+	justify-content: center;
 }
 .MuiTable-root td:last-child {
-	text-align: right;
+	text-align: center;
+	justify-content: center;
+}
+.result_admin_choose table, .max900 {
+	max-width: 900px;
 }
