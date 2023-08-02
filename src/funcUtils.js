@@ -105,5 +105,11 @@ export const GetNameChoose=(state, type, sanh)=>{
         if(type==6&&state!=null){
             return "Lô xiên 4: Chọn số "+state
         }
+        if(type==7&&state!=null){
+            return "Trượt xiên 4: Chọn số "+state
+        }
+        if(type==8&&state!=null){
+            return "Trượt xiên 8: Chọn số "+state
+        }
     }
 }

@@ -35,7 +35,7 @@ function Profile() {
 	);
 	useEffect(() => {
 		axios
-			.get(`https://d3s.vnvip294.com/auth/getUser`, {})
+			.get(`http://localhost/auth/getUser`, {})
 			.then((res) => {
 				setProfile(res.data.data);
 			})

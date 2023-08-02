@@ -40,13 +40,13 @@ function HistoryAll() {
 	);
 	useEffect(() => {
 		axios
-			.get(`https://d3s.vnvip294.com/auth/biendongsodu`, {})
+			.get(`http://localhost/auth/biendongsodu`, {})
 			.then((res) => {
 				setProfile(res.data.data);
 			})
 			.catch((err) => function () {});
 		axios
-			.get(`https://d3s.vnvip294.com/auth/getUser`, {})
+			.get(`http://localhost/auth/getUser`, {})
 			.then((res) => {
 				setProfile1(res.data.data);
 			})

@@ -38,7 +38,7 @@ function ResetPassword() {
 			newpassword: data.password,
 		};
 		axios
-			.post(`https://d3s.vnvip294.com/auth/password`, formData)
+			.post(`http://localhost/auth/password`, formData)
 			.then((res) => {
 				swal("Sửa mật khẩu thành công");
 				navigate("/profile");

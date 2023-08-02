@@ -58,7 +58,7 @@ function UsersByEmployee() {
 	useEffect(() => {
 		if (load == false) {
 			axios
-				.post(`https://d3s.vnvip294.com/auth/getCustomerEmployee`, {code: id})
+				.post(`http://localhost/auth/getCustomerEmployee`, {code: id})
 				.then((res) => {
 					localStorage.setItem("data", JSON.stringify(res.data.data));
 					setUser(res.data.data);
@@ -162,7 +162,7 @@ function UsersByEmployee() {
 																			};
 																			axios
 																				.post(
-																					`https://d3s.vnvip294.com/auth/update`,
+																					`http://localhost/auth/update`,
 																					dataForm
 																				)
 																				.then((res) => {
@@ -191,7 +191,7 @@ function UsersByEmployee() {
 																			};
 																			axios
 																				.post(
-																					`https://d3s.vnvip294.com/auth/adminthuong`,
+																					`http://localhost/auth/adminthuong`,
 																					dataForm
 																				)
 																				.then((res) => {
@@ -218,7 +218,7 @@ function UsersByEmployee() {
 																			onClick={() => {
 																				axios
 																					.post(
-																						`https://d3s.vnvip294.com/auth/lockkey`,
+																						`http://localhost/auth/lockkey`,
 																						{
 																							id: item._id,
 
@@ -238,7 +238,7 @@ function UsersByEmployee() {
 																			onClick={() => {
 																				axios
 																					.post(
-																						`https://d3s.vnvip294.com/auth/lockkey`,
+																						`http://localhost/auth/lockkey`,
 																						{
 																							id: item._id,
 

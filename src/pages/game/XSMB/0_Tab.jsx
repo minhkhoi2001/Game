@@ -46,6 +46,18 @@ const TabNavigation = () => {
 			>
 				Lô xiên 4
 			</li>
+			<li
+				className={location.pathname === "/xsmb/truotxien4" ? "active" : ""}
+				onClick={() => handleTabClick("/xsmb/truotxien4")}
+			>
+				Trượt xiên 4
+			</li>
+			<li
+				className={location.pathname === "/xsmb/truotxien8" ? "active" : ""}
+				onClick={() => handleTabClick("/xsmb/truotxien8")}
+			>
+				Trượt xiên 8
+			</li>
 		</ul>
 	);
 };

@@ -31,7 +31,7 @@ function Setting() {
 	);
 	useEffect(()=>{
 		if(load==true){
-			axios.get(`https://d3s.vnvip294.com/setting/get`, {}).then((res) => {
+			axios.get(`http://localhost/setting/get`, {}).then((res) => {
 				setSetting(res.data.data[0]);
 				setLoad(false)
 			});		
@@ -57,7 +57,9 @@ function Setting() {
 			loxien2: Number(e.target.loxien2.value),
 			loxien3: Number(e.target.loxien3.value),
 			loxien4: Number(e.target.loxien4.value),
-			
+			truotxien4:Number(e.target.truotxien4.value),
+			truotxien8:Number(e.target.truotxien8.value),
+
 			mblothuong: Number(e.target.mblothuong.value),
 			mbbacang: Number(e.target.mbbacang.value),
 			mbde: Number(e.target.mbde.value),
@@ -83,7 +85,7 @@ function Setting() {
 		}
 		
 		axios
-			.put(`https://d3s.vnvip294.com/setting/update`, formData)
+			.put(`http://localhost/setting/update`, formData)
 			.then((res) => {
 				setLoad(true);
 				swal("Sửa thông tin trò chơi thành công!")
@@ -277,6 +279,32 @@ function Setting() {
 													name="loxien4"
 													step="any"
 													id="loxien4"
+													className="input_setting"
+												/>
+											</div>
+										</div>
+										<div className="form_col">
+											<div className="form_group">
+												<label >Trượt xiên 4</label>
+												<input
+													defaultValue={setting?.truotxien4}
+													type="number"
+													name="truotxien4"
+													step="any"
+													id="truotxien4"
+													className="input_setting"
+												/>
+											</div>
+										</div>
+										<div className="form_col">
+											<div className="form_group">
+												<label >Trượt xiên 8</label>
+												<input
+													defaultValue={setting?.truotxien8}
+													type="number"
+													name="truotxien8"
+													step="any"
+													id="truotxien8"
 													className="input_setting"
 												/>
 											</div>

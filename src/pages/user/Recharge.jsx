@@ -36,13 +36,13 @@ function AddMoney() {
 	const navigate = useNavigate();
 	useEffect(() => {
 		axios
-			.get(`https://d3s.vnvip294.com/auth/getUser`, {})
+			.get(`http://localhost/auth/getUser`, {})
 			.then((res) => {
 				setProfile(res.data.data);
 			})
 			.catch((err) => localStorage.removeItem("user"));
 		axios
-			.get(`https://d3s.vnvip294.com/auth/getbank`, {})
+			.get(`http://localhost/auth/getbank`, {})
 			.then((res) => {
 				setBank(res.data.data);
 			})
@@ -57,7 +57,7 @@ function AddMoney() {
 			user: profile._id,
 		};
 		axios
-			.post(`https://d3s.vnvip294.com/payment/withDraw`, formData)
+			.post(`http://localhost/payment/withDraw`, formData)
 			.then((res) => {
 				swal(
 					"Nạp tiền thành công",

@@ -408,6 +408,7 @@ select:active {
 	text-align: right;
 }
 .tab-navigation {
+	overflow-x: scroll;
 	height: 0.96rem;
 	line-height: 0.96rem;
 	display: -webkit-box;
@@ -1211,6 +1212,7 @@ table tbody tr:hover {
 .tab-game > li {
 	margin: 0 0.1rem;
 	font-size: 0.28rem;
+	min-width: 100px;
 }
 .box-image {
 	box-shadow: rgb(213, 192, 192) 0px 0px 0.15rem 0px;

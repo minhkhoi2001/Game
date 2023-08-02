@@ -43,13 +43,13 @@ function HistoryBet() {
 
 	useEffect(() => {
 		axios
-			.get(`https://d3s.vnvip294.com/history/historyus`, {})
+			.get(`http://localhost/history/historyus`, {})
 			.then((res) => {
 				setProfile(res.data.data);
 			})
 			.catch((err) => function () {});
 		axios
-			.get(`https://d3s.vnvip294.com/auth/getUser`, {})
+			.get(`http://localhost/auth/getUser`, {})
 			.then((res) => {
 				setProfile1(res.data.data);
 			})
@@ -117,7 +117,7 @@ function HistoryBet() {
 										</div>
 										<div className="id_history_sanh">
 											Phiên cược:{" "}
-											{item.id_bet.id_bet ? item.id_bet.id_bet : item.id_bet}
+											{item?.id_bet?.id_bet ? item?.id_bet?.id_bet : item.id_bet}
 										</div>
 										<div className="id_history_sanh">
 											{GetNameChoose(item.state, item.type, item.sanh)

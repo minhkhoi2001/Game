@@ -7,13 +7,11 @@ import History from "./0_History";
 import TabNavigation from "./0_Tab";
 import Header from "../../components/Header";
 import CountDown from "./0_countdown";
-import { useParams } from "react-router-dom";
 
-function Loxien2() {
+function Truotxien8() {
 	const [isVisible, setVisible] = useState(null);
 	const [bet, setBet] = useState(null);
 	const [profile, setProfile] = useState(null);
-	const { id } = useParams();
 	const [second, setSecond] = useState(0);
 	const [minute, setMinute] = useState(30);
 	const [start, setStart] = useState(false);
@@ -27,6 +25,7 @@ function Loxien2() {
 	const [total, setTotal] = useState(null);
 	const [setting, setSetting] = useState(null);
 	const [item1, setItem] = useState([]);
+
 	axios.interceptors.request.use(
 		(config) => {
 			const token = localStorage.getItem("user");
@@ -44,7 +43,7 @@ function Loxien2() {
 	);
 	useEffect(() => {
 		axios
-			.get(`https://mu88.live/api/front/open/lottery/history/list/5/${id}`)
+			.get(`https://mu88.live/api/front/open/lottery/history/list/5/miba`)
 			.then((res) => {
 				
 				setBet(res.data.t);
@@ -70,7 +69,6 @@ function Loxien2() {
 						bay: JSON.parse(res.data.t.issueList[0].detail)[7]
 							.split(",")
 							.join(" "),
-						tam: JSON.parse(res.data.t.issueList[0].detail)[8],
 					},
 				]);
 			});
@@ -90,7 +88,6 @@ function Loxien2() {
 				});
 			});
 	}, []);
-
 	useEffect(() => {
 		let swalInst;
 		const showAlert = async (data) => {
@@ -146,12 +143,12 @@ function Loxien2() {
 
 	const onChoose = (e) => {
 		
-		if (item1.includes(e.target.id) && item1.length < 2) {
+		if (item1.includes(e.target.id) && item1.length < 8) {
 			setItem(item1.filter((item) => item !== e.target.id));
-		} else if (item1.length < 2) {
+		} else if (item1.length < 8) {
 			setItem([...item1, e.target.id]);
 		} else {
-			swal("Chú ý", "Bạn chỉ được chọn tối đa 2 số", "warning");
+			swal("Chú ý", "Bạn chỉ được chọn tối đa 8 số", "warning");
 			item1.pop();
 			setItem(item1);
 		}
@@ -172,11 +169,11 @@ function Loxien2() {
 				? "0" + currentDate.getMinutes()
 				: currentDate.getMinutes();
 		if (
-			Number(currentDate.getHours() + "" + minute) < 1800 &&
-			Number(currentDate.getHours() + "" + minute) > 1710
+			Number(currentDate.getHours() + "" + minute) > 1810 &&
+			Number(currentDate.getHours() + "" + minute) < 1900
 		) {
 			swal("Đặt cược không thành công.", " Đã hết thời gian cược", "warning");
-		} else if (Number(currentDate.getHours() + "" + minute) > 1800) {
+		} else if (Number(currentDate.getHours() + "" + minute) > 1900) {
 			const date = new Date();
 			const day =
 				Number(date.getDate() + 1) < 10
@@ -189,10 +186,9 @@ function Loxien2() {
 
 			const formData = {
 				state: newData.join(" "),
-				id: bet.turnNum,
-				type: 4,
-				money: item1.length * newMoney,
-				sanh: bet.name,
+				id: day + "/" + month + "/" + date.getFullYear(),
+				type: 7,
+				money:  newMoney,
 			};
 			if (item1.length == 0) {
 				swal("Thất bại", "Bạn chưa chọn số đánh", "info");
@@ -207,13 +203,12 @@ function Loxien2() {
 						swal("Thất bại", "Số tiền trong ví không đủ", "error")
 					);
 			}
-		} else if (Number(currentDate.getHours() + "" + minute) < 1710) {
+		} else if (Number(currentDate.getHours() + "" + minute) < 1810) {
 			const formData = {
 				state: newData.join(" "),
 				id: bet.turnNum,
-				type: 4,
-				money: item1.length * newMoney,
-				sanh: bet.name,
+				type: 8,
+				money:  newMoney,
 			};
 			if (item1.length == 0) {
 				swal("Thất bại", "Bạn chưa chọn số đánh", "info");
@@ -253,7 +248,7 @@ function Loxien2() {
 									<div className="loader"></div>
 								</div>
 							)}
-							<span className="tkq">Trả kết quả lúc 18:00</span>
+							<span className="tkq">Trả kết quả lúc 19:00</span>
 						</div>
 
 						<div className="col-50">
@@ -306,7 +301,7 @@ function Loxien2() {
 					</div>
 				</div>
 
-				<CountDown date={bet?.turnNum} />
+				<CountDown />
 				<TabNavigation />
 
 				<div className="main_game">
@@ -356,7 +351,7 @@ function Loxien2() {
 													Tổng tiền cược{" "}
 													<span style={{ color: "red" }}>
 														{item1.length != 0 && newMoney
-															? (item1.length * newMoney).toLocaleString()
+															? ( newMoney).toLocaleString()
 															: 0}
 														đ
 													</span>
@@ -371,7 +366,7 @@ function Loxien2() {
 											>
 												Tỉ lệ cược{" "}
 												{setting
-													? "1 : " + setting.mtloxien2
+													? "1 : " + setting.mbloxien4
 													: "Chưa cài đặt"}
 											</div>
 											<button type="submit" className="btn-sbmit">
@@ -410,4 +405,4 @@ function Loxien2() {
 		</>
 	);
 }
-export default Loxien2;
+export default Truotxien8;

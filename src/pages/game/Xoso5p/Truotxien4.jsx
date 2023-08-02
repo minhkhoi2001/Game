@@ -6,16 +6,14 @@ import Results from "./0_Results";
 import History from "./0_History";
 import TabNavigation from "./0_Tab";
 import Header from "../../components/Header";
-import CountDown from "./0_countdown";
-import { useParams } from "react-router-dom";
 
-function Loxien2() {
+function Truotxien4() {
 	const [isVisible, setVisible] = useState(null);
 	const [bet, setBet] = useState(null);
+	const [newData, setNewData] = useState(null);
 	const [profile, setProfile] = useState(null);
-	const { id } = useParams();
 	const [second, setSecond] = useState(0);
-	const [minute, setMinute] = useState(30);
+	const [minute, setMinute] = useState(5);
 	const [start, setStart] = useState(false);
 	const [dulieunhap, setDulieunhap] = useState(new Date());
 	const [update, setUpdate] = useState(0);
@@ -27,6 +25,7 @@ function Loxien2() {
 	const [total, setTotal] = useState(null);
 	const [setting, setSetting] = useState(null);
 	const [item1, setItem] = useState([]);
+
 	axios.interceptors.request.use(
 		(config) => {
 			const token = localStorage.getItem("user");
@@ -42,45 +41,41 @@ function Loxien2() {
 			return Promise.reject(error);
 		}
 	);
+	function rollLottery(res) {
+		const interval = setInterval(() => {
+			const randomDigits = Math.floor(Math.random() * 90000) + 10000;
+			setTotal([
+				{ id_bet: res.data.data[0].id_bet, dacbiet: String(randomDigits) },
+			]);
+		}, 100);
+
+		setTimeout(() => {
+			clearInterval(interval);
+			setTotal(res.data.data);
+		}, 2000);
+		return () => {
+			clearInterval(interval);
+		};
+	}
 	useEffect(() => {
-		axios
-			.get(`https://mu88.live/api/front/open/lottery/history/list/5/${id}`)
-			.then((res) => {
-				
-				setBet(res.data.t);
-				setTotal([
-					{
-						dacbiet: JSON.parse(res.data.t.issueList[0].detail)[0],
-						nhat: JSON.parse(res.data.t.issueList[0].detail)[1],
-						hai: JSON.parse(res.data.t.issueList[0].detail)[2]
-							.split(",")
-							.join(" "),
-						ba: JSON.parse(res.data.t.issueList[0].detail)[3]
-							.split(",")
-							.join(" "),
-						tu: JSON.parse(res.data.t.issueList[0].detail)[4]
-							.split(",")
-							.join(" "),
-						nam: JSON.parse(res.data.t.issueList[0].detail)[5]
-							.split(",")
-							.join(" "),
-						sau: JSON.parse(res.data.t.issueList[0].detail)[6]
-							.split(",")
-							.join(" "),
-						bay: JSON.parse(res.data.t.issueList[0].detail)[7]
-							.split(",")
-							.join(" "),
-						tam: JSON.parse(res.data.t.issueList[0].detail)[8],
-					},
-				]);
-			});
 		axios.get(`http://localhost/auth/getUser`, {}).then((res) => {
 			setProfile(res.data.data);
 		});
 		axios.get(`http://localhost/setting/get`, {}).then((res) => {
 			setSetting(res.data.data[0]);
 		});
-
+		axios.get(`http://localhost/Xoso5/get`).then((res) => {
+			setBet(res.data.data);
+			setDulieunhap(new Date(res.data.data.createdAt));
+			setStart(true);
+		});
+		axios
+			.get(`http://localhost/Xoso5/getallbet`, {})
+			.then((res) => {
+				rollLottery(res);
+				setNewData(res.data.data);
+			})
+			.catch(() => setTotal(null));
 		axios
 			.get(`http://localhost/notification/getnotifi`, {})
 			.then((res) => {
@@ -90,7 +85,40 @@ function Loxien2() {
 				});
 			});
 	}, []);
+	useEffect(() => {
+		const timer = setInterval(() => {
+			if (Math.floor(300 - (new Date() - dulieunhap) / 1000) < 0) {
+				axios
+					.get(`http://localhost/auth/getUser`, {})
+					.then((res) => {
+						setProfile(res.data.data);
+					});
+				axios.get(`http://localhost/Xoso5/get`).then((res) => {
+					setBet(res.data.data);
+					setDulieunhap(new Date(res.data.data.createdAt));
+				});
+				axios
+					.get(`http://localhost/Xoso5/getallbet`, {})
+					.then((res) => {
+						rollLottery(res);
+						setNewData(res.data.data);
+					})
+					.catch(() => setTotal(null));
+				axios
+					.get(`http://localhost/notification/getnotifi`, {})
+					.then((res) => {
+						setVisible({
+							money: res.data.data[0].money.toLocaleString(),
+							id: res.data.data[0]._id,
+						});
+					});
+			}
+		}, 500);
 
+		return () => {
+			clearInterval(timer);
+		};
+	}, [dulieunhap]);
 	useEffect(() => {
 		let swalInst;
 		const showAlert = async (data) => {
@@ -119,6 +147,58 @@ function Loxien2() {
 			showAlert(isVisible);
 		}
 	}, [isVisible]);
+	useEffect(() => {
+		let curTime_second = Math.floor(300 - (date - dulieunhap) / 1000);
+
+		let myTimeout;
+
+		if (
+			currentMinute === dulieunhap.getMinutes() &&
+			currentSecond === dulieunhap.getSeconds()
+		) {
+			setStart(true);
+			setSecond(second - 1);
+			return () => {
+				clearTimeout(myTimeout);
+			};
+		} else if (curTime_second < 300 && curTime_second >= 0) {
+			setSecond(curTime_second % 60);
+			setMinute((curTime_second - (curTime_second % 60)) / 60);
+			setStart(true);
+			return () => {
+				clearTimeout(myTimeout);
+			};
+		} else {
+			//cập nhật thời gian hiện tại 0.5s/lần
+			myTimeout = setTimeout(() => {
+				setUpdate(update + 1);
+			}, 500);
+		}
+	}, [update, dulieunhap]);
+
+	useEffect(() => {
+		let curTime_second = Math.floor(300 - (date - dulieunhap) / 1000);
+		let myTimeout = 0;
+		if (start) {
+			setSecond(curTime_second % 60);
+			setMinute(Math.floor(curTime_second / 60));
+
+			if (curTime_second > 300 || curTime_second <= 0) {
+				setStart(false);
+				setMinute(3);
+				setSecond(0);
+				return () => {
+					clearTimeout(myTimeout);
+				};
+			}
+			myTimeout = setTimeout(() => {
+				setSecond(second - 1);
+			}, 1000);
+		}
+		return () => {
+			clearTimeout(myTimeout);
+		};
+	}, [second, start, dulieunhap]);
 
 	const [isOpen, setIsOpen] = useState(false);
 	const openPopup = () => {
@@ -146,12 +226,12 @@ function Loxien2() {
 
 	const onChoose = (e) => {
 		
-		if (item1.includes(e.target.id) && item1.length < 2) {
+		if (item1.includes(e.target.id) && item1.length < 4) {
 			setItem(item1.filter((item) => item !== e.target.id));
-		} else if (item1.length < 2) {
+		} else if (item1.length < 4) {
 			setItem([...item1, e.target.id]);
 		} else {
-			swal("Chú ý", "Bạn chỉ được chọn tối đa 2 số", "warning");
+			swal("Chú ý", "Bạn chỉ được chọn tối đa 4 số", "warning");
 			item1.pop();
 			setItem(item1);
 		}
@@ -166,68 +246,24 @@ function Loxien2() {
 				newData.push(item);
 			}
 		});
-		const currentDate = new Date();
-		const minute =
-			currentDate.getMinutes() < 10
-				? "0" + currentDate.getMinutes()
-				: currentDate.getMinutes();
-		if (
-			Number(currentDate.getHours() + "" + minute) < 1800 &&
-			Number(currentDate.getHours() + "" + minute) > 1710
-		) {
-			swal("Đặt cược không thành công.", " Đã hết thời gian cược", "warning");
-		} else if (Number(currentDate.getHours() + "" + minute) > 1800) {
-			const date = new Date();
-			const day =
-				Number(date.getDate() + 1) < 10
-					? "0" + Number(date.getDate() + 1)
-					: Number(date.getDate() + 1);
-			const month =
-				date.getUTCMonth() < 9
-					? "0" + Number(date.getUTCMonth() + 1)
-					: Number(date.getUTCMonth() + 1);
-
-			const formData = {
-				state: newData.join(" "),
-				id: bet.turnNum,
-				type: 4,
-				money: item1.length * newMoney,
-				sanh: bet.name,
-			};
-			if (item1.length == 0) {
-				swal("Thất bại", "Bạn chưa chọn số đánh", "info");
-			} else {
-				axios
-					.post("http://localhost/history/chooseXSMB", formData)
-					.then((res) => {
-						swal("Đặt cược thành công", "", "success");
-						setItem([]);
-					})
-					.catch((err) =>
-						swal("Thất bại", "Số tiền trong ví không đủ", "error")
-					);
-			}
-		} else if (Number(currentDate.getHours() + "" + minute) < 1710) {
-			const formData = {
-				state: newData.join(" "),
-				id: bet.turnNum,
-				type: 4,
-				money: item1.length * newMoney,
-				sanh: bet.name,
-			};
-			if (item1.length == 0) {
-				swal("Thất bại", "Bạn chưa chọn số đánh", "info");
-			} else {
-				axios
-					.post("http://localhost/history/chooseXSMB", formData)
-					.then((res) => {
-						swal("Đặt cược thành công", "", "success");
-						setItem([]);
-					})
-					.catch((err) =>
-						swal("Thất bại", "Số tiền trong ví không đủ", "error")
-					);
-			}
+		const formData = {
+			state: newData.join(" "),
+			id: bet?._id,
+			type: 7,
+			money: newMoney,
+		};
+		if (item1.length == 0) {
+			swal("Thất bại", "Bạn chưa chọn số đánh", "info");
+		} else if (item1.length == 4) {
+			axios
+			.post("http://localhost/history5pxs/choose", formData)
+				.then((res) => {
+					swal("Đặt cược thành công", "", "success");
+					setItem([]);
+				})
+				.catch((err) => swal("Thất bại", "Số tiền trong ví không đủ", "error"));
+		} else if (item1.length > 0 && item1.length < 4) {
+			swal("Thất bại", "Số đánh không hợp lệ", "error");
 		}
 	};
 	const [newMoney, setNewMoney] = useState();
@@ -244,7 +280,7 @@ function Loxien2() {
 								<>
 									<div className="info_bet">
 										<div style={{ fontSize: "0.33rem" }}>
-											XSMB ngày <b style={{ color: "#333" }}>{bet.turnNum}</b>
+											Phiên số <b style={{ color: "#333" }}>{bet.id_bet}</b>
 										</div>
 									</div>
 								</>
@@ -253,11 +289,38 @@ function Loxien2() {
 									<div className="loader"></div>
 								</div>
 							)}
-							<span className="tkq">Trả kết quả lúc 18:00</span>
+							{total ? (
+								<>
+									<div className="info_bet">
+										<div
+											className="count"
+											style={{
+												margin: "0.3rem auto",
+												justifyContent: "center",
+											}}
+										>
+											<div>{minute < 10 ? "0" : null}</div>
+											{minute
+												.toString()
+												.split("")
+												.map((item, index) => (
+													<div key={index}>{item}</div>
+												))}
+											<div className="notime">:</div>
+											{second < 10 ? <div>0</div> : ""}
+											{second
+												.toString()
+												.split("")
+												.map((item, index) => (
+													<div key={index}>{item}</div>
+												))}
+										</div>
+									</div>
+								</>
+							) : null}
 						</div>
-
 						<div className="col-50">
-							{bet ? (
+							{total ? (
 								<>
 									<div
 										style={{ cursor: "pointer" }}
@@ -265,19 +328,17 @@ function Loxien2() {
 										className="info_bet"
 									>
 										<div style={{ fontSize: "0.33rem" }}>
-											Kết quả ngày{" "}
-											<b style={{ color: "#333" }}>
-												{bet.issueList[0].turnNum}
-											</b>
+											Kết quả phiên{" "}
+											<b style={{ color: "#333" }}>{total[0]?.id_bet}</b>
 										</div>
 										<div
 											className="ball_xs"
 											style={{
-												margin: "0.25rem auto 0rem",
+												margin: "0.3rem auto",
 												justifyContent: "center",
 											}}
 										>
-											{bet.issueList[0].openNum.split(",").map((x) => (
+											{total[0].dacbiet.split("").map((x) => (
 												<div className="redball">{x}</div>
 											))}
 										</div>
@@ -306,7 +367,6 @@ function Loxien2() {
 					</div>
 				</div>
 
-				<CountDown date={bet?.turnNum} />
 				<TabNavigation />
 
 				<div className="main_game">
@@ -356,7 +416,7 @@ function Loxien2() {
 													Tổng tiền cược{" "}
 													<span style={{ color: "red" }}>
 														{item1.length != 0 && newMoney
-															? (item1.length * newMoney).toLocaleString()
+															? (newMoney).toLocaleString()
 															: 0}
 														đ
 													</span>
@@ -371,7 +431,7 @@ function Loxien2() {
 											>
 												Tỉ lệ cược{" "}
 												{setting
-													? "1 : " + setting.mtloxien2
+													? "1 : " + setting.truotxien4
 													: "Chưa cài đặt"}
 											</div>
 											<button type="submit" className="btn-sbmit">
@@ -403,11 +463,11 @@ function Loxien2() {
 				</div>
 				<Footer />
 
-				<Results isOpen={isOpen1} total={total} closePopup={closePopup1} />
+				<Results isOpen={isOpen1} total={newData} closePopup={closePopup1} />
 
 				<History isOpen={isOpen2} closePopup={closePopup2} />
 			</div>
 		</>
 	);
 }
-export default Loxien2;
+export default Truotxien4;

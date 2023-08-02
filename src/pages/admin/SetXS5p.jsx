@@ -62,68 +62,68 @@ function SetXS5p() {
 		}
 	);
 	useEffect(() => {
-		axios.get(`https://d3s.vnvip294.com/auth/getUser`, {}).then((res) => {
+		axios.get(`http://localhost/auth/getUser`, {}).then((res) => {
 			setProfile(res.data.data);
 		});
-		axios.get(`https://d3s.vnvip294.com/setting/get`, {}).then((res) => {
+		axios.get(`http://localhost/setting/get`, {}).then((res) => {
 			setSetting(res.data.data[0]);
 		});
-		axios.get(`https://d3s.vnvip294.com/xucsac5/getadmin`).then((res) => {
+		axios.get(`http://localhost/xucsac5/getadmin`).then((res) => {
 			setBet(res.data.data[0]);
 			setDulieunhap(new Date(res.data.data[0].createdAt));
 			setStart(true);
 		});
 		axios
-			.get(`https://d3s.vnvip294.com/xucsac5/getallbet`, {})
+			.get(`http://localhost/xucsac5/getallbet`, {})
 			.then((res) => {
 				setTotal(res.data.data);
 			})
 			.catch(() => setTotal(null));
 		axios
-			.get(`https://d3s.vnvip294.com/xucsac5/list30bet`, {})
+			.get(`http://localhost/xucsac5/list30bet`, {})
 			.then((res) => {
 				setList30(res.data.data);
 			})
 			.catch(() => setList30(null));
-		axios.get(`https://d3s.vnvip294.com/notification/getnotifi`, {}).then((res) => {
+		axios.get(`http://localhost/notification/getnotifi`, {}).then((res) => {
 			setVisible({
 				money: res.data.data[0].money.toLocaleString(),
 				id: res.data.data[0]._id,
 			});
 		});
-		axios.get(`https://d3s.vnvip294.com/xucsac5/getcurrent`).then((res) => {
+		axios.get(`http://localhost/xucsac5/getcurrent`).then((res) => {
 			setCurrent(res.data.data);
 		});
 	}, []);
 	useEffect(() => {
 		const timer = setInterval(() => {
 			if (Math.floor(300 - (new Date() - dulieunhap) / 1000) < 0) {
-				axios.get(`https://d3s.vnvip294.com/auth/getUser`, {}).then((res) => {
+				axios.get(`http://localhost/auth/getUser`, {}).then((res) => {
 					setProfile(res.data.data);
 				});
-				axios.get(`https://d3s.vnvip294.com/xucsac5/getadmin`).then((res) => {
+				axios.get(`http://localhost/xucsac5/getadmin`).then((res) => {
 					setBet(res.data.data[0]);
 					setDulieunhap(new Date(res.data.data[0].createdAt));
 				});
 				axios
-					.get(`https://d3s.vnvip294.com/xucsac5/getallbet`, {})
+					.get(`http://localhost/xucsac5/getallbet`, {})
 					.then((res) => {
 						setTotal(res.data.data);
 					})
 					.catch(() => setTotal(null));
 				axios
-					.get(`https://d3s.vnvip294.com/xucsac5/list30bet`, {})
+					.get(`http://localhost/xucsac5/list30bet`, {})
 					.then((res) => {
 						setList30(res.data.data);
 					})
 					.catch(() => setList30(null));
-				axios.get(`https://d3s.vnvip294.com/notification/getnotifi`, {}).then((res) => {
+				axios.get(`http://localhost/notification/getnotifi`, {}).then((res) => {
 					setVisible({
 						money: res.data.data[0].money.toLocaleString(),
 						id: res.data.data[0]._id,
 					});
 				});
-				axios.get(`https://d3s.vnvip294.com/xucsac5/getcurrent`).then((res) => {
+				axios.get(`http://localhost/xucsac5/getcurrent`).then((res) => {
 					setCurrent(res.data.data);
 				});
 			}
@@ -149,7 +149,7 @@ function SetXS5p() {
 			switch (result) {
 				case "submit":
 					// clear everything here!!
-					axios.post("https://d3s.vnvip294.com/notification/seen", {
+					axios.post("http://localhost/notification/seen", {
 						id: data.id,
 					});
 					break;
@@ -221,7 +221,7 @@ function SetXS5p() {
 		};
 		if (e.target.bet.value) {
 			axios
-				.post("https://d3s.vnvip294.com/xucsac5/update", formData)
+				.post("http://localhost/xucsac5/update", formData)
 				.then((res) => {
 					setBet(res.data.data);
 					swal("Thành công", "Update thành công", "success");
@@ -364,7 +364,7 @@ function SetXS5p() {
 																		};
 																		if (e.target.result.value) {
 																			axios
-																			.post("https://d3s.vnvip294.com/xucsac5/update", formData)
+																			.post("http://localhost/xucsac5/update", formData)
 																				.then((res) => {
 																					window.location.reload()
 																					swal(

@@ -70,7 +70,7 @@ function Request() {
 	};
 	useEffect(() => {
 		if (load === true) {
-			axios.get(`https://d3s.vnvip294.com/payment/rut`, {}).then((res) => {
+			axios.get(`http://localhost/payment/rut`, {}).then((res) => {
 				setData(res.data.data);
 				localStorage.setItem("data", JSON.stringify(res.data.data));
 				setLoad(false);
@@ -162,7 +162,7 @@ function Request() {
 																		};
 																		axios
 																			.post(
-																				`https://d3s.vnvip294.com/payment/update`,
+																				`http://localhost/payment/update`,
 																				formData
 																			)
 																			.then((res) => {
@@ -182,7 +182,7 @@ function Request() {
 																		};
 																		axios
 																			.post(
-																				`https://d3s.vnvip294.com/payment/update`,
+																				`http://localhost/payment/update`,
 																				formData
 																			)
 																			.then((res) => {

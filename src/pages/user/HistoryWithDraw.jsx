@@ -40,13 +40,13 @@ function Rut() {
 	);
 	useEffect(() => {
 		axios
-			.get(`https://d3s.vnvip294.com/payment/paymentus`, {})
+			.get(`http://localhost/payment/paymentus`, {})
 			.then((res) => {
 				setProfile(res.data.data);
 			})
 			.catch((err) => function () {});
 		axios
-			.get(`https://d3s.vnvip294.com/auth/getUser`, {})
+			.get(`http://localhost/auth/getUser`, {})
 			.then((res) => {
 				setProfile1(res.data.data);
 			})
