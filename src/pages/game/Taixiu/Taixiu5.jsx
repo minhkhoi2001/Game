@@ -5,7 +5,7 @@ import swal from "sweetalert";
 import Footer from "../../../components/Footer/Footer";
 import { GetNameChoose } from "../../../funcUtils";
 
-function Taixiu1() {
+function Taixiu5() {
 	const [isVisible, setVisible] = useState(null);
 	const [bet, setBet] = useState(null);
 	const [profile, setProfile] = useState(null);
@@ -625,4 +625,4 @@ function Taixiu1() {
 		</>
 	);
 }
-export default Taixiu1;
+export default Taixiu5;

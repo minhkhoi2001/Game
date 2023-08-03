@@ -86,12 +86,15 @@ import UsersByEmployeeNV from "./pages/admin/UsersByEmployeeNV";
 import HistoryBetAll from "./pages/admin/HistoryBetAll";
 import BankAdmin from "./pages/admin/BankAdmin";
 import Set1 from "./pages/admin/Set1";
-import Set5 from "./pages/admin/Set5";
 import Set3 from "./pages/admin/Set3";
+import Set5 from "./pages/admin/Set5";
 import SetXoSo3 from "./pages/admin/SetXoSo3";
 import SetXoSo5 from "./pages/admin/SetXoSo5";
 import SetXS3p from "./pages/admin/SetXS3p";
 import SetXS5p from "./pages/admin/SetXS5p";
+import SetTX1p from "./pages/admin/SetTX1p";
+import SetTX3p from "./pages/admin/SetTX3p";
+import SetTX5p from "./pages/admin/SetTX5p";
 import Dashboard from "./pages/admin/Dashboard";
 import Request from "./pages/admin/Request";
 import Users from "./pages/admin/Users";
@@ -199,24 +202,22 @@ function App() {
 
 							<Route element={<Set1 />} path="/admin/set1" exact />
 							<Route element={<Set3 />} path="/admin/set3" exact />
+							<Route element={<Set5 />} path="/admin/set5" exact />
 							<Route element={<SetXS3p />} path="/admin/setxs3" exact />
 							<Route element={<SetXS5p />} path="/admin/setxs5" exact />
-							<Route element={<Set5 />} path="/admin/set5" exact />
+							<Route element={<SetTX1p />} path="/admin/settx1" exact />
+							<Route element={<SetTX3p />} path="/admin/settx3" exact />
+							<Route element={<SetTX5p />} path="/admin/settx5" exact />
 							<Route element={<SetXoSo3 />} path="/admin/xoso3" exact />
 							<Route element={<SetXoSo5 />} path="/admin/xoso5" exact />
+
 							<Route element={<Users />} path="/admin/users" exact />
 							<Route element={<UserProfile />} path="/admin/user/:id" />
-
 							<Route element={<AllEmployee />} path="/admin/allNV" exact />
 							<Route element={<Employee />} path="/admin/employee" exact />
 							<Route element={<UsersByEmployee />} path="/admin/employee/:id" />
-
 							<Route element={<Setting />} path="/admin/setting" exact />
-							<Route
-								element={<SettingNotify />}
-								path="/admin/settingnotify"
-								exact
-							/>
+							<Route element={<SettingNotify />} path="/admin/settingnotify" exact/>
 							<Route element={<BankAdmin />} path="/admin/bank" exact />
 							<Route element={<ThongBao />} path="/admin/notification" />
 						</Route>

@@ -5,8 +5,8 @@ import { Box, Divider, Drawer, useMediaQuery } from "@mui/material";
 import AutorenewIcon from "@mui/icons-material/Autorenew";
 import Person2Icon from "@mui/icons-material/Person2";
 import { ChartBar as ChartBarIcon } from "../icons/chart-bar";
+import SportsEsportsIcon from '@mui/icons-material/SportsEsports';
 import TuneIcon from '@mui/icons-material/Tune';
-import { ShoppingBag as ShoppingBagIcon } from "../icons/shopping-bag";
 import NotificationsActiveIcon from '@mui/icons-material/NotificationsActive';
 import AccountBalanceIcon from '@mui/icons-material/AccountBalance';
 import { useEffect, useState } from "react";
@@ -32,39 +32,54 @@ const items = [
 	},
 	{
 		href: "/admin/set1",
-		icon: <ShoppingBagIcon fontSize="small" />,
+		icon: <SportsEsportsIcon fontSize="small" />,
 		title: "Set Kèo Keno 1p ",
 	},
 	{
 		href: "/admin/set3",
-		icon: <ShoppingBagIcon fontSize="small" />,
+		icon: <SportsEsportsIcon fontSize="small" />,
 		title: "Set Kèo Keno 3p ",
 	},
 	
 	{
 		href: "/admin/set5",
-		icon: <ShoppingBagIcon fontSize="small" />,
+		icon: <SportsEsportsIcon fontSize="small" />,
 		title: "Set Kèo Keno 5p ",
 	},
 	{
 		href: "/admin/xoso3",
-		icon: <ShoppingBagIcon fontSize="small" />,
+		icon: <SportsEsportsIcon fontSize="small" />,
 		title: "Set Kèo Xổ Số 3p ",
 	},
 	{
 		href: "/admin/xoso5",
-		icon: <ShoppingBagIcon fontSize="small" />,
+		icon: <SportsEsportsIcon fontSize="small" />,
 		title: "Set Kèo Xổ Số 5p ",
 	},
 	{
 		href: "/admin/setxs3",
-		icon: <ShoppingBagIcon fontSize="small" />,
+		icon: <SportsEsportsIcon fontSize="small" />,
 		title: "Set Kèo Xúc sắc 3p ",
 	},
 	{
 		href: "/admin/setxs5",
-		icon: <ShoppingBagIcon fontSize="small" />,
+		icon: <SportsEsportsIcon fontSize="small" />,
 		title: "Set Kèo Xúc sắc 5p ",
+	},
+	{
+		href: "/admin/settx1",
+		icon: <SportsEsportsIcon fontSize="small" />,
+		title: "Set Kèo Tài xỉu 1p ",
+	},
+	{
+		href: "/admin/settx3",
+		icon: <SportsEsportsIcon fontSize="small" />,
+		title: "Set Kèo Tài xỉu 3p",
+	},
+	{
+		href: "/admin/settx5",
+		icon: <SportsEsportsIcon fontSize="small" />,
+		title: "Set Kèo Tài xỉu 5p",
 	},
 	{
 		href: "/admin/request",
