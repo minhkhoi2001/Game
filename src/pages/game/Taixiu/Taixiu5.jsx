@@ -43,24 +43,24 @@ function Taixiu5() {
 		}
 	);
 	useEffect(() => {
-		axios.get(`https://server.vnvip294.com/auth/getUser`, {}).then((res) => {
+		axios.get(`http://localhost/auth/getUser`, {}).then((res) => {
 			setProfile(res.data.data);
 		});
-		axios.get(`https://server.vnvip294.com/setting/get`, {}).then((res) => {
+		axios.get(`http://localhost/setting/get`, {}).then((res) => {
 			setSetting(res.data.data[0]);
 		});
-		axios.get(`https://server.vnvip294.com/xucsac3/get`).then((res) => {
+		axios.get(`http://localhost/taixiu5/get`).then((res) => {
 			setBet(res.data.data);
 			setDulieunhap(new Date(res.data.data.createdAt));
 			setStart(true);
 		});
 		axios
-			.get(`https://server.vnvip294.com/xucsac3/getallbet`, {})
+			.get(`http://localhost/taixiu5/getallbet`, {})
 			.then((res) => {
 				setTotal(res.data.data);
 			})
 			.catch(() => setTotal(null));
-		axios.get(`https://server.vnvip294.com/notification/getnotifi`, {}).then((res) => {
+		axios.get(`http://localhost/notification/getnotifi`, {}).then((res) => {
 			setVisible({
 				money: res.data.data[0].money.toLocaleString(),
 				id: res.data.data[0]._id,
@@ -69,22 +69,22 @@ function Taixiu5() {
 	}, []);
 	useEffect(() => {
 		const timer = setInterval(() => {
-			if (Math.floor(180 - (new Date() - dulieunhap) / 1000) < 0) {
-				axios.get(`https://server.vnvip294.com/auth/getUser`, {}).then((res) => {
+			if (Math.floor(300 - (new Date() - dulieunhap) / 1000) < 0) {
+				axios.get(`http://localhost/auth/getUser`, {}).then((res) => {
 					setProfile(res.data.data);
 				});
-				axios.get(`https://server.vnvip294.com/xucsac3/get`).then((res) => {
+				axios.get(`http://localhost/taixiu5/get`).then((res) => {
 					setBet(res.data.data);
 					setDulieunhap(new Date(res.data.data.createdAt));
 				});
 				axios
-					.get(`https://server.vnvip294.com/xucsac3/getallbet`, {})
+					.get(`http://localhost/taixiu5/getallbet`, {})
 					.then((res) => {
 						rollLottery(res);
 					})
 					.catch(() => setTotal(null));
 				axios
-					.get(`https://server.vnvip294.com/notification/getnotifi`, {})
+					.get(`http://localhost/notification/getnotifi`, {})
 					.then((res) => {
 						setVisible({
 							money: res.data.data[0].money.toLocaleString(),
@@ -114,7 +114,7 @@ function Taixiu5() {
 			switch (result) {
 				case "submit":
 					
-					axios.post("https://server.vnvip294.com/notification/seen", {
+					axios.post("http://localhost/notification/seen", {
 						id: data.id,
 					});
 					break;
@@ -128,7 +128,7 @@ function Taixiu5() {
 		}
 	}, [isVisible]);
 	useEffect(() => {
-		let curTime_second = Math.floor(180 - (date - dulieunhap) / 1000);
+		let curTime_second = Math.floor(300 - (date - dulieunhap) / 1000);
 
 		let myTimeout;
 
@@ -141,7 +141,7 @@ function Taixiu5() {
 			return () => {
 				clearTimeout(myTimeout);
 			};
-		} else if (curTime_second < 180 && curTime_second >= 0) {
+		} else if (curTime_second < 300 && curTime_second >= 0) {
 			setSecond(curTime_second % 60);
 			setMinute((curTime_second - (curTime_second % 60)) / 60);
 			setStart(true);
@@ -157,13 +157,13 @@ function Taixiu5() {
 	}, [update, dulieunhap]);
 
 	useEffect(() => {
-		let curTime_second = Math.floor(180 - (date - dulieunhap) / 1000);
+		let curTime_second = Math.floor(300 - (date - dulieunhap) / 1000);
 		let myTimeout = 0;
 		if (start) {
 			setSecond(curTime_second % 60);
 			setMinute(Math.floor(curTime_second / 60));
 
-			if (curTime_second > 180 || curTime_second <= 0) {
+			if (curTime_second > 300 || curTime_second <= 0) {
 				setStart(false);
 				setMinute(3);
 				setSecond(0);
@@ -204,7 +204,7 @@ function Taixiu5() {
 		};
 		
 		axios
-			.post("https://server.vnvip294.com/historyxucsac3p/choose", formData)
+			.post("http://localhost/tx5/choose", formData)
 			.then((res) => {
 				swal("Đặt cược thành công", "", "success");
 				setItem([]);
@@ -269,7 +269,7 @@ function Taixiu5() {
 
 	function getHistoryBet() {
 		axios
-			.get(`https://server.vnvip294.com/history/historyus`, {})
+			.get(`http://localhost/history/historyus`, {})
 			.then((res) => {
 				setHistoryGame(res.data.data);
 			})

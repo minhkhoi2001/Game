@@ -23,7 +23,7 @@ function SetTX1p() {
 	const [bet, setBet] = useState(null);
 	const [profile, setProfile] = useState(null);
 	const [second, setSecond] = useState(0);
-	const [minute, setMinute] = useState(3);
+	const [minute, setMinute] = useState(1);
 	const [start, setStart] = useState(false);
 	const [dulieunhap, setDulieunhap] = useState(new Date());
 	const [update, setUpdate] = useState(0);
@@ -63,68 +63,68 @@ function SetTX1p() {
 		}
 	);
 	useEffect(() => {
-		axios.get(`https://server.vnvip294.com/auth/getUser`, {}).then((res) => {
+		axios.get(`http://localhost/auth/getUser`, {}).then((res) => {
 			setProfile(res.data.data);
 		});
-		axios.get(`https://server.vnvip294.com/setting/get`, {}).then((res) => {
+		axios.get(`http://localhost/setting/get`, {}).then((res) => {
 			setSetting(res.data.data[0]);
 		});
-		axios.get(`https://server.vnvip294.com/xucsac3/getadmin`).then((res) => {
+		axios.get(`http://localhost/taixiu1/getadmin`).then((res) => {
 			setBet(res.data.data[0]);
 			setDulieunhap(new Date(res.data.data[0].createdAt));
 			setStart(true);
 		});
 		axios
-			.get(`https://server.vnvip294.com/xucsac3/getallbet`, {})
+			.get(`http://localhost/taixiu1/getallbet`, {})
 			.then((res) => {
 				setTotal(res.data.data);
 			})
 			.catch(() => setTotal(null));
 		axios
-			.get(`https://server.vnvip294.com/xucsac3/list30bet`, {})
+			.get(`http://localhost/taixiu1/list30bet`, {})
 			.then((res) => {
 				setList30(res.data.data);
 			})
 			.catch(() => setList30(null));
-		axios.get(`https://server.vnvip294.com/notification/getnotifi`, {}).then((res) => {
+		axios.get(`http://localhost/notification/getnotifi`, {}).then((res) => {
 			setVisible({
 				money: res.data.data[0].money.toLocaleString(),
 				id: res.data.data[0]._id,
 			});
 		});
-		axios.get(`https://server.vnvip294.com/xucsac3/getcurrent`).then((res) => {
+		axios.get(`http://localhost/taixiu1/getcurrent`).then((res) => {
 			setCurrent(res.data.data);
 		});
 	}, []);
 	useEffect(() => {
 		const timer = setInterval(() => {
-			if (Math.floor(180 - (new Date() - dulieunhap) / 1000) < 0) {
-				axios.get(`https://server.vnvip294.com/auth/getUser`, {}).then((res) => {
+			if (Math.floor(60 - (new Date() - dulieunhap) / 1000) < 0) {
+				axios.get(`http://localhost/auth/getUser`, {}).then((res) => {
 					setProfile(res.data.data);
 				});
-				axios.get(`https://server.vnvip294.com/xucsac3/getadmin`).then((res) => {
+				axios.get(`http://localhost/taixiu1/getadmin`).then((res) => {
 					setBet(res.data.data[0]);
 					setDulieunhap(new Date(res.data.data[0].createdAt));
 				});
 				axios
-					.get(`https://server.vnvip294.com/xucsac3/getallbet`, {})
+					.get(`http://localhost/taixiu1/getallbet`, {})
 					.then((res) => {
 						setTotal(res.data.data);
 					})
 					.catch(() => setTotal(null));
 				axios
-					.get(`https://server.vnvip294.com/xucsac3/list30bet`, {})
+					.get(`http://localhost/taixiu1/list30bet`, {})
 					.then((res) => {
 						setList30(res.data.data);
 					})
 					.catch(() => setList30(null));
-				axios.get(`https://server.vnvip294.com/notification/getnotifi`, {}).then((res) => {
+				axios.get(`http://localhost/notification/getnotifi`, {}).then((res) => {
 					setVisible({
 						money: res.data.data[0].money.toLocaleString(),
 						id: res.data.data[0]._id,
 					});
 				});
-				axios.get(`https://server.vnvip294.com/xucsac3/getcurrent`).then((res) => {
+				axios.get(`http://localhost/taixiu1/getcurrent`).then((res) => {
 					setCurrent(res.data.data);
 				});
 			}
@@ -150,7 +150,7 @@ function SetTX1p() {
 			switch (result) {
 				case "submit":
 					// clear everything here!!
-					axios.post("https://server.vnvip294.com/notification/seen", {
+					axios.post("http://localhost/notification/seen", {
 						id: data.id,
 					});
 					break;
@@ -164,7 +164,7 @@ function SetTX1p() {
 		}
 	}, [isVisible]);
 	useEffect(() => {
-		let curTime_second = Math.floor(180 - (date - dulieunhap) / 1000);
+		let curTime_second = Math.floor(60 - (date - dulieunhap) / 1000);
 		let myTimeout;
 
 		if (
@@ -176,7 +176,7 @@ function SetTX1p() {
 			return () => {
 				clearTimeout(myTimeout);
 			};
-		} else if (curTime_second < 180 && curTime_second >= 0) {
+		} else if (curTime_second < 60 && curTime_second >= 0) {
 			setSecond(curTime_second % 60);
 			setMinute((curTime_second - (curTime_second % 60)) / 60);
 			setStart(true);
@@ -192,14 +192,14 @@ function SetTX1p() {
 	}, [update, dulieunhap]);
 
 	useEffect(() => {
-		let curTime_second = Math.floor(180 - (date - dulieunhap) / 1000);
+		let curTime_second = Math.floor(60 - (date - dulieunhap) / 1000);
 		let myTimeout = 0;
 		if (start) {
 			setSecond(curTime_second % 60);
 			setMinute(Math.floor(curTime_second / 60));
-			if (curTime_second > 180 || curTime_second <= 0) {
+			if (curTime_second > 60 || curTime_second <= 0) {
 				setStart(false);
-				setMinute(3);
+				setMinute(1);
 				setSecond(0);
 				return () => {
 					clearTimeout(myTimeout);
@@ -222,7 +222,7 @@ function SetTX1p() {
 		};
 		if (e.target.bet.value) {
 			axios
-				.post("https://server.vnvip294.com/xucsac3/update", formData)
+				.post("http://localhost/taixiu1/update", formData)
 				.then((res) => {
 					setBet(res.data.data);
 					swal("Thành công", "Update thành công", "success");
@@ -365,7 +365,7 @@ function SetTX1p() {
 																		};
 																		if (e.target.result.value) {
 																			axios
-																			.post("https://server.vnvip294.com/xucsac3/update", formData)
+																			.post("http://localhost/taixiu1/update", formData)
 																				.then((res) => {
 																					window.location.reload()
 																					swal(

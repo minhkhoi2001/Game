@@ -1,4 +1,20 @@
 export const GetNameChoose=(state, type, sanh)=>{
+    if(sanh==="Tài xỉu 1p"||sanh==="Tài xỉu 5p"||sanh==="Tài xỉu 3p"){
+        if(Number(state)==1&&type==null){
+            return "Chọn T "
+        }
+        if(Number(state)==2&&type==null){
+            return "Chọn X "
+        }
+        if(Number(state)==3&&type==null){
+            return "Chọn L "
+        }
+        if(Number(state)==4&&type==null){
+            return "Chọn C "
+        }else{
+            return "Chọn "+state
+        }
+    }
     if(sanh==="Xúc sắc 3p"||sanh==="Xúc sắc 5p"){
         if(Number(state)==1&&type==null){
             return "Chọn T "

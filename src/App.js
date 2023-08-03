@@ -106,6 +106,8 @@ import SettingNotify from "./pages/admin/SettingNotify";
 import Employee from "./pages/admin/Employee";
 import AllEmployee from "./pages/admin/AllEmployee";
 import UsersByEmployee from "./pages/admin/UsersByEmployee";
+import Taixiu3 from "./pages/game/Taixiu/Taixiu3";
+import Taixiu5 from "./pages/game/Taixiu/Taixiu5";
 
 
 function App() {
@@ -132,6 +134,9 @@ function App() {
 							<Route element={<Xucxac3 />} path="/xucxac3" />
 							<Route element={<Xucxac5 />} path="/xucxac5" />
 							<Route element={<Taixiu1 />} path="/taixiu1" />
+							<Route element={<Taixiu3 />} path="/taixiu3" />
+							<Route element={<Taixiu5 />} path="/taixiu5" />
+
 
 							<Route element={<Lo />} path="/xoso3p" />
 							<Route element={<Bacang />} path="/xoso3p/bacang" />
