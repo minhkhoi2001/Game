@@ -37,12 +37,12 @@ function Home() {
 	const [notify, setNotify] = useState();
 	useEffect(() => {
 		axios
-			.get(`http://localhost/auth/getUser`, {})
+			.get(`https://server.vnvip294.com/auth/getUser`, {})
 			.then((res) => {
 				setProfile1(res.data.data);
 			})
 			.catch((err) => localStorage.removeItem("user"));
-		axios.get(`http://localhost/auth/getnotify`, {}).then((res) => {
+		axios.get(`https://server.vnvip294.com/auth/getnotify`, {}).then((res) => {
 			setNotify(res.data.data[0]);
 			});
 	}, []);
@@ -230,6 +230,19 @@ function Home() {
 								<div className="box-game-text">
 									<div>Dự đoán</div>
 									<div>Dự đoán Xúc sắc để giành chiến thắng</div>
+								</div>
+							</Link>
+						</div>
+						<div className="box-game">
+							<Link to="/taixiu1">
+								<img
+									src={require("../../img/logo-k333.685bfbc8.png")}
+									style={{ margin: "0 5px 0 0" }}
+								/>
+								<h3>TÀI XỈU 1P</h3>
+								<div className="box-game-text">
+									<div>Dự đoán</div>
+									<div>Lớn nhỏ chẵn lẻ</div>
 								</div>
 							</Link>
 						</div>

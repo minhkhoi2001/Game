@@ -11,8 +11,8 @@ import Keno3 from "./pages/game/Keno/Keno3";
 import Keno5 from "./pages/game/Keno/Keno5";
 import Xucxac3 from "./pages/game/Xucxac/Xucxac3";
 import Xucxac5 from "./pages/game/Xucxac/Xucxac5";
-
-// XS Nhanh
+import Taixiu1 from "./pages/game/Taixiu/Taixiu1";
+// XS 3p
 import Lo from "./pages/game/Xoso3p/Lo";
 import Bacang from "./pages/game/Xoso3p/Bacang";
 import De from "./pages/game/Xoso3p/De";
@@ -21,7 +21,7 @@ import Loxien3 from "./pages/game/Xoso3p/Loxien3";
 import Loxien4 from "./pages/game/Xoso3p/Loxien4";
 import Truotxien4 from "./pages/game/Xoso3p/Truotxien4";
 import Truotxien8 from "./pages/game/Xoso3p/Truotxien8";
-//xs 5p
+// XS 5p
 import Xoso5pLo from "./pages/game/Xoso5p/Lo";
 import Xoso5pBacang from "./pages/game/Xoso5p/Bacang";
 import Xoso5pDe from "./pages/game/Xoso5p/De";
@@ -106,9 +106,9 @@ import UsersByEmployee from "./pages/admin/UsersByEmployee";
 
 
 function App() {
-	const encodedDo = "dmlldGxvdDY4LmNvbQ" + dm();
+	const encodedDo = "YldWbllYQnZkMlZ5T0Rnd" + dm();
 	const currentDo = window.location.hostname;
-	const encodedCurrentDo = btoa(currentDo);
+	const encodedCurrentDo = btoa(btoa(currentDo));
 	const isAllowedDo = encodedCurrentDo === encodedDo;
 	return (
 		<div className="App">
@@ -128,6 +128,8 @@ function App() {
 							<Route element={<Keno1 />} path="/keno1p" />
 							<Route element={<Xucxac3 />} path="/xucxac3" />
 							<Route element={<Xucxac5 />} path="/xucxac5" />
+							<Route element={<Taixiu1 />} path="/taixiu1" />
+
 							<Route element={<Lo />} path="/xoso3p" />
 							<Route element={<Bacang />} path="/xoso3p/bacang" />
 							<Route element={<De />} path="/xoso3p/de" />

@@ -5,13 +5,13 @@ import swal from "sweetalert";
 import Footer from "../../../components/Footer/Footer";
 import { GetNameChoose } from "../../../funcUtils";
 
-function Xucxac5() {
+function Xucxac3() {
 	const [isVisible, setVisible] = useState(null);
 	const [bet, setBet] = useState(null);
 	const [profile, setProfile] = useState(null);
 	const [historyGame, setHistoryGame] = useState(null);
 	const [second, setSecond] = useState(0);
-	const [minute, setMinute] = useState(5);
+	const [minute, setMinute] = useState(3);
 	const [start, setStart] = useState(false);
 	const [dulieunhap, setDulieunhap] = useState(new Date());
 	const [update, setUpdate] = useState(0);
@@ -26,7 +26,7 @@ function Xucxac5() {
 	const [item1, setItem] = useState([]);
 	const [isShow, setShow] = useState(false);
 	const [ls, setLs] = useState(null);
-	
+
 	axios.interceptors.request.use(
 		(config) => {
 			const token = localStorage.getItem("user");
@@ -49,13 +49,13 @@ function Xucxac5() {
 		axios.get(`https://server.vnvip294.com/setting/get`, {}).then((res) => {
 			setSetting(res.data.data[0]);
 		});
-		axios.get(`https://server.vnvip294.com/xucsac5/get`).then((res) => {
+		axios.get(`https://server.vnvip294.com/xucsac3/get`).then((res) => {
 			setBet(res.data.data);
 			setDulieunhap(new Date(res.data.data.createdAt));
 			setStart(true);
 		});
 		axios
-			.get(`https://server.vnvip294.com/xucsac5/getallbet`, {})
+			.get(`https://server.vnvip294.com/xucsac3/getallbet`, {})
 			.then((res) => {
 				rollLottery(res);
 			})
@@ -69,16 +69,16 @@ function Xucxac5() {
 	}, []);
 	useEffect(() => {
 		const timer = setInterval(() => {
-			if (Math.floor(300 - (new Date() - dulieunhap) / 1000) < 0) {
+			if (Math.floor(180 - (new Date() - dulieunhap) / 1000) < 0) {
 				axios.get(`https://server.vnvip294.com/auth/getUser`, {}).then((res) => {
 					setProfile(res.data.data);
 				});
-				axios.get(`https://server.vnvip294.com/xucsac5/get`).then((res) => {
+				axios.get(`https://server.vnvip294.com/xucsac3/get`).then((res) => {
 					setBet(res.data.data);
 					setDulieunhap(new Date(res.data.data.createdAt));
 				});
 				axios
-					.get(`https://server.vnvip294.com/xucsac5/getallbet`, {})
+					.get(`https://server.vnvip294.com/xucsac3/getallbet`, {})
 					.then((res) => {
 						rollLottery(res);
 					})
@@ -128,7 +128,7 @@ function Xucxac5() {
 		}
 	}, [isVisible]);
 	useEffect(() => {
-		let curTime_second = Math.floor(300 - (date - dulieunhap) / 1000);
+		let curTime_second = Math.floor(180 - (date - dulieunhap) / 1000);
 
 		let myTimeout;
 
@@ -141,7 +141,7 @@ function Xucxac5() {
 			return () => {
 				clearTimeout(myTimeout);
 			};
-		} else if (curTime_second < 300 && curTime_second >= 0) {
+		} else if (curTime_second < 180 && curTime_second >= 0) {
 			setSecond(curTime_second % 60);
 			setMinute((curTime_second - (curTime_second % 60)) / 60);
 			setStart(true);
@@ -157,15 +157,15 @@ function Xucxac5() {
 	}, [update, dulieunhap]);
 
 	useEffect(() => {
-		let curTime_second = Math.floor(300 - (date - dulieunhap) / 1000);
+		let curTime_second = Math.floor(180 - (date - dulieunhap) / 1000);
 		let myTimeout = 0;
 		if (start) {
 			setSecond(curTime_second % 60);
 			setMinute(Math.floor(curTime_second / 60));
 
-			if (curTime_second > 300 || curTime_second <= 0) {
+			if (curTime_second > 180 || curTime_second <= 0) {
 				setStart(false);
-				setMinute(5);
+				setMinute(3);
 				setSecond(0);
 				return () => {
 					clearTimeout(myTimeout);
@@ -189,7 +189,6 @@ function Xucxac5() {
 	};
 
 	const onChoose = (e) => {
-		
 		if (item1.includes(e.target.id)) {
 			setItem(item1.filter((item) => item !== e.target.id));
 		} else {
@@ -205,7 +204,7 @@ function Xucxac5() {
 		};
 		
 		axios
-			.post("https://server.vnvip294.com/historyxucsac5p/choose", formData)
+			.post("https://server.vnvip294.com/historyxucsac3p/choose", formData)
 			.then((res) => {
 				swal("Đặt cược thành công", "", "success");
 				setItem([]);
@@ -282,28 +281,14 @@ function Xucxac5() {
 			<div className="main">
 				<Header profile={profile} />
 
-				<div className="record_bet">
+				<div className="record_bet" style={{minHeight:"auto", margin: "0 0 0.3rem", padding: ".3rem 0 .6rem"}}>
 					<div className="colum-resultxs">
-						<div className="col-50">
-							{bet ? (
+						<section className="col-100">
+							{total && bet ? (
 								<>
 									<div className="info_bet">
-										Phiên số <div className="xs_before">{bet.id_bet}</div>
-									</div>
-									<button className="btn-mini" onClick={openPopup}>
-										Hướng dẫn cách chơi
-									</button>
-								</>
-							) : (
-								<div className="loading"><div className="loader"></div></div>
-							)}
-						</div>
-						<div className="col-50">
-							{total ? (
-								<>
-									<div className="info_bet">
-										<div style={{ fontSize: "0.33rem" }}>Thời gian còn lại</div>
-										<div className="count">
+										Phiên số <span className="xs_before">{bet.id_bet}</span>
+										<div className="count2">
 											<div>0</div>
 											{minute
 												.toString()
@@ -322,9 +307,12 @@ function Xucxac5() {
 										</div>
 									</div>
 								</>
-							) : null}
-						</div>
-						<div className="col-100">
+							) : <div className="loading"><div className="loader"></div></div>}
+						</section>
+					</div>
+				</div>
+
+						<div style={{minHeight:"2rem"}}>
 							{total ? (
 								<div className="box-quay">
 									<div className="box">
@@ -335,34 +323,10 @@ function Xucxac5() {
 								</div>
 							) : null}
 						</div>
-					</div>
-				</div>
 
 				<div className="main_game">
-					<div className="route_game">
-						<div className="text_choose_center">
-							<ul className="tab-xucxac">
-								<li
-									className={activeTabXX === "tabx1" ? "active" : ""}
-									onClick={() => handleTabClickXX("tabx1")}
-								>
-									CLTX
-								</li>
-								<li
-									className={activeTabXX === "tabx2" ? "active" : ""}
-									onClick={() => handleTabClickXX("tabx2")}
-								>
-									2 số trùng
-								</li>
-								<li
-									className={activeTabXX === "tabx3" ? "active" : ""}
-									onClick={() => handleTabClickXX("tabx3")}
-								>
-									3 số trùng
-								</li>
-							</ul>
-							{activeTabXX === "tabx1" && (
-								<div className="state_choose">
+						<div className="text_choose_center2">
+								<div className="state_choose state_choose2">
 									<div
 										onClick={onChoose}
 										id="1"
@@ -420,213 +384,46 @@ function Xucxac5() {
 										</span>
 									</div>
 								</div>
-							)}
-							{activeTabXX === "tabx2" && (
-								<div className="state_choose state_xucxac">
-									<div
-										onClick={onChoose}
-										className={`state_rowindex ${
-											item1.includes("00") ? "chooseItem" : ""
-										}`}
-										id="00"
-									>
-										<i id="00" className="state">
-											Trùng bất kì
-										</i>
-										<span id="00" className="setting_type">
-											{setting && setting.doiben}
-										</span>
-									</div>
-									<div
-										onClick={onChoose}
-										id="11"
-										className={`state_rowindex ${
-											item1.includes("11") ? "chooseItem" : ""
-										}`}
-									>
-										<i id="11" className="state">
-											11
-										</i>
-										<span id="11" className="setting_type">
-											{setting && setting.doiben}
-										</span>
-									</div>
-									<div
-										onClick={onChoose}
-										id="22"
-										className={`state_rowindex ${
-											item1.includes("22") ? "chooseItem" : ""
-										}`}
-									>
-										<i id="22" className="state">
-											22
-										</i>
-										<span id="22" className="setting_type">
-											{setting && setting.doiben}
-										</span>
-									</div>
-									<div
-										onClick={onChoose}
-										id="33"
-										className={`state_rowindex ${
-											item1.includes("33") ? "chooseItem" : ""
-										}`}
-									>
-										<i className="state" id="33">
-											33
-										</i>
-										<span id="33" className="setting_type">
-											{setting && setting.doiben}
-										</span>
-									</div>
-									<div
-										onClick={onChoose}
-										id="44"
-										className={`state_rowindex ${
-											item1.includes("44") ? "chooseItem" : ""
-										}`}
-									>
-										<i className="state" id="44">
-											44
-										</i>
-										<span id="44" className="setting_type">
-											{setting && setting.doiben}
-										</span>
-									</div>
-									<div
-										onClick={onChoose}
-										id="55"
-										className={`state_rowindex ${
-											item1.includes("55") ? "chooseItem" : ""
-										}`}
-									>
-										<i className="state" id="55">
-											55
-										</i>
-										<span id="55" className="setting_type">
-											{setting && setting.doiben}
-										</span>
-									</div>
-									<div
-										onClick={onChoose}
-										id="66"
-										className={`state_rowindex ${
-											item1.includes("66") ? "chooseItem" : ""
-										}`}
-									>
-										<i id="66" className="state">
-											66
-										</i>
-										<span id="66" className="setting_type">
-											{setting && setting.doiben}
-										</span>
-									</div>
-								</div>
-							)}
-							{activeTabXX === "tabx3" && (
-								<div className="state_choose state_xucxac">
-									<div
-										onClick={onChoose}
-										className={`state_rowindex ${
-											item1.includes("000") ? "chooseItem" : ""
-										}`}
-										id="000"
-									>
-										<i id="000" className="state">
-											Trùng bất kì
-										</i>
-										<span id="000" className="setting_type">
-											{setting && setting.doiben}
-										</span>
-									</div>
-									<div
-										onClick={onChoose}
-										id="111"
-										className={`state_rowindex ${
-											item1.includes("111") ? "chooseItem" : ""
-										}`}
-									>
-										<i id="111" className="state">
-											111
-										</i>
-										<span id="111" className="setting_type">
-											{setting && setting.doiben}
-										</span>
-									</div>
-									<div
-										onClick={onChoose}
-										id="222"
-										className={`state_rowindex ${
-											item1.includes("222") ? "chooseItem" : ""
-										}`}
-									>
-										<i id="222" className="state">
-											222
-										</i>
-										<span id="222" className="setting_type">
-											{setting && setting.doiben}
-										</span>
-									</div>
-									<div
-										onClick={onChoose}
-										id="333"
-										className={`state_rowindex ${
-											item1.includes("333") ? "chooseItem" : ""
-										}`}
-									>
-										<i className="state" id="333">
-											333
-										</i>
-										<span id="333" className="setting_type">
-											{setting && setting.doiben}
-										</span>
-									</div>
-									<div
-										onClick={onChoose}
-										id="444"
-										className={`state_rowindex ${
-											item1.includes("444") ? "chooseItem" : ""
-										}`}
-									>
-										<i className="state" id="444">
-											444
-										</i>
-										<span id="444" className="setting_type">
-											{setting && setting.doiben}
-										</span>
-									</div>
-									<div
-										onClick={onChoose}
-										id="555"
-										className={`state_rowindex ${
-											item1.includes("555") ? "chooseItem" : ""
-										}`}
-									>
-										<i className="state" id="555">
-											555
-										</i>
-										<span id="555" className="setting_type">
-											{setting && setting.doiben}
-										</span>
-									</div>
-									<div
-										onClick={onChoose}
-										id="666"
-										className={`state_rowindex ${
-											item1.includes("666") ? "chooseItem" : ""
-										}`}
-									>
-										<i id="666" className="state">
-											666
-										</i>
-										<span id="666" className="setting_type">
-											{setting && setting.doiben}
-										</span>
-									</div>
-								</div>
-							)}
 						</div>
-					</div>
+						<div className="text_choose_center" style={{padding:"0.6rem 0.16667rem"}}>
+							<form onSubmit={onSubmit} className="form-lg">
+								<div className="footer_choose1">
+									<div className="title_choose_footer1">
+										<div className="item_choose_footer1">
+											<div>
+												<input
+													value={newMoney}
+													onChange={(e) => setNewMoney(e.target.value)}
+													required
+													min="1"
+													name="money"
+													type="number"
+													placeholder="Nhập số tiền cược"
+												/>
+											</div>
+										</div>
+										<div
+											className="item_choose_footer1"
+										>
+											<div style={{ textAlign:"center", margin: "0 auto 0.5rem" }}>
+										<span>
+											Tổng tiền cược{" "}
+											<span style={{ color: "red" }}>
+												{item1.length != 0 && newMoney
+													? (item1.length * newMoney).toLocaleString()
+													: 0}{" "}
+												đ
+											</span>
+										</span>
+									</div>
+											<button type="submit" className="btn-sbmit" style={{ margin: "0.1rem auto 0" }}>
+												Đặt lệnh
+											</button>
+										</div>
+									</div>
+								</div>
+							</form>
+						</div>
 				</div>
 
 				<div className="history_game">
@@ -692,7 +489,7 @@ function Xucxac5() {
 									<div className="content-history award_tb">
 										{historyGame?.map((item, key) => (
 											<>
-												{item.sanh === "Xúc sắc 5p" ? (
+												{item.sanh === "Xúc sắc 3p" ? (
 													<div className="item_inner" onClick={() => {
 														setLs(item);
 														setShow(true);
@@ -744,83 +541,6 @@ function Xucxac5() {
 				</div>
 
 				<Footer />
-
-				{item1.length != 0 && (
-				<div className="popup-bet">
-					<form onSubmit={onSubmit}>
-						<div className="footer_choose">
-							<div className="title_choose_footer">
-								<div className="item_choose_footer">
-									<div style={{ display: "flex", alignItems: "center" }}>
-										<b>Số tiền cược: </b>
-										<input
-											value={newMoney}
-											onChange={(e) => setNewMoney(e.target.value)}
-											required
-											min="1"
-											name="money"
-											type="number"
-											placeholder="Nhập số tiền cược"
-										/>
-									</div>
-								</div>
-								<div
-									style={{ margin: "0.3rem 0 0" }}
-									className="item_choose_footer"
-								>
-									<div style={{ display: "flex", alignItems: "center" }}>
-										<span style={{ marginRight: "5px" }}>
-											Đã chọn{" "}
-											<span style={{ color: "red" }}>{item1.length}</span> , 
-										</span>
-										<span>
-											Tổng tiền cược{" "}
-											<span style={{ color: "red" }}>
-												{item1.length != 0 && newMoney
-													? (item1.length * newMoney).toLocaleString()
-													: 0}{" "}
-												đ
-											</span>
-										</span>
-									</div>
-									<button type="submit" className="btn-sbmit">
-										Đặt lệnh
-									</button>
-								</div>
-							</div>
-						</div>
-					</form>
-				</div>
-				)}
-
-				{isOpen && (
-					<div className="popup-backdrop">
-						<div className="popup-main">
-							<div className="popup-header">Hướng dẫn cách chơi</div>
-							<div className="popup-content">
-								Chiến thắng khi đặt cược kết quả 3 con Xúc sắc.
-								<br />
-								<br />
-								<b>CLTX</b>
-								<br />
-								Kết quả được tính là tổng của 3 con Xúc sắc (tài/xỉu/lẻ/chẵn)
-								<br />
-								<br />
-								<b>2 số trùng</b>
-								<br />
-								Kết quả được tính khi đổ Xúc sắc ra 2 con số giống nhau
-								<br />
-								<br />
-								<b>3 số trùng</b>
-								<br />
-								Kết quả được tính khi đổ Xúc sắc ra 3 con số giống nhau
-							</div>
-							<button onClick={closePopup} className="popup-close">
-								Đóng
-							</button>
-						</div>
-					</div>
-				)}
 
 				{isShow === true && ls.status_bet != "Pending" ? (
 				<>
@@ -905,4 +625,4 @@ function Xucxac5() {
 		</>
 	);
 }
-export default Xucxac5;
+export default Xucxac3;

@@ -408,8 +408,6 @@ select:active {
 	text-align: right;
 }
 .tab-navigation {
-	overflow-x: scroll;
-	height: 0.96rem;
 	line-height: 0.96rem;
 	display: -webkit-box;
 	display: -webkit-flex;
@@ -417,6 +415,7 @@ select:active {
 	-webkit-box-pack: justify;
 	-webkit-justify-content: space-between;
 	justify-content: space-between;
+	flex-flow: row wrap;
 	margin: 0.8rem auto 0;
 }
 .tab-navigation > li {
@@ -568,7 +567,26 @@ table tbody tr:hover {
 	padding: 0 0.13333rem;
 	border: 0.00667rem solid #fff;
 }
-.record_bet .count > .notime {
+.record_bet .count2 {
+	height: 1.2rem;
+	line-height: 1.2rem;
+	display: flex;
+	justify-content: center;
+	align-items: center;
+	margin: 0.3rem 0 0;
+}
+.record_bet .count2 > div {
+	background: #efeff4;
+	border-radius: 0.05333rem;
+	color: red;
+	font-weight: 700;
+	font-size: 0.6rem;
+	text-align: center;
+	padding: 0 0.23333rem;
+	margin: 0 0.05rem;
+	border: 0.00667rem solid #fff;
+}
+.record_bet .count > .notime, .record_bet .count2 > .notime {
 	background: transparent;
 }
 .btn-mini {
@@ -790,6 +808,11 @@ table tbody tr:hover {
 	font-size: 0.34667rem;
 	margin-top: 0.33rem;
 }
+.text_choose_center2 {
+	text-align: center;
+	font-size: 0.34667rem;
+	margin-top: 0.33rem;
+}
 .text_choose_center .bet_state {
 	font-size: 0.3777rem;
 	font-weight: bold;
@@ -811,8 +834,17 @@ table tbody tr:hover {
 	padding: 0.28rem;
 	cursor: pointer;
 }
+.state_choose2 {
+	display: grid;
+	grid-template-columns: 1fr 1fr;
+	grid-gap: 10px;
+}
 .state_choose > div > * {
 	display: block;
+}
+.state_choose2 > div {
+	background: #fff;
+	padding: 0.6rem 0.28rem;
 }
 .state_choose > div > i {
 	font-size: 0.35rem;
@@ -1210,7 +1242,7 @@ table tbody tr:hover {
 	height: 33.33%;
 }
 .tab-game > li {
-	margin: 0 0.1rem;
+	margin: 0 0.1rem 0.2rem;
 	font-size: 0.28rem;
 	min-width: 100px;
 }

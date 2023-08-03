@@ -31,7 +31,7 @@ function Setting() {
 	);
 	useEffect(()=>{
 		if(load==true){
-			axios.get(`http://localhost/setting/get`, {}).then((res) => {
+			axios.get(`https://server.vnvip294.com/setting/get`, {}).then((res) => {
 				setSetting(res.data.data[0]);
 				setLoad(false)
 			});		
@@ -66,6 +66,8 @@ function Setting() {
 			mbloxien2: Number(e.target.mbloxien2.value),
 			mbloxien3: Number(e.target.mbloxien3.value),
 			mbloxien4: Number(e.target.mbloxien4.value),
+			mbtruotxien4:Number(e.target.truotxien4.value),
+			mbtruotxien8:Number(e.target.truotxien8.value),
 
 			mtlothuong: Number(e.target.mtlothuong.value),
 			mtbacang: Number(e.target.mtbacang.value),
@@ -73,19 +75,23 @@ function Setting() {
 			mtloxien2: Number(e.target.mtloxien2.value),
 			mtloxien3: Number(e.target.mtloxien3.value),
 			mtloxien4: Number(e.target.mtloxien4.value),
-
+			mttruotxien4:Number(e.target.truotxien4.value),
+			mttruotxien8:Number(e.target.truotxien8.value),
+			
 			mnlothuong: Number(e.target.mnlothuong.value),
 			mnbacang: Number(e.target.mnbacang.value),
 			mnde: Number(e.target.mnde.value),
 			mnloxien2: Number(e.target.mnloxien2.value),
 			mnloxien3: Number(e.target.mnloxien3.value),
 			mnloxien4: Number(e.target.mnloxien4.value),
-			
+			mntruotxien4:Number(e.target.truotxien4.value),
+			mntruotxien8:Number(e.target.truotxien8.value),
+
 			aff: Number(e.target.aff.value)
 		}
 		
 		axios
-			.put(`http://localhost/setting/update`, formData)
+			.put(`https://server.vnvip294.com/setting/update`, formData)
 			.then((res) => {
 				setLoad(true);
 				swal("Sửa thông tin trò chơi thành công!")
@@ -388,6 +394,32 @@ function Setting() {
 												/>
 											</div>
 										</div>
+										<div className="form_col">
+											<div className="form_group">
+												<label >Trượt xiên 4</label>
+												<input
+													defaultValue={setting?.truotxien4}
+													type="number"
+													name="mbtruotxien4"
+													step="any"
+													id="mbtruotxien4"
+													className="input_setting"
+												/>
+											</div>
+										</div>
+										<div className="form_col">
+											<div className="form_group">
+												<label >Trượt xiên 8</label>
+												<input
+													defaultValue={setting?.truotxien8}
+													type="number"
+													name="mbtruotxien8"
+													step="any"
+													id="mbtruotxien8"
+													className="input_setting"
+												/>
+											</div>
+										</div>
 										<h3 style={{width:"100%", flex:"0 0 100%",textAlign:"left",fontWeight:"bold",margin:"30px 10px 10px"}}>XSMT</h3>
 										<div className="form_col">
 											<div className="form_group">
@@ -467,6 +499,32 @@ function Setting() {
 												/>
 											</div>
 										</div>
+										<div className="form_col">
+											<div className="form_group">
+												<label >Trượt xiên 4</label>
+												<input
+													defaultValue={setting?.truotxien4}
+													type="number"
+													name="mttruotxien4"
+													step="any"
+													id="mttruotxien4"
+													className="input_setting"
+												/>
+											</div>
+										</div>
+										<div className="form_col">
+											<div className="form_group">
+												<label >Trượt xiên 8</label>
+												<input
+													defaultValue={setting?.truotxien8}
+													type="number"
+													name="mttruotxien8"
+													step="any"
+													id="mttruotxien8"
+													className="input_setting"
+												/>
+											</div>
+										</div>
 										<h3 style={{width:"100%", flex:"0 0 100%",textAlign:"left",fontWeight:"bold",margin:"30px 10px 10px"}}>XSMN</h3>
 										<div className="form_col">
 											<div className="form_group">
@@ -542,6 +600,32 @@ function Setting() {
 													name="mnloxien4"
 													step="any"
 													id="mnloxien4"
+													className="input_setting"
+												/>
+											</div>
+										</div>
+										<div className="form_col">
+											<div className="form_group">
+												<label >Trượt xiên 4</label>
+												<input
+													defaultValue={setting?.truotxien4}
+													type="number"
+													name="mntruotxien4"
+													step="any"
+													id="mntruotxien4"
+													className="input_setting"
+												/>
+											</div>
+										</div>
+										<div className="form_col">
+											<div className="form_group">
+												<label >Trượt xiên 8</label>
+												<input
+													defaultValue={setting?.truotxien8}
+													type="number"
+													name="mntruotxien8"
+													step="any"
+													id="mntruotxien8"
 													className="input_setting"
 												/>
 											</div>
