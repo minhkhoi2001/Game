@@ -57,7 +57,7 @@ function Xucxac3() {
 		axios
 			.get(`https://server.vnvip294.com/xucsac3/getallbet`, {})
 			.then((res) => {
-				rollLottery(res);
+				setTotal(res.data.data);
 			})
 			.catch(() => setTotal(null));
 		axios.get(`https://server.vnvip294.com/notification/getnotifi`, {}).then((res) => {
@@ -261,7 +261,7 @@ function Xucxac3() {
 		setTimeout(() => {
 			clearInterval(interval);
 			setTotal(res.data.data);
-		}, 2000);
+		}, 1000);
 		return () => {
 			clearInterval(interval);
 		};
