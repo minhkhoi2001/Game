@@ -236,13 +236,39 @@ function Home() {
 						<div className="box-game">
 							<Link to="/taixiu1">
 								<img
-									src={require("../../img/logo-k333.685bfbc8.png")}
+									src={require("../../img/taixiu1.png")}
 									style={{ margin: "0 5px 0 0" }}
 								/>
 								<h3>TÀI XỈU 1P</h3>
 								<div className="box-game-text">
-									<div>Dự đoán</div>
-									<div>Lớn nhỏ chẵn lẻ</div>
+									<div>Tài xỉu nông dân</div>
+									<div>Thời gian cược 1 phút</div>
+								</div>
+							</Link>
+						</div>
+						<div className="box-game">
+							<Link to="/taixiu3">
+								<img
+									src={require("../../img/taixiu1.png")}
+									style={{ margin: "0 5px 0 0" }}
+								/>
+								<h3>TÀI XỈU 3P</h3>
+								<div className="box-game-text">
+									<div>Tài xỉu chuyên nghiệp</div>
+									<div>Thời gian cược 3 phút</div>
+								</div>
+							</Link>
+						</div>
+						<div className="box-game">
+							<Link to="/taixiu5">
+								<img
+									src={require("../../img/taixiu1.png")}
+									style={{ margin: "0 5px 0 0" }}
+								/>
+								<h3>TÀI XỈU 5P</h3>
+								<div className="box-game-text">
+									<div>Tài xỉu đại gia</div>
+									<div>Thời gian cược 5 phút</div>
 								</div>
 							</Link>
 						</div>
