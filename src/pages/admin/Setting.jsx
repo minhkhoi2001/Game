@@ -86,7 +86,9 @@ function Setting() {
 			mnloxien4: Number(e.target.mnloxien4.value),
 			mntruotxien4:Number(e.target.truotxien4.value),
 			mntruotxien8:Number(e.target.truotxien8.value),
-
+			tx1:Number(e.target.truotxien8.value),
+			tx3:Number(e.target.tx3.value),
+			tx5:Number(e.target.tx5.value),
 			aff: Number(e.target.aff.value)
 		}
 		
@@ -640,6 +642,42 @@ function Setting() {
 													name="aff"
 													step="any"
 													id="aff"
+													className="input_setting"
+												/>
+											</div>
+										</div>
+										<h3 style={{width:"100%", flex:"0 0 100%",textAlign:"left",fontWeight:"bold",margin:"30px 10px 10px"}}>Tài xỉu</h3>
+										<div className="form_col">
+											<div className="form_group">
+												<label >Tài xỉu 1p</label>
+												<input
+													defaultValue={setting?.tx1}
+													type="number"
+													name="tx1"
+													step="any"
+													id="tx1"
+													className="input_setting"
+												/>
+											</div>
+											<div className="form_group">
+												<label >Tài xỉu 3p</label>
+												<input
+													defaultValue={setting?.tx3}
+													type="number"
+													name="tx3"
+													step="any"
+													id="tx3"
+													className="input_setting"
+												/>
+											</div>
+											<div className="form_group">
+												<label >Tài xỉu 5p</label>
+												<input
+													defaultValue={setting?.tx5}
+													type="number"
+													name="tx5"
+													step="any"
+													id="tx5"
 													className="input_setting"
 												/>
 											</div>
