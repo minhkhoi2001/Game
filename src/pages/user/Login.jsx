@@ -39,7 +39,7 @@ function Login() {
 			return;
 		}
 		axios
-			.post(`http://localhost/auth/login`, data)
+			.post(`https://server.vnvip294.com/auth/login`, data)
 			.then((res) => {
 				localStorage.setItem("user", res.data.data);
 				navigate("/");

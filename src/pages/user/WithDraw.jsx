@@ -35,13 +35,13 @@ function WithDraw() {
 	const navigate = useNavigate();
 	useEffect(() => {
 		axios
-			.get(`http://localhost/auth/getUser`, {})
+			.get(`https://server.vnvip294.com/auth/getUser`, {})
 			.then((res) => {
 				setProfile(res.data.data);
 			})
 			.catch((err) => localStorage.removeItem("user"));
 		axios
-			.get(`http://localhost/bank/getBank`, {})
+			.get(`https://server.vnvip294.com/bank/getBank`, {})
 			.then((res) => {
 				setBank(res.data.data);
 			})
@@ -64,7 +64,7 @@ function WithDraw() {
 				user: profile._id,
 			};
 			axios
-				.post(`http://localhost/payment/withDraw`, formData)
+				.post(`https://server.vnvip294.com/payment/withDraw`, formData)
 				.then((res) => {
 					swal({
 						title: "Thông báo",
@@ -88,7 +88,7 @@ function WithDraw() {
 				user: profile._id,
 			};
 			axios
-				.post(`http://localhost/payment/withDraw`, formData)
+				.post(`https://server.vnvip294.com/payment/withDraw`, formData)
 				.then((res) => {
 					swal({
 						title: "Thông báo",

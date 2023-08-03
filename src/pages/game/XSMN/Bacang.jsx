@@ -68,15 +68,15 @@ function Bacang() {
 					},
 				]);
 			});
-		axios.get(`http://localhost/auth/getUser`, {}).then((res) => {
+		axios.get(`https://server.vnvip294.com/auth/getUser`, {}).then((res) => {
 			setProfile(res.data.data);
 		});
-		axios.get(`http://localhost/setting/get`, {}).then((res) => {
+		axios.get(`https://server.vnvip294.com/setting/get`, {}).then((res) => {
 			setSetting(res.data.data[0]);
 		});
 
 		axios
-			.get(`http://localhost/notification/getnotifi`, {})
+			.get(`https://server.vnvip294.com/notification/getnotifi`, {})
 			.then((res) => {
 				setVisible({
 					money: res.data.data[0].money.toLocaleString(),
@@ -100,7 +100,7 @@ function Bacang() {
 
 			switch (result) {
 				case "submit":
-					axios.post("http://localhost/notification/seen", {
+					axios.post("https://server.vnvip294.com/notification/seen", {
 						id: data.id,
 					});
 					break;
@@ -194,7 +194,7 @@ function Bacang() {
 				swal("Thất bại", "Bạn chưa chọn số đánh", "info");
 			} else {
 				axios
-					.post("http://localhost/history/chooseXSMB", formData)
+					.post("https://server.vnvip294.com/history/chooseXSMB", formData)
 					.then((res) => {
 						swal("Đặt cược thành công", "", "success");
 						setItem([]);
@@ -215,7 +215,7 @@ function Bacang() {
 				swal("Thất bại", "Bạn chưa chọn số đánh", "info");
 			} else {
 				axios
-					.post("http://localhost/history/chooseXSMB", formData)
+					.post("https://server.vnvip294.com/history/chooseXSMB", formData)
 					.then((res) => {
 						swal("Đặt cược thành công", "", "success");
 						setItem([]);
