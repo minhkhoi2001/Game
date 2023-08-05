@@ -107,7 +107,7 @@ function Home() {
 						Games
 					</h2>
 					<div className="list-game">
-						<div className="box-game op xsmb">
+						{/*<div className="box-game op xsmb">
 							<Link to="/xsmb">
 								<img
 									src={require("../../img/logo-Vlottery.webp")}
@@ -232,7 +232,7 @@ function Home() {
 									<div>Dự đoán Xúc sắc để giành chiến thắng</div>
 								</div>
 							</Link>
-						</div>
+				</div>*/}
 						<div className="box-game">
 							<Link to="/taixiu1">
 								<img
@@ -249,7 +249,7 @@ function Home() {
 						<div className="box-game">
 							<Link to="/taixiu3">
 								<img
-									src={require("../../img/taixiu1.png")}
+									src={require("../../img/k3-3fb4362a.png")}
 									style={{ margin: "0 5px 0 0" }}
 								/>
 								<h3>TÀI XỈU 3P</h3>
@@ -262,7 +262,7 @@ function Home() {
 						<div className="box-game">
 							<Link to="/taixiu5">
 								<img
-									src={require("../../img/taixiu1.png")}
+									src={require("../../img/logo-k333.685bfbc8.png")}
 									style={{ margin: "0 5px 0 0" }}
 								/>
 								<h3>TÀI XỈU 5P</h3>

@@ -78,6 +78,7 @@ import AddBank from "./pages/user/AddBank";
 import EditBank from "./pages/user/EditBank";
 import ResetPassword from "./pages/user/ResetPassword";
 import TransferMoney from "./pages/user/TransferMoney";
+import RoomChat from "./pages/user/RoomChat";
 
 // Admin
 import PrivateCustomer from "./PrivateCustomer";
@@ -196,6 +197,7 @@ function App() {
 							<Route element={<EditBank />} path="/bank/:id" />
 							<Route element={<ResetPassword />} path="/password" />
 							<Route element={<TransferMoney />} path="/transfer" />
+							<Route element={<RoomChat />} path="/chat" />
 						</Route>
 						
 						<Route path="/admin" element={<PrivateRouteAdmin />}>

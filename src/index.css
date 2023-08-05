@@ -813,6 +813,23 @@ table tbody tr:hover {
 	font-size: 0.34667rem;
 	margin-top: 0.33rem;
 }
+.text_choose_center3 {
+	background: #ee8d8d;
+	box-shadow: 0 0.05333rem 0.10667rem #c5c5da40;
+	border-radius: 0.26667rem;
+	padding: 0.3rem 0.3rem 0.5rem;
+	text-align: center;
+	font-size: 0.34667rem;
+	margin-top: 0.33rem;
+}
+.text_choose_center3 .state_choose_price > div {
+	background: #fff;
+	color: #333;
+}
+.text_choose_center3 .state_choose .chooseItem {
+	background: red;
+	color: #fff;
+}
 .text_choose_center .bet_state {
 	font-size: 0.3777rem;
 	font-weight: bold;
@@ -833,6 +850,11 @@ table tbody tr:hover {
 	border-radius: 0.22rem;
 	padding: 0.28rem;
 	cursor: pointer;
+}
+.state_choose_price > div {
+	width: calc(25% - 0.2rem);
+	flex: 0 0 calc(25% - 0.2rem);
+	padding: 0.28rem 0;
 }
 .state_choose2 {
 	display: grid;
@@ -1656,6 +1678,34 @@ body:has(.admin-theme) #webpack-dev-server-client-overlay {
 	color: #fff;
 	border-radius: 0.13333rem;
 }
+.tab-tx {
+	height: 1.06667rem;
+	background: transparent;
+	border-radius: 0.13333rem;
+	display: flex;
+	font-size: 0.29333rem;
+	color: #7d7d7d;
+	overflow: hidden;
+	margin-bottom: 0.3rem;
+}
+.tab-tx > li {
+	background: #ffb300;
+	color: #f3f3f3;
+	line-height: 1.06667rem;
+	text-align: center;
+	flex: 1;
+}
+.tab-tx > li:nth-child(2) {
+	background: #1ac529;
+}
+.tab-tx > li:nth-child(3) {
+	background: #ff6c00;
+}
+.tab-tx > li.active {
+	font-size: 0.35rem;
+	color: #fff;
+	font-weight: bold;
+}
 .state_xucxac > div:first-child {
 	width: 100%;
 	flex-basis: 100%;
@@ -1841,4 +1891,31 @@ body:has(.admin-theme) #webpack-dev-server-client-overlay {
 }
 .result_admin_choose table, .max900 {
 	max-width: 900px;
+}
+.hide-chatbar {
+	position: absolute;
+	z-index: 2;
+	background: #ff0000;
+	height: 0.8rem;
+	line-height: 0.5rem;
+	width: 100%;
+	top: 0;
+	color: #f2f2f2;
+	text-align: center;
+	font-size: 0.55rem;
+	font-weight: bold;
+}
+.table_ls_tx th {
+	font-size: 0.4rem;
+	padding: 0.1rem;
+}
+.table_ls_tx td {
+	font-size: 0.3rem;
+	padding: 0.1rem;
+	vertical-align: middle;
+}
+.table_ls_tx .history_xucxac > div {
+	width: 0.44rem;
+	height: 0.44rem;
+	background-size: 0.44rem;
 }

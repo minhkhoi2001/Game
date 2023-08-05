@@ -58,6 +58,7 @@ function Xucxac3() {
 			.get(`https://server.vnvip294.com/xucsac3/getallbet`, {})
 			.then((res) => {
 				setTotal(res.data.data);
+				setTotal2(res.data.data);
 			})
 			.catch(() => setTotal(null));
 		axios.get(`https://server.vnvip294.com/notification/getnotifi`, {}).then((res) => {

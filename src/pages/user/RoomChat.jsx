@@ -6,7 +6,7 @@ import VisibilityOff from "@mui/icons-material/VisibilityOff";
 import axios from "axios";
 import { Link, useNavigate } from "react-router-dom";
 
-function CSKH() {
+function RoomChat() {
 	const [profile, setProfile] = useState(null);
 	const [isShow, setShow] = useState(false);
 	axios.interceptors.request.use(
@@ -48,7 +48,7 @@ function CSKH() {
 					<div className="loader"></div>
 				</div>
 			) : null}
-			<div className="main">
+			<div className="main" style={{ background: "#fff" }}>
 				<div className="header">
 					<div className="header-top">
 						<div className="logo">
@@ -71,19 +71,26 @@ function CSKH() {
 						</div>
 					</div>
 				</div>
-				<h1 className="title-h1">Chăm Sóc Khách Hàng</h1>
-				<div style={{ position: "relative", height: "70vh" }}>
-					<iframe
-						src="https://tawk.to/chat/64b7fa5c94cf5d49dc649a9e/1h5najupn"
-						frameborder="0"
-						width="100%"
-						height="100%"
-					></iframe>
-				</div>
+				{profile ? (
+					<div
+						style={{
+							position: "relative",
+							height: "calc(100vh - 2.96rem)",
+							margin: "0 -0.32rem 0 -0.32rem",
+						}}
+					>
+						<div className="hide-chatbar">Phòng Chat</div>
+						<iframe
+							src={`https://organizations.minnit.chat/203983404688183/Main?embed&nickname=${profile.username}`}
+							allowTransparency="true"
+							style={{ width: "100%", height: "100%" }}
+						></iframe>
+					</div>
+				) : null}
 			</div>
 			<Footer />
 		</>
 	);
 }
 
-export default CSKH;
+export default RoomChat;

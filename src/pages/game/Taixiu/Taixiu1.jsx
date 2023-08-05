@@ -58,21 +58,26 @@ function Taixiu1() {
 			.get(`https://server.vnvip294.com/taixiu1/getallbet`, {})
 			.then((res) => {
 				setTotal(res.data.data);
+				setTotal2(res.data.data);
 			})
 			.catch(() => setTotal(null));
-		axios.get(`https://server.vnvip294.com/notification/getnotifi`, {}).then((res) => {
-			setVisible({
-				money: res.data.data[0].money.toLocaleString(),
-				id: res.data.data[0]._id,
+		axios
+			.get(`https://server.vnvip294.com/notification/getnotifi`, {})
+			.then((res) => {
+				setVisible({
+					money: res.data.data[0].money.toLocaleString(),
+					id: res.data.data[0]._id,
+				});
 			});
-		});
 	}, []);
 	useEffect(() => {
 		const timer = setInterval(() => {
 			if (Math.floor(60 - (new Date() - dulieunhap) / 1000) < 0) {
-				axios.get(`https://server.vnvip294.com/auth/getUser`, {}).then((res) => {
-					setProfile(res.data.data);
-				});
+				axios
+					.get(`https://server.vnvip294.com/auth/getUser`, {})
+					.then((res) => {
+						setProfile(res.data.data);
+					});
 				axios.get(`https://server.vnvip294.com/taixiu1/get`).then((res) => {
 					setBet(res.data.data);
 					setDulieunhap(new Date(res.data.data.createdAt));
@@ -110,17 +115,16 @@ function Taixiu1() {
 				},
 			});
 			const result = await swalInst;
-			
+
 			switch (result) {
 				case "submit":
-					
 					axios.post("https://server.vnvip294.com/notification/seen", {
 						id: data.id,
 					});
 					break;
 				default:
 			}
-			
+
 			setVisible(false);
 		};
 		if (isVisible) {
@@ -188,6 +192,7 @@ function Taixiu1() {
 		setIsOpen(false);
 	};
 
+	const [newMoney, setNewMoney] = useState();
 	const onChoose = (e) => {
 		if (item1.includes(e.target.id)) {
 			setItem(item1.filter((item) => item !== e.target.id));
@@ -202,14 +207,19 @@ function Taixiu1() {
 			id: bet?._id,
 			money: item1.length * newMoney,
 		};
-		
-		axios
-			.post("https://server.vnvip294.com/tx1/choose", formData)
-			.then((res) => {
-				swal("Đặt cược thành công", "", "success");
-				setItem([]);
-			})
-			.catch((err) => swal("Thất bại", "Số tiền trong ví không đủ", "error"));
+		if (item1.length == 0) {
+			swal("Thất bại", "Bạn chưa lựa chọn", "error");
+		} else if (newMoney == 0 || newMoney == null) {
+			swal("Thất bại", "Bạn chưa nhập tiền", "error");
+		} else {
+			axios
+				.post("https://server.vnvip294.com/tx1/choose", formData)
+				.then((res) => {
+					swal("Đặt cược thành công", "", "success");
+					setItem([]);
+				})
+				.catch((err) => swal("Thất bại", "Số tiền trong ví không đủ", "error"));
+		}
 	};
 	function formatDate(m) {
 		new Date(m);
@@ -225,7 +235,6 @@ function Taixiu1() {
 			("0" + m.getMinutes()).slice(-2);
 		return dateString;
 	}
-	const [newMoney, setNewMoney] = useState();
 
 	const [activeTab, setActiveTab] = useState("tab1");
 	const handleTabClick = (tabName) => {
@@ -236,7 +245,7 @@ function Taixiu1() {
 	const [activeTabXX, setActiveTabXX] = useState("tabx1");
 	const handleTabClickXX = (tabName) => {
 		setActiveTabXX(tabName);
-		setItem([])
+		setItem([]);
 	};
 
 	function rollLottery(res) {
@@ -275,13 +284,53 @@ function Taixiu1() {
 			})
 			.catch((err) => function () {});
 	}
+	const options = [
+		"10000",
+		"30000",
+		"80000",
+		"240000",
+		"600000",
+		"1500000",
+		"4000000",
+		"9000000",
+
+		"100000",
+		"300000",
+		"800000",
+		"2400000",
+		"6000000",
+		"15000000",
+		"40000000",
+		"90000000",
+
+		"1000000",
+		"3000000",
+		"8000000",
+		"24000000",
+		"60000000",
+		"150000000",
+		"400000000",
+		"900000000",
+	];
+	const [activeOption, setActiveOption] = useState(null);
+
+	const handleOptionClick = (option) => {
+		setActiveOption(option);
+		setNewMoney(option);
+	};
 	return (
 		<>
-			
 			<div className="main">
 				<Header profile={profile} />
 
-				<div className="record_bet" style={{minHeight:"auto", margin: "0 0 0.3rem", padding: ".3rem 0 .6rem"}}>
+				<div
+					className="record_bet"
+					style={{
+						minHeight: "auto",
+						margin: "0 0 0.3rem",
+						padding: ".3rem 0 .6rem",
+					}}
+				>
 					<div className="colum-resultxs">
 						<section className="col-100">
 							{total && bet ? (
@@ -307,123 +356,218 @@ function Taixiu1() {
 										</div>
 									</div>
 								</>
-							) : <div className="loading"><div className="loader"></div></div>}
+							) : (
+								<div className="loading">
+									<div className="loader"></div>
+								</div>
+							)}
 						</section>
 					</div>
 				</div>
 
-						<div style={{minHeight:"2rem"}}>
-							{total ? (
-								<div className="box-quay">
-									<div className="box">
-										{total[0].result.split(" ").map((item, index) => (
-											<div className={`num${item}`}></div>
-										))}
-									</div>
-								</div>
-							) : null}
+				<div style={{ minHeight: "2rem" }}>
+					{total ? (
+						<div className="box-quay">
+							<div className="box">
+								{total[0].result.split(" ").map((item, index) => (
+									<div className={`num${item}`}></div>
+								))}
+							</div>
 						</div>
+					) : null}
+				</div>
 
 				<div className="main_game">
-						<div className="text_choose_center2">
-								<div className="state_choose state_choose2">
-									<div
-										onClick={onChoose}
-										id="1"
-										className={`state_rowindex ${
-											item1.includes("1") ? "chooseItem" : ""
-										}`}
-									>
-										<i id="1" className="state">
-											T
-										</i>
-										<span id="1" className="setting_type">
-											{setting && setting.doiben}
-										</span>
-									</div>
-									<div
-										onClick={onChoose}
-										id="2"
-										className={`state_rowindex ${
-											item1.includes("2") ? "chooseItem" : ""
-										}`}
-									>
-										<i id="2" className="state">
-											X
-										</i>
-										<span id="2" className="setting_type">
-											{setting && setting.doiben}
-										</span>
-									</div>
-									<div
-										onClick={onChoose}
-										id="3"
-										className={`state_rowindex ${
-											item1.includes("3") ? "chooseItem" : ""
-										}`}
-									>
-										<i id="3" className="state">
-											L
-										</i>
-										<span id="3" className="setting_type">
-											{setting && setting.doiben}
-										</span>
-									</div>
-									<div
-										onClick={onChoose}
-										id="4"
-										className={`state_rowindex ${
-											item1.includes("4") ? "chooseItem" : ""
-										}`}
-									>
-										<i id="4" className="state">
-											C
-										</i>
-										<span id="4" className="setting_type">
-											{setting && setting.doiben}
-										</span>
-									</div>
-								</div>
+					<div className="text_choose_center2">
+						<div className="state_choose state_choose2">
+							<div
+								onClick={onChoose}
+								id="1"
+								className={`state_rowindex ${
+									item1.includes("1") ? "chooseItem" : ""
+								}`}
+							>
+								<i id="1" className="state">
+									T
+								</i>
+								<span id="1" className="setting_type">
+									{setting && setting.doiben}
+								</span>
+							</div>
+							<div
+								onClick={onChoose}
+								id="2"
+								className={`state_rowindex ${
+									item1.includes("2") ? "chooseItem" : ""
+								}`}
+							>
+								<i id="2" className="state">
+									X
+								</i>
+								<span id="2" className="setting_type">
+									{setting && setting.doiben}
+								</span>
+							</div>
+							<div
+								onClick={onChoose}
+								id="3"
+								className={`state_rowindex ${
+									item1.includes("3") ? "chooseItem" : ""
+								}`}
+							>
+								<i id="3" className="state">
+									L
+								</i>
+								<span id="3" className="setting_type">
+									{setting && setting.doiben}
+								</span>
+							</div>
+							<div
+								onClick={onChoose}
+								id="4"
+								className={`state_rowindex ${
+									item1.includes("4") ? "chooseItem" : ""
+								}`}
+							>
+								<i id="4" className="state">
+									C
+								</i>
+								<span id="4" className="setting_type">
+									{setting && setting.doiben}
+								</span>
+							</div>
 						</div>
-						<div className="text_choose_center" style={{padding:"0.6rem 0.16667rem"}}>
-							<form onSubmit={onSubmit} className="form-lg">
-								<div className="footer_choose1">
-									<div className="title_choose_footer1">
-										<div className="item_choose_footer1">
-											<div>
-												<input
-													value={newMoney}
-													onChange={(e) => setNewMoney(e.target.value)}
-													required
-													min="1"
-													name="money"
-													type="number"
-													placeholder="Nhập số tiền cược"
-												/>
-											</div>
-										</div>
-										<div
-											className="item_choose_footer1"
+					</div>
+					<div className="text_choose_center3">
+						<form onSubmit={onSubmit} className="form-lg">
+							<div className="footer_choose1">
+								<div className="title_choose_footer1">
+									<ul className="tab-tx">
+										<li
+											className={activeTabXX === "tabx1" ? "active" : ""}
+											onClick={() => handleTabClickXX("tabx1")}
 										>
-											<div style={{ textAlign:"center", margin: "0 auto 0.5rem" }}>
-										<span>
-											Tổng tiền cược{" "}
-											<span style={{ color: "red" }}>
-												{item1.length != 0 && newMoney
-													? (item1.length * newMoney).toLocaleString()
-													: 0}{" "}
-												đ
-											</span>
-										</span>
-									</div>
-											<button type="submit" className="btn-sbmit" style={{ margin: "0.1rem auto 0" }}>
-												Đặt lệnh
-											</button>
+											Mức cược 1
+										</li>
+										<li
+											className={activeTabXX === "tabx2" ? "active" : ""}
+											onClick={() => handleTabClickXX("tabx2")}
+										>
+											Mức cược 2
+										</li>
+										<li
+											className={activeTabXX === "tabx3" ? "active" : ""}
+											onClick={() => handleTabClickXX("tabx3")}
+										>
+											Mức cược 3
+										</li>
+									</ul>
+									{activeTabXX === "tabx1" && (
+										<div className="state_choose state_choose_price">
+											{options.map((option, index) => (
+												<>
+													{index < 8 && (
+														<div
+															key={option}
+															className={`state_rowindex ${
+																activeOption === option ? "chooseItem" : ""
+															}`}
+															onClick={() => handleOptionClick(option)}
+														>
+															<span className="setting_type">
+																{Number(option).toLocaleString()}
+															</span>
+														</div>
+													)}
+												</>
+											))}
 										</div>
+									)}
+									{activeTabXX === "tabx2" && (
+										<div className="state_choose state_choose_price">
+											{options.map((option, index) => (
+												<>
+													{index >= 8 && index < 16 && (
+														<div
+															key={option}
+															className={`state_rowindex ${
+																activeOption === option ? "chooseItem" : ""
+															}`}
+															onClick={() => handleOptionClick(option)}
+														>
+															<span className="setting_type">
+																{Number(option).toLocaleString()}
+															</span>
+														</div>
+													)}
+												</>
+											))}
+										</div>
+									)}
+									{activeTabXX === "tabx3" && (
+										<div className="state_choose state_choose_price">
+											{options.map((option, index) => (
+												<>
+													{index >= 16 && (
+														<div
+															key={option}
+															className={`state_rowindex ${
+																activeOption === option ? "chooseItem" : ""
+															}`}
+															onClick={() => handleOptionClick(option)}
+														>
+															<span className="setting_type">
+																{Number(option).toLocaleString()}
+															</span>
+														</div>
+													)}
+												</>
+											))}
+										</div>
+									)}
+									<input
+										className="state_rowindex"
+										value={newMoney}
+										onChange={(e) => setNewMoney(e.target.value)}
+										onClick={() => setActiveOption(null)}
+										required
+										min="1"
+										name="money"
+										type="number"
+										placeholder="Tự nhập số tiền"
+										style={{
+											width: "100%",
+											padding: "0.22rem 0.34667rem",
+											margin: "0.1rem",
+											height: "1.1rem",
+										}}
+									/>
+									<div className="item_choose_footer1">
+										<div
+											style={{ textAlign: "center", margin: "0 auto 0.5rem" }}
+										>
+											<span style={{ color: "#fff" }}>
+												Tổng tiền cược{" "}
+												<span style={{ color: "#ffe88f" }}>
+													{item1.length != 0 && newMoney
+														? (item1.length * newMoney).toLocaleString()
+														: 0}{" "}
+													đ
+												</span>
+											</span>
+										</div>
+										<button
+											type="submit"
+											className="btn-sbmit"
+											style={{ margin: "0.1rem auto 0" }}
+										>
+											Đặt cược
+										</button>
 									</div>
 								</div>
-							</form>
-						</div>
+							</div>
+						</form>
+					</div>
 				</div>
 
 				<div className="history_game">
@@ -444,19 +588,21 @@ function Taixiu1() {
 
 					<div className="tab-content">
 						{activeTab === "tab1" && (
-							<div className="award_tb">
+							<div className="award_tb table_ls_tx">
 								<table>
 									<thead style={{ textAlign: "center" }}>
 										<tr>
 											<td>Phiên số</td>
 											<td>Kết quả</td>
+											<td>Tài/xỉu</td>
+											<td>Chẵn/lẻ</td>
 											<td>Thời gian</td>
 										</tr>
 									</thead>
 									<tbody>
 										<tr>
 											<td>{bet && bet.id_bet}</td>
-											<td style={{ textAlign: "center" }}>Đang chờ kết quả</td>
+											<td style={{ textAlign: "center" }} colspan="3">Đang chờ kết quả</td>
 											<td>{bet && formatDate(new Date(bet.createdAt))}</td>
 										</tr>
 										{total2 &&
@@ -475,6 +621,8 @@ function Taixiu1() {
 																<div className={`n${item}`}></div>
 															))}
 														</td>
+														<td></td>
+														<td></td>
 														<td>{formatDate(new Date(item.createdAt))}</td>
 													</tr>
 												</>
@@ -489,11 +637,14 @@ function Taixiu1() {
 									<div className="content-history award_tb">
 										{historyGame?.map((item, key) => (
 											<>
-												{item.sanh === "Xúc sắc 3p" ? (
-													<div className="item_inner" onClick={() => {
-														setLs(item);
-														setShow(true);
-													}}>
+												{item.sanh === "Tài xỉu 1p" ? (
+													<div
+														className="item_inner"
+														onClick={() => {
+															setLs(item);
+															setShow(true);
+														}}
+													>
 														<div className="item_history">
 															<div className="title_item_history">
 																<span className="sanh">{item.sanh}</span>
@@ -516,7 +667,7 @@ function Taixiu1() {
 																	: item.id_bet}
 															</div>
 															<div className="id_history_sanh">
-																{GetNameChoose(item.state, null,item.sanh)}
+																{GetNameChoose(item.state, null, item.sanh)}
 															</div>
 														</div>
 														<div className="money_history">
@@ -543,84 +694,86 @@ function Taixiu1() {
 				<Footer />
 
 				{isShow === true && ls.status_bet != "Pending" ? (
-				<>
-					<div className="modal" style={{ zIndex: "9999999" }}>
-						<div className="modaloverlay">
-							<i className="ti-close closelogin"></i>
-						</div>
-						<div className="modalbody">
-							<div>
-								<div className="modalinner" style={{ padding: "10px 15px" }}>
-									<div
-										className="modalheader"
-										style={{ padding: "10px 0 20px" }}
-									>
-										Chi tiết cược
-									</div>
+					<>
+						<div className="modal" style={{ zIndex: "9999999" }}>
+							<div className="modaloverlay">
+								<i className="ti-close closelogin"></i>
+							</div>
+							<div className="modalbody">
+								<div>
+									<div className="modalinner" style={{ padding: "10px 15px" }}>
+										<div
+											className="modalheader"
+											style={{ padding: "10px 0 20px" }}
+										>
+											Chi tiết cược
+										</div>
 
-									{ls.id_bet.id_bet ? (
-										<>
-											<div className="lsgd-table">
-												<div>Trò chơi</div>
-												<div>Xúc sắc 3p</div>
+										{ls.id_bet.id_bet ? (
+											<>
+												<div className="lsgd-table">
+													<div>Trò chơi</div>
+													<div>Tài xỉu 3p</div>
+												</div>
+												<div className="lsgd-table">
+													<div>Phiên</div>
+													<div>{ls.id_bet.id_bet}</div>
+												</div>
+												<div className="lsgd-table">
+													<div>Thời gian</div>
+													<div>{formatDate(new Date(ls.createdAt))}</div>
+												</div>
+												<div className="lsgd-table">
+													<div>Đặt cược</div>
+													<div>{GetNameChoose(ls.state, ls.type, ls.sanh)}</div>
+												</div>
+												<div className="lsgd-table">
+													<div>Tổng đặt</div>
+													<div>{Number(ls.money).toLocaleString()} đ</div>
+												</div>
+												<div className="lsgd-table">
+													<div>Tổng thắng</div>
+													<div>{Number(ls.moneythang).toLocaleString()} đ</div>
+												</div>
+												<h3
+													style={{ fontSize: "0.4rem", margin: "20px 0 10px" }}
+												>
+													Kết quả phiên {ls.id_bet.id_bet}
+												</h3>
+												<div
+													className="history_xucxac"
+													style={{
+														display: "flex",
+														justifyContent: "center",
+													}}
+												>
+													{ls.id_bet.result.split(" ").map((item) => (
+														<div className={`n${item}`}></div>
+													))}
+												</div>
+											</>
+										) : null}
+										<div>
+											<div className="modalformcontrols">
+												<button
+													onClick={() => setShow(false)}
+													className="popup-close"
+													style={{
+														background: "#0064ff",
+														boxShadow: "none",
+														textShadow: "none",
+													}}
+												>
+													ĐÓNG
+												</button>
 											</div>
-											<div className="lsgd-table">
-												<div>Phiên</div>
-												<div>{ls.id_bet.id_bet}</div>
-											</div>
-											<div className="lsgd-table">
-												<div>Thời gian</div>
-												<div>{formatDate(new Date(ls.createdAt))}</div>
-											</div>
-											<div className="lsgd-table">
-												<div>Đặt cược</div>
-												<div>{GetNameChoose(ls.state, ls.type, ls.sanh)}</div>
-											</div>
-											<div className="lsgd-table">
-												<div>Tổng đặt</div>
-												<div>{Number(ls.money).toLocaleString()} đ</div>
-											</div>
-											<div className="lsgd-table">
-												<div>Tổng thắng</div>
-												<div>{Number(ls.moneythang).toLocaleString()} đ</div>
-											</div>
-											<h3 style={{ fontSize: "0.4rem", margin: "20px 0 10px" }}>
-												Kết quả phiên {ls.id_bet.id_bet}
-											</h3>
-											<div
-															className="history_xucxac"
-															style={{
-																display: "flex",
-																justifyContent: "center",
-															}}
-														>
-															{ls.id_bet.result.split(" ").map((item) => (
-																<div className={`n${item}`}></div>
-															))}
-														</div>
-										</>
-									) : null}
-									<div>
-										<div className="modalformcontrols">
-											<button
-												onClick={() => setShow(false)}
-												className="popup-close"
-												style={{
-													background: "#0064ff",
-													boxShadow: "none",
-													textShadow: "none",
-												}}
-											>
-												ĐÓNG
-											</button>
 										</div>
 									</div>
 								</div>
 							</div>
 						</div>
-					</div>
-				</>
-			) : null}
+					</>
+				) : null}
 			</div>
 		</>
 	);

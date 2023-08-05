@@ -14,6 +14,8 @@ import HomeIcon from '@mui/icons-material/Home';
 import AddBusinessIcon from '@mui/icons-material/AddBusiness';
 import RedeemIcon from '@mui/icons-material/Redeem';
 import RedeemOutlinedIcon from '@mui/icons-material/RedeemOutlined';
+import ForumOutlinedIcon from '@mui/icons-material/ForumOutlined';
+import ForumIcon from '@mui/icons-material/Forum';
 function Footer(props) {
 	var profile = props.profile
 	const location = useLocation()
@@ -24,11 +26,17 @@ function Footer(props) {
 			title: "Khuyến mãi",
 			to: "/notification",
 		},
-		{
+		/*{
 			icon: <AddBusinessOutlinedIcon />,
 			iconactive: <AddBusinessIcon/>,
 			title: "Nạp tiền",
 			to: "/recharge",
+		},*/
+		{
+			icon: <ForumOutlinedIcon />,
+			iconactive: <ForumIcon/>,
+			title: "Phòng chat",
+			to: "/chat",
 		},
 		{
 			icon: <HomeOutlinedIcon />,

@@ -30,7 +30,7 @@ const items = [
 		icon: <Person2Icon fontSize="small" />,
 		title: "Quản lý nhân viên",
 	},
-	{
+	/*{
 		href: "/admin/set1",
 		icon: <SportsEsportsIcon fontSize="small" />,
 		title: "Set Kèo Keno 1p ",
@@ -65,7 +65,7 @@ const items = [
 		href: "/admin/setxs5",
 		icon: <SportsEsportsIcon fontSize="small" />,
 		title: "Set Kèo Xúc sắc 5p ",
-	},
+	},*/
 	{
 		href: "/admin/settx1",
 		icon: <SportsEsportsIcon fontSize="small" />,
