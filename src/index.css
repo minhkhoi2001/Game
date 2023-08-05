@@ -814,13 +814,19 @@ table tbody tr:hover {
 	margin-top: 0.33rem;
 }
 .text_choose_center3 {
-	background: #ee8d8d;
+	background: #ffb30099;
 	box-shadow: 0 0.05333rem 0.10667rem #c5c5da40;
 	border-radius: 0.26667rem;
 	padding: 0.3rem 0.3rem 0.5rem;
 	text-align: center;
 	font-size: 0.34667rem;
 	margin-top: 0.33rem;
+}
+.text_choose_center3.t2a {
+	background: #1ac52999;
+}
+.text_choose_center3.t3a {
+	background: #ff6c0099;
 }
 .text_choose_center3 .state_choose_price > div {
 	background: #fff;

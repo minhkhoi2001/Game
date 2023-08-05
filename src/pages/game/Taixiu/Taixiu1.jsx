@@ -438,7 +438,7 @@ function Taixiu1() {
 							</div>
 						</div>
 					</div>
-					<div className="text_choose_center3">
+					<div className={`text_choose_center3 ${activeTabXX === "tabx1" ? "t1a" : activeTabXX === "tabx2" ? "t2a" : activeTabXX === "tabx3" ? "t3a" : ""}`}>
 						<form onSubmit={onSubmit} className="form-lg">
 							<div className="footer_choose1">
 								<div className="title_choose_footer1">
@@ -548,7 +548,7 @@ function Taixiu1() {
 										>
 											<span style={{ color: "#fff" }}>
 												Tổng tiền cược{" "}
-												<span style={{ color: "#ffe88f" }}>
+												<span style={{ color: "#f2f2f2" }}>
 													{item1.length != 0 && newMoney
 														? (item1.length * newMoney).toLocaleString()
 														: 0}{" "}

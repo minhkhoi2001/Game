@@ -74,7 +74,7 @@ function CSKH() {
 				<h1 className="title-h1">Chăm Sóc Khách Hàng</h1>
 				<div style={{ position: "relative", height: "70vh" }}>
 					<iframe
-						src="https://tawk.to/chat/64b7fa5c94cf5d49dc649a9e/1h5najupn"
+						src="https://tawk.to/chat/64b7fa5c94cf5d49dc649a9e/1h5najupn1"
 						frameborder="0"
 						width="100%"
 						height="100%"

@@ -43,11 +43,6 @@ function RoomChat() {
 	}, []);
 	return (
 		<>
-			{isLoading ? (
-				<div className="loading">
-					<div className="loader"></div>
-				</div>
-			) : null}
 			<div className="main" style={{ background: "#fff" }}>
 				<div className="header">
 					<div className="header-top">
@@ -63,9 +58,12 @@ function RoomChat() {
 										Số dư: <b>{Math.floor(profile.money).toLocaleString()}đ</b>
 									</span>
 								) : (
+									<>
+									<div className="loading"><div className="loader"></div></div>
 									<span style={{ marginRight: "0.111rem" }}>
 										Số dư: <b>******đ</b>
 									</span>
+									</>
 								)}
 							</div>
 						</div>
