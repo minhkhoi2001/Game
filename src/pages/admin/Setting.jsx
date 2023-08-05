@@ -31,7 +31,7 @@ function Setting() {
 	);
 	useEffect(()=>{
 		if(load==true){
-			axios.get(`https://server.vnvip294.com/setting/get`, {}).then((res) => {
+			axios.get(`http://localhost/setting/get`, {}).then((res) => {
 				setSetting(res.data.data[0]);
 				setLoad(false)
 			});		
@@ -86,14 +86,14 @@ function Setting() {
 			mnloxien4: Number(e.target.mnloxien4.value),
 			mntruotxien4:Number(e.target.truotxien4.value),
 			mntruotxien8:Number(e.target.truotxien8.value),
-			tx1:Number(e.target.truotxien8.value),
+			tx1:Number(e.target.tx1.value),
 			tx3:Number(e.target.tx3.value),
 			tx5:Number(e.target.tx5.value),
 			aff: Number(e.target.aff.value)
 		}
 		
 		axios
-			.put(`https://server.vnvip294.com/setting/update`, formData)
+			.put(`http://localhost/setting/update`, formData)
 			.then((res) => {
 				setLoad(true);
 				swal("Sửa thông tin trò chơi thành công!")

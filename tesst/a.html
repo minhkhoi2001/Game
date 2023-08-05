@@ -1,0 +1,64 @@
+<!DOCTYPE html>
+<html lang="en">
+    <head>
+        <meta charset="UTF-8" />
+        <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+        <title>Animation</title>
+        <style>
+            body,
+            html {
+                height: 100%;
+                margin: 0;
+                overflow: hidden;
+            }
+
+            .circle {
+                width: 50px;
+                height: 50px;
+                border-radius: 50%;
+                background-color: red;
+                position: absolute;
+            }
+        </style>
+    </head>
+    <body>
+        <img class="circle" src="https://m.media-amazon.com/images/I/51gibCoSDgL._AC_UF350,350_QL80_.jpg" class="point"/>
+        <script>
+           document.addEventListener("DOMContentLoaded", function() {
+    const circle = document.querySelector(".circle");
+    const endPos = { x: 300, y: 200 };
+    const shakeAmount = 10;
+
+    function animateTo(position) {
+        const xDiff = position.x - parseInt(circle.style.left || 0);
+        const yDiff = position.y - parseInt(circle.style.top || 0);
+        const distance = Math.sqrt(xDiff * xDiff + yDiff * yDiff);
+
+        const duration = distance * 5; // Adjust the duration based on distance
+
+        circle.style.transition = `left ${duration}ms ease-in-out, top ${duration}ms ease-in-out`;
+        circle.style.left = `${position.x}px`;
+        circle.style.top = `${position.y}px`;
+
+        setTimeout(animateShake, duration);
+    }
+
+    function animateShake() {
+        circle.style.transition = "transform 500ms ease-in-out";
+        circle.style.transform = `rotate(-${shakeAmount}deg)`;
+
+        setTimeout(() => {
+            circle.style.transform = `rotate(${shakeAmount}deg)`;
+        }, 500);
+    }
+
+    // Trigger the animation after a delay
+    setTimeout(() => {
+        animateTo(endPos);
+    }, 1000); // Adjust the delay as needed
+});
+
+         
+        </script>
+    </body>
+</html>
