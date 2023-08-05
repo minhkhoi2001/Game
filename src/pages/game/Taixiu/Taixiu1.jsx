@@ -391,7 +391,7 @@ function Taixiu1() {
 									TÀI
 								</i>
 								<span id="1" className="setting_type">
-									{setting && setting.doiben}
+									{setting && setting.tx1}
 								</span>
 							</div>
 							<div
@@ -405,7 +405,7 @@ function Taixiu1() {
 									XỈU
 								</i>
 								<span id="2" className="setting_type">
-									{setting && setting.doiben}
+									{setting && setting.tx1}
 								</span>
 							</div>
 							<div
@@ -419,7 +419,7 @@ function Taixiu1() {
 									LẺ
 								</i>
 								<span id="3" className="setting_type">
-									{setting && setting.doiben}
+									{setting && setting.tx1}
 								</span>
 							</div>
 							<div
@@ -433,7 +433,7 @@ function Taixiu1() {
 									CHẴN
 								</i>
 								<span id="4" className="setting_type">
-									{setting && setting.doiben}
+									{setting && setting.tx1}
 								</span>
 							</div>
 						</div>

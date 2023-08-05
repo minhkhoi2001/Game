@@ -86,7 +86,7 @@ function Setting() {
 			mnloxien4: Number(e.target.mnloxien4.value),
 			mntruotxien4:Number(e.target.truotxien4.value),
 			mntruotxien8:Number(e.target.truotxien8.value),
-			tx1:Number(e.target.truotxien8.value),
+			tx1:Number(e.target.tx1.value),
 			tx3:Number(e.target.tx3.value),
 			tx5:Number(e.target.tx5.value),
 			aff: Number(e.target.aff.value)

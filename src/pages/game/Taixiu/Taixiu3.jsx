@@ -373,7 +373,7 @@ function Taixiu3() {
 									T
 								</i>
 								<span id="1" className="setting_type">
-									{setting && setting.doiben}
+									{setting && setting.tx3}
 								</span>
 							</div>
 							<div
@@ -387,7 +387,7 @@ function Taixiu3() {
 									X
 								</i>
 								<span id="2" className="setting_type">
-									{setting && setting.doiben}
+									{setting && setting.tx3}
 								</span>
 							</div>
 							<div
@@ -401,7 +401,7 @@ function Taixiu3() {
 									L
 								</i>
 								<span id="3" className="setting_type">
-									{setting && setting.doiben}
+									{setting && setting.tx3}
 								</span>
 							</div>
 							<div
@@ -415,7 +415,7 @@ function Taixiu3() {
 									C
 								</i>
 								<span id="4" className="setting_type">
-									{setting && setting.doiben}
+									{setting && setting.tx3}
 								</span>
 							</div>
 						</div>
