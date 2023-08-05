@@ -388,7 +388,7 @@ function Taixiu1() {
 								}`}
 							>
 								<i id="1" className="state">
-									T
+									TÀI
 								</i>
 								<span id="1" className="setting_type">
 									{setting && setting.doiben}
@@ -402,7 +402,7 @@ function Taixiu1() {
 								}`}
 							>
 								<i id="2" className="state">
-									X
+									XỈU
 								</i>
 								<span id="2" className="setting_type">
 									{setting && setting.doiben}
@@ -416,7 +416,7 @@ function Taixiu1() {
 								}`}
 							>
 								<i id="3" className="state">
-									L
+									LẺ
 								</i>
 								<span id="3" className="setting_type">
 									{setting && setting.doiben}
@@ -430,7 +430,7 @@ function Taixiu1() {
 								}`}
 							>
 								<i id="4" className="state">
-									C
+									CHẴN
 								</i>
 								<span id="4" className="setting_type">
 									{setting && setting.doiben}
@@ -592,7 +592,7 @@ function Taixiu1() {
 								<table>
 									<thead style={{ textAlign: "center" }}>
 										<tr>
-											<td>Phiên số</td>
+											<td>Phiên</td>
 											<td>Kết quả</td>
 											<td>Tài/xỉu</td>
 											<td>Chẵn/lẻ</td>
@@ -601,15 +601,17 @@ function Taixiu1() {
 									</thead>
 									<tbody>
 										<tr>
-											<td>{bet && bet.id_bet}</td>
-											<td style={{ textAlign: "center" }} colspan="3">Đang chờ kết quả</td>
+											<td style={{ textAlign: "center" }}>{bet && bet.id_bet}</td>
+											<td style={{ textAlign: "center" }} colspan="3">
+												Đang chờ kết quả
+											</td>
 											<td>{bet && formatDate(new Date(bet.createdAt))}</td>
 										</tr>
 										{total2 &&
 											total2.map((item, index) => (
 												<>
 													<tr key={index}>
-														<td>{item.id_bet}</td>
+														<td style={{ textAlign: "center" }}>{item.id_bet}</td>
 														<td
 															className="history_xucxac"
 															style={{
@@ -621,8 +623,28 @@ function Taixiu1() {
 																<div className={`n${item}`}></div>
 															))}
 														</td>
-														<td></td>
-														<td></td>
+														<td style={{ textAlign: "center" }}>
+															{item.result
+																.split(" ")
+																.map(Number)
+																.reduce((acc, curr) => acc + curr, 0) > 10 ? (
+																<span class="t-blue">Tài</span>
+															) : (
+																<span class="t-green">Xỉu</span>
+															)}
+														</td>
+														<td style={{ textAlign: "center" }}>
+															{item.result
+																.split(" ")
+																.map(Number)
+																.reduce((acc, curr) => acc + curr, 0) %
+																2 ==
+															0 ? (
+																<span class="t-blue">Chẵn</span>
+															) : (
+																<span class="t-green">Lẻ</span>
+															)}
+														</td>
 														<td>{formatDate(new Date(item.createdAt))}</td>
 													</tr>
 												</>

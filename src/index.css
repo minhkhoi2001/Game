@@ -1919,3 +1919,9 @@ body:has(.admin-theme) #webpack-dev-server-client-overlay {
 	height: 0.44rem;
 	background-size: 0.44rem;
 }
+.t-blue {
+	color: #4c49e3;
+}
+.t-green {
+	color: #32c977;
+}
