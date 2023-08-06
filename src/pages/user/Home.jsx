@@ -37,12 +37,12 @@ function Home() {
 	const [notify, setNotify] = useState();
 	useEffect(() => {
 		axios
-			.get(`https://server.vnvip294.com/auth/getUser`, {})
+			.get(`http://localhost/auth/getUser`, {})
 			.then((res) => {
 				setProfile1(res.data.data);
 			})
 			.catch((err) => localStorage.removeItem("user"));
-		axios.get(`https://server.vnvip294.com/auth/getnotify`, {}).then((res) => {
+		axios.get(`http://localhost/auth/getnotify`, {}).then((res) => {
 			setNotify(res.data.data[0]);
 			});
 	}, []);

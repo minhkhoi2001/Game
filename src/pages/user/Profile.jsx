@@ -14,7 +14,217 @@ import AccountBalanceOutlinedIcon from "@mui/icons-material/AccountBalanceOutlin
 import LockPersonOutlinedIcon from "@mui/icons-material/LockPersonOutlined";
 import LogoutOutlinedIcon from "@mui/icons-material/LogoutOutlined";
 import KeyboardArrowRightOutlinedIcon from "@mui/icons-material/KeyboardArrowRightOutlined";
+const getVipUser = (level) => {
+	switch (level) {
+		case 0:
+			return (
+				<>
+					<div
+						style={{
+							backgroundImage: `url(${require("../../img/v1.png")})`,
+							backgroundPosition: "center",
+							backgroundSize: "cover",
+							backgroundRepeat: "no-repeat",
+							width: "130px",
+							height: '130px',
+							display:'flex',
+							alignItems:'center',
+							justifyItems:'center',
+							justifyContent:'center'
+						}}
+					>
+						<img src={require("../../img/profile-picture.jpg")} alt="Profile" />
+					</div>
+					<div>Vip 1</div>
+				</>
+			);
+		case 2:
+			return (
+				<>
+					<div style={{
+							backgroundImage: `url(${require("../../img/v2.png")})`,
+							backgroundPosition: "center",
+							backgroundSize: "cover",
+							backgroundRepeat: "no-repeat",
+							width: "130px",
+							height: '130px',
+							display:'flex',
+							alignItems:'center',
+							justifyItems:'center',
+							justifyContent:'center'
+						}}>
+						<img src={require("../../img/profile-picture.jpg")} alt="Profile" />
+					</div>
+					<div>Vip 2</div>
+				</>
+			);
+		case 3:
+			return (
+				<>
+					<div style={{
+							backgroundImage: `url(${require("../../img/v3.png")})`,
+							backgroundPosition: "center",
+							backgroundSize: "cover",
+							backgroundRepeat: "no-repeat",
+							width: "130px",
+							height: '130px',
+							display:'flex',
+							alignItems:'center',
+							justifyItems:'center',
+							justifyContent:'center'
+						}}>
+						<img src={require("../../img/profile-picture.jpg")} alt="Profile" />
+					</div>
+					<div>Vip 3</div>
+				</>
+			);
+		case 4:
+			return (
+				<>
+					<div style={{
+							backgroundImage: `url(${require("../../img/v4.png")})`,
+							backgroundPosition: "center",
+							backgroundSize: "cover",
+							backgroundRepeat: "no-repeat",
+							width: "130px",
+							height: '130px',
+							display:'flex',
+							alignItems:'center',
+							justifyItems:'center',
+							justifyContent:'center'
+						}}>
+						<img src={require("../../img/profile-picture.jpg")} alt="Profile" />
+					</div>
+					<div>Vip 4</div>
+				</>
+			);
+		case 5:
+			return (
+				<>
+					<div
+						style={{
+							backgroundImage: `url(${require("../../img/v5.png")})`,
+							backgroundPosition: "center",
+							backgroundSize: "cover",
+							backgroundRepeat: "no-repeat",
+							width: "130px",
+							height: '130px',
+							display:'flex',
+							alignItems:'center',
+							justifyItems:'center',
+							justifyContent:'center'
+						}}
+					>
+						<img src={require("../../img/profile-picture.jpg")} alt="Profile" />
+					</div>
+					<div>Vip 5</div>
+				</>
+			);
+		case 6:
+			return (
+				<>
+					<div style={{
+							backgroundImage: `url(${require("../../img/v6.png")})`,
+							backgroundPosition: "center",
+							backgroundSize: "cover",
+							backgroundRepeat: "no-repeat",
+							width: "130px",
+							height: '130px',
+							display:'flex',
+							alignItems:'center',
+							justifyItems:'center',
+							justifyContent:'center'
+						}}>
+						<img src={require("../../img/profile-picture.jpg")} alt="Profile" />
+					</div>
+					<div>Vip 6</div>
+				</>
+			);
+		case 7:
+			return (
+				<>
+					<div style={{
+							backgroundImage: `url(${require("../../img/v7.png")})`,
+							backgroundPosition: "center",
+							backgroundSize: "cover",
+							backgroundRepeat: "no-repeat",
+							width: "130px",
+							height: '130px',
+							display:'flex',
+							alignItems:'center',
+							justifyItems:'center',
+							justifyContent:'center'
+						}}>
+						<img src={require("../../img/profile-picture.jpg")} alt="Profile" />
+					</div>
+					<div>Vip 7</div>
+				</>
+			);
+		case 8:
+			return (
+				<>
+					<div style={{
+							backgroundImage: `url(${require("../../img/v8.png")})`,
+							backgroundPosition: "center",
+							backgroundSize: "cover",
+							backgroundRepeat: "no-repeat",
+							width: "130px",
+							height: '130px',
+							display:'flex',
+							alignItems:'center',
+							justifyItems:'center',
+							justifyContent:'center'
+						}}>
+						<img src={require("../../img/profile-picture.jpg")} alt="Profile" />
+					</div>
+					<div>Vip 8</div>
+				</>
+			);
+		case 9:
+			return (
+				<>
+					<div style={{
+							backgroundImage: `url(${require("../../img/v9.png")})`,
+							backgroundPosition: "center",
+							backgroundSize: "cover",
+							backgroundRepeat: "no-repeat",
+							width: "130px",
+							height: '130px',
+							display:'flex',
+							alignItems:'center',
+							justifyItems:'center',
+							justifyContent:'center'
+						}}>
+						<img src={require("../../img/profile-picture.jpg")} alt="Profile" />
+					</div>
+					<div>Vip 9</div>
+				</>
+			);
+		case 10:
+			return (
+				<>
+					<div style={{
+							backgroundImage: `url(${require("../../img/v10.png")})`,
+							backgroundPosition: "center",
+							backgroundSize: "cover",
+							backgroundRepeat: "no-repeat",
+							width: "130px",
+							height: '130px',
+							display:'flex',
+							alignItems:'center',
+							justifyItems:'center',
+							justifyContent:'center'
+						}}>
+						<img src={require("../../img/profile-picture.jpg")} alt="Profile" />
+					</div>
+					<div>Vip 10</div>
+				</>
+			);
 
+		default:
+			break;
+	}
+};
 function Profile() {
 	const [profile, setProfile] = useState(null);
 	const navigate = useNavigate();
@@ -35,7 +245,7 @@ function Profile() {
 	);
 	useEffect(() => {
 		axios
-			.get(`https://server.vnvip294.com/auth/getUser`, {})
+			.get(`http://localhost/auth/getUser`, {})
 			.then((res) => {
 				setProfile(res.data.data);
 			})
@@ -73,10 +283,11 @@ function Profile() {
 						<div className="account__ID"></div>
 						<div className="account__balance">
 							<span style={{ margin: "0" }}>
-								<img
+								{/* <img
 									src={require("../../img/profile-picture.jpg")}
 									alt="Profile"
-								/>
+								/> */}
+								{getVipUser(profile?.level)}
 								{profile ? <span>{profile.username}</span> : <span>...</span>}
 							</span>
 							<span style={{ margin: "0" }}>
@@ -92,7 +303,9 @@ function Profile() {
 								<strong id="account__balance">
 									{Math.floor(profile.money).toLocaleString()} <small>đ</small>
 								</strong>
-							) : <strong>*****</strong>}
+							) : (
+								<strong>*****</strong>
+							)}
 						</div>
 					</div>
 					<div className="account__transaction">
