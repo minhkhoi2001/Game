@@ -548,7 +548,7 @@ function Taixiu1() {
 										>
 											<span style={{ color: "#fff" }}>
 												Tổng tiền cược{" "}
-												<span style={{ color: "#f2f2f2" }}>
+												<span style={{ color: "red" }}>
 													{item1.length != 0 && newMoney
 														? (item1.length * newMoney).toLocaleString()
 														: 0}{" "}
