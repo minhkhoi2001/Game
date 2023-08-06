@@ -72,7 +72,7 @@ function HistoryBetAll() {
 	};
 	useEffect(() => {
 		axios
-			.get(`http://localhost/history/all`, {})
+			.get(`https://server.vnvip294.com/history/all`, {})
 			.then((res) => {
 				localStorage.setItem("data", JSON.stringify(res.data.data));
 				setData(res.data.data);
@@ -121,7 +121,7 @@ function HistoryBetAll() {
 			moneythang: e.target.moneythang.value,
 		};
 		axios
-			.patch(`http://localhost/history`, formData)
+			.patch(`https://server.vnvip294.com/history`, formData)
 			.then((res) => {
 				setShow(false);
 				swal("Cập nhật thành công")
