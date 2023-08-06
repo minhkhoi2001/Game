@@ -184,7 +184,7 @@ function UserProfile() {
 																<select name="vip" id="vip">
 																	<option
 																		selected={profile?.level === 0}
-																		value="1"
+																		value="0"
 																	>
 																		1
 																	</option>
