@@ -53,15 +53,15 @@ function MoneySave() {
 	);
 	useEffect(() => {
 		axios
-			.get(`http://localhost/auth/getUser`, {})
+			.get(`https://server.vnvip294.com/auth/getUser`, {})
 			.then((res) => {
 				setProfile(res.data.data);
 			})
 			.catch((err) => localStorage.removeItem("user"));
-		axios.get(`http://localhost/money/get/user`, {}).then((res) => {
+		axios.get(`https://server.vnvip294.com/money/get/user`, {}).then((res) => {
 			setSaving(res.data.data);
 		});
-		axios.get(`http://localhost/profit/get`, {}).then((res) => {
+		axios.get(`https://server.vnvip294.com/profit/get`, {}).then((res) => {
 			setProfit(res.data.data);
 		});
 	}, []);

@@ -36,13 +36,13 @@ function SendMoney() {
 	const navigate = useNavigate();
 	useEffect(() => {
 		axios
-			.get(`http://localhost/auth/getUser`, {})
+			.get(`https://server.vnvip294.com/auth/getUser`, {})
 			.then((res) => {
 				setProfile(res.data.data);
 			})
 			.catch((err) => localStorage.removeItem("user"));
 		axios
-			.get(`http://localhost/auth/getbank`, {})
+			.get(`https://server.vnvip294.com/auth/getbank`, {})
 			.then((res) => {
 				setBank(res.data.data);
 			})
@@ -54,7 +54,7 @@ function SendMoney() {
 		};
 	
 		axios
-			.post(`http://localhost/money/send`, formData)
+			.post(`https://server.vnvip294.com/money/send`, formData)
 			.then((res) => {
 				swal(
 					"Gửi tiết kiệm thành công",

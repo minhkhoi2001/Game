@@ -34,7 +34,7 @@ function Dashboard() {
 
 	useEffect(() => {
 		axios
-			.get("http://localhost/statistic/getalladmin")
+			.get("https://server.vnvip294.com/statistic/getalladmin")
 			.then((res) => setData(res.data.data));
 	}, []);
 	return (
