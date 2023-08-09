@@ -27,7 +27,7 @@ function SettingProfit() {
 	);
 	useEffect(() => {
 		if (load == true) {
-			axios.get(`https://server.vnvip294.com/profit/get`, {}).then((res) => {
+			axios.get(`http://localhost/profit/get`, {}).then((res) => {
 				setSetting(res.data.data[0]);
 				setLoad(false);
 			});
@@ -52,7 +52,7 @@ function SettingProfit() {
 		};
 
 		axios
-			.put(`https://server.vnvip294.com/profit/update`, formData)
+			.put(`http://localhost/profit/update`, formData)
 			.then((res) => {
 				setLoad(true);
 				swal("Sửa thông tin trò chơi thành công!");
