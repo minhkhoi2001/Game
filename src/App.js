@@ -110,8 +110,6 @@ import UsersByEmployee from "./pages/admin/UsersByEmployee";
 import Taixiu3 from "./pages/game/Taixiu/Taixiu3";
 import Taixiu5 from "./pages/game/Taixiu/Taixiu5";
 import MoneySave from "./pages/user/MoneySave";
-import SendMoney from "./pages/user/SendMoney";
-import WithDrawSaveMoney from "./pages/user/WithDrawSaveMoney";
 import SettingProfit from "./pages/admin/SettingProfit";
 import HoaHong from "./pages/admin/HoaHong";
 
@@ -193,8 +191,6 @@ function App() {
 
 							<Route element={<Profile />} path="/profile" />
 							<Route element={<MoneySave />} path="/money" />
-							<Route element={<SendMoney />} path="/money/send" />
-							<Route element={<WithDrawSaveMoney />} path="/money/withdraw" />
 							<Route element={<HistoryAll />} path="/history" />
 							<Route element={<HistoryBet />} path="/historyplay" />
 							<Route element={<HistoryAdd />} path="/historyadd" />

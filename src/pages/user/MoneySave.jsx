@@ -4,6 +4,9 @@ import { useEffect, useState } from "react";
 import axios from "axios";
 import { Link, useNavigate } from "react-router-dom";
 import Header from "../components/Header";
+import { useForm } from "react-hook-form";
+import swal from "sweetalert";
+
 function getLV(data, save) {
 	switch (data) {
 		case 0:
@@ -53,18 +56,90 @@ function MoneySave() {
 	);
 	useEffect(() => {
 		axios
-			.get(`http://localhost/auth/getUser`, {})
+			.get(`https://server.vnvip294.com/auth/getUser`, {})
 			.then((res) => {
 				setProfile(res.data.data);
 			})
 			.catch((err) => localStorage.removeItem("user"));
-		axios.get(`http://localhost/money/get/user`, {}).then((res) => {
+		axios.get(`https://server.vnvip294.com/money/get/user`, {}).then((res) => {
 			setSaving(res.data.data);
 		});
-		axios.get(`http://localhost/profit/get`, {}).then((res) => {
+		axios.get(`https://server.vnvip294.com/profit/get`, {}).then((res) => {
 			setProfit(res.data.data);
 		});
 	}, []);
+	const {
+		register,
+		handleSubmit,
+		setError,
+		formState: { errors },
+	} = useForm();
+	const onSubmit1 = (data) => {
+		const formData = {
+			money: data.money,
+		};
+
+		axios
+			.post(`https://server.vnvip294.com/money/send`, formData)
+			.then((res) => {
+				swal({
+					title: "Thông báo",
+					text: "Gửi tiết kiệm thành công!",
+					icon: "success",
+					buttons: "OK",
+				}).then(() => window.location.reload());
+			})
+			.catch((err) =>
+				setError("money", {
+					type: "minLength",
+					message: "Lỗi giao dịch 404!",
+				})
+			);
+	};
+	const onSubmit2 = (data) => {
+		if (data.money > profile.money) {
+			setError("money", {
+				type: "minLength",
+				message: "Số tiền rút vui lòng nhỏ hơn số dư hiện tại",
+			});
+			return;
+		}
+		const formData = {
+			money: data.money,
+		};
+		axios
+			.post(`https://server.vnvip294.com/money/withdraw`, formData)
+			.then((res) => {
+				swal({
+					title: "Thông báo",
+					text: "Rút tiền tiết kiệm về ví thành công!",
+					icon: "success",
+					buttons: "OK",
+				}).then(() => window.location.reload());
+			})
+			.catch((err) =>
+				setError("money", {
+					type: "minLength",
+					message: "Lỗi giao dịch 404!",
+				})
+			);
+	};
+	const [isVisible1, setIsVisible1] = useState(false);
+	const [isVisible2, setIsVisible2] = useState(false);
+
+	const toggleVisibility1 = () => {
+		setIsVisible1(!isVisible1);
+		if (isVisible2) {
+			setIsVisible2(false);
+		}
+	};
+
+	const toggleVisibility2 = () => {
+		setIsVisible2(!isVisible2);
+		if (isVisible1) {
+			setIsVisible1(false);
+		}
+	};
 	return (
 		<>
 			<div className="main">
@@ -113,22 +188,88 @@ function MoneySave() {
 							</div>
 						</div>
 						<div className="col-50">
-							<button className="btn-1" onClick={()=>navigate('/money/send')}>Nạp két</button>
+							<button className="btn-1" onClick={toggleVisibility1}>
+								Nạp két
+							</button>
 						</div>
 						<div className="col-50">
-							<button className="btn-2" onClick={()=>navigate('/money/withdraw')}>Rút két</button>
+							<button className="btn-2" onClick={toggleVisibility2}>
+								Rút két
+							</button>
 						</div>
 					</div>
 				</div>
+				{isVisible1 && (
+					<div className="box-image" style={{ marginTop: "0.3rem" }}>
+						<h5 style={{ fontSize: "0.5rem", marginTop: "0.3rem" }}>
+							Chuyển tiền vào két
+						</h5>
+						<form className="form-lg" onSubmit={handleSubmit(onSubmit1)}>
+							<div>
+								<div>
+									<input
+										className="ipadd"
+										type="number"
+										{...register("money", { required: true })}
+										placeholder="Nhập số tiền nạp"
+									/>
+								</div>
+								{errors.money ? (
+									<p style={{ color: "red" }}>{errors.money.message}</p>
+								) : null}
+								<button
+									type="submit"
+									className="btn-submit"
+									style={{ marginTop: "0.1rem" }}
+								>
+									Xác nhận
+								</button>
+							</div>
+						</form>
+					</div>
+				)}
+				{isVisible2 && (
+					<div className="box-image" style={{ marginTop: "0.3rem" }}>
+						<h5 style={{ fontSize: "0.5rem", marginTop: "0.3rem" }}>
+							Rút tiền khỏi két
+						</h5>
+						<form className="form-lg" onSubmit={handleSubmit(onSubmit2)}>
+							<div>
+								<>
+									<div>
+										<input
+											className="ipadd"
+											type="number"
+											{...register("money", { required: true })}
+											placeholder="Nhập số tiền rút"
+										/>
+									</div>
+									<button
+										type="submit"
+										className="btn-submit"
+										style={{ marginTop: "0.1rem" }}
+									>
+										Xác nhận
+									</button>
+								</>
+								{errors.money ? (
+									<p style={{ color: "red" }}>{errors.money.message}</p>
+								) : null}
+							</div>
+						</form>
+					</div>
+				)}
+
 				<div className="content_profile">
-					<table class="banglaisuat">
-						<thead>
-							<tr>
-								<td>Cấp VIP</td>
-								<td>Lãi suất theo ngày</td>
-							</tr>
-						</thead>
-						{profit && (
+					{profit && (
+						<table class="banglaisuat">
+							<thead>
+								<tr>
+									<td>Cấp VIP</td>
+									<td>Lãi suất theo ngày</td>
+								</tr>
+							</thead>
+
 							<tbody>
 								<tr>
 									<td>VIP 1</td>
@@ -171,8 +312,8 @@ function MoneySave() {
 									<td>{profit[0].v10}%</td>
 								</tr>
 							</tbody>
-						)}
-					</table>
+						</table>
+					)}
 					<div className="text_choose_center huongdan">
 						<div className="title" style={{ margin: "0.2rem 0 0.4rem" }}>
 							Hướng dẫn

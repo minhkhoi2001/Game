@@ -1937,6 +1937,7 @@ body:has(.admin-theme) #webpack-dev-server-client-overlay {
 .banglaisuat tbody {
 	border-left: 1px solid #ebebeb;
 	border-right: 1px solid #ebebeb;
+	background: #fff;
 }
 .banglaisuat td {
 	padding: 5px 10px;
