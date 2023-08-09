@@ -15,8 +15,9 @@ import LockPersonOutlinedIcon from "@mui/icons-material/LockPersonOutlined";
 import LogoutOutlinedIcon from "@mui/icons-material/LogoutOutlined";
 import KeyboardArrowRightOutlinedIcon from "@mui/icons-material/KeyboardArrowRightOutlined";
 
-function Profile() {
+function MoneySave() {
 	const [profile, setProfile] = useState(null);
+	const [saving, setSaving] = useState(null);
 	const navigate = useNavigate();
 	axios.interceptors.request.use(
 		(config) => {
@@ -40,6 +41,9 @@ function Profile() {
 				setProfile(res.data.data);
 			})
 			.catch((err) => localStorage.removeItem("user"));
+		axios.get(`http://localhost/money/get/user`, {}).then((res) => {
+			setSaving(res.data.data);
+		});
 	}, []);
 	return (
 		<>
@@ -102,97 +106,26 @@ function Profile() {
 									<span>...</span>
 								)}
 							</span>
-							{profile ? (
+							{saving ? (
 								<strong id="account__balance">
-									{Math.floor(profile.money).toLocaleString()} <small>đ</small>
+									{Math.floor(saving?.vi?.money).toLocaleString()} <small>đ</small>
 								</strong>
 							) : (
-								<strong>*****</strong>
+								<strong>0đ</strong>
 							)}
 						</div>
 					</div>
 					<div className="account__transaction">
 						<div className="account__transaction-box">
-							<Link to="/recharge" className="account__transaction-item">
+							<Link to="/money/send" className="account__transaction-item">
 								<AddCardOutlinedIcon />
 								<span>Nạp tiền</span>
 							</Link>
 							<div className="account__transaction-line"></div>
-							<Link to="/withdraw" className="account__transaction-item">
+							<Link to="/money/withdraw" className="account__transaction-item">
 								<PriceChangeOutlinedIcon />
 								<span>Rút tiền</span>
 							</Link>
-						</div>
-					</div>
-					<div className="account__menu">
-						<Link to="/historyplay" className="account__menu-item">
-							<span>
-								<QueryStatsOutlinedIcon sx={{ fontSize: "25px" }} />
-								Lịch sử tham gia
-							</span>
-							<KeyboardArrowRightOutlinedIcon />
-						</Link>
-						<Link to="/history" className="account__menu-item">
-							<span>
-								<LocalAtmOutlinedIcon sx={{ fontSize: "25px" }} />
-								Biến động số dư
-							</span>
-							<KeyboardArrowRightOutlinedIcon />
-						</Link>
-						<Link to="/money" className="account__menu-item">
-							<span>
-								<CreditScoreOutlinedIcon sx={{ fontSize: "25px" }} />
-								Két tiết kiệm
-							</span>
-							<KeyboardArrowRightOutlinedIcon />
-						</Link>
-						<Link to="/historyadd" className="account__menu-item">
-							<span>
-								<CreditScoreOutlinedIcon sx={{ fontSize: "25px" }} />
-								Lịch sử nạp
-							</span>
-							<KeyboardArrowRightOutlinedIcon />
-						</Link>
-						<Link to="/historyget" className="account__menu-item">
-							<span>
-								<PaymentsOutlinedIcon sx={{ fontSize: "25px" }} />
-								Lịch sử rút
-							</span>
-							<KeyboardArrowRightOutlinedIcon />
-						</Link>
-						<Link to="/addbank" className="account__menu-item">
-							<span>
-								<AccountBalanceOutlinedIcon sx={{ fontSize: "25px" }} />
-								Liên kết ngân hàng
-							</span>
-							<KeyboardArrowRightOutlinedIcon />
-						</Link>
-						<Link to="/transfer" className="account__menu-item">
-							<span>
-								<MoveUpIcon sx={{ fontSize: "25px" }} />
-								Chuyển tiền
-							</span>
-							<KeyboardArrowRightOutlinedIcon />
-						</Link>
-						<Link to="/password" className="account__menu-item">
-							<span>
-								<LockPersonOutlinedIcon sx={{ fontSize: "25px" }} />
-								Đổi mật khẩu
-							</span>
-							<KeyboardArrowRightOutlinedIcon />
-						</Link>
-						<div
-							className="account__menu-item"
-							onClick={() => {
-								localStorage.removeItem("user");
-								navigate("/login");
-							}}
-						>
-							<span>
-								<LogoutOutlinedIcon sx={{ fontSize: "25px" }} />
-								Đăng xuất
-							</span>
-							<KeyboardArrowRightOutlinedIcon />
 						</div>
 					</div>
 				</div>
@@ -201,4 +134,4 @@ function Profile() {
 		</>
 	);
 }
-export default Profile;
+export default MoneySave;

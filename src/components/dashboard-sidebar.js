@@ -102,6 +102,16 @@ const items = [
 		title: "Cài đặt trả thưởng",
 	},
 	{
+		href: "/admin/setting/profit",
+		icon: <TuneIcon fontSize="small" />,
+		title: "Cài đặt lãi xuất",
+	},
+	{
+		href: "/admin/setting/money",
+		icon: <TuneIcon fontSize="small" />,
+		title: "Cài đặt hoa hồng",
+	},
+	{
 		href: "/admin/employee",
 		icon: <Users fontSize="small" />,
 		title: "Thêm mới nhân viên",

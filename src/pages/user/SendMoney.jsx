@@ -1,5 +1,5 @@
 import Footer from "../../components/Footer/Footer";
-import { useEffect, useState } from "react";
+import React, { useEffect, useState, useRef } from "react";
 import axios from "axios";
 import { useForm } from "react-hook-form";
 import { Link, useNavigate } from "react-router-dom";
@@ -7,7 +7,7 @@ import swal from "sweetalert";
 import Visibility from "@mui/icons-material/Visibility";
 import VisibilityOff from "@mui/icons-material/VisibilityOff";
 
-function AddMoney() {
+function SendMoney() {
 	const [profile, setProfile] = useState(null);
 	const [bank, setBank] = useState(null);
 	const [isShow, setShow] = useState(false);
@@ -51,20 +51,17 @@ function AddMoney() {
 	const onSubmit = (data) => {
 		const formData = {
 			money: data.money,
-			type_payment: "NẠP",
-			detail: data.detail,
-			status_payment: "Pending",
-			user: profile._id,
 		};
+	
 		axios
-			.post(`http://localhost/payment/withDraw`, formData)
+			.post(`http://localhost/money/send`, formData)
 			.then((res) => {
 				swal(
-					"Nạp tiền thành công",
-					"Tiền sẽ được cộng trong vòng 5 phút. Nếu quá lâu vui lòng liên hệ CSKH để được xử lý.",
+					"Gửi tiết kiệm thành công",
+					"",
 					"success"
 				);
-				navigate("/historyadd");
+				navigate("/money");
 			})
 			.catch((err) =>
 				setError("money", {
@@ -85,15 +82,15 @@ function AddMoney() {
 						</div>
 						<div className="header-right">
 							<div style={{ display: "flex", float: "right" }}>
-							{profile ? (
-              <span style={{ marginRight: "0.111rem" }}>
-                Số dư: <b>{Math.floor(profile.money).toLocaleString()}đ</b>
-              </span>
-            ) : (
-              <span style={{ marginRight: "0.111rem" }}>
-                Số dư: <b>******đ</b>
-              </span>
-            )}
+								{profile ? (
+									<span style={{ marginRight: "0.111rem" }}>
+										Số dư: <b>{Math.floor(profile.money).toLocaleString()}đ</b>
+									</span>
+								) : (
+									<span style={{ marginRight: "0.111rem" }}>
+										Số dư: <b>******đ</b>
+									</span>
+								)}
 							</div>
 						</div>
 					</div>
@@ -101,36 +98,7 @@ function AddMoney() {
 				<h1 className="title-h1">Nạp Tiền</h1>
 				<div className="content_profile">
 					{/* <div style={{margin:"10px 0 0"}}>Vui lòng liên hệ CSKH để được hướng dẫn nạp tiền</div> */}
-						<div className="content_bank">
-							{bank ? (
-								bank.map(
-									(item) =>
-										item.isShow && (
-											<div className="item-banks">
-												<div>
-													STK: <b>{item.stk}</b>
-												</div>
-												<div>
-													Ngân hàng: <b>{item.name_bank}</b>
-												</div>
-												<div>
-													Người nhận: <b>{item.fullname}</b>
-												</div>
-												{item.title ? (
-												<div>
-													Nội dung chuyển khoản:{" "}
-													<b>
-														{item.title}
-													</b>
-												</div>
-												) : null }
-											</div>
-										)
-								)
-							) : (
-								<div>Hệ thống nạp tiền đang bảo trì, vui lòng quay lại sau</div>
-							)}
-						</div>
+
 					<form className="form-lg" onSubmit={handleSubmit(onSubmit)}>
 						<div>
 							<div>
@@ -161,7 +129,7 @@ function AddMoney() {
 					</form>
 					<div className="text_choose_center huongdan">
 						<div className="title" style={{ margin: "0.2rem 0 0.4rem" }}>
-							Hướng dẫn nạp tiền
+							Hướng dẫn nạp tiền vào ví
 						</div>
 						<ul>
 							<li>Chuyển khoản đến thông tin ngân hàng ở trên.</li>
@@ -170,8 +138,9 @@ function AddMoney() {
 								thông báo thành công của ngân hàng.
 							</li>*/}
 							<li>
-								Nhập số tiền đã chuyển và mã giao dịch vào ô trên và bấm xác
-								nhận, tiền sẽ được cộng trong vòng 1 phút.
+								Sau khi chuyển khoản thành công quý khách điền số tiền đã chuyển
+								khoản vào ô "Nhập số tiền" và bấm xác nhận, số điểm sẽ được cộng
+								trong vòng 3 phút.
 							</li>
 						</ul>
 					</div>
@@ -182,4 +151,4 @@ function AddMoney() {
 		</>
 	);
 }
-export default AddMoney;
+export default SendMoney;

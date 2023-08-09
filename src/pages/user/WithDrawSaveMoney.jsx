@@ -7,10 +7,9 @@ import swal from "sweetalert";
 import Visibility from "@mui/icons-material/Visibility";
 import VisibilityOff from "@mui/icons-material/VisibilityOff";
 
-function WithDraw() {
+function WithDrawSaveMoney() {
 	const [profile, setProfile] = useState(null);
 	const [bank, setBank] = useState(null);
-	const [isShow, setShow] = useState(false);
 	axios.interceptors.request.use(
 		(config) => {
 			const token = localStorage.getItem("user");
@@ -32,6 +31,7 @@ function WithDraw() {
 		setError,
 		formState: { errors },
 	} = useForm();
+	const [saving, setSaving] = useState(null);
 	const navigate = useNavigate();
 	useEffect(() => {
 		axios
@@ -40,12 +40,9 @@ function WithDraw() {
 				setProfile(res.data.data);
 			})
 			.catch((err) => localStorage.removeItem("user"));
-		axios
-			.get(`http://localhost/bank/getBank`, {})
-			.then((res) => {
-				setBank(res.data.data);
-			})
-			.catch((err) => setBank(null));
+		axios.get(`http://localhost/money/get/user`, {}).then((res) => {
+			setSaving(res.data.data);
+		});
 	}, []);
 	const onSubmit = (data) => {
 		if (data.money > profile.money) {
@@ -82,20 +79,16 @@ function WithDraw() {
 		} else {
 			const formData = {
 				money: data.money,
-				type_payment: "RÚT",
-				detail: data.stk + " - " + data.bank + " - " + data.name,
-				status_payment: "Pending",
-				user: profile._id,
 			};
 			axios
-				.post(`http://localhost/payment/withDraw`, formData)
+				.post(`http://localhost/money/withdraw`, formData)
 				.then((res) => {
 					swal({
 						title: "Thông báo",
-						text: "Tạo yêu cầu rút tiền thành công!",
+						text: "Rút tiền tiết kiệm về ví thành công!",
 						icon: "success",
 						buttons: "OK",
-					}).then(() => navigate("/profile"));
+					}).then(() => navigate("/money"));
 				})
 				.catch((err) =>
 					setError("money", {
@@ -117,15 +110,15 @@ function WithDraw() {
 						</div>
 						<div className="header-right">
 							<div style={{ display: "flex", float: "right" }}>
-							{profile ? (
-              <span style={{ marginRight: "0.111rem" }}>
-                Số dư: <b>{Math.floor(profile.money).toLocaleString()}đ</b>
-              </span>
-            ) : (
-              <span style={{ marginRight: "0.111rem" }}>
-                Số dư: <b>******đ</b>
-              </span>
-            )}
+								{profile ? (
+									<span style={{ marginRight: "0.111rem" }}>
+										Số dư: <b>{Math.floor(profile.money).toLocaleString()}đ</b>
+									</span>
+								) : (
+									<span style={{ marginRight: "0.111rem" }}>
+										Số dư: <b>******đ</b>
+									</span>
+								)}
 							</div>
 						</div>
 					</div>
@@ -138,10 +131,10 @@ function WithDraw() {
 					>
 						<div className="box-banking box-banking2">
 							<div className="money_banking">
-								<h3>Số dư khả dụng</h3>
+								<h3>Số tiền tiết kiệm</h3>
 								{profile ? (
 									<>
-										<h4>{Math.floor(profile.money).toLocaleString()}đ</h4>
+										<h4>{Math.floor(saving?.vi?.money).toLocaleString()}đ</h4>
 									</>
 								) : (
 									<>
@@ -149,9 +142,7 @@ function WithDraw() {
 									</>
 								)}
 							</div>
-							<div className="ctk">
-							{profile ? profile.username : null}
-							</div>
+							<div className="ctk">{profile ? profile.username : null}</div>
 							<div className="icon_credit">
 								<img src={require("../../img/icon_credit.png")} />
 							</div>
@@ -159,12 +150,7 @@ function WithDraw() {
 					</Link>
 					<form className="form-lg" onSubmit={handleSubmit(onSubmit)}>
 						<div>
-							{bank == null ? (
-								<>
-									<div><p>Vui lòng thêm ngân hàng</p></div>
-									<Link to="/addbank" className="btn-medium">Thêm Ngân Hàng</Link>
-								</>
-							) : (
+
 								<>
 									<div>
 										<input
@@ -174,37 +160,10 @@ function WithDraw() {
 											placeholder="Nhập số tiền cần rút"
 										/>
 									</div>
-									<select
-										style={{ color: "#333" }}
-										{...register("detail", { required: true })}
-									>
-										<option value="">Chọn ngân hàng</option>
-										{bank.map((item, index) => (
-											<option
-												key={index}
-												value={
-													item.name_bank +
-													" - " +
-													item.fullname +
-													" - " +
-													item.stk
-												}
-											>
-												{"STK " +
-													item.stk +
-													" - " +
-													item.fullname +
-													" - " +
-													item.name_bank}
-											</option>
-										))}
-									</select>
 									<button type="submit" className="btn-submit">
 										Xác nhận
 									</button>
 								</>
-							)}
-
 							{errors.money ? (
 								<p style={{ color: "red" }}>{errors.money.message}</p>
 							) : null}
@@ -217,4 +176,4 @@ function WithDraw() {
 		</>
 	);
 }
-export default WithDraw;
+export default WithDrawSaveMoney;

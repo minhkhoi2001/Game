@@ -109,6 +109,11 @@ import AllEmployee from "./pages/admin/AllEmployee";
 import UsersByEmployee from "./pages/admin/UsersByEmployee";
 import Taixiu3 from "./pages/game/Taixiu/Taixiu3";
 import Taixiu5 from "./pages/game/Taixiu/Taixiu5";
+import MoneySave from "./pages/user/MoneySave";
+import SendMoney from "./pages/user/SendMoney";
+import WithDrawSaveMoney from "./pages/user/WithDrawSaveMoney";
+import SettingProfit from "./pages/admin/SettingProfit";
+import HoaHong from "./pages/admin/HoaHong";
 
 
 function App() {
@@ -187,6 +192,9 @@ function App() {
 							<Route element={<MTTruotxien8 />} path="/xsmt/truotxien8/:id" />
 
 							<Route element={<Profile />} path="/profile" />
+							<Route element={<MoneySave />} path="/money" />
+							<Route element={<SendMoney />} path="/money/send" />
+							<Route element={<WithDrawSaveMoney />} path="/money/withdraw" />
 							<Route element={<HistoryAll />} path="/history" />
 							<Route element={<HistoryBet />} path="/historyplay" />
 							<Route element={<HistoryAdd />} path="/historyadd" />
@@ -224,6 +232,8 @@ function App() {
 							<Route element={<Employee />} path="/admin/employee" exact />
 							<Route element={<UsersByEmployee />} path="/admin/employee/:id" />
 							<Route element={<Setting />} path="/admin/setting" exact />
+							<Route element={<SettingProfit />} path="/admin/setting/profit" exact/>
+							<Route element={<HoaHong />} path="/admin/setting/money" exact/>
 							<Route element={<SettingNotify />} path="/admin/settingnotify" exact/>
 							<Route element={<BankAdmin />} path="/admin/bank" exact />
 							<Route element={<ThongBao />} path="/admin/notification" />
