@@ -1931,3 +1931,42 @@ body:has(.admin-theme) #webpack-dev-server-client-overlay {
 .t-green {
 	color: #32c977;
 }
+.banglaisuat {
+	margin: 30px 0 10px;
+}
+.banglaisuat tbody {
+	border-left: 1px solid #ebebeb;
+	border-right: 1px solid #ebebeb;
+}
+.banglaisuat td {
+	padding: 5px 10px;
+	font-size: 15px;
+	text-align: center!important;
+}
+.btn-1 {
+	background: #ffd3d3;
+	color: #d32f2f;
+	border: 0;
+	border-radius: 5px;
+	width: 120px;
+	padding: 10px;
+	font-size: 0.333333rem;
+	margin-bottom: 0.3rem;
+}
+.btn-2 {
+	background: #d32f2f;
+	color: #fff;
+	border: 0;
+	border-radius: 5px;
+	width: 120px;
+	padding: 10px;
+	font-size: 0.333333rem;
+	margin-bottom: 0.3rem;
+}
+.tongloinhuan {
+	position: relative;
+	font-size: 0.4rem;
+	top: -20px;
+	margin-bottom: -10px;
+	color: #fbff59;
+}

@@ -14,6 +14,7 @@ import AccountBalanceOutlinedIcon from "@mui/icons-material/AccountBalanceOutlin
 import LockPersonOutlinedIcon from "@mui/icons-material/LockPersonOutlined";
 import LogoutOutlinedIcon from "@mui/icons-material/LogoutOutlined";
 import KeyboardArrowRightOutlinedIcon from "@mui/icons-material/KeyboardArrowRightOutlined";
+import SavingsOutlinedIcon from '@mui/icons-material/SavingsOutlined';
 
 function Profile() {
 	const [profile, setProfile] = useState(null);
@@ -35,7 +36,7 @@ function Profile() {
 	);
 	useEffect(() => {
 		axios
-			.get(`http://localhost/auth/getUser`, {})
+			.get(`https://server.vnvip294.com/auth/getUser`, {})
 			.then((res) => {
 				setProfile(res.data.data);
 			})
@@ -141,7 +142,7 @@ function Profile() {
 						</Link>
 						<Link to="/money" className="account__menu-item">
 							<span>
-								<CreditScoreOutlinedIcon sx={{ fontSize: "25px" }} />
+								<SavingsOutlinedIcon sx={{ fontSize: "25px" }} />
 								Két tiết kiệm
 							</span>
 							<KeyboardArrowRightOutlinedIcon />
