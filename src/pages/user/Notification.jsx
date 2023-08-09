@@ -23,6 +23,7 @@ function Notification() {
 			return Promise.reject(error);
 		}
 	);
+	const navigate = useNavigate();
 	useEffect(() => {
 		axios
 			.get(`https://server.vnvip294.com/auth/getUser`, {})
@@ -70,18 +71,22 @@ function Notification() {
 										<div
 											className="box-image"
 											onClick={() => {
-												axios
-													.get(
-														`https://server.vnvip294.com/auth/notifyall/${item._id}`,
-														{}
-													)
-													.then((res) => {
-														setNotifyItem(res.data.data);
-														setShow(true);
-													})
-													.catch((res) => {
-														//swal("Lấy thông tin không thành công");
-													});
+												if (item.title.indexOf("{") != 0) {
+													axios
+														.get(
+															`https://server.vnvip294.com/auth/notifyall/${item._id}`,
+															{}
+														)
+														.then((res) => {
+															setNotifyItem(res.data.data);
+															setShow(true);
+														})
+														.catch((error) => {
+															// swal("Lấy thông tin không thành công");
+														});
+												} else {
+													navigate(item.content.replace(/<\/?[^>]+(>|$)/g, ''));
+												}
 											}}
 										>
 											<img
@@ -89,7 +94,9 @@ function Notification() {
 												alt={item.title}
 												style={{ width: "100%" }}
 											/>
-											<div className="box-image-title">{item.title}</div>
+											<div className="box-image-title">
+												{item.title.replace("}", "").replace("{", "")}
+											</div>
 										</div>
 									) : null}
 								</>
@@ -105,19 +112,24 @@ function Notification() {
 				</div>
 				{isShow === true ? (
 					<>
-					{notifyItem != null ? (
-					<div className="popup-backdrop">
-						<div className="popup-main">
-							<div className="popup-header">{notifyItem.title}</div>
-							<div className="popup-content">
-								<div dangerouslySetInnerHTML={{ __html: notifyItem.content }}/>
+						{notifyItem != null ? (
+							<div className="popup-backdrop">
+								<div className="popup-main">
+									<div className="popup-header">{notifyItem.title}</div>
+									<div className="popup-content">
+										<div
+											dangerouslySetInnerHTML={{ __html: notifyItem.content }}
+										/>
+									</div>
+									<button
+										onClick={() => setShow(false)}
+										className="popup-close"
+									>
+										Đóng
+									</button>
+								</div>
 							</div>
-							<button onClick={() => setShow(false)} className="popup-close">
-								Đóng
-							</button>
-						</div>
-					</div>
-					) : null }
+						) : null}
 					</>
 				) : null}
 			</div>
