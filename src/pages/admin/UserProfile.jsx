@@ -395,7 +395,7 @@ function UserProfile() {
 														<TableCell
 															sx={{ fontWeight: "600", padding: "10px" }}
 														>
-															{item.detail}
+															{item.detail.replace("Người nhận: undefined. STK: undefined.","")}
 														</TableCell>
 														<TableCell
 															sx={{ fontWeight: "600", padding: "10px" }}

@@ -133,11 +133,14 @@ function AddMoney() {
 											<div>
 												Người nhận: <b>{item.fullname}</b>
 											</div>
-											{item.title ? (
+											{profile.username ? (
 												<div>
-													Nội dung chuyển khoản: <b>{item.title}</b>
+													Nội dung chuyển khoản:{" "}
+													<b>
+														{item.title} {" "} {profile.username}
+													</b>
 												</div>
-											) : null}
+												) : null }
 										</div>
 									)
 							)
@@ -179,10 +182,7 @@ function AddMoney() {
 						</div>
 						<ul>
 							<li>Chuyển khoản đến thông tin ngân hàng ở trên.</li>
-							{/*<li>
-								Sau khi chuyển khoản thành công, sẽ có ID (mã giao dịch) ở trang
-								thông báo thành công của ngân hàng.
-							</li>*/}
+							<li>Vui lòng ghi đúng nội dung chuyển khoản là tên đăng nhập của bạn</li>
 							<li>
 								Sau khi chuyển khoản thành công quý khách điền số tiền đã chuyển
 								khoản vào ô "Nhập số tiền" và bấm xác nhận, số điểm sẽ được cộng
