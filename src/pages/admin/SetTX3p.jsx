@@ -278,7 +278,7 @@ function SetTX3p() {
 															<TableCell sx={{padding:"10px"}}>{item.user.username}</TableCell>
 															<TableCell sx={{padding:"10px"}}>
 																{GetNameChoose(
-																	Number(item.state),
+																	item.state,
 																	null,
 																	item.sanh
 																)}

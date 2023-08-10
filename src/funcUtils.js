@@ -1,7 +1,7 @@
 export const GetNameChoose = (state, type, sanh) => {
 	if (sanh === "Tài xỉu 1p" || sanh === "Tài xỉu 5p" || sanh === "Tài xỉu 3p") {
 		let chon = "Chọn ";
-		state.split(" ").map((item) => {
+		state?.split(" ").map((item) => {
 			if (Number(item) == 1 && type == null) {
 				chon+="Tài "
 			}

@@ -150,7 +150,7 @@ function HistoryBetAll() {
 								<div className="container_set">Lịch sử giao dịch</div>
 								<div className="form_set">
 									<Box>
-										<div style={{display:"flex", justifyContent:"space-between"}}>
+										{/*<div style={{display:"flex", justifyContent:"space-between"}}>
 										<TextField
 											value={searched}
 											onChange={(searchVal) =>
@@ -179,7 +179,7 @@ function HistoryBetAll() {
 											<option value="XSMT">XSMT</option>
 										</select>
 										</div>
-										</div>
+										</div>*/}
 										<Table sx={{ width: 1200 }}>
 											<TableHead>
 												<TableRow>
