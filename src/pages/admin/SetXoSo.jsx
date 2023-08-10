@@ -306,7 +306,7 @@ function SetXoSo() {
 								<div className="cycle_bet">
 									{bet ? (
 										<span style={{ color: "black" }} className="info_bet">
-											Kỳ {bet.id_bet}
+											Phiên {bet.id_bet}
 										</span>
 									) : (
 										<span>Đang chờ dữ liệu</span>
@@ -758,13 +758,13 @@ function SetXoSo() {
 										justifyContent: "space-around",
 									}}
 								>
-									<h1>Kỳ {listEdit}</h1>
+									<h1>Phiên {listEdit}</h1>
 									<select onChange={handleChange} value={listEdit}>
 										{list30
 											? list30.map((item) => {
 													return (
 														<option value={item.id_bet}>
-															Kỳ {item.id_bet}
+															Phiên {item.id_bet}
 														</option>
 													);
 											  })

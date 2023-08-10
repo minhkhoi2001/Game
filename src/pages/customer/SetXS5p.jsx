@@ -249,7 +249,7 @@ function SetXS5p() {
 								<div className="cycle_bet">
 									{bet ? (
 										<span style={{ color: "black" }} className="info_bet">
-											Kỳ {bet.id_bet}
+											Phiên {bet.id_bet}
 										</span>
 									) : (
 										<span>Đang chờ dữ liệu</span>
@@ -339,7 +339,7 @@ function SetXS5p() {
 								<Table>
 									<TableHead>
 										<TableRow>
-											<TableCell sx={{padding:"10px"}}>ID BET</TableCell>
+											<TableCell sx={{padding:"10px"}}>Phiên</TableCell>
 											<TableCell sx={{padding:"10px"}}>Kết quả</TableCell>
 											<TableCell sx={{padding:"10px"}}>Cập nhật</TableCell>
 											<TableCell style={{ textAlign: "center" }}>

@@ -300,7 +300,7 @@ function SetXoSo() {
 								<div className="cycle_bet">
 									{bet ? (
 										<span style={{ color: "black" }} className="info_bet">
-											Kỳ {bet.id_bet}
+											Phiên {bet.id_bet}
 										</span>
 									) : (
 										<span>Đang chờ dữ liệu</span>
