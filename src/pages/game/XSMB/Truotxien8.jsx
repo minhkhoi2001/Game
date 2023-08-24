@@ -12,16 +12,8 @@ function Truotxien8() {
 	const [isVisible, setVisible] = useState(null);
 	const [bet, setBet] = useState(null);
 	const [profile, setProfile] = useState(null);
-	const [second, setSecond] = useState(0);
-	const [minute, setMinute] = useState(30);
-	const [start, setStart] = useState(false);
-	const [dulieunhap, setDulieunhap] = useState(new Date());
-	const [update, setUpdate] = useState(0);
+	
 
-	const date = new Date();
-	const currentMinute = date.getMinutes();
-	const currentSecond = date.getSeconds();
-	const [item, setState] = useState(null);
 	const [total, setTotal] = useState(null);
 	const [setting, setSetting] = useState(null);
 	const [item1, setItem] = useState([]);
@@ -72,15 +64,15 @@ function Truotxien8() {
 					},
 				]);
 			});
-		axios.get(`https://server.vnvip294.com/auth/getUser`, {}).then((res) => {
+		axios.get(`http://localhost/auth/getUser`, {}).then((res) => {
 			setProfile(res.data.data);
 		});
-		axios.get(`https://server.vnvip294.com/setting/get`, {}).then((res) => {
+		axios.get(`http://localhost/setting/get`, {}).then((res) => {
 			setSetting(res.data.data[0]);
 		});
 
 		axios
-			.get(`https://server.vnvip294.com/notification/getnotifi`, {})
+			.get(`http://localhost/notification/getnotifi`, {})
 			.then((res) => {
 				setVisible({
 					money: res.data.data[0].money.toLocaleString(),
@@ -103,7 +95,7 @@ function Truotxien8() {
 
 			switch (result) {
 				case "submit":
-					axios.post("https://server.vnvip294.com/notification/seen", {
+					axios.post("http://localhost/notification/seen", {
 						id: data.id,
 					});
 					break;
@@ -194,7 +186,7 @@ function Truotxien8() {
 				swal("Thất bại", "Bạn chưa chọn số đánh", "info");
 			} else {
 				axios
-					.post("https://server.vnvip294.com/history/chooseXSMB", formData)
+					.post("http://localhost/history/chooseXSMB", formData)
 					.then((res) => {
 						swal("Đặt cược thành công", "", "success");
 						setItem([]);
@@ -214,7 +206,7 @@ function Truotxien8() {
 				swal("Thất bại", "Bạn chưa chọn số đánh", "info");
 			} else {
 				axios
-					.post("https://server.vnvip294.com/history/chooseXSMB", formData)
+					.post("http://localhost/history/chooseXSMB", formData)
 					.then((res) => {
 						swal("Đặt cược thành công", "", "success");
 						setItem([]);

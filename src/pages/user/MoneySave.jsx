@@ -56,15 +56,15 @@ function MoneySave() {
 	);
 	useEffect(() => {
 		axios
-			.get(`https://server.vnvip294.com/auth/getUser`, {})
+			.get(`http://localhost/auth/getUser`, {})
 			.then((res) => {
 				setProfile(res.data.data);
 			})
 			.catch((err) => localStorage.removeItem("user"));
-		axios.get(`https://server.vnvip294.com/money/get/user`, {}).then((res) => {
+		axios.get(`http://localhost/money/get/user`, {}).then((res) => {
 			setSaving(res.data.data);
 		});
-		axios.get(`https://server.vnvip294.com/profit/get`, {}).then((res) => {
+		axios.get(`http://localhost/profit/get`, {}).then((res) => {
 			setProfit(res.data.data);
 		});
 	}, []);
@@ -80,7 +80,7 @@ function MoneySave() {
 		};
 
 		axios
-			.post(`https://server.vnvip294.com/money/send`, formData)
+			.post(`http://localhost/money/send`, formData)
 			.then((res) => {
 				swal({
 					title: "Thông báo",
@@ -108,7 +108,7 @@ function MoneySave() {
 			money: data.money,
 		};
 		axios
-			.post(`https://server.vnvip294.com/money/withdraw`, formData)
+			.post(`http://localhost/money/withdraw`, formData)
 			.then((res) => {
 				swal({
 					title: "Thông báo",

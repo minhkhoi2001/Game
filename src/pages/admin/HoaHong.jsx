@@ -27,7 +27,7 @@ function HoaHong() {
 	);
 	useEffect(() => {
 		if (load == true) {
-			axios.get(`https://server.vnvip294.com/play/get`, {}).then((res) => {
+			axios.get(`http://localhost/play/get`, {}).then((res) => {
 				setSetting(res.data.data[0]);
 				setLoad(false);
 			});
@@ -95,7 +95,7 @@ function HoaHong() {
 		};
 
 		axios
-			.put(`https://server.vnvip294.com/play/update`, formData)
+			.put(`http://localhost/play/update`, formData)
 			.then((res) => {
 				setLoad(true);
 				swal("Sửa thông tin trò chơi thành công!");

@@ -26,13 +26,13 @@ function Notification() {
 	const navigate = useNavigate();
 	useEffect(() => {
 		axios
-			.get(`https://server.vnvip294.com/auth/getUser`, {})
+			.get(`http://localhost/auth/getUser`, {})
 			.then((res) => {
 				setProfile(res.data.data);
 			})
 			.catch((err) => localStorage.removeItem("user"));
 
-		axios.get(`https://server.vnvip294.com/auth/getnotify`, {}).then((res) => {
+		axios.get(`http://localhost/auth/getnotify`, {}).then((res) => {
 			setNotify(res.data.data);
 		});
 	}, []);
@@ -74,7 +74,7 @@ function Notification() {
 												if (item.title.indexOf("{") != 0) {
 													axios
 														.get(
-															`https://server.vnvip294.com/auth/notifyall/${item._id}`,
+															`http://localhost/auth/notifyall/${item._id}`,
 															{}
 														)
 														.then((res) => {
