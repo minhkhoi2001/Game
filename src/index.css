@@ -766,7 +766,7 @@ table tbody tr:hover {
 	border-radius: 0.13333rem;
 	position: relative;
 	background-position: center;
-	background-size: 70%;
+	background-size: 60%;
 	background-repeat: no-repeat;
 }
 .box-quay .box > [class^="num"]:before {
@@ -1970,4 +1970,17 @@ body:has(.admin-theme) #webpack-dev-server-client-overlay {
 	top: -20px;
 	margin-bottom: -10px;
 	color: #fbff59;
+}
+.bangthongke td{
+	font-size: 1rem;
+	padding: 10px;
+	text-align: left;
+}
+.avb_ {
+	margin-bottom: 30px;
+}
+@media (min-width:1200px){
+	.avb_{
+		column-count: 2;
+	}
 }

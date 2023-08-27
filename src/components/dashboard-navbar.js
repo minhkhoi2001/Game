@@ -54,7 +54,7 @@ function DashboardNavbar(props) {
       <DashboardNavbarRoot
         sx={{
           left: {
-            lg: 280,
+            lg: 250,
           },
           width: {
             lg: "calc(100% - 280px)",

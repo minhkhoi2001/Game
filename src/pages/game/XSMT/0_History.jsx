@@ -139,7 +139,7 @@ const History = ({ isOpen, closePopup }) => {
 												<div>{GetNameChoose(ls.state, ls.type, ls.sanh)}</div>
 											</div>
 											<div className="lsgd-table">
-												<div>Tổng đặt</div>
+												<div>Tổng Cược</div>
 												<div>{Number(ls.money).toLocaleString()} đ</div>
 											</div>
 											<div className="lsgd-table">

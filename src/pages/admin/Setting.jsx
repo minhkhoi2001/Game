@@ -119,7 +119,8 @@ function Setting() {
 								</div>
 								<div style={{ marginTop: "20px" }}>
 									<form className="setting" onSubmit={handleSubmit}>
-										{/*<h3 style={{width:"100%", flex:"0 0 100%",textAlign:"left",fontWeight:"bold",margin:"30px 10px 10px"}}>Keno</h3>
+										<div style={{display:"none"}}>
+										<h3 style={{width:"100%", flex:"0 0 100%",textAlign:"left",fontWeight:"bold",margin:"30px 10px 10px"}}>Keno</h3>
 										<div className="form_col">
 											<div className="form_group">
 												<label >Đôi bên</label>
@@ -631,7 +632,8 @@ function Setting() {
 													className="input_setting"
 												/>
 											</div>
-						</div>*/}
+										</div>
+						</div>
 										<h3 style={{width:"100%", flex:"0 0 100%",textAlign:"left",fontWeight:"bold",margin:"30px 10px 10px"}}>Khác</h3>
 										<div className="form_col">
 											<div className="form_group">

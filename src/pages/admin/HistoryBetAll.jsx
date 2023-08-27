@@ -89,9 +89,45 @@ function HistoryBetAll() {
 		setTable(e.target.value);
 	};
 
-	const XSMN = ["Bạc Liêu", "Vũng Tàu", "Tiền Giang", "Kiên Giang", "Đà Lạt", "Bình Phước", "Bình Dương", "An Giang", "Bình Thuận", "Cà Mau", "Cần Thơ", "Hậu Giang", "Đồng Tháp", "Tây Ninh", "Vĩnh Long", "Trà Vinh", "Sóc Trăng", "Long An", "TP. HCM", "Đồng Nai"];
-	const XSMT = ["Đà Nẵng", "Thừa T. Huế", "Quảng Trị", "Phú Yên", "Quảng Bình", "Quảng Nam", "Quảng Ngãi", "Ninh Thuận", "Kon Tum", "Khánh Hòa", "Gia Lai", "Bình Định", "Đắk Lắk", "Đắk Nông"];
-	
+	const XSMN = [
+		"Bạc Liêu",
+		"Vũng Tàu",
+		"Tiền Giang",
+		"Kiên Giang",
+		"Đà Lạt",
+		"Bình Phước",
+		"Bình Dương",
+		"An Giang",
+		"Bình Thuận",
+		"Cà Mau",
+		"Cần Thơ",
+		"Hậu Giang",
+		"Đồng Tháp",
+		"Tây Ninh",
+		"Vĩnh Long",
+		"Trà Vinh",
+		"Sóc Trăng",
+		"Long An",
+		"TP. HCM",
+		"Đồng Nai",
+	];
+	const XSMT = [
+		"Đà Nẵng",
+		"Thừa T. Huế",
+		"Quảng Trị",
+		"Phú Yên",
+		"Quảng Bình",
+		"Quảng Nam",
+		"Quảng Ngãi",
+		"Ninh Thuận",
+		"Kon Tum",
+		"Khánh Hòa",
+		"Gia Lai",
+		"Bình Định",
+		"Đắk Lắk",
+		"Đắk Nông",
+	];
+
 	const [st, setSt] = useState(0);
 	const handleChangeStatus = (e) => {
 		if (ls.status_bet == "Lose" || ls.status_bet == "Pending") {
@@ -104,8 +140,8 @@ function HistoryBetAll() {
 			}
 		}
 		setLs((prevLs) => ({
-		  ...prevLs,
-		  status_bet: e.target.value,
+			...prevLs,
+			status_bet: e.target.value,
 		}));
 	};
 
@@ -117,17 +153,21 @@ function HistoryBetAll() {
 			status_bet: e.target.status_bet.value,
 			state: e.target.state.value,
 			money: e.target.money.value,
-			moneyuser: st==1?e.target.moneythang.value:st==2?(Number(ls.moneythang) * -1):0,
+			moneyuser:
+				st == 1
+					? e.target.moneythang.value
+					: st == 2
+					? Number(ls.moneythang) * -1
+					: 0,
 			moneythang: e.target.moneythang.value,
 		};
 		axios
 			.patch(`https://server.vnvip294.com/history`, formData)
 			.then((res) => {
 				setShow(false);
-				swal("Cập nhật thành công")
-				.then((value) => {
+				swal("Cập nhật thành công").then((value) => {
 					window.location.reload();
-				  });
+				});
 			})
 			.catch((err) => {
 				setShow(false);
@@ -183,16 +223,37 @@ function HistoryBetAll() {
 										<Table sx={{ width: 1200 }}>
 											<TableHead>
 												<TableRow>
-													<TableCell sx={{padding:"10px"}}>Số kỳ</TableCell>
-													<TableCell sx={{padding:"10px"}}>User</TableCell>
+													<TableCell sx={{ padding: "10px" }}>Số kỳ</TableCell>
+													<TableCell sx={{ padding: "10px" }}>User</TableCell>
 													{/*<TableCell sx={{padding:"10px"}}>ID User</TableCell>*/}
-													<TableCell sx={{padding:"10px"}}>Trò chơi</TableCell>
-													<TableCell sx={{padding:"10px"}}>Người chơi đặt</TableCell>
-													<TableCell sx={{padding:"10px"}}>Số tiền</TableCell>
-													<TableCell sx={{padding:"10px"}}>Số tiền thắng</TableCell>
-													<TableCell sx={{padding:"10px"}}>Trạng thái</TableCell>
-													<TableCell sx={{padding:"10px"}}>Thời gian</TableCell>
-													<TableCell sx={{padding:"10px"}}>Sửa</TableCell>
+													<TableCell sx={{ padding: "10px" }}>
+														Trò chơi
+													</TableCell>
+													<TableCell sx={{ padding: "10px" }}>
+														Người chơi đặt
+													</TableCell>
+													<TableCell sx={{ padding: "10px" }}>
+														Kết quả
+													</TableCell>
+													<TableCell sx={{ padding: "10px" }}>
+														Tài/Xỉu
+													</TableCell>
+													<TableCell sx={{ padding: "10px" }}>
+														Chẵn/Lẻ
+													</TableCell>
+													<TableCell sx={{ padding: "10px" }}>
+														Số tiền cược
+													</TableCell>
+													<TableCell sx={{ padding: "10px" }}>
+														Số tiền thắng
+													</TableCell>
+													<TableCell sx={{ padding: "10px" }}>
+														Trạng thái
+													</TableCell>
+													<TableCell sx={{ padding: "10px" }}>
+														Thời gian
+													</TableCell>
+													<TableCell sx={{ padding: "10px" }}>Sửa</TableCell>
 												</TableRow>
 											</TableHead>
 											{data != null ? (
@@ -201,21 +262,36 @@ function HistoryBetAll() {
 														?.slice((pages - 1) * 30, (pages - 1) * 30 + 30)
 														.map((item) => (
 															<>
-																{table == "" ? (
+																{item.sanh.indexOf("Tài xỉu") != -1 ? (
 																	<>
 																		<TableRow>
-																			<TableCell sx={{ fontWeight: "600", padding: "10px" }}>
+																			<TableCell
+																				sx={{
+																					fontWeight: "600",
+																					padding: "10px",
+																				}}
+																			>
 																				{item?.id_bet?.id_bet
 																					? item?.id_bet?.id_bet
 																					: item?.id_bet}
 																			</TableCell>
-																			<TableCell sx={{ fontWeight: "600", padding: "10px" }}>
+																			<TableCell
+																				sx={{
+																					fontWeight: "600",
+																					padding: "10px",
+																				}}
+																			>
 																				{item.user.username}
 																			</TableCell>
 																			{/*<TableCell sx={{ fontWeight: "600", padding: "10px" }}>
 																				{item.user.iduser}
 																				</TableCell>*/}
-																			<TableCell sx={{ fontWeight: "600", padding: "10px" }}>
+																			<TableCell
+																				sx={{
+																					fontWeight: "600",
+																					padding: "10px",
+																				}}
+																			>
 																				{item.sanh == "3 phút"
 																					? "Keno 3p"
 																					: item.sanh == "5 phút"
@@ -224,165 +300,143 @@ function HistoryBetAll() {
 																					? "Keno 1p"
 																					: item.sanh}
 																			</TableCell>
-																			<TableCell sx={{ fontWeight: "600", padding: "10px" }}>
-																				{GetNameChoose(item.state, item.type, item.sanh)}
+																			<TableCell
+																				sx={{
+																					fontWeight: "600",
+																					padding: "10px",
+																				}}
+																			>
+																				{GetNameChoose(
+																					item.state,
+																					item.type,
+																					item.sanh
+																				)}
 																			</TableCell>
-																			<TableCell sx={{ fontWeight: "600", padding: "10px" }}>
+																			<TableCell
+																				sx={{
+																					fontWeight: "600",
+																					padding: "10px",
+																				}}
+																			>
+																				{item.id_bet ? item.id_bet.result : ""}
+																			</TableCell>
+																			<TableCell
+																				sx={{
+																					fontWeight: "600",
+																					padding: "10px",
+																				}}
+																			>
+																				{item.id_bet && (
+																					<>
+																						{item.id_bet.result
+																							.split(" ")
+																							.map(Number)
+																							.reduce(
+																								(acc, curr) => acc + curr,
+																								0
+																							) > 10 ? (
+																							<span class="t-blue">Tài</span>
+																						) : (
+																							<span class="t-green">Xỉu</span>
+																						)}
+																					</>
+																				)}
+																			</TableCell>
+																			<TableCell
+																				sx={{
+																					fontWeight: "600",
+																					padding: "10px",
+																				}}
+																			>
+																				{item.id_bet && (
+																					<>
+																						{item.id_bet.result
+																							.split(" ")
+																							.map(Number)
+																							.reduce(
+																								(acc, curr) => acc + curr,
+																								0
+																							) %
+																							2 ==
+																						0 ? (
+																							<span class="t-blue">Chẵn</span>
+																						) : (
+																							<span class="t-green">Lẻ</span>
+																						)}
+																					</>
+																				)}
+																			</TableCell>
+																			<TableCell
+																				sx={{
+																					fontWeight: "600",
+																					padding: "10px",
+																				}}
+																			>
 																				{" "}
 																				{item.money.toLocaleString()}
 																			</TableCell>
-																			<TableCell sx={{ fontWeight: "600", padding: "10px" }}>
+																			<TableCell
+																				sx={{
+																					fontWeight: "600",
+																					padding: "10px",
+																				}}
+																			>
 																				{" "}
 																				{item.moneythang.toLocaleString()}
 																			</TableCell>
 																			{item.status_bet === "Win" ? (
-																				<TableCell sx={{ fontWeight: "600", padding: "10px" }}>
+																				<TableCell
+																					sx={{
+																						fontWeight: "600",
+																						padding: "10px",
+																					}}
+																				>
 																					<Button color="success">
 																						{item.status_bet}
 																					</Button>
 																				</TableCell>
 																			) : null}
 																			{item.status_bet === "Lose" ? (
-																				<TableCell sx={{ fontWeight: "600", padding: "10px" }}>
+																				<TableCell
+																					sx={{
+																						fontWeight: "600",
+																						padding: "10px",
+																					}}
+																				>
 																					<Button color="error">
 																						{item.status_bet}
 																					</Button>
 																				</TableCell>
 																			) : null}
 																			{item.status_bet === "Pending" ? (
-																				<TableCell sx={{ fontWeight: "600", padding: "10px" }}>
+																				<TableCell
+																					sx={{
+																						fontWeight: "600",
+																						padding: "10px",
+																					}}
+																				>
 																					<Button color="warning">
 																						{item.status_bet}
 																					</Button>
 																				</TableCell>
 																			) : null}
-																			<TableCell sx={{ fontWeight: "600", padding: "10px" }}>
+																			<TableCell
+																				sx={{
+																					fontWeight: "600",
+																					padding: "10px",
+																				}}
+																			>
 																				{formatDate(new Date(item.createdAt))}
 																			</TableCell>
-																			<TableCell sx={{padding:"10px"}}>
-																				<Button onClick={()=>{setShow(true);setLs(item)}}>Sửa</Button>
-																			</TableCell>
-																		</TableRow>
-																	</>
-																) : table !== "" && table == item.sanh ? (
-																	<>
-																		<TableRow>
-																			<TableCell sx={{ fontWeight: "600", padding: "10px" }}>
-																				{item?.id_bet?.id_bet
-																					? item?.id_bet?.id_bet
-																					: item?.id_bet}
-																			</TableCell>
-																			<TableCell sx={{ fontWeight: "600", padding: "10px" }}>
-																				{item.user.username}
-																			</TableCell>
-																			<TableCell sx={{ fontWeight: "600", padding: "10px" }}>
-																				{item.user.iduser}
-																			</TableCell>
-																			<TableCell sx={{ fontWeight: "600", padding: "10px" }}>
-																				{item.sanh == "3 phút"
-																					? "Keno 3p"
-																					: item.sanh == "5 phút"
-																					? "Keno 5p"
-																					: item.sanh == "1 phút"
-																					? "Keno 1p"
-																					: item.sanh}
-																			</TableCell>
-																			<TableCell sx={{ fontWeight: "600", padding: "10px" }}>
-																				{GetNameChoose(item.state, item.type, item.sanh)}
-																			</TableCell>
-																			<TableCell sx={{ fontWeight: "600", padding: "10px" }}>
-																				{" "}
-																				{item.money.toLocaleString()}
-																			</TableCell>
-																			<TableCell sx={{ fontWeight: "600", padding: "10px" }}>
-																				{" "}
-																				{item.moneythang.toLocaleString()}
-																			</TableCell>
-																			{item.status_bet === "Win" ? (
-																				<TableCell sx={{ fontWeight: "600", padding: "10px" }}>
-																					<Button color="success">
-																						{item.status_bet}
-																					</Button>
-																				</TableCell>
-																			) : null}
-																			{item.status_bet === "Lose" ? (
-																				<TableCell sx={{ fontWeight: "600", padding: "10px" }}>
-																					<Button color="error">
-																						{item.status_bet}
-																					</Button>
-																				</TableCell>
-																			) : null}
-																			{item.status_bet === "Pending" ? (
-																				<TableCell sx={{ fontWeight: "600", padding: "10px" }}>
-																					<Button color="warning">
-																						{item.status_bet}
-																					</Button>
-																				</TableCell>
-																			) : null}
-																			<TableCell sx={{ fontWeight: "600", padding: "10px" }}>
-																				{formatDate(new Date(item.createdAt))}
-																			</TableCell>
-																			<TableCell sx={{padding:"10px"}}>
-																				<Button onClick={()=>{setShow(true);setLs(item)}}>Sửa</Button>
-																			</TableCell>
-																		</TableRow>
-																	</>
-																) : table == "XSMN" && XSMN.includes(item.sanh) || table == "XSMT" && XSMT.includes(item.sanh) ? (
-																	<>
-																		<TableRow>
-																			<TableCell sx={{ fontWeight: "600", padding: "10px" }}>
-																				{item?.id_bet?.id_bet
-																					? item?.id_bet?.id_bet
-																					: item?.id_bet}
-																			</TableCell>
-																			<TableCell sx={{ fontWeight: "600", padding: "10px" }}>
-																				{item.user.username}
-																			</TableCell>
-																			<TableCell sx={{ fontWeight: "600", padding: "10px" }}>
-																				{item.user.iduser}
-																			</TableCell>
-																			<TableCell sx={{ fontWeight: "600", padding: "10px" }}>
-																				{item.sanh == "3 phút"
-																					? "Keno 3p"
-																					: item.sanh == "5 phút"
-																					? "Keno 5p"
-																					: item.sanh == "1 phút"
-																					? "Keno 1p"
-																					: item.sanh}
-																			</TableCell>
-																			<TableCell sx={{ fontWeight: "600", padding: "10px" }}>
-																				{GetNameChoose(item.state, item.type, item.sanh)}
-																			</TableCell>
-																			<TableCell sx={{ fontWeight: "600", padding: "10px" }}>
-																				{" "}
-																				{item.money.toLocaleString()} VNĐ
-																			</TableCell>
-																			{item.status_bet === "Win" ? (
-																				<TableCell sx={{ fontWeight: "600", padding: "10px" }}>
-																					<Button color="success">
-																						{item.status_bet}
-																					</Button>
-																				</TableCell>
-																			) : null}
-																			{item.status_bet === "Lose" ? (
-																				<TableCell sx={{ fontWeight: "600", padding: "10px" }}>
-																					<Button color="error">
-																						{item.status_bet}
-																					</Button>
-																				</TableCell>
-																			) : null}
-																			{item.status_bet === "Pending" ? (
-																				<TableCell sx={{ fontWeight: "600", padding: "10px" }}>
-																					<Button color="warning">
-																						{item.status_bet}
-																					</Button>
-																				</TableCell>
-																			) : null}
-																			<TableCell sx={{ fontWeight: "600", padding: "10px" }}>
-																				{formatDate(new Date(item.createdAt))}
-																			</TableCell>
-																			<TableCell sx={{padding:"10px"}}>
-																				<Button onClick={()=>{setShow(true);setLs(item)}}>Sửa</Button>
+																			<TableCell sx={{ padding: "10px" }}>
+																				<Button
+																					onClick={() => {
+																						setShow(true);
+																						setLs(item);
+																					}}
+																				>
+																					Sửa
+																				</Button>
 																			</TableCell>
 																		</TableRow>
 																	</>
@@ -423,94 +477,120 @@ function HistoryBetAll() {
 									<i className="ti-close closelogin"></i>
 								</div>
 								<div className="modalbody">
-											<form onSubmit={handleSubmitLs}>
-												<div className="modalinner">
-													<div className="modalheader"> Sửa lịch sử </div>
+									<form onSubmit={handleSubmitLs}>
+										<div className="modalinner">
+											<div className="modalheader"> Sửa lịch sử </div>
 
-													<div className="modalform">
-														<div
-															className="modalformgroup d-flex"
-															style={{ padding: "9px" }}
-														>
-															<div>Người chơi: </div>
-															<div><b>{ls.user.username}</b></div>
-														</div>
-														<div
-															className="modalformgroup d-flex"
-															style={{ padding: "9px" }}
-														>
-															<div>Trò chơi: </div>
-															<div><b>{ls.sanh == "3 phút"
-																					? "Keno 3p"
-																					: ls.sanh == "5 phút"
-																					? "Keno 5p"
-																					: ls.sanh == "1 phút"
-																					? "Keno 1p"
-																					: ls.sanh}</b></div>
-														</div>
-														<div
-															style={{ padding: "9px" }}
-															className="modalformgroup d-flex"
-														>
-															<div>Lựa chọn: </div>
-															<TextField
-																name="state"
-																defaultValue={ls.state}
-																sx={{ width: "100%" }}
-																type="text"
-															/>
-														</div>
-														<div
-															style={{ padding: "9px" }}
-															className="modalformgroup d-flex"
-														>
-															<div>Số tiền cược: </div>
-															<TextField
-																name="money"
-																defaultValue={ls.money}
-																sx={{ width: "100%" }}
-																type="number"
-															/>
-														</div>
-														<div
-															style={{ padding: "9px" }}
-															className="modalformgroup d-flex"
-														>
-															<div>Số tiền thắng: </div>
-															<TextField
-																name="moneythang"
-																defaultValue={ls.moneythang}
-																sx={{ width: "100%" }}
-																type="number"
-															/>
-														</div>
-														<div
-															style={{ padding: "9px" }}
-															className="modalformgroup d-flex"
-														>
-															<div>Trạng thái: </div>
-															<div>
-															<select name="status_bet" value={ls.status_bet} onChange={handleChangeStatus}>
-																<option value="Win" selected={ls.status_bet === 'Win'} style={{color:"#14B8A6"}}>Win</option>
-																<option value="Lose" selected={ls.status_bet === 'Lose'} style={{color:"#D14343"}}>Lose</option>
-																<option value="Pending" selected={ls.status_bet === 'Pending'} style={{color:"#FFB020"}}>Pending</option>
-															</select>
-															</div>
-														</div>
-													</div>
-
-													<div className="item_btn_form">
-														<div className="modalformcontrols">
-															<Button type="submit">XÁC NHẬN</Button>
-														</div>
-														<div className="modalformcontrols">
-															<Button onClick={() => setShow(false)}>
-																ĐÓNG
-															</Button>
-														</div>
+											<div className="modalform">
+												<div
+													className="modalformgroup d-flex"
+													style={{ padding: "9px" }}
+												>
+													<div>Người chơi: </div>
+													<div>
+														<b>{ls.user.username}</b>
 													</div>
 												</div>
-											</form>
+												<div
+													className="modalformgroup d-flex"
+													style={{ padding: "9px" }}
+												>
+													<div>Trò chơi: </div>
+													<div>
+														<b>
+															{ls.sanh == "3 phút"
+																? "Keno 3p"
+																: ls.sanh == "5 phút"
+																? "Keno 5p"
+																: ls.sanh == "1 phút"
+																? "Keno 1p"
+																: ls.sanh}
+														</b>
+													</div>
+												</div>
+												<div
+													style={{ padding: "9px" }}
+													className="modalformgroup d-flex"
+												>
+													<div>Lựa chọn: </div>
+													<TextField
+														name="state"
+														defaultValue={ls.state}
+														sx={{ width: "100%" }}
+														type="text"
+													/>
+												</div>
+												<div
+													style={{ padding: "9px" }}
+													className="modalformgroup d-flex"
+												>
+													<div>Số tiền cược: </div>
+													<TextField
+														name="money"
+														defaultValue={ls.money}
+														sx={{ width: "100%" }}
+														type="number"
+													/>
+												</div>
+												<div
+													style={{ padding: "9px" }}
+													className="modalformgroup d-flex"
+												>
+													<div>Số tiền thắng: </div>
+													<TextField
+														name="moneythang"
+														defaultValue={ls.moneythang}
+														sx={{ width: "100%" }}
+														type="number"
+													/>
+												</div>
+												<div
+													style={{ padding: "9px" }}
+													className="modalformgroup d-flex"
+												>
+													<div>Trạng thái: </div>
+													<div>
+														<select
+															name="status_bet"
+															value={ls.status_bet}
+															onChange={handleChangeStatus}
+														>
+															<option
+																value="Win"
+																selected={ls.status_bet === "Win"}
+																style={{ color: "#14B8A6" }}
+															>
+																Win
+															</option>
+															<option
+																value="Lose"
+																selected={ls.status_bet === "Lose"}
+																style={{ color: "#D14343" }}
+															>
+																Lose
+															</option>
+															<option
+																value="Pending"
+																selected={ls.status_bet === "Pending"}
+																style={{ color: "#FFB020" }}
+															>
+																Pending
+															</option>
+														</select>
+													</div>
+												</div>
+											</div>
+
+											<div className="item_btn_form">
+												<div className="modalformcontrols">
+													<Button type="submit">XÁC NHẬN</Button>
+												</div>
+												<div className="modalformcontrols">
+													<Button onClick={() => setShow(false)}>ĐÓNG</Button>
+												</div>
+											</div>
+										</div>
+									</form>
 								</div>
 							</div>
 						</>

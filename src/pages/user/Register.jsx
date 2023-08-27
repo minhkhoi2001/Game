@@ -102,7 +102,7 @@ function Register() {
 		<>
 			<div className="login">
 				<form className="form-lg" onSubmit={handleSubmit(onSubmit)}>
-					<img src={require("../../img/vietlott3.png")} alt="Logo" className="logologin"/>
+					<img src={require("../../img/best96.png")} alt="Logo" className="logologin"/>
 					<h1>Đăng Ký</h1>
 					<div className="inputs">
 						<div className="input">

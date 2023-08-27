@@ -73,7 +73,7 @@ export const Sales = (props) => {
 						maxBarThickness: 10,
 					},
 				],
-				labels: ["Keno 1p", "Keno 3p", "Keno 5p", "Xổ số"],
+				labels: ["Tài xỉu 1p", "Tài xỉu 3p", "Tài xỉu 5p"],
 			})
 		);
 	}, []);
@@ -100,7 +100,7 @@ export const Sales = (props) => {
 				maxBarThickness: 10,
 			},
 		],
-		labels: ["Keno 1p", "Keno 3p", "Keno 5p", "Xổ số"],
+		labels: ["Tài xỉu 1p", "Tài xỉu 3p", "Tài xỉu 5p"],
 	};
 	useEffect(() => {
 		if(load==true){
@@ -142,7 +142,7 @@ export const Sales = (props) => {
 						maxBarThickness: 10,
 					},
 				],
-				labels: ["Keno 1p", "Keno 3p", "Keno 5p", "Xổ số"],
+				labels: ["Tài xỉu 1p", "Tài xỉu 3p", "Tài xỉu 5p"],
 			})
 			);
 		}
@@ -289,7 +289,7 @@ export const Sales = (props) => {
 									maxBarThickness: 10,
 								},
 							],
-							labels: ["Keno 1p", "Keno 3p", "Keno 5p", "Xổ số"],
+							labels: ["Tài xỉu 1p", "Tài xỉu 3p", "Tài xỉu 5p"],
 						})
 					);
 					}}

@@ -44,7 +44,7 @@ function Notification() {
 					<div className="header-top">
 						<div className="logo">
 							<Link to="/">
-								<img src={require("../../img/logo-vietlott.png")} alt="Logo" />
+								<img src={require("../../img/best96.png")} alt="Logo" />
 							</Link>
 						</div>
 					</div>

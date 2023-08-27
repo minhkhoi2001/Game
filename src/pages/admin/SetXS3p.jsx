@@ -283,7 +283,7 @@ function SetXS3p() {
 																	item.sanh
 																)}
 															</TableCell>
-															<TableCell sx={{padding:"10px"}}>{item.money}</TableCell>
+															<TableCell sx={{padding:"10px"}}>{item.money.toLocaleString()}</TableCell>
 															<TableCell sx={{padding:"10px"}}>
 																{formatDate(new Date(item.createdAt))}
 															</TableCell>

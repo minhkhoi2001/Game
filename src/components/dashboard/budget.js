@@ -23,12 +23,12 @@ export const Budget = (props) => (
           </Typography>
           <Typography
             color="textPrimary"
-            variant="h4"
+            variant="h4" style={{fontSize:"1.2rem"}}
           >
             {Number(props.tongnap).toLocaleString()}đ
           </Typography>
         </Grid>
-        <Grid item>
+        <Grid item style={{clear:"both"}}>
           <Avatar
             sx={{
               backgroundColor: 'error.main',

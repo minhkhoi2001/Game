@@ -17,7 +17,10 @@ export const TotalCustomers = (props) => (
           <Typography color="textSecondary" gutterBottom variant="overline">
             Tổng thành viên
           </Typography>
-          <Typography color="textPrimary" variant="h4">
+          <Typography
+            color="textPrimary"
+            variant="h4" style={{fontSize:"1.2rem"}}
+          >
             {props.user}
           </Typography>
         </Grid>

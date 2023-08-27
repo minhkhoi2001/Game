@@ -116,6 +116,28 @@ function UserProfile() {
 				setLoad(false);
 			});
 	};
+	const [ employee , setEmployee] =useState()
+	useEffect(() => {
+		if (load == false) {
+			axios
+				.get(`https://server.vnvip294.com/auth/getall`, {})
+				.then((res) => {
+					localStorage.setItem("data", JSON.stringify(res.data.data));
+					setLoad(true);
+				})
+				.then((res) => setLoad(true));
+				axios
+				.get(`https://server.vnvip294.com/auth/getEmployee`, {})
+				.then((res) => {
+					localStorage.setItem("data1", JSON.stringify(res.data.data));
+					setEmployee(res.data.data);
+					setLoad(true);
+				})
+				.then((res) => setLoad(true));
+
+		}
+
+	}, [load]);
 	return (
 		<>
 			<ThemeProvider theme={theme}>
@@ -142,12 +164,6 @@ function UserProfile() {
 														<div className="username_">Tên đăng nhập</div>
 														<div className="username_">{profile.username}</div>
 													</div>
-													<div className="detail_user">
-														<div className="username_">Tiền user</div>
-														<div className="username_">
-															{Math.floor(profile.money).toLocaleString()}
-														</div>
-													</div>
 													<form onSubmit={handleSubmit}>
 														<div className="detail_user">
 															<div className="username_">Mật khẩu</div>
@@ -156,9 +172,9 @@ function UserProfile() {
 														</div>
 													</form>
 													<div className="detail_user">
-														<div className="username_">Tiền đã đặt cược</div>
+														<div className="username_">Số dư</div>
 														<div className="username_">
-															{Number(profile.totalbet).toLocaleString()}
+															{Math.floor(profile.money).toLocaleString()}
 														</div>
 													</div>
 													<form
@@ -248,6 +264,30 @@ function UserProfile() {
 														</div>
 													</form>
 													<div className="detail_user">
+														<div className="username_">Admin đã cộng</div>
+														<div className="username_">
+															{Number(profile.adminadd).toLocaleString()}
+														</div>
+													</div>
+													<div className="detail_user">
+														<div className="username_">Admin đã trừ</div>
+														<div className="username_">
+															{Number(profile.admintru).toLocaleString()}
+														</div>
+													</div>
+													<div className="detail_user">
+														<div className="username_">Admin đã thưởng</div>
+														<div className="username_">
+															{Number(profile.adminthuong).toLocaleString()}
+														</div>
+													</div>
+													<div className="detail_user">
+														<div className="username_">Tiền đã đặt cược</div>
+														<div className="username_">
+															{Number(profile.totalbet).toLocaleString()}
+														</div>
+													</div>
+													<div className="detail_user">
 														<div className="username_">Tiền đã thắng</div>
 														<div className="username_">
 															{Number(profile.totalwin).toLocaleString()}
@@ -260,9 +300,15 @@ function UserProfile() {
 														</div>
 													</div>
 													<div className="detail_user">
+														<div className="username_">Người giới thiệu</div>
+														<div className="username_">
+															{employee && employee.find((x=>x.code===profile.aff))?.username}
+														</div>
+													</div>
+													<div className="detail_user">
 														<div className="username_">SĐT</div>
 														<div className="username_">
-															{profile.sdt ? "0" + profile.sdt : "Chưa có sđt"}
+															{profile.sdt ? "0" + profile.sdt : "Chưa có SĐT"}
 														</div>
 													</div>
 												</div>
@@ -271,7 +317,7 @@ function UserProfile() {
 									</div>
 									<div className="edit_account_bankl">
 										<div className="titleitem">Danh sách ngân hàng USER</div>
-										<Table sx={{ width: 700 }}>
+										<Table sx={{ width: 600, minWidth: 600 }}>
 											<TableHead>
 												<TableRow>
 													<TableCell sx={{ padding: "10px" }}>
@@ -366,21 +412,37 @@ function UserProfile() {
 								<Table sx={{ width: "100%" }}>
 									<TableHead>
 										<TableRow>
-											<TableCell sx={{ padding: "10px" }}>
-												Tên người chơi
-											</TableCell>
-											<TableCell sx={{ padding: "10px" }}>Game</TableCell>
-											<TableCell sx={{ padding: "10px" }}>Loại</TableCell>
-											<TableCell sx={{ padding: "10px" }}>Coin</TableCell>
-											<TableCell sx={{ padding: "10px" }}>Coin nhận</TableCell>
+											<TableCell sx={{ padding: "10px" }}>STT</TableCell>
+											<TableCell sx={{ padding: "10px" }}>Phiên</TableCell>
+											<TableCell sx={{ padding: "10px" }}>Tên người chơi</TableCell>
+											<TableCell sx={{ padding: "10px" }}>Loại giao dịch</TableCell>
+											<TableCell sx={{ padding: "10px" }}>Chi tiết</TableCell>
+											<TableCell sx={{ padding: "10px" }}>Kết quả</TableCell>
+											<TableCell sx={{ padding: "10px" }}>Tài/Xỉu</TableCell>
+											<TableCell sx={{ padding: "10px" }}>Chẵn/Lẻ</TableCell>
+											<TableCell sx={{ padding: "10px" }}>Số tiền</TableCell>
+											<TableCell sx={{ padding: "10px" }}>Đã thành công</TableCell>
+											<TableCell sx={{ padding: "10px" }}>Trạng thái</TableCell>
 											<TableCell sx={{ padding: "10px" }}>Thời gian</TableCell>
 										</TableRow>
 									</TableHead>
 									<TableBody>
 										{history != null ? (
 											<>
-												{history.map((item) => (
+												{history.map((item, index) => (
+													<>
+													{item.detail.indexOf('Nhận tiết') == -1 &&(
 													<TableRow>
+														<TableCell
+															sx={{ fontWeight: "600", padding: "10px" }}
+														>
+															{index + 1}
+														</TableCell>
+														<TableCell
+															sx={{ fontWeight: "600", padding: "10px" }}
+														>
+															{item.id_bet ? item.id_bet?.id_bet: ""}
+														</TableCell>
 														<TableCell
 															sx={{ fontWeight: "600", padding: "10px" }}
 														>
@@ -395,17 +457,52 @@ function UserProfile() {
 														<TableCell
 															sx={{ fontWeight: "600", padding: "10px" }}
 														>
-															{item.detail.replace("Người nhận: undefined. STK: undefined.","")}
+															{item.detail.slice(0, item.detail.indexOf('Trạng thái')).replace("Người nhận: undefined. STK: undefined.","").replace("qua Ngân hàng", "")}
 														</TableCell>
 														<TableCell
 															sx={{ fontWeight: "600", padding: "10px" }}
 														>
-															{item.money}
+															{item.id_bet ? item.id_bet.result : ""}
 														</TableCell>
 														<TableCell
 															sx={{ fontWeight: "600", padding: "10px" }}
 														>
-															{item.money_recv}
+															{item.id_bet && (
+																<>
+															{item.id_bet.result
+																.split(" ")
+																.map(Number)
+																.reduce((acc, curr) => acc + curr, 0) > 10 ? (<span class="t-blue">Tài</span>) : (<span class="t-green">Xỉu</span>)}
+																</>
+															)}
+														</TableCell>
+														<TableCell
+															sx={{ fontWeight: "600", padding: "10px" }}
+														>
+															{item.id_bet && (
+																<>
+															{item.id_bet.result
+																.split(" ")
+																.map(Number)
+																.reduce((acc, curr) => acc + curr, 0) % 2 == 0 ? (<span class="t-blue">Chẵn</span>) : (<span class="t-green">Lẻ</span>)}
+																</>
+															)}
+														</TableCell>
+														<TableCell
+															sx={{ fontWeight: "600", padding: "10px" }}
+														>
+															{item.money.toLocaleString()}
+														</TableCell>
+														<TableCell
+															sx={{ fontWeight: "600", padding: "10px" }}
+														>
+															{item.detail.indexOf('Chuyển tiền') > 0 || item.detail.indexOf('RÚT') >= 0 ? "-" : "+"}
+															{item.money_recv.toLocaleString()}
+														</TableCell>
+														<TableCell
+															sx={{ fontWeight: "600", padding: "10px" }}
+														>
+															{item.detail.substr(item.detail.indexOf("Trạng thái:") + 12)}
 														</TableCell>
 														<TableCell
 															sx={{ fontWeight: "600", padding: "10px" }}
@@ -413,6 +510,8 @@ function UserProfile() {
 															{formatDate(new Date(item.time))}
 														</TableCell>
 													</TableRow>
+													)}
+													</>
 												))}
 											</>
 										) : (

@@ -282,7 +282,7 @@ function Set3() {
 															<TableCell sx={{padding:"10px"}}>
 																{GetNameChoose(Number(item.state))}
 															</TableCell>
-															<TableCell sx={{padding:"10px"}}>{item.money}</TableCell>
+															<TableCell sx={{padding:"10px"}}>{item.money.toLocaleString()}</TableCell>
 															<TableCell sx={{padding:"10px"}}>
 																{formatDate(new Date(item.createdAt))}
 															</TableCell>

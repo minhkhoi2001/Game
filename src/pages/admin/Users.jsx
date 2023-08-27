@@ -131,12 +131,11 @@ function Users() {
 														<TableCell sx={{padding:"10px"}}>Username</TableCell>
 														<TableCell sx={{padding:"10px"}}>Người Giới Thiệu</TableCell>
 														<TableCell sx={{padding:"10px"}}>Số Dư</TableCell>
-														{/*<TableCell sx={{padding:"10px"}}>Ngày tạo</TableCell>*/}
+														{/*<TableCell sx={{padding:"10px"}}>Ngày tạo</TableCell>
 														<TableCell sx={{padding:"10px"}}>Admin Cộng</TableCell>
-
 														<TableCell sx={{padding:"10px"}}>Admin Trừ</TableCell>
-														<TableCell sx={{padding:"10px"}}>Admin Thưởng</TableCell>
-														<TableCell sx={{padding:"10px"}}>Tổng Đặt</TableCell>
+														<TableCell sx={{padding:"10px"}}>Admin Thưởng</TableCell>*/}
+														<TableCell sx={{padding:"10px"}}>Tổng Cược</TableCell>
 														<TableCell sx={{padding:"10px"}}>Tổng Thắng</TableCell>
 														<TableCell sx={{padding:"10px"}}>Rút/ Nạp Tiền</TableCell>
 														<TableCell sx={{padding:"10px"}}>Thưởng</TableCell>
@@ -162,7 +161,7 @@ function Users() {
 																</TableCell>
 																{/*<TableCell sx={{ fontWeight: "600", padding: "10px" }}>
 																	{formatDate(new Date(item.createdAt))}
-																</TableCell>*/}
+																</TableCell>
 																<TableCell sx={{ fontWeight: "600", padding: "10px" }}>
 																	{item.adminadd.toLocaleString()}
 																</TableCell>
@@ -171,7 +170,7 @@ function Users() {
 																</TableCell>
 																<TableCell sx={{ fontWeight: "600", padding: "10px" }}>
 																	{item.adminthuong.toLocaleString()}
-																</TableCell>
+																</TableCell>*/}
 																<TableCell sx={{ fontWeight: "600", padding: "10px" }}>
 																	{item.totalbet.toLocaleString()}
 																</TableCell>
