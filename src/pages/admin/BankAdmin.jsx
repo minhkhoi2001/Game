@@ -39,7 +39,7 @@ function BankAdmin() {
 	const [bankItem, setBankItem] = useState();
 	useEffect(() => {
 		if (load == true) {
-			axios.get(`https://server.vnvip294.com/auth/getbank`, {}).then((res) => {
+			axios.get(`http://localhost/auth/getbank`, {}).then((res) => {
 				setBank(res.data.data);
 				setLoad(false);
 			});
@@ -55,7 +55,7 @@ function BankAdmin() {
 		};
 		
 		axios
-			.post(`https://server.vnvip294.com/auth/newbank`, formData)
+			.post(`http://localhost/auth/newbank`, formData)
 			.then((res) => {
 				setLoad(true);
 				swal("Tạo ngân hàng thành công!")
@@ -77,7 +77,7 @@ function BankAdmin() {
 
 		axios
 		.post(
-			`https://server.vnvip294.com/auth/editlistbank`,formData
+			`http://localhost/auth/editlistbank`,formData
 		).then((res)=>{
 			swal("Cập nhật thành công","","success")
 			setLoad(true)
@@ -181,7 +181,7 @@ function BankAdmin() {
 																onClick={() => {
 																	axios
 																		.post(
-																			`https://server.vnvip294.com/auth/editlistbank`,{
+																			`http://localhost/auth/editlistbank`,{
 																				id:item._id,
 																				isShow: !item.isShow
 																			}
@@ -195,7 +195,7 @@ function BankAdmin() {
 																onClick={() => {
 																	axios
 																		.get(
-																			`https://server.vnvip294.com/auth/bankall/${item._id}`,
+																			`http://localhost/auth/bankall/${item._id}`,
 																			{}
 																		)
 																		.then((res) => {

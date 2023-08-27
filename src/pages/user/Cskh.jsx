@@ -35,7 +35,7 @@ function CSKH() {
 	}, []);
 	useEffect(() => {
 		axios
-			.get(`https://server.vnvip294.com/auth/getUser`, {})
+			.get(`http://localhost/auth/getUser`, {})
 			.then((res) => {
 				setProfile(res.data.data);
 			})

@@ -36,7 +36,7 @@ function Dashboard() {
 	const [users, setUsers] = useState(null);
 	useEffect(() => {
 		axios
-			.get("https://server.vnvip294.com/statistic/getalladmin")
+			.get("http://localhost/statistic/getalladmin")
 			.then((res) => setData(res.data.data));
 		axios.get(`https://server.vnvip294.com/auth/getall`, {}).then((res) => {
 			localStorage.setItem("data", JSON.stringify(res.data.data));

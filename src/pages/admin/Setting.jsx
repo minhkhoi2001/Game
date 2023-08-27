@@ -31,7 +31,7 @@ function Setting() {
 	);
 	useEffect(()=>{
 		if(load==true){
-			axios.get(`https://server.vnvip294.com/setting/get`, {}).then((res) => {
+			axios.get(`http://localhost/setting/get`, {}).then((res) => {
 				setSetting(res.data.data[0]);
 				setLoad(false)
 			});		
@@ -59,7 +59,8 @@ function Setting() {
 			loxien4: Number(e.target.loxien4.value),
 			truotxien4:Number(e.target.truotxien4.value),
 			truotxien8:Number(e.target.truotxien8.value),
-
+			truotxien10:Number(e.target.truotxien10.value),
+			boncangdacbiet:Number(e.target.boncangdacbiet.value),
 			mblothuong: Number(e.target.mblothuong.value),
 			mbbacang: Number(e.target.mbbacang.value),
 			mbde: Number(e.target.mbde.value),
@@ -91,9 +92,9 @@ function Setting() {
 			tx5:Number(e.target.tx5.value),
 			aff: Number(e.target.aff.value)
 		}
-		
+		console.log(formData);
 		axios
-			.put(`https://server.vnvip294.com/setting/update`, formData)
+			.put(`http://localhost/setting/update`, formData)
 			.then((res) => {
 				setLoad(true);
 				swal("Sửa thông tin trò chơi thành công!")
@@ -314,6 +315,32 @@ function Setting() {
 													name="truotxien8"
 													step="any"
 													id="truotxien8"
+													className="input_setting"
+												/>
+											</div>
+										</div>
+																				<div className="form_col">
+											<div className="form_group">
+												<label >Trượt xiên 10</label>
+												<input
+													defaultValue={setting?.truotxien10}
+													type="number"
+													name="truotxien10"
+													step="any"
+													id="truotxien10"
+													className="input_setting"
+												/>
+											</div>
+										</div>
+																			<div className="form_col">
+											<div className="form_group">
+												<label >4 cang dac biet</label>
+												<input
+													defaultValue={setting?.boncangdacbiet}
+													type="number"
+													name="boncangdacbiet"
+													step="any"
+													id="boncangdacbiet"
 													className="input_setting"
 												/>
 											</div>

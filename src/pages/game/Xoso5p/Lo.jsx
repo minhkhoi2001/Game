@@ -57,26 +57,26 @@ function Xoso5() {
 		};
 	}
 	useEffect(() => {
-		axios.get(`https://server.vnvip294.com/auth/getUser`, {}).then((res) => {
+		axios.get(`http://localhost/auth/getUser`, {}).then((res) => {
 			setProfile(res.data.data);
 		});
-		axios.get(`https://server.vnvip294.com/setting/get`, {}).then((res) => {
+		axios.get(`http://localhost/setting/get`, {}).then((res) => {
 			setSetting(res.data.data[0]);
 		});
-		axios.get(`https://server.vnvip294.com/Xoso5/get`).then((res) => {
+		axios.get(`http://localhost/Xoso5/get`).then((res) => {
 			setBet(res.data.data);
 			setDulieunhap(new Date(res.data.data.createdAt));
 			setStart(true);
 		});
 		axios
-			.get(`https://server.vnvip294.com/Xoso5/getallbet`, {})
+			.get(`http://localhost/Xoso5/getallbet`, {})
 			.then((res) => {
 				rollLottery(res);
 				setNewData(res.data.data);
 			})
 			.catch(() => setTotal(null));
 		axios
-			.get(`https://server.vnvip294.com/notification/getnotifi`, {})
+			.get(`http://localhost/notification/getnotifi`, {})
 			.then((res) => {
 				setVisible({
 					money: res.data.data[0].money.toLocaleString(),
@@ -88,23 +88,23 @@ function Xoso5() {
 		const timer = setInterval(() => {
 			if (Math.floor(300 - (new Date() - dulieunhap) / 1000) < 0) {
 				axios
-					.get(`https://server.vnvip294.com/auth/getUser`, {})
+					.get(`http://localhost/auth/getUser`, {})
 					.then((res) => {
 						setProfile(res.data.data);
 					});
-				axios.get(`https://server.vnvip294.com/Xoso5/get`).then((res) => {
+				axios.get(`http://localhost/Xoso5/get`).then((res) => {
 					setBet(res.data.data);
 					setDulieunhap(new Date(res.data.data.createdAt));
 				});
 				axios
-					.get(`https://server.vnvip294.com/Xoso5/getallbet`, {})
+					.get(`http://localhost/Xoso5/getallbet`, {})
 					.then((res) => {
 						rollLottery(res);
 						setNewData(res.data.data);
 					})
 					.catch(() => setTotal(null));
 				axios
-					.get(`https://server.vnvip294.com/notification/getnotifi`, {})
+					.get(`http://localhost/notification/getnotifi`, {})
 					.then((res) => {
 						setVisible({
 							money: res.data.data[0].money.toLocaleString(),
@@ -133,7 +133,7 @@ function Xoso5() {
 
 			switch (result) {
 				case "submit":
-					axios.post("https://server.vnvip294.com/notification/seen", {
+					axios.post("http://localhost/notification/seen", {
 						id: data.id,
 					});
 					break;
@@ -255,7 +255,7 @@ function Xoso5() {
 			swal("Thất bại", "Bạn chưa chọn số đánh", "info");
 		} else {
 			axios
-				.post("https://server.vnvip294.com/history5pxs/choose", formData)
+				.post("http://localhost/history5pxs/choose", formData)
 				.then((res) => {
 					swal("Đặt cược thành công", "", "success");
 					setItem([]);

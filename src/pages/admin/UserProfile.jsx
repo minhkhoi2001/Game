@@ -59,7 +59,7 @@ function UserProfile() {
 	useEffect(() => {
 		if (id && load == false) {
 			axios
-				.post(`https://server.vnvip294.com/bank/getBankUser`, { id: id })
+				.post(`http://localhost/bank/getBankUser`, { id: id })
 				.then((res) => {
 					setData(res.data.data);
 					setLoad(true);
@@ -67,13 +67,13 @@ function UserProfile() {
 				.catch((res) => setData(null));
 		}
 		axios
-			.get(`https://server.vnvip294.com/auth/user/${id}`, {})
+			.get(`http://localhost/auth/user/${id}`, {})
 			.then((res) => {
 				setProfile(res.data.data);
 			})
 			.catch((res) => setProfile(null));
 		axios
-			.get(`https://server.vnvip294.com/history/historyuser/${id}`, {})
+			.get(`http://localhost/history/historyuser/${id}`, {})
 			.then((res) => {
 				setHistory(res.data.data);
 			})
@@ -82,7 +82,7 @@ function UserProfile() {
 	const handleSubmit = (e) => {
 		e.preventDefault();
 		axios
-			.post(`https://server.vnvip294.com/auth/changepassword`, {
+			.post(`http://localhost/auth/changepassword`, {
 				id: id,
 				password: e.target.password.value,
 			})
@@ -104,7 +104,7 @@ function UserProfile() {
 			fullname: e.target.fullname.value,
 		};
 		axios
-			.post(`https://server.vnvip294.com/bank/updateBank`, formData)
+			.post(`http://localhost/bank/updateBank`, formData)
 			.then((res) => {
 				setShow(false);
 				swal("Cập nhật thành công");
@@ -185,7 +185,7 @@ function UserProfile() {
 																level: e.target.vip.value,
 															};
 															axios
-																.post("https://server.vnvip294.com/auth/update", form)
+																.post("http://localhost/auth/update", form)
 																.then((res) =>
 																	swal("Update level user thành công!","","success")
 																)
@@ -360,7 +360,7 @@ function UserProfile() {
 																		onClick={() => {
 																			axios
 																				.delete(
-																					`https://server.vnvip294.com/bank/delete/${item._id}`
+																					`http://localhost/bank/delete/${item._id}`
 																				)
 																				.then((res) => {
 																					setLoad(false);
@@ -373,7 +373,7 @@ function UserProfile() {
 																		onClick={() => {
 																			axios
 																				.get(
-																					`https://server.vnvip294.com/bank/user/${item._id}`,
+																					`http://localhost/bank/user/${item._id}`,
 																					{}
 																				)
 																				.then((res) => {
