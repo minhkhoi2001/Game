@@ -1,4 +1,28 @@
 export const GetNameChoose = (state, type, sanh) => {
+	if(sanh==="Xóc dĩa 3p"||sanh==="Xóc dĩa 5p"){
+		let chon = "Chọn ";
+		state?.split(" ").map((item) => {
+			if (Number(item) == 1 && type == null) {
+				chon+="4 trắng, "
+			}
+			if (Number(item) == 2 && type == null) {
+				chon+="4 đen, "
+			}
+			if (Number(item) == 3 && type == null) {
+				chon+="3 đen 1 trắng,"
+			}
+			if (Number(item) == 4 && type == null) {
+				chon+="3 trắng 1 đen, "
+			}
+			if (Number(item) ==5 && type == null) {
+				chon+="Chẵn, "
+			}
+			if (Number(item) == 6 && type == null) {
+				chon+="Lẽ "
+			}
+		});
+        return chon
+	}
 	if (sanh === "Tài xỉu 1p" || sanh === "Tài xỉu 5p" || sanh === "Tài xỉu 3p") {
 		let chon = "Chọn ";
 		state?.split(" ").map((item) => {

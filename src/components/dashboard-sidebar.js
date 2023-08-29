@@ -82,6 +82,16 @@ const items = [
 		title: "Set Kèo Tài xỉu 5p",
 	},
 	{
+		href: "/admin/setxd3",
+		icon: <SportsEsportsIcon fontSize="small" />,
+		title: "Set Kèo Xóc dĩa 3p",
+	},
+	{
+		href: "/admin/setxd5",
+		icon: <SportsEsportsIcon fontSize="small" />,
+		title: "Set Kèo Xóc dĩa 5p",
+	},
+	{
 		href: "/admin/request",
 		icon: <AutorenewIcon fontSize="small" />,
 		title: "Yêu cầu rút tiền",

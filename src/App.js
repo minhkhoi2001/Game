@@ -122,6 +122,10 @@ import XSMNBruotxien10 from "./pages/game/XSMB/Truotxien10";
 import XSMBBoncangdacbiet from "./pages/game/XSMB/4cangdacbiet";
 import MTBoncangdacbiet from "./pages/game/XSMT/4cangdacbiet";
 import MTruotxien10 from "./pages/game/XSMT/4cangdacbiet";
+import XD3 from "./pages/game/XDia/XD3";
+import XD5 from "./pages/game/XDia/XD5";
+import SetXD3p from "./pages/admin/SetXD3";
+import SetXD5p from "./pages/admin/SetXD5";
 
 
 function App() {
@@ -150,6 +154,14 @@ function App() {
 							<Route element={<Taixiu1 />} path="/taixiu1" />
 							<Route element={<Taixiu3 />} path="/taixiu3" />
 							<Route element={<Taixiu5 />} path="/taixiu5" />
+
+
+
+							<Route element={<XD3 />} path="/xd3" />
+							<Route element={<XD5 />} path="/xd5" />
+
+
+
 
 
 							<Route element={<Lo />} path="/xoso3p" />
@@ -242,6 +254,9 @@ function App() {
 							<Route element={<SetTX1p />} path="/admin/settx1" exact />
 							<Route element={<SetTX3p />} path="/admin/settx3" exact />
 							<Route element={<SetTX5p />} path="/admin/settx5" exact />
+							
+							<Route element={<SetXD3p />} path="/admin/setxd3" exact />
+							<Route element={<SetXD5p />} path="/admin/setxd5" exact />
 							<Route element={<SetXoSo3 />} path="/admin/xoso3" exact />
 							<Route element={<SetXoSo5 />} path="/admin/xoso5" exact />
 

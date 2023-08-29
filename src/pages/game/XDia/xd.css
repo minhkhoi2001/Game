@@ -1,0 +1,289 @@
+.bg-game{
+    min-height: 50vh;
+    background-image: url(https://www.123bdly.com/home/static-game/img/bg.598f7636.jpg);
+}
+.check {
+    position: absolute;
+    width: 220px;
+    top: 22px;
+    right: -25px;
+}
+.point {
+    height: 130px;
+    position: absolute;
+    animation: movePoint 4s forwards;
+    z-index: 99999;
+}
+
+@keyframes movePoint {
+    0% {
+        right: 0;
+        top: 0;
+    }
+    25% {
+        right: 0;
+        top: 0;
+    }
+    50% {
+        right: 0;
+        top: 0;
+    }
+    75% {
+        right: 0;
+        top: 0;
+    }
+
+    100% {
+        right: -50px;
+        top: -50px;
+    }
+}
+
+@keyframes movePointBack {
+    100% {
+        right: 0;
+        top: 0;
+    }
+    75% {
+        right: 0;
+        top: 0;
+    }
+    50% {
+        right: 0;
+        top: 0;
+    }
+    25% {
+        right: 0;
+        top: 0;
+    }
+    0% {
+        right: -50px;
+        top: -50px;
+    }
+}
+
+@keyframes shake {
+    0% {
+        transform: rotate(0deg);
+        right: 0;
+        top: 0;
+    }
+    5% {
+        transform: rotate(17deg);
+        right: 0;
+        top: 0;
+    }
+    10% {
+        transform: rotate(-13deg);
+        right: 0;
+        top: 0;
+    }
+    15% {
+        transform: rotate(8deg);
+        right: 0;
+        top: 0;
+    }
+    20% {
+        transform: rotate(0deg);
+        right: 0;
+        top: 0;
+    }
+    25% {
+        transform: rotate(17deg);
+        right: 0;
+        top: 0;
+    }
+    30% {
+        transform: rotate(17deg);
+        right: 0;
+        top: 0;
+    }
+    35% {
+        transform: rotate(-13deg);
+        right: 0;
+        top: 0;
+    }
+    40% {
+        transform: rotate(8deg);
+        right: 0;
+        top: 0;
+    }
+    45% {
+        transform: rotate(0deg);
+        right: 0;
+        top: 0;
+    }
+
+    50% {
+        transform: rotate(-13deg);
+
+        right: 0;
+        top: 0;
+    }
+    55% {
+        transform: rotate(17deg);
+        right: 0;
+        top: 0;
+    }
+    60% {
+        transform: rotate(-13deg);
+        right: 0;
+        top: 0;
+    }
+    65% {
+        transform: rotate(8deg);
+        right: 0;
+        top: 0;
+    }
+    70% {
+        transform: rotate(0deg);
+        right: 0;
+        top: 0;
+    }
+
+    75% {
+        transform: rotate(-13deg);
+
+        right: 0;
+        top: 0;
+    }
+    80% {
+        transform: rotate(8deg);
+        right: 0;
+        top: 0;
+    }
+    85% {
+        transform: rotate(0deg);
+        right: 0;
+        top: 0;
+    }
+
+    90% {
+        transform: rotate(-13deg);
+
+        right: 0;
+        top: 0;
+    }
+    95% {
+        transform: rotate(17deg);
+        right: 0;
+        top: 0;
+    }
+    100% {
+        transform: rotate(0deg);
+        right: 0;
+        top: 0;
+    }
+}
+@keyframes shake1 {
+    0% {
+        transform: rotate(0deg);
+    top: 22px;
+    right: -25px;
+    }
+    5% {
+        transform: rotate(17deg);
+    top: 22px;
+    right: -25px;
+    }
+    10% {
+        transform: rotate(-13deg);
+    top: 22px;
+    right: -25px;
+    }
+    15% {
+        transform: rotate(8deg);
+    top: 22px;
+    right: -25px;
+    }
+    20% {
+        transform: rotate(0deg);
+    top: 22px;
+    right: -25px;
+    }
+    25% {
+        transform: rotate(17deg);
+    top: 22px;
+    right: -25px;
+    }
+    30% {
+        transform: rotate(17deg);
+    top: 22px;
+    right: -25px;
+    }
+    35% {
+        transform: rotate(-13deg);
+    top: 22px;
+    right: -25px;
+    }
+    40% {
+        transform: rotate(8deg);
+    top: 22px;
+    right: -25px;
+    }
+    45% {
+        transform: rotate(0deg);
+    top: 22px;
+    right: -25px;
+    }
+
+    50% {
+        transform: rotate(-13deg);
+
+    top: 22px;
+    right: -25px;
+    }
+    55% {
+        transform: rotate(17deg);
+    top: 22px;
+    right: -25px;
+    }
+    60% {
+        transform: rotate(-13deg);
+    top: 22px;
+    right: -25px;
+    }
+    65% {
+        transform: rotate(8deg);
+    top: 22px;
+    right: -25px;
+    }
+    70% {
+        transform: rotate(0deg);
+    top: 22px;
+    right: -25px;
+    }
+
+    75% {
+        transform: rotate(-13deg);
+
+    top: 22px;
+    right: -25px;
+    }
+    80% {
+        transform: rotate(8deg);
+    top: 22px;
+    right: -25px;
+    }
+    85% {
+        transform: rotate(0deg);
+    top: 22px;
+    right: -25px;
+    }
+
+    90% {
+        transform: rotate(-13deg);
+
+    top: 22px;
+    right: -25px;
+    }
+    95% {
+        transform: rotate(17deg);
+    top: 22px;
+    right: -25px;
+    }
+    100% {
+        transform: rotate(0deg);
+    top: 22px;
+    right: -25px;
+    }   }

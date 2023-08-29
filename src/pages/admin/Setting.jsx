@@ -1,8 +1,4 @@
-import {
-	Box,
-	Container,
-
-} from "@mui/material";
+import { Box, Container } from "@mui/material";
 import swal from "sweetalert";
 import axios from "axios";
 import { DashboardLayout } from "../../components/dashboard-layout";
@@ -12,8 +8,8 @@ import { theme } from "../../theme";
 import { useEffect, useState } from "react";
 
 function Setting() {
-	const [setting,setSetting]= useState()
-	const [load,setLoad] =useState(true)
+	const [setting, setSetting] = useState();
+	const [load, setLoad] = useState(true);
 	axios.interceptors.request.use(
 		(config) => {
 			const token = localStorage.getItem("user");
@@ -29,27 +25,27 @@ function Setting() {
 			return Promise.reject(error);
 		}
 	);
-	useEffect(()=>{
-		if(load==true){
+	useEffect(() => {
+		if (load == true) {
 			axios.get(`http://localhost/setting/get`, {}).then((res) => {
 				setSetting(res.data.data[0]);
-				setLoad(false)
-			});		
+				setLoad(false);
+			});
 		}
-	},[load])
+	}, [load]);
 	const handleSubmit = (e) => {
 		e.preventDefault();
-		const formData={
+		const formData = {
 			id: setting?._id,
 			doiben: Number(e.target.doiben.value),
 
-			xucsac5p:Number(e.target.xucsac5p.value),
-			xucsac3p:Number(e.target.xucsac5p.value),
-			haitrung3:Number(e.target.haitrung3.value),
-			haitrung5:Number(e.target.haitrung5.value),
+			xucsac5p: Number(e.target.xucsac5p.value),
+			xucsac3p: Number(e.target.xucsac5p.value),
+			haitrung3: Number(e.target.haitrung3.value),
+			haitrung5: Number(e.target.haitrung5.value),
 
-			batrung3:Number(e.target.batrung3.value),
-			batrung5:Number(e.target.batrung5.value),
+			batrung3: Number(e.target.batrung3.value),
+			batrung5: Number(e.target.batrung5.value),
 
 			lothuong: Number(e.target.lothuong.value),
 			bacang: Number(e.target.bacang.value),
@@ -57,18 +53,18 @@ function Setting() {
 			loxien2: Number(e.target.loxien2.value),
 			loxien3: Number(e.target.loxien3.value),
 			loxien4: Number(e.target.loxien4.value),
-			truotxien4:Number(e.target.truotxien4.value),
-			truotxien8:Number(e.target.truotxien8.value),
-			truotxien10:Number(e.target.truotxien10.value),
-			boncangdacbiet:Number(e.target.boncangdacbiet.value),
+			truotxien4: Number(e.target.truotxien4.value),
+			truotxien8: Number(e.target.truotxien8.value),
+			truotxien10: Number(e.target.truotxien10.value),
+			boncangdacbiet: Number(e.target.boncangdacbiet.value),
 			mblothuong: Number(e.target.mblothuong.value),
 			mbbacang: Number(e.target.mbbacang.value),
 			mbde: Number(e.target.mbde.value),
 			mbloxien2: Number(e.target.mbloxien2.value),
 			mbloxien3: Number(e.target.mbloxien3.value),
 			mbloxien4: Number(e.target.mbloxien4.value),
-			mbtruotxien4:Number(e.target.truotxien4.value),
-			mbtruotxien8:Number(e.target.truotxien8.value),
+			mbtruotxien4: Number(e.target.truotxien4.value),
+			mbtruotxien8: Number(e.target.truotxien8.value),
 
 			mtlothuong: Number(e.target.mtlothuong.value),
 			mtbacang: Number(e.target.mtbacang.value),
@@ -76,30 +72,36 @@ function Setting() {
 			mtloxien2: Number(e.target.mtloxien2.value),
 			mtloxien3: Number(e.target.mtloxien3.value),
 			mtloxien4: Number(e.target.mtloxien4.value),
-			mttruotxien4:Number(e.target.truotxien4.value),
-			mttruotxien8:Number(e.target.truotxien8.value),
-			
+			mttruotxien4: Number(e.target.truotxien4.value),
+			mttruotxien8: Number(e.target.truotxien8.value),
+
 			mnlothuong: Number(e.target.mnlothuong.value),
 			mnbacang: Number(e.target.mnbacang.value),
 			mnde: Number(e.target.mnde.value),
 			mnloxien2: Number(e.target.mnloxien2.value),
 			mnloxien3: Number(e.target.mnloxien3.value),
 			mnloxien4: Number(e.target.mnloxien4.value),
-			mntruotxien4:Number(e.target.truotxien4.value),
-			mntruotxien8:Number(e.target.truotxien8.value),
-			tx1:Number(e.target.tx1.value),
-			tx3:Number(e.target.tx3.value),
-			tx5:Number(e.target.tx5.value),
-			aff: Number(e.target.aff.value)
-		}
+			mntruotxien4: Number(e.target.truotxien4.value),
+			mntruotxien8: Number(e.target.truotxien8.value),
+			tx1: Number(e.target.tx1.value),
+			tx3: Number(e.target.tx3.value),
+			tx5: Number(e.target.tx5.value),
+			aff: Number(e.target.aff.value),
+			le: Number(e.target.le.value),
+			chan: Number(e.target.chan.value),
+			f3trang: Number(e.target.f3trang.value),
+			f3den: Number(e.target.f3den.value),
+			ftrang: Number(e.target.ftrang.value),
+			fden: Number(e.target.fden.value),
+		};
 		console.log(formData);
 		axios
 			.put(`http://localhost/setting/update`, formData)
 			.then((res) => {
 				setLoad(true);
-				swal("Sửa thông tin trò chơi thành công!")
+				swal("Sửa thông tin trò chơi thành công!");
 			})
-			.catch((res) => setLoad(true))
+			.catch((res) => setLoad(true));
 	};
 
 	return (
@@ -659,10 +661,20 @@ function Setting() {
 												/>
 											</div>
 						</div>*/}
-										<h3 style={{width:"100%", flex:"0 0 100%",textAlign:"left",fontWeight:"bold",margin:"30px 10px 10px"}}>Khác</h3>
+										<h3
+											style={{
+												width: "100%",
+												flex: "0 0 100%",
+												textAlign: "left",
+												fontWeight: "bold",
+												margin: "30px 10px 10px",
+											}}
+										>
+											Khác
+										</h3>
 										<div className="form_col">
 											<div className="form_group">
-												<label >Hoa hồng</label>
+												<label>Hoa hồng</label>
 												<input
 													defaultValue={setting?.aff}
 													type="number"
@@ -673,10 +685,20 @@ function Setting() {
 												/>
 											</div>
 										</div>
-										<h3 style={{width:"100%", flex:"0 0 100%",textAlign:"left",fontWeight:"bold",margin:"30px 10px 10px"}}>Tài xỉu</h3>
+										<h3
+											style={{
+												width: "100%",
+												flex: "0 0 100%",
+												textAlign: "left",
+												fontWeight: "bold",
+												margin: "30px 10px 10px",
+											}}
+										>
+											Tài xỉu
+										</h3>
 										<div className="form_col">
 											<div className="form_group">
-												<label >Tài xỉu 1p</label>
+												<label>Tài xỉu 1p</label>
 												<input
 													defaultValue={setting?.tx1}
 													type="number"
@@ -687,7 +709,7 @@ function Setting() {
 												/>
 											</div>
 											<div className="form_group">
-												<label >Tài xỉu 3p</label>
+												<label>Tài xỉu 3p</label>
 												<input
 													defaultValue={setting?.tx3}
 													type="number"
@@ -698,7 +720,7 @@ function Setting() {
 												/>
 											</div>
 											<div className="form_group">
-												<label >Tài xỉu 5p</label>
+												<label>Tài xỉu 5p</label>
 												<input
 													defaultValue={setting?.tx5}
 													type="number"
@@ -708,9 +730,82 @@ function Setting() {
 													className="input_setting"
 												/>
 											</div>
+
+											<div className="form_group">
+												<label>Chẳn</label>
+												<input
+													defaultValue={setting?.chan}
+													type="number"
+													name="chan"
+													step="any"
+													id="chan"
+													className="input_setting"
+												/>
+											</div>
+											<div className="form_group">
+												<label>Lẽ</label>
+												<input
+													defaultValue={setting?.le}
+													type="number"
+													name="le"
+													step="any"
+													id="le"
+													className="input_setting"
+												/>
+											</div>
+											<div className="form_group">
+												<label>4 trắng</label>
+												<input
+													defaultValue={setting?.ftrang}
+													type="number"
+													name="ftrang"
+													step="any"
+													id="ftrang"
+													className="input_setting"
+												/>
+											</div>
+											<div className="form_group">
+												<label>4 đen</label>
+												<input
+													defaultValue={setting?.fden}
+													type="number"
+													name="fden"
+													step="any"
+													id="fden"
+													className="input_setting"
+												/>
+											</div>
+
+											<div className="form_group">
+												<label>3 trắng 1 đen</label>
+												<input
+													defaultValue={setting?.f3trang}
+													type="number"
+													name="f3trang"
+													step="any"
+													id="f3trang"
+													className="input_setting"
+												/>
+											</div>
+											<div className="form_group">
+												<label>3 đen 1 trắng</label>
+												<input
+													defaultValue={setting?.f3den}
+													type="number"
+													name="f3den"
+													step="any"
+													id="f3den"
+													className="input_setting"
+												/>
+											</div>
 										</div>
-										<div className="form_col" style={{clear:"both",width:"100%"}}>
-											<button type="submit" className="btn_setting">Lưu</button>
+										<div
+											className="form_col"
+											style={{ clear: "both", width: "100%" }}
+										>
+											<button type="submit" className="btn_setting">
+												Lưu
+											</button>
 										</div>
 									</form>
 								</div>
