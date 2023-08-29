@@ -363,7 +363,7 @@ function SetXoSo5() {
 															<TableCell sx={{padding:"10px"}}>
 																{GetNameChoose(item.state,item.type)}
 															</TableCell>
-															<TableCell sx={{padding:"10px"}}>{item.money}</TableCell>
+															<TableCell sx={{padding:"10px"}}>{item.money.toLocaleString()}</TableCell>
 															<TableCell sx={{padding:"10px"}}>
 																{formatDate(new Date(item.createdAt))}
 															</TableCell>
@@ -629,7 +629,7 @@ function SetXoSo5() {
 										marginTop: "50px",
 										color: "white",
 										backgroundColor: "#121828",
-										justifyContent: "space-around",
+										justifyContent: "space-between",
 									}}
 								>
 									<h1>Phiên {listEdit}</h1>

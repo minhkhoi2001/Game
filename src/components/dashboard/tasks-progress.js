@@ -22,7 +22,7 @@ export const TasksProgress = (props) => (
           </Typography>
           <Typography
             color="textPrimary"
-            variant="h4"
+            variant="h4" style={{fontSize:"1.2rem"}}
           >
             {Number(props.tongrut).toLocaleString()}đ
           </Typography>

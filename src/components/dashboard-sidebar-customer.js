@@ -17,7 +17,7 @@ const items = [
 	{
 		href: "/customer",
 		icon: <ChartBarIcon fontSize="small" />,
-		title: "Doanh Thu",
+		title: "Thống kê",
 	},
 	{
 		href: "/customer/usercustomer",
@@ -120,7 +120,7 @@ const sendData = () => {
 					sx: {
 						backgroundColor: "neutral.900",
 						color: "#FFFFFF",
-						width: 280,
+						width: 250,
 					},
 				}}
 				variant="permanent"
@@ -138,7 +138,7 @@ const sendData = () => {
 				sx: {
 					backgroundColor: "neutral.900",
 					color: "#FFFFFF",
-					width: 280,
+					width: 250,
 				},
 			}}
 			sx={{ zIndex: (theme) => theme.zIndex.appBar + 100 }}

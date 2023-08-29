@@ -268,7 +268,7 @@ function SetXS3p() {
 													<TableCell sx={{padding:"10px"}}>{item.user.iduser}</TableCell>
 													<TableCell sx={{padding:"10px"}}>{item.user.username}</TableCell>
 													<TableCell sx={{padding:"10px"}}>{GetNameChoose(Number(item.state),null,item.sanh)}</TableCell>
-													<TableCell sx={{padding:"10px"}}>{item.money}</TableCell>
+													<TableCell sx={{padding:"10px"}}>{item.money.toLocaleString()}</TableCell>
 													<TableCell sx={{padding:"10px"}}>{formatDate(new Date(item.createdAt))}</TableCell>
 												</TableRow>
 											</>

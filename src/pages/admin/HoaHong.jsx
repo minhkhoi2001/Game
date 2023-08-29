@@ -117,7 +117,7 @@ function HoaHong() {
 						>
 							<Container maxWidth={false}>
 								<div style={{ fontSize: "25px", fontWeight: 700 }}>
-									Cài đặt lãi xuất đặt cược
+									Cài đặt lãi suất đặt cược
 								</div>
 								<div style={{ marginTop: "20px" }}>
 									<form className="setting" onSubmit={handleSubmit}>

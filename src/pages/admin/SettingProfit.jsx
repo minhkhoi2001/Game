@@ -74,7 +74,7 @@ function SettingProfit() {
 						>
 							<Container maxWidth={false}>
 								<div style={{ fontSize: "25px", fontWeight: 700 }}>
-									Cài đặt trả thưởng lãi xuất
+									Cài đặt trả thưởng lãi suất
 								</div>
 								<div style={{ marginTop: "20px" }}>
 									<form className="setting" onSubmit={handleSubmit}>
@@ -87,7 +87,7 @@ function SettingProfit() {
 												margin: "30px 10px 10px",
 											}}
 										>
-											Lãi xuất
+											lãi suất
 										</h3>
 
 										<div className="form_col">

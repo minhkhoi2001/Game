@@ -19,7 +19,7 @@ export const TotalProfit = (props) => (
           </Typography>
           <Typography
             color="textPrimary"
-            variant="h4"
+            variant="h4" style={{fontSize:"1.2rem"}}
           >
             {Number(props.tongcuoc).toLocaleString()}đ
           </Typography>

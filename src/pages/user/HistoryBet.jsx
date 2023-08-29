@@ -62,7 +62,7 @@ function HistoryBet() {
 					<div className="header-top">
 						<div className="logo">
 							<Link to="/">
-								<img src={require("../../img/logo-vietlott.png")} alt="Logo" />
+								<img src={require("../../img/best96.png")} alt="Logo" />
 							</Link>
 						</div>
 						<div className="header-right">
@@ -188,7 +188,7 @@ function HistoryBet() {
 													</div>
 												</div>
 												<div className="lsgd-table">
-													<div>Tổng đặt</div>
+													<div>Tổng Cược</div>
 													<div>{Number(ls.money).toLocaleString()} đ</div>
 												</div>
 												<div className="lsgd-table">

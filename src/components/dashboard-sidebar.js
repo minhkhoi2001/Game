@@ -18,7 +18,7 @@ const items = [
 	{
 		href: "/admin",
 		icon: <ChartBarIcon fontSize="small" />,
-		title: "Doanh Thu",
+		title: "Thống kê",
 	},
 	{
 		href: "/admin/users",
@@ -114,7 +114,7 @@ const items = [
 	{
 		href: "/admin/setting/profit",
 		icon: <TuneIcon fontSize="small" />,
-		title: "Cài đặt lãi xuất",
+		title: "Cài đặt lãi suất",
 	},
 	{
 		href: "/admin/setting/money",
@@ -237,7 +237,7 @@ const sendData = () => {
 					sx: {
 						backgroundColor: "neutral.900",
 						color: "#FFFFFF",
-						width: 280,
+						width: 250,
 					},
 				}}
 				variant="permanent"
@@ -255,7 +255,7 @@ const sendData = () => {
 				sx: {
 					backgroundColor: "neutral.900",
 					color: "#FFFFFF",
-					width: 280,
+					width: 250,
 				},
 			}}
 			sx={{ zIndex: (theme) => theme.zIndex.appBar + 100 }}

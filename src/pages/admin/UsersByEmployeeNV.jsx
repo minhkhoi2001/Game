@@ -127,7 +127,7 @@ function UsersByEmployeeNV() {
 
 														<TableCell sx={{padding:"10px"}}>Admin Trừ</TableCell>
 														<TableCell sx={{padding:"10px"}}>Admin Thưởng</TableCell>
-														<TableCell sx={{padding:"10px"}}>Tổng đặt</TableCell>
+														<TableCell sx={{padding:"10px"}}>Tổng Cược</TableCell>
 														{/* <TableCell sx={{padding:"10px"}}>Rút/ Nạp Tiền</TableCell>
 														<TableCell sx={{padding:"10px"}}>Thưởng</TableCell>
 														<TableCell sx={{padding:"10px"}}>Xem thông tin</TableCell> */}
