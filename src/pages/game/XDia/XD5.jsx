@@ -13,7 +13,7 @@ function XD5() {
 	const [profile, setProfile] = useState(null);
 	const [historyGame, setHistoryGame] = useState(null);
 	const [second, setSecond] = useState(0);
-	const [minute, setMinute] = useState(3);
+	const [minute, setMinute] = useState(5);
 	const [start, setStart] = useState(false);
 	const [dulieunhap, setDulieunhap] = useState(new Date());
 	const [update, setUpdate] = useState(0);
@@ -77,7 +77,7 @@ function XD5() {
 	}, []);
 	useEffect(() => {
 		const timer = setInterval(() => {
-			if (Math.floor(180 - (new Date() - dulieunhap) / 1000) < 0) {
+			if (Math.floor(300 - (new Date() - dulieunhap) / 1000) < 0) {
 				axios
 					.get(`https://server.vnvip294.com/auth/getUser`, {})
 					.then((res) => {
@@ -110,7 +110,7 @@ function XD5() {
 	}, [dulieunhap]);
 ;
 	useEffect(() => {
-		let curTime_second = Math.floor(180 - (date - dulieunhap) / 1000);
+		let curTime_second = Math.floor(300 - (date - dulieunhap) / 1000);
 
 		let myTimeout;
 
@@ -123,7 +123,7 @@ function XD5() {
 			return () => {
 				clearTimeout(myTimeout);
 			};
-		} else if (curTime_second < 180 && curTime_second >= 0) {
+		} else if (curTime_second < 300 && curTime_second >= 0) {
 			setSecond(curTime_second );
 			setMinute((curTime_second - (curTime_second % 60)) / 60);
 			setStart(true);
@@ -139,15 +139,15 @@ function XD5() {
 	}, [update, dulieunhap]);
 
 	useEffect(() => {
-		let curTime_second = Math.floor(180 - (date - dulieunhap) / 1000);
+		let curTime_second = Math.floor(300 - (date - dulieunhap) / 1000);
 		let myTimeout = 0;
 		if (start) {
 			setSecond(curTime_second);
 			setMinute(Math.floor(curTime_second / 60));
 
-			if (curTime_second > 180 || curTime_second <= 0) {
+			if (curTime_second > 300 || curTime_second <= 0) {
 				setStart(false);
-				setMinute(3);
+				setMinute(5);
 				setSecond(0);
 				return () => {
 					clearTimeout(myTimeout);
@@ -174,20 +174,26 @@ function XD5() {
 		const formData = {
 			result: choose.join(" "),
 			id: bet?._id,
-			money: newMoney*choose.length,
+			money: choose.length * newMoney,
 		};
-		if (choose.length == 0) {
-			swal("Thất bại", "Bạn chưa lựa chọn", "error");
-		} else if (newMoney == 0 || newMoney == null) {
-			swal("Thất bại", "Bạn chưa nhập tiền", "error");
+		if (Number(second) > 10) {
+			if (choose.length == 0) {
+				swal("Thất bại", "Bạn chưa lựa chọn", "error");
+			} else if (newMoney == 0 || newMoney == null) {
+				swal("Thất bại", "Bạn chưa nhập tiền", "error");
+			} else {
+				axios
+					.post("https://server.vnvip294.com/cxd3/choose", formData)
+					.then((res) => {
+						swal("Đặt cược thành công", "", "success");
+						setChoose([]);
+					})
+					.catch((err) =>
+						swal("Thất bại", "Số tiền trong ví không đủ", "error")
+					);
+			}
 		} else {
-			axios
-				.post("https://server.vnvip294.com/cxd5/choose", formData)
-				.then((res) => {
-					swal("Đặt cược thành công", "", "success");
-					setChoose([]);
-				})
-				.catch((err) => swal("Thất bại", "Số tiền trong ví không đủ", "error"));
+			swal("Đã hết thời gian cược", "Vui lòng chờ phiên tiếp theo", "info");
 		}
 	};
 	function formatDate(m) {
@@ -249,23 +255,22 @@ function XD5() {
 	}
 	const [money, setMoney] = useState();
 	useEffect(() => {
-		const point = document.querySelector(".point");
-		const point1 = document.querySelector(".check");
-		point.style.animation = "movePoint 4s forwards";
-		function handleAnimationEnd(event) {
-			console.log(event);
-			if (event.animationName === "movePoint") {
-				point.style.animation = "movePointBack 4s forwards";
-			} else if (event.animationName === "movePointBack") {
-				point.style.animation = "shake 4s forwards";
-				point1.style.animation = "shake1 4s forwards";
-			}
+		if (Number(second) === 2) {
+			document.querySelector(".point").style.animation = "movePoint 4s forwards";
+			document.querySelector(".check").style.animation = "";
+		} else if (Number(second) === 290) {
+			document.querySelector(".point").style.animation = "movePointBack 4s forwards";
+		} else if (Number(second) === 285) {
+			document.querySelector(".point").style.animation = "shake 4s forwards";
+			document.querySelector(".check").style.animation = "shake1 4s forwards";
+		} else if (Number(second) === 275) {
+			document.querySelector(".point").style.animation = "movePointBack 4s forwards";
+			document.querySelector(".check").style.animation = "";
+		} else if (Number(second) < 275 && Number(second) > 2){
+			document.querySelector(".point").style.animation = "movePointBack 4s forwards";
+			document.querySelector(".check").style.animation = "";
 		}
-		point.addEventListener("animationend", handleAnimationEnd);
-		return () => {
-			point.removeEventListener("animationend", handleAnimationEnd);
-		};
-	}, []);
+	}, [second]);
 
 	return (
 		<>
@@ -281,7 +286,7 @@ function XD5() {
 								<div
 									data-v-45adac70=""
 									class="fill fix"
-									style={{ transform: "rotate(180deg)" }}
+									style={{ transform: `rotate(${second}deg)` }}
 								></div>
 							</div>
 							<div
@@ -292,17 +297,25 @@ function XD5() {
 								<span data-v-45adac70="" class="progress">
 									{second}
 								</span>
-								
 							</div>
-							
 						</div>
 						<div className="boxdia">
-							<img src={chen} className="point" alt="" />
+							<img src={chen} className="point" alt="" style={{animation: "movePointBack"}}/>
 							<img className="check" src={dia} alt="" />
+							{total && (
+								<div className="history_xucxac result-dia">
+									{total[0].result.split(" ").map((item) => (
+										<div className={`a${item}`}></div>
+									))}
+								</div>
+							)}
 						</div>
 						<div class="timexd">
-							Phiên {bet?.id_bet} <br />
-							{bet ? formatDate(new Date(bet.createdAt)) : null}
+							<span style={{ fontSize: "0.4rem" }}>Phiên {bet?.id_bet}</span>{" "}
+							<br />
+							<span style={{ opacity: "0.7" }}>
+								{bet ? formatDate(new Date(bet.createdAt)) : null}
+							</span>
 						</div>
 					</div>
 				</div>
@@ -491,8 +504,8 @@ function XD5() {
 						flex="main:justify box:justify cross:center"
 						class="bet_taste_info"
 					>
-						<button data-v-331b32c3="" class="bet_taste_reset">
-							Cài lại
+						<button data-v-331b32c3="" class="bet_taste_reset" onClick={() => {setActiveOption(null);setNewMoney(0)}}>
+							Đặt lại
 						</button>
 						<div data-v-331b32c3="" class="bet_taste_text">
 							<div
@@ -602,7 +615,7 @@ function XD5() {
 									<div className="content-history award_tb">
 										{historyGame?.map((item, key) => (
 											<>
-												{item.sanh === "Tài xỉu 3p" ? (
+												{item.sanh === "Xóc dĩa 5p" ? (
 													<div
 														className="item_inner"
 														onClick={() => {
@@ -612,7 +625,7 @@ function XD5() {
 													>
 														<div className="item_history">
 															<div className="title_item_history">
-																<span className="sanh">{item.sanh}</span>
+																<span className="sanh" style={{color:"#f5f5f5"}}>{item.sanh}</span>
 																<span
 																	className={`type_state ${
 																		item.status_bet === "Pending"

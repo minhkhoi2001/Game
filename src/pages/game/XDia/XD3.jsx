@@ -45,7 +45,7 @@ function XD3() {
 
 	const handleOptionClick = (option) => {
 		setActiveOption(option);
-		setNewMoney(Number(option)*1000);
+		setNewMoney(Number(option) * 1000);
 	};
 	useEffect(() => {
 		axios.get(`https://server.vnvip294.com/auth/getUser`, {}).then((res) => {
@@ -90,7 +90,7 @@ function XD3() {
 				axios
 					.get(`https://server.vnvip294.com/xd3/getallbet`, {})
 					.then((res) => {
-						rollLottery(res);
+						setTotal(res.data.data);
 					})
 					.catch(() => setTotal(null));
 				axios
@@ -108,7 +108,6 @@ function XD3() {
 			clearInterval(timer);
 		};
 	}, [dulieunhap]);
-;
 	useEffect(() => {
 		let curTime_second = Math.floor(180 - (date - dulieunhap) / 1000);
 
@@ -124,7 +123,7 @@ function XD3() {
 				clearTimeout(myTimeout);
 			};
 		} else if (curTime_second < 180 && curTime_second >= 0) {
-			setSecond(curTime_second );
+			setSecond(curTime_second);
 			setMinute((curTime_second - (curTime_second % 60)) / 60);
 			setStart(true);
 			return () => {
@@ -176,18 +175,24 @@ function XD3() {
 			id: bet?._id,
 			money: choose.length * newMoney,
 		};
-		if (choose.length == 0) {
-			swal("Thất bại", "Bạn chưa lựa chọn", "error");
-		} else if (newMoney == 0 || newMoney == null) {
-			swal("Thất bại", "Bạn chưa nhập tiền", "error");
+		if (Number(second) > 10) {
+			if (choose.length == 0) {
+				swal("Thất bại", "Bạn chưa lựa chọn", "error");
+			} else if (newMoney == 0 || newMoney == null) {
+				swal("Thất bại", "Bạn chưa nhập tiền", "error");
+			} else {
+				axios
+					.post("https://server.vnvip294.com/cxd3/choose", formData)
+					.then((res) => {
+						swal("Đặt cược thành công", "", "success");
+						setChoose([]);
+					})
+					.catch((err) =>
+						swal("Thất bại", "Số tiền trong ví không đủ", "error")
+					);
+			}
 		} else {
-			axios
-				.post("https://server.vnvip294.com/cxd3/choose", formData)
-				.then((res) => {
-					swal("Đặt cược thành công", "", "success");
-					setChoose([]);
-				})
-				.catch((err) => swal("Thất bại", "Số tiền trong ví không đủ", "error"));
+			swal("Đã hết thời gian cược", "Vui lòng chờ phiên tiếp theo", "info");
 		}
 	};
 	function formatDate(m) {
@@ -211,34 +216,6 @@ function XD3() {
 		getHistoryBet();
 	};
 
-	function rollLottery(res) {
-		setTotal2(res.data.data);
-		const interval = setInterval(() => {
-			const randomDigits1 = Math.floor(Math.random() * 6) + 1;
-			const randomDigits2 = Math.floor(Math.random() * 6) + 1;
-			const randomDigits3 = Math.floor(Math.random() * 6) + 1;
-			setTotal([
-				{
-					id_bet: res.data.data[0].id_bet,
-					result:
-						String(randomDigits1) +
-						" " +
-						String(randomDigits2) +
-						" " +
-						String(randomDigits3),
-				},
-			]);
-		}, 100);
-
-		setTimeout(() => {
-			clearInterval(interval);
-			setTotal(res.data.data);
-		}, 1000);
-		return () => {
-			clearInterval(interval);
-		};
-	}
-
 	function getHistoryBet() {
 		axios
 			.get(`https://server.vnvip294.com/history/historyus`, {})
@@ -249,23 +226,22 @@ function XD3() {
 	}
 	const [money, setMoney] = useState();
 	useEffect(() => {
-		const point = document.querySelector(".point");
-		const point1 = document.querySelector(".check");
-		point.style.animation = "movePoint 4s forwards";
-		function handleAnimationEnd(event) {
-			console.log(event);
-			if (event.animationName === "movePoint") {
-				point.style.animation = "movePointBack 4s forwards";
-			} else if (event.animationName === "movePointBack") {
-				point.style.animation = "shake 4s forwards";
-				point1.style.animation = "shake1 4s forwards";
-			}
+		if (Number(second) === 2) {
+			document.querySelector(".point").style.animation = "movePoint 4s forwards";
+			document.querySelector(".check").style.animation = "";
+		} else if (Number(second) === 170) {
+			document.querySelector(".point").style.animation = "movePointBack 4s forwards";
+		} else if (Number(second) === 165) {
+			document.querySelector(".point").style.animation = "shake 4s forwards";
+			document.querySelector(".check").style.animation = "shake1 4s forwards";
+		} else if (Number(second) === 155) {
+			document.querySelector(".point").style.animation = "movePointBack 4s forwards";
+			document.querySelector(".check").style.animation = "";
+		} else if (Number(second) < 155 && Number(second) > 2){
+			document.querySelector(".point").style.animation = "movePointBack 4s forwards";
+			document.querySelector(".check").style.animation = "";
 		}
-		point.addEventListener("animationend", handleAnimationEnd);
-		return () => {
-			point.removeEventListener("animationend", handleAnimationEnd);
-		};
-	}, []);
+	}, [second]);
 
 	return (
 		<>
@@ -281,7 +257,7 @@ function XD3() {
 								<div
 									data-v-45adac70=""
 									class="fill fix"
-									style={{ transform: "rotate(180deg)" }}
+									style={{ transform: `rotate(${second}deg)` }}
 								></div>
 							</div>
 							<div
@@ -292,17 +268,25 @@ function XD3() {
 								<span data-v-45adac70="" class="progress">
 									{second}
 								</span>
-								
 							</div>
-							
 						</div>
 						<div className="boxdia">
-							<img src={chen} className="point" alt="" />
+							<img src={chen} className="point" alt="" style={{animation: "movePointBack"}} />
 							<img className="check" src={dia} alt="" />
+							{total && (
+								<div className="history_xucxac result-dia">
+									{total[0].result.split(" ").map((item) => (
+										<div className={`a${item}`}></div>
+									))}
+								</div>
+							)}
 						</div>
 						<div class="timexd">
-							Phiên 123 <br />
-							{bet ? formatDate(new Date(bet.createdAt)) : null}
+							<span style={{ fontSize: "0.4rem" }}>Phiên {bet?.id_bet}</span>{" "}
+							<br />
+							<span style={{ opacity: "0.7" }}>
+								{bet ? formatDate(new Date(bet.createdAt)) : null}
+							</span>
 						</div>
 					</div>
 				</div>
@@ -409,7 +393,13 @@ function XD3() {
 					</button>
 				</div>
 				<div className="bet_taste_chips">
-					<div data-v-331b32c3="" className={`taste_chips_swiper_item ${activeOption === "5" ? "active" : ""}`} onClick={() => handleOptionClick("5")}>
+					<div
+						data-v-331b32c3=""
+						className={`taste_chips_swiper_item ${
+							activeOption === "5" ? "active" : ""
+						}`}
+						onClick={() => handleOptionClick("5")}
+					>
 						<div data-v-331b32c3="" class="taste_chip">
 							<div data-v-331b32c3="" class="taste_chip_base taste_chip_5">
 								<div data-v-331b32c3="" class="item_chip_num">
@@ -418,7 +408,13 @@ function XD3() {
 							</div>
 						</div>
 					</div>
-					<div data-v-331b32c3="" className={`taste_chips_swiper_item ${activeOption === "10" ? "active" : ""}`} onClick={() => handleOptionClick("10")}>
+					<div
+						data-v-331b32c3=""
+						className={`taste_chips_swiper_item ${
+							activeOption === "10" ? "active" : ""
+						}`}
+						onClick={() => handleOptionClick("10")}
+					>
 						<div
 							data-v-331b32c3=""
 							flex="main:center cross:center"
@@ -431,7 +427,13 @@ function XD3() {
 							</div>
 						</div>
 					</div>
-					<div data-v-331b32c3="" className={`taste_chips_swiper_item ${activeOption === "25" ? "active" : ""}`} onClick={() => handleOptionClick("25")}>
+					<div
+						data-v-331b32c3=""
+						className={`taste_chips_swiper_item ${
+							activeOption === "25" ? "active" : ""
+						}`}
+						onClick={() => handleOptionClick("25")}
+					>
 						<div
 							data-v-331b32c3=""
 							flex="main:center cross:center"
@@ -448,7 +450,13 @@ function XD3() {
 							</div>
 						</div>
 					</div>
-					<div data-v-331b32c3="" className={`taste_chips_swiper_item ${activeOption === "50" ? "active" : ""}`} onClick={() => handleOptionClick("50")}>
+					<div
+						data-v-331b32c3=""
+						className={`taste_chips_swiper_item ${
+							activeOption === "50" ? "active" : ""
+						}`}
+						onClick={() => handleOptionClick("50")}
+					>
 						<div data-v-331b32c3="" class="taste_chip">
 							<div data-v-331b32c3="" class="taste_chip_base taste_chip_50">
 								<div data-v-331b32c3="" class="item_chip_num">
@@ -457,7 +465,13 @@ function XD3() {
 							</div>
 						</div>
 					</div>
-					<div data-v-331b32c3="" className={`taste_chips_swiper_item ${activeOption === "100" ? "active" : ""}`} onClick={() => handleOptionClick("100")}>
+					<div
+						data-v-331b32c3=""
+						className={`taste_chips_swiper_item ${
+							activeOption === "100" ? "active" : ""
+						}`}
+						onClick={() => handleOptionClick("100")}
+					>
 						<div data-v-331b32c3="" class="taste_chip">
 							<div data-v-331b32c3="" class="taste_chip_base taste_chip_100">
 								<div data-v-331b32c3="" class="item_chip_num">
@@ -466,7 +480,13 @@ function XD3() {
 							</div>
 						</div>
 					</div>
-					<div data-v-331b32c3="" className={`taste_chips_swiper_item ${activeOption === "200" ? "active" : ""}`} onClick={() => handleOptionClick("200")}>
+					<div
+						data-v-331b32c3=""
+						className={`taste_chips_swiper_item ${
+							activeOption === "200" ? "active" : ""
+						}`}
+						onClick={() => handleOptionClick("200")}
+					>
 						<div data-v-331b32c3="" class="taste_chip">
 							<div data-v-331b32c3="" class="taste_chip_base taste_chip_200">
 								<div data-v-331b32c3="" class="item_chip_num">
@@ -475,7 +495,13 @@ function XD3() {
 							</div>
 						</div>
 					</div>
-					<div data-v-331b32c3="" className={`taste_chips_swiper_item ${activeOption === "500" ? "active" : ""}`} onClick={() => handleOptionClick("500")}>
+					<div
+						data-v-331b32c3=""
+						className={`taste_chips_swiper_item ${
+							activeOption === "500" ? "active" : ""
+						}`}
+						onClick={() => handleOptionClick("500")}
+					>
 						<div data-v-331b32c3="" class="taste_chip">
 							<div data-v-331b32c3="" class="taste_chip_base taste_chip_500">
 								<div data-v-331b32c3="" class="item_chip_num">
@@ -491,8 +517,15 @@ function XD3() {
 						flex="main:justify box:justify cross:center"
 						class="bet_taste_info"
 					>
-						<button data-v-331b32c3="" class="bet_taste_reset">
-							Cài lại
+						<button
+							data-v-331b32c3=""
+							class="bet_taste_reset"
+							onClick={() => {
+								setActiveOption(null);
+								setNewMoney(0);
+							}}
+						>
+							Đặt lại
 						</button>
 						<div data-v-331b32c3="" class="bet_taste_text">
 							<div
@@ -602,7 +635,7 @@ function XD3() {
 									<div className="content-history award_tb">
 										{historyGame?.map((item, key) => (
 											<>
-												{item.sanh === "Tài xỉu 3p" ? (
+												{item.sanh === "Xóc dĩa 3p" ? (
 													<div
 														className="item_inner"
 														onClick={() => {
@@ -612,7 +645,12 @@ function XD3() {
 													>
 														<div className="item_history">
 															<div className="title_item_history">
-																<span className="sanh">{item.sanh}</span>
+																<span
+																	className="sanh"
+																	style={{ color: "#f5f5f5" }}
+																>
+																	{item.sanh}
+																</span>
 																<span
 																	className={`type_state ${
 																		item.status_bet === "Pending"

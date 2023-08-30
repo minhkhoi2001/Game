@@ -22,12 +22,16 @@
 	display: block;
 	margin: auto;
 	left: -15px;
+	bottom: -15px;
 }
 .check {
 	position: absolute;
 	width: 220px;
 	top: 22px;
 	right: -25px;
+	opacity: 0.7;
+	z-index: 99997;
+	filter: drop-shadow(2px 4px 6px black);
 }
 .point {
 	height: 130px;
@@ -35,7 +39,27 @@
 	animation: movePoint 4s forwards;
 	z-index: 99999;
 }
-
+.result-dia {
+	font-size: 13px;
+}
+.result-dia > div {
+	position: absolute;
+	z-index: 99998;
+	top: 50px;
+	left: 110px;
+}
+.result-dia > div:nth-child(2) {
+	top: 70px;
+	left: 95px;
+}
+.result-dia > div:nth-child(3) {
+	top: 60px;
+	left: 140px;
+}
+.result-dia > div:nth-child(4) {
+	top: 80px;
+	left: 125px;
+}
 @keyframes movePoint {
 	0% {
 		right: 0;
