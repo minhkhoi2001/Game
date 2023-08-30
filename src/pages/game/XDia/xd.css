@@ -1,289 +1,520 @@
-.bg-game{
-    min-height: 50vh;
-    background-image: url(https://www.123bdly.com/home/static-game/img/bg.598f7636.jpg);
+.box-bg-game {
+	position: relative;
+	margin-left: -0.32rem;
+	margin-right: -0.32rem;
+	overflow: hidden;
+}
+.main {
+    background: url(../../../img/bg-xd.jpg) #183862 no-repeat;
+    background-size: 100% 100%;
+}
+.bg-game {
+	height: 250px;
+	display: flex;
+}
+.main .header:after {
+	background: transparent;
+}
+.boxdia {
+	position: relative;
+	height: 200px;
+	width: 220px;
+	display: block;
+	margin: auto;
+	left: -15px;
 }
 .check {
-    position: absolute;
-    width: 220px;
-    top: 22px;
-    right: -25px;
+	position: absolute;
+	width: 220px;
+	top: 22px;
+	right: -25px;
 }
 .point {
-    height: 130px;
-    position: absolute;
-    animation: movePoint 4s forwards;
-    z-index: 99999;
+	height: 130px;
+	position: absolute;
+	animation: movePoint 4s forwards;
+	z-index: 99999;
 }
 
 @keyframes movePoint {
-    0% {
-        right: 0;
-        top: 0;
-    }
-    25% {
-        right: 0;
-        top: 0;
-    }
-    50% {
-        right: 0;
-        top: 0;
-    }
-    75% {
-        right: 0;
-        top: 0;
-    }
+	0% {
+		right: 0;
+		top: 0;
+	}
+	25% {
+		right: 0;
+		top: 0;
+	}
+	50% {
+		right: 0;
+		top: 0;
+	}
+	75% {
+		right: 0;
+		top: 0;
+	}
 
-    100% {
-        right: -50px;
-        top: -50px;
-    }
+	100% {
+		right: -50px;
+		top: -50px;
+	}
 }
 
 @keyframes movePointBack {
-    100% {
-        right: 0;
-        top: 0;
-    }
-    75% {
-        right: 0;
-        top: 0;
-    }
-    50% {
-        right: 0;
-        top: 0;
-    }
-    25% {
-        right: 0;
-        top: 0;
-    }
-    0% {
-        right: -50px;
-        top: -50px;
-    }
+	100% {
+		right: 0;
+		top: 0;
+	}
+	75% {
+		right: 0;
+		top: 0;
+	}
+	50% {
+		right: 0;
+		top: 0;
+	}
+	25% {
+		right: 0;
+		top: 0;
+	}
+	0% {
+		right: -50px;
+		top: -50px;
+	}
 }
 
 @keyframes shake {
-    0% {
-        transform: rotate(0deg);
-        right: 0;
-        top: 0;
-    }
-    5% {
-        transform: rotate(17deg);
-        right: 0;
-        top: 0;
-    }
-    10% {
-        transform: rotate(-13deg);
-        right: 0;
-        top: 0;
-    }
-    15% {
-        transform: rotate(8deg);
-        right: 0;
-        top: 0;
-    }
-    20% {
-        transform: rotate(0deg);
-        right: 0;
-        top: 0;
-    }
-    25% {
-        transform: rotate(17deg);
-        right: 0;
-        top: 0;
-    }
-    30% {
-        transform: rotate(17deg);
-        right: 0;
-        top: 0;
-    }
-    35% {
-        transform: rotate(-13deg);
-        right: 0;
-        top: 0;
-    }
-    40% {
-        transform: rotate(8deg);
-        right: 0;
-        top: 0;
-    }
-    45% {
-        transform: rotate(0deg);
-        right: 0;
-        top: 0;
-    }
+	0% {
+		transform: rotate(0deg);
+		right: 0;
+		top: 0;
+	}
+	5% {
+		transform: rotate(17deg);
+		right: 0;
+		top: 0;
+	}
+	10% {
+		transform: rotate(-13deg);
+		right: 0;
+		top: 0;
+	}
+	15% {
+		transform: rotate(8deg);
+		right: 0;
+		top: 0;
+	}
+	20% {
+		transform: rotate(0deg);
+		right: 0;
+		top: 0;
+	}
+	25% {
+		transform: rotate(17deg);
+		right: 0;
+		top: 0;
+	}
+	30% {
+		transform: rotate(17deg);
+		right: 0;
+		top: 0;
+	}
+	35% {
+		transform: rotate(-13deg);
+		right: 0;
+		top: 0;
+	}
+	40% {
+		transform: rotate(8deg);
+		right: 0;
+		top: 0;
+	}
+	45% {
+		transform: rotate(0deg);
+		right: 0;
+		top: 0;
+	}
 
-    50% {
-        transform: rotate(-13deg);
+	50% {
+		transform: rotate(-13deg);
 
-        right: 0;
-        top: 0;
-    }
-    55% {
-        transform: rotate(17deg);
-        right: 0;
-        top: 0;
-    }
-    60% {
-        transform: rotate(-13deg);
-        right: 0;
-        top: 0;
-    }
-    65% {
-        transform: rotate(8deg);
-        right: 0;
-        top: 0;
-    }
-    70% {
-        transform: rotate(0deg);
-        right: 0;
-        top: 0;
-    }
+		right: 0;
+		top: 0;
+	}
+	55% {
+		transform: rotate(17deg);
+		right: 0;
+		top: 0;
+	}
+	60% {
+		transform: rotate(-13deg);
+		right: 0;
+		top: 0;
+	}
+	65% {
+		transform: rotate(8deg);
+		right: 0;
+		top: 0;
+	}
+	70% {
+		transform: rotate(0deg);
+		right: 0;
+		top: 0;
+	}
 
-    75% {
-        transform: rotate(-13deg);
+	75% {
+		transform: rotate(-13deg);
 
-        right: 0;
-        top: 0;
-    }
-    80% {
-        transform: rotate(8deg);
-        right: 0;
-        top: 0;
-    }
-    85% {
-        transform: rotate(0deg);
-        right: 0;
-        top: 0;
-    }
+		right: 0;
+		top: 0;
+	}
+	80% {
+		transform: rotate(8deg);
+		right: 0;
+		top: 0;
+	}
+	85% {
+		transform: rotate(0deg);
+		right: 0;
+		top: 0;
+	}
 
-    90% {
-        transform: rotate(-13deg);
+	90% {
+		transform: rotate(-13deg);
 
-        right: 0;
-        top: 0;
-    }
-    95% {
-        transform: rotate(17deg);
-        right: 0;
-        top: 0;
-    }
-    100% {
-        transform: rotate(0deg);
-        right: 0;
-        top: 0;
-    }
+		right: 0;
+		top: 0;
+	}
+	95% {
+		transform: rotate(17deg);
+		right: 0;
+		top: 0;
+	}
+	100% {
+		transform: rotate(0deg);
+		right: 0;
+		top: 0;
+	}
 }
 @keyframes shake1 {
-    0% {
-        transform: rotate(0deg);
-    top: 22px;
-    right: -25px;
-    }
-    5% {
-        transform: rotate(17deg);
-    top: 22px;
-    right: -25px;
-    }
-    10% {
-        transform: rotate(-13deg);
-    top: 22px;
-    right: -25px;
-    }
-    15% {
-        transform: rotate(8deg);
-    top: 22px;
-    right: -25px;
-    }
-    20% {
-        transform: rotate(0deg);
-    top: 22px;
-    right: -25px;
-    }
-    25% {
-        transform: rotate(17deg);
-    top: 22px;
-    right: -25px;
-    }
-    30% {
-        transform: rotate(17deg);
-    top: 22px;
-    right: -25px;
-    }
-    35% {
-        transform: rotate(-13deg);
-    top: 22px;
-    right: -25px;
-    }
-    40% {
-        transform: rotate(8deg);
-    top: 22px;
-    right: -25px;
-    }
-    45% {
-        transform: rotate(0deg);
-    top: 22px;
-    right: -25px;
-    }
+	0% {
+		transform: rotate(0deg);
+		top: 22px;
+		right: -25px;
+	}
+	5% {
+		transform: rotate(17deg);
+		top: 22px;
+		right: -25px;
+	}
+	10% {
+		transform: rotate(-13deg);
+		top: 22px;
+		right: -25px;
+	}
+	15% {
+		transform: rotate(8deg);
+		top: 22px;
+		right: -25px;
+	}
+	20% {
+		transform: rotate(0deg);
+		top: 22px;
+		right: -25px;
+	}
+	25% {
+		transform: rotate(17deg);
+		top: 22px;
+		right: -25px;
+	}
+	30% {
+		transform: rotate(17deg);
+		top: 22px;
+		right: -25px;
+	}
+	35% {
+		transform: rotate(-13deg);
+		top: 22px;
+		right: -25px;
+	}
+	40% {
+		transform: rotate(8deg);
+		top: 22px;
+		right: -25px;
+	}
+	45% {
+		transform: rotate(0deg);
+		top: 22px;
+		right: -25px;
+	}
 
-    50% {
-        transform: rotate(-13deg);
+	50% {
+		transform: rotate(-13deg);
 
-    top: 22px;
-    right: -25px;
-    }
-    55% {
-        transform: rotate(17deg);
-    top: 22px;
-    right: -25px;
-    }
-    60% {
-        transform: rotate(-13deg);
-    top: 22px;
-    right: -25px;
-    }
-    65% {
-        transform: rotate(8deg);
-    top: 22px;
-    right: -25px;
-    }
-    70% {
-        transform: rotate(0deg);
-    top: 22px;
-    right: -25px;
-    }
+		top: 22px;
+		right: -25px;
+	}
+	55% {
+		transform: rotate(17deg);
+		top: 22px;
+		right: -25px;
+	}
+	60% {
+		transform: rotate(-13deg);
+		top: 22px;
+		right: -25px;
+	}
+	65% {
+		transform: rotate(8deg);
+		top: 22px;
+		right: -25px;
+	}
+	70% {
+		transform: rotate(0deg);
+		top: 22px;
+		right: -25px;
+	}
 
-    75% {
-        transform: rotate(-13deg);
+	75% {
+		transform: rotate(-13deg);
 
-    top: 22px;
-    right: -25px;
-    }
-    80% {
-        transform: rotate(8deg);
-    top: 22px;
-    right: -25px;
-    }
-    85% {
-        transform: rotate(0deg);
-    top: 22px;
-    right: -25px;
-    }
+		top: 22px;
+		right: -25px;
+	}
+	80% {
+		transform: rotate(8deg);
+		top: 22px;
+		right: -25px;
+	}
+	85% {
+		transform: rotate(0deg);
+		top: 22px;
+		right: -25px;
+	}
 
-    90% {
-        transform: rotate(-13deg);
+	90% {
+		transform: rotate(-13deg);
 
-    top: 22px;
-    right: -25px;
-    }
-    95% {
-        transform: rotate(17deg);
-    top: 22px;
-    right: -25px;
-    }
-    100% {
-        transform: rotate(0deg);
-    top: 22px;
-    right: -25px;
-    }   }
+		top: 22px;
+		right: -25px;
+	}
+	95% {
+		transform: rotate(17deg);
+		top: 22px;
+		right: -25px;
+	}
+	100% {
+		transform: rotate(0deg);
+		top: 22px;
+		right: -25px;
+	}
+}
+.taste_unit_item {
+    width: calc(25% - 0.4rem);
+    height: 80px;
+    margin: 0 0.2rem 0.4rem;
+    box-sizing: border-box;
+    position: relative;
+    background: rgba(0,140,255,.2);
+    box-shadow: 0 2px 4px 0 rgba(0,34,115,.5);
+    border-radius: 4px;
+    border: 1px solid hsla(0,0%,100%,.41);
+    color: #fff;
+    text-align: center;
+}
+.taste_unit_item.active {
+    background: rgba(136,213,255,.8)
+}
+.taste_unit_item .taste_unit_odds {
+    font-size: .3rem;
+    color: #c1e4ff;
+    margin-top: 3px;
+}
+.taste_unit_item .taste_unit_img {
+    text-align: center;
+    font-size: .3rem;
+    font-weight: 450;
+    box-sizing: border-box;
+    padding-right: 0.06em;
+    margin: auto;
+    display: block;
+}
+.taste_unit_item .taste_unit_img.taste_unit_img_DA {
+    width: 4.274em;
+    height: 1.71em;
+    background-image: url(https://www.123bdly.com/home/static-game/img/css_sprites.42d662b7.png);
+    background-position-x: -55.211em;
+    background-position-y: -0.356em;
+    background-size: auto 6.483em;
+    background-repeat: no-repeat;
+}
+.taste_unit_item .taste_unit_img.taste_unit_img_XIAO {
+    width: 4.274em;
+    height: 1.71em;
+    background-image: url(https://www.123bdly.com/home/static-game/img/css_sprites.42d662b7.png);
+    background-position-x: -60.198em;
+    background-position-y: -0.356em;
+    background-size: auto 6.483em;
+    background-repeat: no-repeat;
+}
+.taste_unit_item .taste_unit_img.taste_unit_img_DAN {
+    width: 4.274em;
+    height: 1.71em;
+    background-image: url(https://www.123bdly.com/home/static-game/img/css_sprites.42d662b7.png);
+    background-position-x: -50.224em;
+    background-position-y: -0.356em;
+    background-size: auto 6.483em;
+    background-repeat: no-repeat;
+}
+.taste_unit_item .taste_unit_img.taste_unit_img_SHUANG {
+    width: 4.274em;
+    height: 1.71em;
+    background-image: url(https://www.123bdly.com/home/static-game/img/css_sprites.42d662b7.png);
+    background-position-x: -45.238em;
+    background-position-y: -0.356em;
+    background-size: auto 6.483em;
+    background-repeat: no-repeat;
+}
+.taste_unit_item:has(.taste_unit_item_yxx) {
+    width: calc(50% - 0.4rem);
+}
+.taste_unit_item .taste_unit_item_yxx.taste_unit_item_w {
+    width: 1.425em;
+    height: 1.425em;
+    background-image: url(https://www.123bdly.com/home/static-game/img/css_sprites.42d662b7.png);
+    background-position-x: -4.631em;
+    background-position-y: -0.356em;
+    background-size: auto 6.483em;
+    background-repeat: no-repeat;
+    display: inline-block;
+}
+.taste_unit_item .taste_unit_item_yxx.taste_unit_item_r {
+    width: 1.425em;
+    height: 1.425em;
+    background-image: url(https://www.123bdly.com/home/static-game/img/css_sprites.42d662b7.png);
+    background-position-x: -2.493em;
+    background-position-y: -0.356em;
+    background-size: auto 6.483em;
+    background-repeat: no-repeat;
+    display: inline-block;
+}
+.taste_unit_item .taste_unit_item_yxx:not(:last-child) {
+    margin-right: 0.86em;
+}
+.bet-input-panel.bet_panel_taste .bet_taste_info[data-v-331b32c3] {
+    position: relative;
+    z-index: 9;
+    align-items: flex-end;
+}
+.bet-input-panel.bet_panel_taste .bet_taste_info .bet_taste_reset[data-v-331b32c3] {
+    width: 5.525em;
+    height: 3.053em;
+    background-image: url(https://www.123bdly.com/home/static-game/img/css_sprites.aef03dc8.png);
+    background-position-x: -63.68em;
+    background-position-y: -0.363em;
+    background-size: auto 4.071em;
+    background-repeat: no-repeat;
+    color: hsla(0,0%,100%,.4);
+    border: 0;
+    background-color: transparent;
+    outline: none;
+    box-shadow: none;
+}
+.bet-input-panel.bet_panel_taste .bet_taste_info .bet_taste_text[data-v-331b32c3] {
+    color: #fff;
+    text-align: center;
+    margin: auto;
+}
+.bet-input-panel.bet_panel_taste .bet_taste_info .bet_taste_text .bet_taste_num[data-v-331b32c3] {
+    padding-top: 0.5em;
+    box-sizing: border-box;
+}
+.bet-input-panel.bet_panel_taste .bet_taste_info .bet_taste_text>div[data-v-331b32c3] {
+    height: 50%;
+    font-size: .28rem;
+}
+.bet-input-panel.bet_panel_taste .bet_taste_info .bet_taste_money {
+    background: #000;
+    border-radius: 50px;
+    border: 2px solid #ae8d4e;
+    padding: 5px 10px;
+    overflow: hidden;
+}
+.bet-input-panel.bet_panel_taste .bet_taste_info .bet_taste_money > * {
+    line-height: 1.5;
+}
+.bet-input-panel.bet_panel_taste .bet_taste_info .bet_taste_money input {
+    background: transparent!important;
+    outline: none!important;
+    box-shadow: none!important;
+    border: none!important;
+    color: #fff;
+}
+.bet-input-panel.bet_panel_taste .bet_taste_info .bet_taste_money input::placeholder {
+    color: #fff;
+}
+.bet-input-panel.bet_panel_taste .bet_taste_info .bet_taste_text .bet_taste_num span[data-v-331b32c3] {
+    margin: 0 4px;
+}
+.bet-input-panel.bet_panel_taste .bet_taste_info .bet_taste_text__common[data-v-331b32c3] {
+    color: #fff;
+}
+.bet-input-panel.bet_panel_taste .bet_taste_info .bet_taste_text__protrude[data-v-331b32c3] {
+    color: #00d3ff;
+}
+.bet-input-panel.bet_panel_taste .bet_taste_info .bet_taste_text .bet_taste_money span[data-v-331b32c3] {
+    width: 35%;
+    text-align: right;
+    margin: 0;
+}
+.bet-input-panel.bet_panel_taste .bet_taste_info .bet_taste_text__protrude[data-v-331b32c3] {
+    color: #00d3ff;
+}
+.bet-input-panel.bet_panel_taste .bet_taste_info .bet_taste_text .bet_taste_line[data-v-331b32c3] {
+    width: 1px;
+    height: 25px;
+    background-color: #fff;
+    margin: 0 7px;
+}
+.bet-input-panel.bet_panel_taste .bet_taste_info .bet_taste_text .bet_taste_money .bet_taste_money_bet[data-v-331b32c3] {
+    padding-right: 1.5em;
+    text-align: left;
+}
+.bet-input-panel.bet_panel_taste .bet_taste_info .bet_taste_submit[data-v-331b32c3] {
+    width: 5.525em;
+    height: 3.053em;
+    background-image: url(https://www.123bdly.com/home/static-game/img/css_sprites.aef03dc8.png);
+    background-position-x: -76.183em;
+    background-position-y: -0.363em;
+    background-size: auto 4.071em;
+    background-repeat: no-repeat;
+    text-shadow: 0 2px 4px rgba(0,19,74,.7);
+    color: #fff;
+    border: 0;
+    background-color: transparent;
+    outline: none;
+    box-shadow: none;
+}
+[flex~="cross:top"] {
+    align-items: flex-start;
+}
+[flex~="main:center"] {
+    justify-content: center;
+}
+[flex] {
+    display: flex;
+}
+.bet-input-panel:after {
+    content: "";
+    background-color: transparent;
+    left: 50%;
+    -webkit-transform: translateX(-50%);
+    transform: translateX(-50%);
+    width: 43.616em;
+    height: 5.888em;
+    background-image: url(https://www.123bdly.com/home/static-game/img/css_sprites.42d662b7.png);
+    background-position-x: -79.018em;
+    background-position-y: -0.363em;
+    background-size: auto 6.615em;
+    background-repeat: no-repeat;
+}

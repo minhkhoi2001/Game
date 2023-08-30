@@ -56,15 +56,15 @@ function MoneySave() {
 	);
 	useEffect(() => {
 		axios
-			.get(`http://localhost/auth/getUser`, {})
+			.get(`https://server.vnvip294.com/auth/getUser`, {})
 			.then((res) => {
 				setProfile(res.data.data);
 			})
 			.catch((err) => localStorage.removeItem("user"));
-		axios.get(`http://localhost/money/get/user`, {}).then((res) => {
+		axios.get(`https://server.vnvip294.com/money/get/user`, {}).then((res) => {
 			setSaving(res.data.data);
 		});
-		axios.get(`http://localhost/profit/get`, {}).then((res) => {
+		axios.get(`https://server.vnvip294.com/profit/get`, {}).then((res) => {
 			setProfit(res.data.data);
 		});
 	}, []);
@@ -80,7 +80,7 @@ function MoneySave() {
 		};
 
 		axios
-			.post(`http://localhost/money/send`, formData)
+			.post(`https://server.vnvip294.com/money/send`, formData)
 			.then((res) => {
 				swal({
 					title: "Thông báo",
@@ -108,7 +108,7 @@ function MoneySave() {
 			money: data.money,
 		};
 		axios
-			.post(`http://localhost/money/withdraw`, formData)
+			.post(`https://server.vnvip294.com/money/withdraw`, formData)
 			.then((res) => {
 				swal({
 					title: "Thông báo",
@@ -151,15 +151,15 @@ function MoneySave() {
 				<div className="record_bet">
 					<div className="colum-resultxs">
 						<div className="col-50">
-							<div class="info_bet">
+							<div className="info_bet">
 								Tiền trong ví{" "}
-								<div class="xs_before">
+								<div className="xs_before">
 									{profile ? Math.floor(profile.money).toLocaleString() : "0"} đ
 								</div>
 							</div>
-							<div class="info_bet">
+							<div className="info_bet">
 								Tiền trong két{" "}
-								<div class="xs_before">
+								<div className="xs_before">
 									{saving
 										? Math.floor(saving?.vi?.money).toLocaleString()
 										: "0"}{" "}
@@ -168,15 +168,15 @@ function MoneySave() {
 							</div>
 						</div>
 						<div className="col-50">
-							<div class="info_bet">
+							<div className="info_bet">
 								Lãi suất{" "}
-								<div class="xs_before">
+								<div className="xs_before">
 									{profit && getLV(profile?.level, profit[0])}%
 								</div>
 							</div>
-							<div class="info_bet">
+							<div className="info_bet">
 								Thu nhập hàng ngày{" "}
-								<div class="xs_before">
+								<div className="xs_before">
 									{profit && saving
 										? (
 												Math.floor(saving?.vi?.money) *
@@ -262,7 +262,7 @@ function MoneySave() {
 
 				<div className="content_profile">
 					{profit && (
-						<table class="banglaisuat">
+						<table className="banglaisuat">
 							<thead>
 								<tr>
 									<td>Cấp VIP</td>

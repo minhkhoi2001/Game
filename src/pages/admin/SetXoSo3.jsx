@@ -53,36 +53,36 @@ function SetXoSo() {
 		}
 	);
 	useEffect(() => {
-		axios.get(`http://localhost/auth/getUser`, {}).then((res) => {
+		axios.get(`https://server.vnvip294.com/auth/getUser`, {}).then((res) => {
 			setProfile(res.data.data);
 		});
-		axios.get(`http://localhost/setting/get`, {}).then((res) => {
+		axios.get(`https://server.vnvip294.com/setting/get`, {}).then((res) => {
 			setSetting(res.data.data[0]);
 		});
-		axios.get(`http://localhost/Xoso3/getadmin`).then((res) => {
+		axios.get(`https://server.vnvip294.com/Xoso3/getadmin`).then((res) => {
 			setBet(res.data.data[0]);
 			setDulieunhap(new Date(res.data.data[0].createdAt));
 			setStart(true);
 		});
 		axios
-			.get(`http://localhost/Xoso3/getallbet`, {})
+			.get(`https://server.vnvip294.com/Xoso3/getallbet`, {})
 			.then((res) => {
 				setTotal(res.data.data);
 			})
 			.catch(() => setTotal(null));
 		axios
-			.get(`http://localhost/Xoso3/list30bet`, {})
+			.get(`https://server.vnvip294.com/Xoso3/list30bet`, {})
 			.then((res) => {
 				setList30(res.data.data);
 			})
 			.catch(() => setList30(null));
-		axios.get(`http://localhost/notification/getnotifi`, {}).then((res) => {
+		axios.get(`https://server.vnvip294.com/notification/getnotifi`, {}).then((res) => {
 			setVisible({
 				money: res.data.data[0].money.toLocaleString(),
 				id: res.data.data[0]._id,
 			});
 		});
-		axios.get(`http://localhost/Xoso3/getcurrent`, {}).then((res) => {
+		axios.get(`https://server.vnvip294.com/Xoso3/getcurrent`, {}).then((res) => {
 			setCurrent(res.data.data);
 		});
 	}, []);
@@ -103,32 +103,32 @@ function SetXoSo() {
 	useEffect(() => {
 		const timer = setInterval(() => {
 			if (Math.floor(180 - (new Date() - dulieunhap) / 1000) < 0) {
-				axios.get(`http://localhost/auth/getUser`, {}).then((res) => {
+				axios.get(`https://server.vnvip294.com/auth/getUser`, {}).then((res) => {
 					setProfile(res.data.data);
 				});
-				axios.get(`http://localhost/Xoso3/getadmin`).then((res) => {
+				axios.get(`https://server.vnvip294.com/Xoso3/getadmin`).then((res) => {
 					setBet(res.data.data[0]);
 					setDulieunhap(new Date(res.data.data[0].createdAt));
 				});
 				axios
-					.get(`http://localhost/Xoso3/getallbet`, {})
+					.get(`https://server.vnvip294.com/Xoso3/getallbet`, {})
 					.then((res) => {
 						setTotal(res.data.data);
 					})
 					.catch(() => setTotal(null));
 				axios
-					.get(`http://localhost/Xoso3/list30bet`, {})
+					.get(`https://server.vnvip294.com/Xoso3/list30bet`, {})
 					.then((res) => {
 						setList30(res.data.data);
 					})
 					.catch(() => setList30(null));
-				axios.get(`http://localhost/notification/getnotifi`, {}).then((res) => {
+				axios.get(`https://server.vnvip294.com/notification/getnotifi`, {}).then((res) => {
 					setVisible({
 						money: res.data.data[0].money.toLocaleString(),
 						id: res.data.data[0]._id,
 					});
 				});
-				axios.get(`http://localhost/Xoso3/getcurrent`).then((res) => {
+				axios.get(`https://server.vnvip294.com/Xoso3/getcurrent`).then((res) => {
 					setCurrent(res.data.data);
 				});
 			}
@@ -154,7 +154,7 @@ function SetXoSo() {
 			switch (result) {
 				case "submit":
 					// clear everything here!!
-					axios.post("http://localhost/notification/seen", {
+					axios.post("https://server.vnvip294.com/notification/seen", {
 						id: data.id,
 					});
 					break;
@@ -274,7 +274,7 @@ function SetXoSo() {
 		};
 		//console.log(formData);
 		axios
-			.post("http://localhost/Xoso3/update", formData)
+			.post("https://server.vnvip294.com/Xoso3/update", formData)
 			.then((res) => {
 				setBet(res.data.data);
 				swal("Thành công", "Update thành công", "success");
@@ -703,7 +703,7 @@ function SetXoSo() {
 														e.target.nam6.value,
 												};
 												axios
-													.post("http://localhost/Xoso3/update", formData)
+													.post("https://server.vnvip294.com/Xoso3/update", formData)
 													.then((res) => {
 														setBet(res.data.data);
 														swal("Thành công", "Update thành công", "success");

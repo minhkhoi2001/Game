@@ -59,7 +59,7 @@ function UserProfile() {
 	useEffect(() => {
 		if (id && load == false) {
 			axios
-				.post(`http://localhost/bank/getBankUser`, { id: id })
+				.post(`https://server.vnvip294.com/bank/getBankUser`, { id: id })
 				.then((res) => {
 					setData(res.data.data);
 					setLoad(true);
@@ -67,13 +67,13 @@ function UserProfile() {
 				.catch((res) => setData(null));
 		}
 		axios
-			.get(`http://localhost/auth/user/${id}`, {})
+			.get(`https://server.vnvip294.com/auth/user/${id}`, {})
 			.then((res) => {
 				setProfile(res.data.data);
 			})
 			.catch((res) => setProfile(null));
 		axios
-			.get(`http://localhost/history/historyuser/${id}`, {})
+			.get(`https://server.vnvip294.com/history/historyuser/${id}`, {})
 			.then((res) => {
 				setHistory(res.data.data);
 			})
@@ -82,7 +82,7 @@ function UserProfile() {
 	const handleSubmit = (e) => {
 		e.preventDefault();
 		axios
-			.post(`http://localhost/auth/changepassword`, {
+			.post(`https://server.vnvip294.com/auth/changepassword`, {
 				id: id,
 				password: e.target.password.value,
 			})
@@ -104,7 +104,7 @@ function UserProfile() {
 			fullname: e.target.fullname.value,
 		};
 		axios
-			.post(`http://localhost/bank/updateBank`, formData)
+			.post(`https://server.vnvip294.com/bank/updateBank`, formData)
 			.then((res) => {
 				setShow(false);
 				swal("Cập nhật thành công");
@@ -185,7 +185,7 @@ function UserProfile() {
 																level: e.target.vip.value,
 															};
 															axios
-																.post("http://localhost/auth/update", form)
+																.post("https://server.vnvip294.com/auth/update", form)
 																.then((res) =>
 																	swal("Update level user thành công!","","success")
 																)
@@ -360,7 +360,7 @@ function UserProfile() {
 																		onClick={() => {
 																			axios
 																				.delete(
-																					`http://localhost/bank/delete/${item._id}`
+																					`https://server.vnvip294.com/bank/delete/${item._id}`
 																				)
 																				.then((res) => {
 																					setLoad(false);
@@ -373,7 +373,7 @@ function UserProfile() {
 																		onClick={() => {
 																			axios
 																				.get(
-																					`http://localhost/bank/user/${item._id}`,
+																					`https://server.vnvip294.com/bank/user/${item._id}`,
 																					{}
 																				)
 																				.then((res) => {
@@ -472,7 +472,7 @@ function UserProfile() {
 															{item.id_bet.result
 																.split(" ")
 																.map(Number)
-																.reduce((acc, curr) => acc + curr, 0) > 10 ? (<span class="t-blue">Tài</span>) : (<span class="t-green">Xỉu</span>)}
+																.reduce((acc, curr) => acc + curr, 0) > 10 ? (<span className="t-blue">Tài</span>) : (<span className="t-green">Xỉu</span>)}
 																</>
 															)}
 														</TableCell>
@@ -484,7 +484,7 @@ function UserProfile() {
 															{item.id_bet.result
 																.split(" ")
 																.map(Number)
-																.reduce((acc, curr) => acc + curr, 0) % 2 == 0 ? (<span class="t-blue">Chẵn</span>) : (<span class="t-green">Lẻ</span>)}
+																.reduce((acc, curr) => acc + curr, 0) % 2 == 0 ? (<span className="t-blue">Chẵn</span>) : (<span className="t-green">Lẻ</span>)}
 																</>
 															)}
 														</TableCell>

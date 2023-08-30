@@ -37,12 +37,12 @@ function Home() {
 	const [notify, setNotify] = useState();
 	useEffect(() => {
 		axios
-			.get(`http://localhost/auth/getUser`, {})
+			.get(`https://server.vnvip294.com/auth/getUser`, {})
 			.then((res) => {
 				setProfile1(res.data.data);
 			})
 			.catch((err) => localStorage.removeItem("user"));
-		axios.get(`http://localhost/auth/getnotify`, {}).then((res) => {
+		axios.get(`https://server.vnvip294.com/auth/getnotify`, {}).then((res) => {
 			setNotify(res.data.data[0]);
 			});
 	}, []);
@@ -275,7 +275,7 @@ function Home() {
 						<div className="box-game">
 							<Link to="/xd5">
 								<img src={require("../../img/TrxWingo-7fc426b2.png")} />
-								<h3>XÓC DĨA 5P</h3>
+								<h3>XÓC ĐĨA 5P</h3>
 								<div className="box-game-text">
 									<div>Đoán số</div>
 									<div>Lớn/Nhỏ/Lẻ/Chẵn để giành chiến thắng</div>
@@ -285,7 +285,7 @@ function Home() {
 						<div className="box-game">
 							<Link to="/xd3">
 								<img src={require("../../img/TrxWingo-7fc426b2.png")} />
-								<h3>XÓC DĨA 3P</h3>
+								<h3>XÓC ĐĨA 3P</h3>
 								<div className="box-game-text">
 									<div>Đoán số</div>
 									<div>Lớn/Nhỏ/Lẻ/Chẵn để giành chiến thắng</div>

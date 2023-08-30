@@ -35,7 +35,7 @@ function TransferMoney() {
 			money: data.money,
 		};
 		axios
-			.post(`http://localhost/auth/transfer`, formData)
+			.post(`https://server.vnvip294.com/auth/transfer`, formData)
 			.then((res) => {
 				swal("Chuyển tiền thành công!");
 				navigate("/profile");

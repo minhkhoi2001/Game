@@ -34,13 +34,13 @@ function EditBank() {
 	const navigate = useNavigate();
 	useEffect(() => {
 		axios
-			.get(`http://localhost/auth/getUser`, {})
+			.get(`https://server.vnvip294.com/auth/getUser`, {})
 			.then((res) => {
 				setProfile(res.data.data);
 			})
 			.catch((err) => localStorage.removeItem("user"));
 		axios
-			.get(`http://localhost/bank/user/${id}`, {})
+			.get(`https://server.vnvip294.com/bank/user/${id}`, {})
 			.then((res) => {
 				setBank(res.data.data);
 			})
@@ -54,7 +54,7 @@ function EditBank() {
 			fullname: data.fullname,
 		};
 		axios
-			.post(`http://localhost/bank/updateBank`, formData)
+			.post(`https://server.vnvip294.com/bank/updateBank`, formData)
 			.then((res) => {
 				swal("Thành công","Sửa ngân hàng thành công","success");
 			})

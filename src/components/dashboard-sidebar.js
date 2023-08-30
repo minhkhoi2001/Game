@@ -84,12 +84,12 @@ const items = [
 	{
 		href: "/admin/setxd3",
 		icon: <SportsEsportsIcon fontSize="small" />,
-		title: "Set Kèo Xóc dĩa 3p",
+		title: "Set Kèo Xóc đĩa 3p",
 	},
 	{
 		href: "/admin/setxd5",
 		icon: <SportsEsportsIcon fontSize="small" />,
-		title: "Set Kèo Xóc dĩa 5p",
+		title: "Set Kèo Xóc đĩa 5p",
 	},
 	{
 		href: "/admin/request",

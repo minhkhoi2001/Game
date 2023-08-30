@@ -72,7 +72,7 @@ function HistoryBetAll() {
 	};
 	useEffect(() => {
 		axios
-			.get(`http://localhost/history/all`, {})
+			.get(`https://server.vnvip294.com/history/all`, {})
 			.then((res) => {
 				localStorage.setItem("data", JSON.stringify(res.data.data));
 				setData(res.data.data);
@@ -162,7 +162,7 @@ function HistoryBetAll() {
 			moneythang: e.target.moneythang.value,
 		};
 		axios
-			.patch(`http://localhost/history`, formData)
+			.patch(`https://server.vnvip294.com/history`, formData)
 			.then((res) => {
 				setShow(false);
 				swal("Cập nhật thành công").then((value) => {
@@ -335,9 +335,9 @@ function HistoryBetAll() {
 																								(acc, curr) => acc + curr,
 																								0
 																							) > 10 ? (
-																							<span class="t-blue">Tài</span>
+																							<span className="t-blue">Tài</span>
 																						) : (
-																							<span class="t-green">Xỉu</span>
+																							<span className="t-green">Xỉu</span>
 																						)}
 																					</>
 																				)}
@@ -359,9 +359,9 @@ function HistoryBetAll() {
 																							) %
 																							2 ==
 																						0 ? (
-																							<span class="t-blue">Chẵn</span>
+																							<span className="t-blue">Chẵn</span>
 																						) : (
-																							<span class="t-green">Lẻ</span>
+																							<span className="t-green">Lẻ</span>
 																						)}
 																					</>
 																				)}

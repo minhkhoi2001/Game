@@ -42,53 +42,59 @@ function XD3() {
 		}
 	);
 	useEffect(() => {
-		axios.get(`http://localhost/auth/getUser`, {}).then((res) => {
+		axios.get(`https://server.vnvip294.com/auth/getUser`, {}).then((res) => {
 			setProfile(res.data.data);
 		});
-		axios.get(`http://localhost/setting/get`, {}).then((res) => {
+		axios.get(`https://server.vnvip294.com/setting/get`, {}).then((res) => {
 			setSetting(res.data.data[0]);
 		});
-		axios.get(`http://localhost/xd3/get`).then((res) => {
+		axios.get(`https://server.vnvip294.com/xd3/get`).then((res) => {
 			setBet(res.data.data);
 			setDulieunhap(new Date(res.data.data.createdAt));
 			setStart(true);
 		});
 		axios
-			.get(`http://localhost/xd3/getallbet`, {})
+			.get(`https://server.vnvip294.com/xd3/getallbet`, {})
 			.then((res) => {
 				setTotal(res.data.data);
 				setTotal2(res.data.data);
 			})
 			.catch(() => setTotal(null));
-		axios.get(`http://localhost/notification/getnotifi`, {}).then((res) => {
-			setVisible({
-				money: res.data.data[0].money.toLocaleString(),
-				id: res.data.data[0]._id,
+		axios
+			.get(`https://server.vnvip294.com/notification/getnotifi`, {})
+			.then((res) => {
+				setVisible({
+					money: res.data.data[0].money.toLocaleString(),
+					id: res.data.data[0]._id,
+				});
 			});
-		});
 	}, []);
 	useEffect(() => {
 		const timer = setInterval(() => {
 			if (Math.floor(180 - (new Date() - dulieunhap) / 1000) < 0) {
-				axios.get(`http://localhost/auth/getUser`, {}).then((res) => {
-					setProfile(res.data.data);
-				});
-				axios.get(`http://localhost/xd3/get`).then((res) => {
+				axios
+					.get(`https://server.vnvip294.com/auth/getUser`, {})
+					.then((res) => {
+						setProfile(res.data.data);
+					});
+				axios.get(`https://server.vnvip294.com/xd3/get`).then((res) => {
 					setBet(res.data.data);
 					setDulieunhap(new Date(res.data.data.createdAt));
 				});
 				axios
-					.get(`http://localhost/xd3/getallbet`, {})
+					.get(`https://server.vnvip294.com/xd3/getallbet`, {})
 					.then((res) => {
 						rollLottery(res);
 					})
 					.catch(() => setTotal(null));
-				axios.get(`http://localhost/notification/getnotifi`, {}).then((res) => {
-					setVisible({
-						money: res.data.data[0].money.toLocaleString(),
-						id: res.data.data[0]._id,
+				axios
+					.get(`https://server.vnvip294.com/notification/getnotifi`, {})
+					.then((res) => {
+						setVisible({
+							money: res.data.data[0].money.toLocaleString(),
+							id: res.data.data[0]._id,
+						});
 					});
-				});
 			}
 		}, 500);
 
@@ -111,7 +117,7 @@ function XD3() {
 
 			switch (result) {
 				case "submit":
-					axios.post("http://localhost/notification/seen", {
+					axios.post("https://server.vnvip294.com/notification/seen", {
 						id: data.id,
 					});
 					break;
@@ -197,7 +203,7 @@ function XD3() {
 			swal("Thất bại", "Bạn chưa nhập tiền", "error");
 		} else {
 			axios
-				.post("http://localhost/cxd3/choose", formData)
+				.post("https://server.vnvip294.com/cxd3/choose", formData)
 				.then((res) => {
 					swal("Đặt cược thành công", "", "success");
 					setChoose([]);
@@ -256,7 +262,7 @@ function XD3() {
 
 	function getHistoryBet() {
 		axios
-			.get(`http://localhost/history/historyus`, {})
+			.get(`https://server.vnvip294.com/history/historyus`, {})
 			.then((res) => {
 				setHistoryGame(res.data.data);
 			})
@@ -285,15 +291,44 @@ function XD3() {
 	return (
 		<>
 			<div className="main">
-				<div className="bg-game">
-					<img src={chen} className="point" alt=""  />
-
-					<img className="check" src={dia} alt="" />
-					<div></div>
+				<Header profile={profile} />
+				<div className="box-bg-game">
+					<div className="bg-game">
+						<div className="boxdia">
+							<img src={chen} className="point" alt="" />
+							<img className="check" src={dia} alt="" />
+						</div>
+					</div>
 				</div>
 				<div>
 					<button
-						style={choose?.includes(5) ? { background: "red" }:{background:'none'}}
+						className="taste_unit_item active"
+						onClick={() => {
+							if (choose) {
+								setChoose([...choose, 8]);
+							} else {
+								setChoose([8]);
+							}
+						}}
+					>
+						<div className="taste_unit_img taste_unit_img_DA"></div>
+						<div className="taste_unit_odds">1.985</div>
+					</button>
+					<button
+						className="taste_unit_item"
+						onClick={() => {
+							if (choose) {
+								setChoose([...choose, 7]);
+							} else {
+								setChoose([7]);
+							}
+						}}
+					>
+						<div className="taste_unit_img taste_unit_img_XIAO"></div>
+						<div className="taste_unit_odds">1.985</div>
+					</button>
+					<button
+						className="taste_unit_item"
 						onClick={() => {
 							if (choose) {
 								setChoose([...choose, 5]);
@@ -302,10 +337,11 @@ function XD3() {
 							}
 						}}
 					>
-						Chẵn
+						<div className="taste_unit_img taste_unit_img_DAN"></div>
+						<div className="taste_unit_odds">1.985</div>
 					</button>
 					<button
-					style={choose?.includes(6) ? { background: "red" }:{background:'none'}}
+						className="taste_unit_item"
 						onClick={() => {
 							if (choose) {
 								setChoose([...choose, 6]);
@@ -314,10 +350,11 @@ function XD3() {
 							}
 						}}
 					>
-						Lẽ
+						<div className="taste_unit_img taste_unit_img_SHUANG"></div>
+						<div className="taste_unit_odds">1.985</div>
 					</button>
 					<button
-						style={choose?.includes(4) ? { background: "red" }:{background:'none'}}
+						className="taste_unit_item"
 						onClick={() => {
 							if (choose) {
 								setChoose([...choose, 4]);
@@ -326,10 +363,18 @@ function XD3() {
 							}
 						}}
 					>
-						3 trắng - 1đen
+						<div>
+							<div class="nums_yxx_qw">
+								<div class="taste_unit_item_yxx taste_unit_item_w die"></div>
+								<div class="taste_unit_item_yxx taste_unit_item_w die"></div>
+								<div class="taste_unit_item_yxx taste_unit_item_w die"></div>
+								<div class="taste_unit_item_yxx taste_unit_item_r die"></div>
+							</div>
+						</div>
+						<div className="taste_unit_odds">1.985</div>
 					</button>
 					<button
-						style={choose?.includes(3) ? { background: "red" }:{background:'none'}}
+						className="taste_unit_item"
 						onClick={() => {
 							if (choose) {
 								setChoose([...choose, 3]);
@@ -338,10 +383,18 @@ function XD3() {
 							}
 						}}
 					>
-						3 đen - 1 trắng
+						<div>
+							<div class="nums_yxx_qw">
+								<div class="taste_unit_item_yxx taste_unit_item_r die"></div>
+								<div class="taste_unit_item_yxx taste_unit_item_r die"></div>
+								<div class="taste_unit_item_yxx taste_unit_item_r die"></div>
+								<div class="taste_unit_item_yxx taste_unit_item_w die"></div>
+							</div>
+						</div>
+						<div className="taste_unit_odds">1.985</div>
 					</button>
 					<button
-						style={choose?.includes(2) ? { background: "red" }:{background:'none'}}
+						className="taste_unit_item"
 						onClick={() => {
 							if (choose) {
 								setChoose([...choose, 2]);
@@ -350,10 +403,18 @@ function XD3() {
 							}
 						}}
 					>
-						4 trắng
+						<div>
+							<div class="nums_yxx_qw">
+								<div class="taste_unit_item_yxx taste_unit_item_w die"></div>
+								<div class="taste_unit_item_yxx taste_unit_item_w die"></div>
+								<div class="taste_unit_item_yxx taste_unit_item_w die"></div>
+								<div class="taste_unit_item_yxx taste_unit_item_w die"></div>
+							</div>
+						</div>
+						<div className="taste_unit_odds">1.985</div>
 					</button>
 					<button
-						style={choose?.includes(1) ? { background: "red" }:{background:'none'}}
+						className="taste_unit_item"
 						onClick={() => {
 							if (choose) {
 								setChoose([...choose, 1]);
@@ -362,17 +423,81 @@ function XD3() {
 							}
 						}}
 					>
-						4 đen
+						<div>
+							<div class="nums_yxx_qw">
+								<div class="taste_unit_item_yxx taste_unit_item_r die"></div>
+								<div class="taste_unit_item_yxx taste_unit_item_r die"></div>
+								<div class="taste_unit_item_yxx taste_unit_item_r die"></div>
+								<div class="taste_unit_item_yxx taste_unit_item_r die"></div>
+							</div>
+						</div>
+						<div className="taste_unit_odds">1.985</div>
 					</button>
 				</div>
-				<input
-					min={1}
-					value={money}
-					onChange={(e) => setMoney(e.target.value)}
-					name="money"
-					type="number"
-				/>
-				<button onClick={onSubmit}>Cược</button>
+				<div className="bet-input-panel bet_panel_taste">
+					<div
+						data-v-331b32c3=""
+						flex="main:justify box:justify cross:center"
+						class="bet_taste_info"
+					>
+						<button data-v-331b32c3="" class="bet_taste_reset">
+							Cài lại
+						</button>
+						<div data-v-331b32c3="" class="bet_taste_text">
+							<div
+								data-v-331b32c3=""
+								flex="main:center cross:center"
+								class="bet_taste_num vi"
+							>
+								<span data-v-331b32c3="" class="bet_taste_text__common">
+									Đã chọn
+								</span>
+								<span data-v-331b32c3="" class="bet_taste_text__protrude">
+									0
+								</span>
+								<span data-v-331b32c3="" class="bet_taste_text__common">
+									Lô
+								</span>
+							</div>
+							<div
+								data-v-331b32c3=""
+								flex="cross:center"
+								class="bet_taste_money"
+							>
+								<span
+									data-v-331b32c3=""
+									flex-box="0"
+									class="bet_taste_text__protrude"
+								>
+									Số tiền
+								</span>
+								<div
+									data-v-331b32c3=""
+									flex-box="0"
+									class="bet_taste_line"
+								></div>
+								<input
+									data-v-331b32c3=""
+									flex-box="8"
+									class="bet_taste_money_bet"
+									min={0}
+									value={money}
+									onChange={(e) => setMoney(e.target.value)}
+									name="money"
+									type="number"
+								/>
+							</div>
+						</div>
+						<button
+							data-v-331b32c3=""
+							class="bet_taste_submit"
+							type="submit"
+							onClick={onSubmit}
+						>
+							Đặt cược
+						</button>
+					</div>
+				</div>
 				<div className="history_game">
 					<ul className="tab-navigation">
 						<li
