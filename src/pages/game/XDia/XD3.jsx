@@ -4,8 +4,8 @@ import Header from "../../components/Header";
 import swal from "sweetalert";
 import Footer from "../../../components/Footer/Footer";
 import { GetNameChoose } from "../../../funcUtils";
-import chen from "./chen.png";
-import dia from "./dia.png";
+import chen from "./img/chen.png";
+import dia from "./img/dia.png";
 import "./xd.css";
 function XD3() {
 	const [isVisible, setVisible] = useState(null);
@@ -25,7 +25,7 @@ function XD3() {
 	const [setting, setSetting] = useState(null);
 	const [isShow, setShow] = useState(false);
 	const [ls, setLs] = useState(null);
-
+	const [newMoney, setNewMoney] = useState();
 	axios.interceptors.request.use(
 		(config) => {
 			const token = localStorage.getItem("user");
@@ -41,6 +41,12 @@ function XD3() {
 			return Promise.reject(error);
 		}
 	);
+	const [activeOption, setActiveOption] = useState(null);
+
+	const handleOptionClick = (option) => {
+		setActiveOption(option);
+		setNewMoney(Number(option)*1000);
+	};
 	useEffect(() => {
 		axios.get(`https://server.vnvip294.com/auth/getUser`, {}).then((res) => {
 			setProfile(res.data.data);
@@ -189,7 +195,7 @@ function XD3() {
 		} else {
 			setChoose([...choose, num]);
 		}
-	};
+	}
 	const onSubmit = (e) => {
 		e.preventDefault();
 		const formData = {
@@ -309,7 +315,7 @@ function XD3() {
 								<div
 									data-v-45adac70=""
 									class="fill fix"
-									style={{transform: "rotate(180deg)"}}
+									style={{ transform: "rotate(180deg)" }}
 								></div>
 							</div>
 							<div
@@ -317,7 +323,9 @@ function XD3() {
 								flex="main:center cross:center"
 								class="pv"
 							>
-								<span data-v-45adac70="" class="progress">28</span>
+								<span data-v-45adac70="" class="progress">
+									28
+								</span>
 							</div>
 						</div>
 						<div className="boxdia">
@@ -325,7 +333,7 @@ function XD3() {
 							<img className="check" src={dia} alt="" />
 						</div>
 						<div class="timexd">
-							Phiên 123 <br/>
+							Phiên 123 <br />
 							{bet ? formatDate(new Date(bet.createdAt)) : null}
 						</div>
 					</div>
@@ -335,7 +343,7 @@ function XD3() {
 						className={`taste_unit_item ${
 							choose.includes("8") ? "active" : ""
 						}`}
-						onClick={e => onChoose("8")}
+						onClick={(e) => onChoose("8")}
 					>
 						<div className="taste_unit_img taste_unit_img_DA"></div>
 						<div className="taste_unit_odds">1.985</div>
@@ -344,7 +352,7 @@ function XD3() {
 						className={`taste_unit_item ${
 							choose.includes("7") ? "active" : ""
 						}`}
-						onClick={e => onChoose("7")}
+						onClick={(e) => onChoose("7")}
 					>
 						<div className="taste_unit_img taste_unit_img_XIAO"></div>
 						<div className="taste_unit_odds">1.985</div>
@@ -353,7 +361,7 @@ function XD3() {
 						className={`taste_unit_item ${
 							choose.includes("5") ? "active" : ""
 						}`}
-						onClick={e => onChoose("5")}
+						onClick={(e) => onChoose("5")}
 					>
 						<div className="taste_unit_img taste_unit_img_DAN"></div>
 						<div className="taste_unit_odds">1.985</div>
@@ -362,7 +370,7 @@ function XD3() {
 						className={`taste_unit_item ${
 							choose.includes("6") ? "active" : ""
 						}`}
-						onClick={e => onChoose("6")}
+						onClick={(e) => onChoose("6")}
 					>
 						<div className="taste_unit_img taste_unit_img_SHUANG"></div>
 						<div className="taste_unit_odds">1.985</div>
@@ -371,7 +379,7 @@ function XD3() {
 						className={`taste_unit_item ${
 							choose.includes("4") ? "active" : ""
 						}`}
-						onClick={e => onChoose("4")}
+						onClick={(e) => onChoose("4")}
 					>
 						<div>
 							<div class="nums_yxx_qw">
@@ -387,7 +395,7 @@ function XD3() {
 						className={`taste_unit_item ${
 							choose.includes("3") ? "active" : ""
 						}`}
-						onClick={e => onChoose("3")}
+						onClick={(e) => onChoose("3")}
 					>
 						<div>
 							<div class="nums_yxx_qw">
@@ -403,7 +411,7 @@ function XD3() {
 						className={`taste_unit_item ${
 							choose.includes("2") ? "active" : ""
 						}`}
-						onClick={e => onChoose("2")}
+						onClick={(e) => onChoose("2")}
 					>
 						<div>
 							<div class="nums_yxx_qw">
@@ -419,7 +427,7 @@ function XD3() {
 						className={`taste_unit_item ${
 							choose.includes("1") ? "active" : ""
 						}`}
-						onClick={e => onChoose("1")}
+						onClick={(e) => onChoose("1")}
 					>
 						<div>
 							<div class="nums_yxx_qw">
@@ -431,6 +439,83 @@ function XD3() {
 						</div>
 						<div className="taste_unit_odds">1.985</div>
 					</button>
+				</div>
+				<div className="bet_taste_chips">
+					<div data-v-331b32c3="" className={`taste_chips_swiper_item ${activeOption === "5" ? "active" : ""}`} onClick={() => handleOptionClick("5")}>
+						<div data-v-331b32c3="" class="taste_chip">
+							<div data-v-331b32c3="" class="taste_chip_base taste_chip_5">
+								<div data-v-331b32c3="" class="item_chip_num">
+									<span data-v-331b32c3="">5K</span>
+								</div>
+							</div>
+						</div>
+					</div>
+					<div data-v-331b32c3="" className={`taste_chips_swiper_item ${activeOption === "10" ? "active" : ""}`} onClick={() => handleOptionClick("10")}>
+						<div
+							data-v-331b32c3=""
+							flex="main:center cross:center"
+							class="taste_chip"
+						>
+							<div data-v-331b32c3="" class="taste_chip_base taste_chip_10">
+								<div data-v-331b32c3="" class="item_chip_num">
+									<span data-v-331b32c3="">10K</span>
+								</div>
+							</div>
+						</div>
+					</div>
+					<div data-v-331b32c3="" className={`taste_chips_swiper_item ${activeOption === "25" ? "active" : ""}`} onClick={() => handleOptionClick("25")}>
+						<div
+							data-v-331b32c3=""
+							flex="main:center cross:center"
+							class="taste_chip"
+						>
+							<div
+								data-v-331b32c3=""
+								flex="main:center cross:center"
+								class="taste_chip_base taste_chip_25"
+							>
+								<div data-v-331b32c3="" class="item_chip_num">
+									<span data-v-331b32c3="">25K</span>
+								</div>
+							</div>
+						</div>
+					</div>
+					<div data-v-331b32c3="" className={`taste_chips_swiper_item ${activeOption === "50" ? "active" : ""}`} onClick={() => handleOptionClick("50")}>
+						<div data-v-331b32c3="" class="taste_chip">
+							<div data-v-331b32c3="" class="taste_chip_base taste_chip_50">
+								<div data-v-331b32c3="" class="item_chip_num">
+									<span data-v-331b32c3="">50K</span>
+								</div>
+							</div>
+						</div>
+					</div>
+					<div data-v-331b32c3="" className={`taste_chips_swiper_item ${activeOption === "100" ? "active" : ""}`} onClick={() => handleOptionClick("100")}>
+						<div data-v-331b32c3="" class="taste_chip">
+							<div data-v-331b32c3="" class="taste_chip_base taste_chip_100">
+								<div data-v-331b32c3="" class="item_chip_num">
+									<span data-v-331b32c3="">100K</span>
+								</div>
+							</div>
+						</div>
+					</div>
+					<div data-v-331b32c3="" className={`taste_chips_swiper_item ${activeOption === "200" ? "active" : ""}`} onClick={() => handleOptionClick("200")}>
+						<div data-v-331b32c3="" class="taste_chip">
+							<div data-v-331b32c3="" class="taste_chip_base taste_chip_200">
+								<div data-v-331b32c3="" class="item_chip_num">
+									<span data-v-331b32c3="">200K</span>
+								</div>
+							</div>
+						</div>
+					</div>
+					<div data-v-331b32c3="" className={`taste_chips_swiper_item ${activeOption === "500" ? "active" : ""}`} onClick={() => handleOptionClick("500")}>
+						<div data-v-331b32c3="" class="taste_chip">
+							<div data-v-331b32c3="" class="taste_chip_base taste_chip_500">
+								<div data-v-331b32c3="" class="item_chip_num">
+									<span data-v-331b32c3="">500K</span>
+								</div>
+							</div>
+						</div>
+					</div>
 				</div>
 				<div className="bet-input-panel bet_panel_taste">
 					<div
@@ -451,7 +536,7 @@ function XD3() {
 									Đã chọn
 								</span>
 								<span data-v-331b32c3="" class="bet_taste_text__protrude">
-									0
+									{choose ? choose.length : 0}
 								</span>
 								<span data-v-331b32c3="" class="bet_taste_text__common">
 									Lô
@@ -462,25 +547,14 @@ function XD3() {
 								flex="cross:center"
 								class="bet_taste_money"
 							>
-								<span
-									data-v-331b32c3=""
-									flex-box="0"
-									class="bet_taste_text__protrude"
-								>
-									Số tiền
-								</span>
-								<div
-									data-v-331b32c3=""
-									flex-box="0"
-									class="bet_taste_line"
-								></div>
 								<input
 									data-v-331b32c3=""
 									flex-box="8"
 									class="bet_taste_money_bet"
 									min={0}
-									value={money}
-									onChange={(e) => setMoney(e.target.value)}
+									value={newMoney}
+									onChange={(e) => setNewMoney(e.target.value)}
+									onClick={() => setActiveOption(null)}
 									name="money"
 									type="number"
 									placeholder="Nhập số tiền"
@@ -519,7 +593,7 @@ function XD3() {
 								<table>
 									<thead style={{ textAlign: "center" }}>
 										<tr>
-											<td>Phiên số</td>
+											<td>Phiên</td>
 											<td>Kết quả</td>
 											<td>Thời gian</td>
 										</tr>
@@ -584,7 +658,7 @@ function XD3() {
 																</span>
 															</div>
 															<div className="id_history_sanh">
-																Phiên cược:{" "}
+																Phiên:{" "}
 																{item.id_bet.id_bet
 																	? item.id_bet.id_bet
 																	: item.id_bet}
@@ -636,7 +710,7 @@ function XD3() {
 											<>
 												<div className="lsgd-table">
 													<div>Trò chơi</div>
-													<div>Tài xỉu 3p</div>
+													<div>Xóc đĩa 3p</div>
 												</div>
 												<div className="lsgd-table">
 													<div>Phiên</div>

@@ -5,7 +5,7 @@
 	overflow: hidden;
 }
 .main.xd {
-    background: url(../../../img/bg-xd.jpg) #183862 no-repeat;
+    background: url(./img/bg-xd.jpg) #183862 no-repeat;
     background-size: 100% 100%;
 }
 .bg-game {
@@ -342,7 +342,7 @@
 .taste_unit_item .taste_unit_img.taste_unit_img_DA {
     width: 4.274em;
     height: 1.71em;
-    background-image: url(https://www.123bdly.com/home/static-game/img/css_sprites.42d662b7.png);
+    background-image: url(./img/css_sprites.png);
     background-position-x: -55.211em;
     background-position-y: -0.356em;
     background-size: auto 6.483em;
@@ -351,7 +351,7 @@
 .taste_unit_item .taste_unit_img.taste_unit_img_XIAO {
     width: 4.274em;
     height: 1.71em;
-    background-image: url(https://www.123bdly.com/home/static-game/img/css_sprites.42d662b7.png);
+    background-image: url(./img/css_sprites.png);
     background-position-x: -60.198em;
     background-position-y: -0.356em;
     background-size: auto 6.483em;
@@ -360,7 +360,7 @@
 .taste_unit_item .taste_unit_img.taste_unit_img_DAN {
     width: 4.274em;
     height: 1.71em;
-    background-image: url(https://www.123bdly.com/home/static-game/img/css_sprites.42d662b7.png);
+    background-image: url(./img/css_sprites.png);
     background-position-x: -50.224em;
     background-position-y: -0.356em;
     background-size: auto 6.483em;
@@ -369,7 +369,7 @@
 .taste_unit_item .taste_unit_img.taste_unit_img_SHUANG {
     width: 4.274em;
     height: 1.71em;
-    background-image: url(https://www.123bdly.com/home/static-game/img/css_sprites.42d662b7.png);
+    background-image: url(./img/css_sprites.png);
     background-position-x: -45.238em;
     background-position-y: -0.356em;
     background-size: auto 6.483em;
@@ -381,7 +381,7 @@
 .taste_unit_item .taste_unit_item_yxx.taste_unit_item_w {
     width: 1.425em;
     height: 1.425em;
-    background-image: url(https://www.123bdly.com/home/static-game/img/css_sprites.42d662b7.png);
+    background-image: url(./img/css_sprites.png);
     background-position-x: -4.631em;
     background-position-y: -0.356em;
     background-size: auto 6.483em;
@@ -391,7 +391,7 @@
 .taste_unit_item .taste_unit_item_yxx.taste_unit_item_r {
     width: 1.425em;
     height: 1.425em;
-    background-image: url(https://www.123bdly.com/home/static-game/img/css_sprites.42d662b7.png);
+    background-image: url(./img/css_sprites.png);
     background-position-x: -2.493em;
     background-position-y: -0.356em;
     background-size: auto 6.483em;
@@ -401,15 +401,15 @@
 .taste_unit_item .taste_unit_item_yxx:not(:last-child) {
     margin-right: 0.86em;
 }
-.bet-input-panel.bet_panel_taste .bet_taste_info[data-v-331b32c3] {
+.bet_taste_info[data-v-331b32c3] {
     position: relative;
     z-index: 9;
     align-items: flex-end;
 }
-.bet-input-panel.bet_panel_taste .bet_taste_info .bet_taste_reset[data-v-331b32c3] {
+.bet_taste_info .bet_taste_reset[data-v-331b32c3] {
     width: 5.525em;
     height: 3.053em;
-    background-image: url(https://www.123bdly.com/home/static-game/img/css_sprites.aef03dc8.png);
+    background-image: url(./img/css_sprites_2.png);
     background-position-x: -63.68em;
     background-position-y: -0.363em;
     background-size: auto 4.071em;
@@ -420,70 +420,74 @@
     outline: none;
     box-shadow: none;
 }
-.bet-input-panel.bet_panel_taste .bet_taste_info .bet_taste_text[data-v-331b32c3] {
+.bet_taste_info .bet_taste_text[data-v-331b32c3] {
     color: #fff;
     text-align: center;
     margin: auto;
+	max-width: 55%;
 }
-.bet-input-panel.bet_panel_taste .bet_taste_info .bet_taste_text .bet_taste_num[data-v-331b32c3] {
-    padding-top: 0.5em;
+.bet_taste_info .bet_taste_text .bet_taste_num[data-v-331b32c3] {
+    padding: 0.5em 0;
     box-sizing: border-box;
 }
-.bet-input-panel.bet_panel_taste .bet_taste_info .bet_taste_text>div[data-v-331b32c3] {
+.bet_taste_info .bet_taste_text>div[data-v-331b32c3] {
     height: 50%;
     font-size: .28rem;
 }
-.bet-input-panel.bet_panel_taste .bet_taste_info .bet_taste_money {
+.bet_taste_info .bet_taste_money {
     background: #000;
     border-radius: 50px;
     border: 2px solid #ae8d4e;
     padding: 5px 10px;
     overflow: hidden;
 }
-.bet-input-panel.bet_panel_taste .bet_taste_info .bet_taste_money > * {
+.bet_taste_info .bet_taste_money > * {
     line-height: 1.5;
 }
-.bet-input-panel.bet_panel_taste .bet_taste_info .bet_taste_money input {
+.bet_taste_info .bet_taste_money input {
     background: transparent!important;
     outline: none!important;
     box-shadow: none!important;
     border: none!important;
     color: #fff;
 }
-.bet-input-panel.bet_panel_taste .bet_taste_info .bet_taste_money input::placeholder {
+.bet_taste_info .bet_taste_money input::placeholder {
     color: #fff;
 }
-.bet-input-panel.bet_panel_taste .bet_taste_info .bet_taste_text .bet_taste_num span[data-v-331b32c3] {
+.bet_taste_info .bet_taste_text .bet_taste_num span[data-v-331b32c3] {
     margin: 0 4px;
 }
-.bet-input-panel.bet_panel_taste .bet_taste_info .bet_taste_text__common[data-v-331b32c3] {
+.bet_taste_info .bet_taste_text__common[data-v-331b32c3] {
     color: #fff;
 }
-.bet-input-panel.bet_panel_taste .bet_taste_info .bet_taste_text__protrude[data-v-331b32c3] {
+.bet_taste_info .bet_taste_text__protrude[data-v-331b32c3] {
     color: #00d3ff;
 }
-.bet-input-panel.bet_panel_taste .bet_taste_info .bet_taste_text .bet_taste_money span[data-v-331b32c3] {
+.bet_taste_info .bet_taste_text .bet_taste_money span[data-v-331b32c3] {
     width: 35%;
     text-align: right;
     margin: 0;
+	font-size: 0.25rem;
+	line-height: 2;
+	min-width: 50px;
 }
-.bet-input-panel.bet_panel_taste .bet_taste_info .bet_taste_text__protrude[data-v-331b32c3] {
+.bet_taste_info .bet_taste_text__protrude[data-v-331b32c3] {
     color: #00d3ff;
 }
-.bet-input-panel.bet_panel_taste .bet_taste_info .bet_taste_text .bet_taste_line[data-v-331b32c3] {
+.bet_taste_info .bet_taste_text .bet_taste_line[data-v-331b32c3] {
     width: 1px;
     height: 25px;
     background-color: #fff;
     margin: 0 7px;
 }
-.bet-input-panel.bet_panel_taste .bet_taste_info .bet_taste_text .bet_taste_money .bet_taste_money_bet[data-v-331b32c3] {
+.bet_taste_info .bet_taste_text .bet_taste_money .bet_taste_money_bet[data-v-331b32c3] {
     padding-right: 1.5em;
     text-align: left;
 }
-.bet-input-panel.bet_panel_taste .bet_taste_info .bet_taste_submit[data-v-331b32c3] {
+.bet_taste_info .bet_taste_submit[data-v-331b32c3] {
     width: 5.525em;
     height: 3.053em;
-    background-image: url(https://www.123bdly.com/home/static-game/img/css_sprites.aef03dc8.png);
+    background-image: url(./img/css_sprites_2.png);
     background-position-x: -76.183em;
     background-position-y: -0.363em;
     background-size: auto 4.071em;
@@ -512,7 +516,7 @@
     transform: translateX(-50%);
     width: 43.616em;
     height: 5.888em;
-    background-image: url(https://www.123bdly.com/home/static-game/img/css_sprites.42d662b7.png);
+    background-image: url(./img/css_sprites.png);
     background-position-x: -79.018em;
     background-position-y: -0.363em;
     background-size: auto 6.615em;
@@ -621,7 +625,7 @@
 .history_xucxac > .a0 {
     width: 1.425em;
     height: 1.425em;
-    background-image: url(https://www.123bdly.com/home/static-game/img/css_sprites.42d662b7.png);
+    background-image: url(./img/css_sprites.png);
     background-position-x: -4.631em;
     background-position-y: -0.356em;
     background-size: auto 6.483em;
@@ -631,10 +635,67 @@
 .history_xucxac > .a1 {
     width: 1.425em;
     height: 1.425em;
-    background-image: url(https://www.123bdly.com/home/static-game/img/css_sprites.42d662b7.png);
+    background-image: url(./img/css_sprites.png);
     background-position-x: -2.493em;
     background-position-y: -0.356em;
     background-size: auto 6.483em;
     background-repeat: no-repeat;
     display: inline-block;
+}
+.bet_taste_chips {
+	margin-left: -10px;
+	margin-right: -10px;
+	margin-top: 10px;
+	margin-bottom: 10px;
+}
+.bet_taste_chips .taste_chips_swiper_item {
+	font-size: 14px;
+	display: inline-block;
+	margin: 0 2px;
+}
+.bet_taste_chips .taste_chips_swiper_item .taste_chip .taste_chip_base[data-v-331b32c3] {
+    width: 3.427em;
+    height: 3.427em;
+    background-repeat: no-repeat;
+    background-size: 13.708em 10.35em;
+    background-image: url(./img/chip_sprites.png);
+    display: flex;
+    justify-content: center;
+    align-items: center;
+}
+.bet_taste_chips .taste_chips_swiper_item .taste_chip .taste_chip_base .item_chip_num[data-v-331b32c3] {
+    display: flex;
+    align-items: baseline;
+}
+.bet_taste_chips .taste_chips_swiper_item .taste_chip .taste_chip_base .item_chip_num span[data-v-331b32c3] {
+    font-size: 12px;
+    line-height: 90%;
+}
+.bet_taste_chips .taste_chips_swiper_item .taste_chip .taste_chip_base.taste_chip_5[data-v-331b32c3] {
+    background-position: 0 -3.496em;
+    color: #763800;
+}
+.bet_taste_chips .taste_chips_swiper_item .taste_chip .taste_chip_base.taste_chip_10[data-v-331b32c3] {
+    background-position: -3.427em -3.496em;
+    color: #860000;
+}
+.bet_taste_chips .taste_chips_swiper_item .taste_chip .taste_chip_base.taste_chip_25[data-v-331b32c3] {
+    background-position: -6.854em -3.496em;
+    color: #134d00;
+}
+.bet_taste_chips .taste_chips_swiper_item .taste_chip .taste_chip_base.taste_chip_50[data-v-331b32c3] {
+    background-position: -10.281em 0;
+    color: #1a008a;
+}
+.bet_taste_chips .taste_chips_swiper_item .taste_chip .taste_chip_base.taste_chip_100[data-v-331b32c3] {
+    background-position: -10.281em -3.427em;
+    color: #003885;
+}
+.bet_taste_chips .taste_chips_swiper_item .taste_chip .taste_chip_base.taste_chip_200[data-v-331b32c3] {
+    background-position: 0 -6.923em;
+    color: #850083;
+}
+.bet_taste_chips .taste_chips_swiper_item .taste_chip .taste_chip_base.taste_chip_500[data-v-331b32c3] {
+    background-position: -3.427em -6.923em;
+    color: #004054;
 }

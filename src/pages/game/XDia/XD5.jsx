@@ -4,8 +4,8 @@ import Header from "../../components/Header";
 import swal from "sweetalert";
 import Footer from "../../../components/Footer/Footer";
 import { GetNameChoose } from "../../../funcUtils";
-import chen from "./chen.png";
-import dia from "./dia.png";
+import chen from "./img/chen.png";
+import dia from "./img/dia.png";
 import "./xd.css";
 function XD5() {
 	const [isVisible, setVisible] = useState(null);
