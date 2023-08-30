@@ -108,34 +108,7 @@ function XD3() {
 			clearInterval(timer);
 		};
 	}, [dulieunhap]);
-	useEffect(() => {
-		let swalInst;
-		const showAlert = async (data) => {
-			swalInst = swal({
-				title: "Thông báo hệ thống",
-				text: ` Chúc mừng quý khách đã may mắn được nhận ${data.money.toLocaleString()} vào tài khoản`,
-				icon: "info",
-				buttons: {
-					submit: "Tôi đã hiểu",
-				},
-			});
-			const result = await swalInst;
-
-			switch (result) {
-				case "submit":
-					axios.post("https://server.vnvip294.com/notification/seen", {
-						id: data.id,
-					});
-					break;
-				default:
-			}
-
-			setVisible(false);
-		};
-		if (isVisible) {
-			showAlert(isVisible);
-		}
-	}, [isVisible]);
+;
 	useEffect(() => {
 		let curTime_second = Math.floor(180 - (date - dulieunhap) / 1000);
 
@@ -151,7 +124,7 @@ function XD3() {
 				clearTimeout(myTimeout);
 			};
 		} else if (curTime_second < 180 && curTime_second >= 0) {
-			setSecond(curTime_second % 60);
+			setSecond(curTime_second );
 			setMinute((curTime_second - (curTime_second % 60)) / 60);
 			setStart(true);
 			return () => {
@@ -169,7 +142,7 @@ function XD3() {
 		let curTime_second = Math.floor(180 - (date - dulieunhap) / 1000);
 		let myTimeout = 0;
 		if (start) {
-			setSecond(curTime_second % 60);
+			setSecond(curTime_second);
 			setMinute(Math.floor(curTime_second / 60));
 
 			if (curTime_second > 180 || curTime_second <= 0) {
@@ -201,11 +174,11 @@ function XD3() {
 		const formData = {
 			result: choose.join(" "),
 			id: bet?._id,
-			money: choose.length * money,
+			money: choose.length * newMoney,
 		};
 		if (choose.length == 0) {
 			swal("Thất bại", "Bạn chưa lựa chọn", "error");
-		} else if (money == 0 || money == null) {
+		} else if (newMoney == 0 || newMoney == null) {
 			swal("Thất bại", "Bạn chưa nhập tiền", "error");
 		} else {
 			axios
@@ -304,13 +277,6 @@ function XD3() {
 							data-v-45adac70=""
 							class="v_circle taste_lottery_countdown xodi  v_circle_show v_circle_PC"
 						>
-							{/*<div data-v-45adac70="" class="mask full">
-								<div
-									data-v-45adac70=""
-									class="fill fix_l"
-									style={{transform: "rotate(44deg)"}}
-								></div>
-							</div>*/}
 							<div data-v-45adac70="" class="mask half">
 								<div
 									data-v-45adac70=""
@@ -324,9 +290,11 @@ function XD3() {
 								class="pv"
 							>
 								<span data-v-45adac70="" class="progress">
-									28
+									{second}
 								</span>
+								
 							</div>
+							
 						</div>
 						<div className="boxdia">
 							<img src={chen} className="point" alt="" />
