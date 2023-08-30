@@ -86,12 +86,14 @@ function SetXD3p() {
 				setList30(res.data.data);
 			})
 			.catch(() => setList30(null));
-		axios.get(`https://server.vnvip294.com/notification/getnotifi`, {}).then((res) => {
-			setVisible({
-				money: res.data.data[0].money.toLocaleString(),
-				id: res.data.data[0]._id,
+		axios
+			.get(`https://server.vnvip294.com/notification/getnotifi`, {})
+			.then((res) => {
+				setVisible({
+					money: res.data.data[0].money.toLocaleString(),
+					id: res.data.data[0]._id,
+				});
 			});
-		});
 		axios.get(`https://server.vnvip294.com/xd3/getcurrent`).then((res) => {
 			setCurrent(res.data.data);
 		});
@@ -99,9 +101,11 @@ function SetXD3p() {
 	useEffect(() => {
 		const timer = setInterval(() => {
 			if (Math.floor(180 - (new Date() - dulieunhap) / 1000) < 0) {
-				axios.get(`https://server.vnvip294.com/auth/getUser`, {}).then((res) => {
-					setProfile(res.data.data);
-				});
+				axios
+					.get(`https://server.vnvip294.com/auth/getUser`, {})
+					.then((res) => {
+						setProfile(res.data.data);
+					});
 				axios.get(`https://server.vnvip294.com/xd3/getadmin`).then((res) => {
 					setBet(res.data.data[0]);
 					setDulieunhap(new Date(res.data.data[0].createdAt));
@@ -118,12 +122,14 @@ function SetXD3p() {
 						setList30(res.data.data);
 					})
 					.catch(() => setList30(null));
-				axios.get(`https://server.vnvip294.com/notification/getnotifi`, {}).then((res) => {
-					setVisible({
-						money: res.data.data[0].money.toLocaleString(),
-						id: res.data.data[0]._id,
+				axios
+					.get(`https://server.vnvip294.com/notification/getnotifi`, {})
+					.then((res) => {
+						setVisible({
+							money: res.data.data[0].money.toLocaleString(),
+							id: res.data.data[0]._id,
+						});
 					});
-				});
 				axios.get(`https://server.vnvip294.com/xd3/getcurrent`).then((res) => {
 					setCurrent(res.data.data);
 				});
@@ -213,12 +219,27 @@ function SetXD3p() {
 			clearTimeout(myTimeout);
 		};
 	}, [second, start, dulieunhap]);
+	const [den, setDen] = useState(0)
 
 	const handleSubmit = (e) => {
+
 		e.preventDefault();
+		debugger
+		let result;
+		if(Number(den)===0){
+			result="0 0 0 0"
+		} else if(Number(den)===3){
+			result="1 1 1 0"
+		}else if(Number(den)===2){
+			result="1 1 0 0"
+		}else if(Number(den)===1){
+			result="1 0 0 0"
+		}else if(Number(den)===4){
+			result="1 1 1 1"
+		}
 		const formData = {
 			id_bet: bet._id,
-			result: String(e.target.bet.value).split("").join(" "),
+			result: result,
 		};
 		if (e.target.bet.value) {
 			axios
@@ -262,11 +283,13 @@ function SetXD3p() {
 								<Table>
 									<TableHead>
 										<TableRow>
-											<TableCell sx={{padding:"10px"}}>ID User</TableCell>
-											<TableCell sx={{padding:"10px"}}>Username</TableCell>
-											<TableCell sx={{padding:"10px"}}>Chọn</TableCell>
-											<TableCell sx={{padding:"10px"}}>Số tiền</TableCell>
-											<TableCell sx={{padding:"10px"}}>Thời gian đặt</TableCell>
+											<TableCell sx={{ padding: "10px" }}>ID User</TableCell>
+											<TableCell sx={{ padding: "10px" }}>Username</TableCell>
+											<TableCell sx={{ padding: "10px" }}>Chọn</TableCell>
+											<TableCell sx={{ padding: "10px" }}>Số tiền</TableCell>
+											<TableCell sx={{ padding: "10px" }}>
+												Thời gian đặt
+											</TableCell>
 										</TableRow>
 									</TableHead>
 									<TableBody>
@@ -274,17 +297,19 @@ function SetXD3p() {
 											? current.map((item) => (
 													<>
 														<TableRow>
-															<TableCell sx={{padding:"10px"}}>{item.user.iduser}</TableCell>
-															<TableCell sx={{padding:"10px"}}>{item.user.username}</TableCell>
-															<TableCell sx={{padding:"10px"}}>
-																{GetNameChoose(
-																	item.state,
-																	null,
-																	item.sanh
-																)}
+															<TableCell sx={{ padding: "10px" }}>
+																{item.user.iduser}
 															</TableCell>
-															<TableCell sx={{padding:"10px"}}>{item.money}</TableCell>
-															<TableCell sx={{padding:"10px"}}>
+															<TableCell sx={{ padding: "10px" }}>
+																{item.user.username}
+															</TableCell>
+															<TableCell sx={{ padding: "10px" }}>
+																{GetNameChoose(item.state, null, item.sanh)}
+															</TableCell>
+															<TableCell sx={{ padding: "10px" }}>
+																{item.money}
+															</TableCell>
+															<TableCell sx={{ padding: "10px" }}>
 																{formatDate(new Date(item.createdAt))}
 															</TableCell>
 														</TableRow>
@@ -311,34 +336,34 @@ function SetXD3p() {
 										)}
 									</div>
 									<h2>Sửa kết quả</h2>
-									<input
-										type="string"
-										name="bet"
-										id="bet"
-									/>
-									<button
-										type="submit"
-										className="btn-submit btn-admin-1"
-										style={{ display: "inline-block", margin: "0 0 0 10px" }}
-									>
-										Xác nhận
-									</button>
-									<button
-										style={{ display: "inline-block", margin: "0 0 0 10px" }}
-										className="btn-submit btn-admin-2"
-										onClick={() => {
-											window.location.reload(true);
-										}}
-									>
-										Làm mới
-									</button>
+									<div>
+										<span>Đen   </span>
+										<input value={den} onChange={(e)=> setDen(e.target.value)} type="number" name="bet" id="bet" />
+										<span>Trắng {Number(4-den)}</span>
+										<button
+											type="submit"
+											className="btn-submit btn-admin-1"
+											style={{ display: "inline-block", margin: "0 0 0 10px" }}
+										>
+											Xác nhận
+										</button>
+										<button
+											style={{ display: "inline-block", margin: "0 0 0 10px" }}
+											className="btn-submit btn-admin-2"
+											onClick={() => {
+												window.location.reload(true);
+											}}
+										>
+											Làm mới
+										</button>
+									</div>
 								</form>
 								<Table>
 									<TableHead>
 										<TableRow>
-											<TableCell sx={{padding:"10px"}}>Phiên</TableCell>
-											<TableCell sx={{padding:"10px"}}>Kết quả</TableCell>
-											<TableCell sx={{padding:"10px"}}>Cập nhật</TableCell>
+											<TableCell sx={{ padding: "10px" }}>Phiên</TableCell>
+											<TableCell sx={{ padding: "10px" }}>Kết quả</TableCell>
+											<TableCell sx={{ padding: "10px" }}>Cập nhật</TableCell>
 											<TableCell style={{ textAlign: "center" }}>
 												Thời gian diễn ra
 											</TableCell>
@@ -349,9 +374,13 @@ function SetXD3p() {
 											? list30.map((item) => (
 													<>
 														<TableRow>
-															<TableCell sx={{padding:"10px"}}>{item.id_bet}</TableCell>
-															<TableCell sx={{padding:"10px"}}>{item.result}</TableCell>
-															<TableCell sx={{padding:"10px"}}>
+															<TableCell sx={{ padding: "10px" }}>
+																{item.id_bet}
+															</TableCell>
+															<TableCell sx={{ padding: "10px" }}>
+																{item.result}
+															</TableCell>
+															<TableCell sx={{ padding: "10px" }}>
 																<form
 																	onSubmit={(e) => {
 																		e.preventDefault();
@@ -363,9 +392,12 @@ function SetXD3p() {
 																		};
 																		if (e.target.result.value) {
 																			axios
-																			.post("https://server.vnvip294.com/xd3/update", formData)
+																				.post(
+																					"https://server.vnvip294.com/xd3/update",
+																					formData
+																				)
 																				.then((res) => {
-																					window.location.reload()
+																					window.location.reload();
 																					swal(
 																						"Thành công",
 																						"Update thành công",
@@ -382,12 +414,10 @@ function SetXD3p() {
 																		}
 																	}}
 																>
-																	<input
-																		name="result"
-																		type="string"
-																		
-																	/>
-																	<button className="btn-admin-3">Xác nhận</button>
+																	<input name="result" type="string" />
+																	<button className="btn-admin-3">
+																		Xác nhận
+																	</button>
 																</form>
 															</TableCell>
 															<TableCell style={{ textAlign: "center" }}>

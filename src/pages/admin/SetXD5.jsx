@@ -214,11 +214,27 @@ function SetXD5p() {
 		};
 	}, [second, start, dulieunhap]);
 
+	const [den, setDen] = useState(0)
+
 	const handleSubmit = (e) => {
+
 		e.preventDefault();
+		debugger
+		let result;
+		if(Number(den)===0){
+			result="0 0 0 0"
+		} else if(Number(den)===3){
+			result="1 1 1 0"
+		}else if(Number(den)===2){
+			result="1 1 0 0"
+		}else if(Number(den)===1){
+			result="1 0 0 0"
+		}else if(Number(den)===4){
+			result="1 1 1 1"
+		}
 		const formData = {
 			id_bet: bet._id,
-			result: String(e.target.bet.value).split("").join(" "),
+			result: result,
 		};
 		if (e.target.bet.value) {
 			axios
@@ -311,28 +327,27 @@ function SetXD5p() {
 										)}
 									</div>
 									<h2>Sửa kết quả</h2>
-									<input
-										
-										type="string"
-										name="bet"
-										id="bet"
-									/>
-									<button
-										type="submit"
-										className="btn-submit btn-admin-1"
-										style={{ display: "inline-block", margin: "0 0 0 10px" }}
-									>
-										Xác nhận
-									</button>
-									<button
-										style={{ display: "inline-block", margin: "0 0 0 10px" }}
-										className="btn-submit btn-admin-2"
-										onClick={() => {
-											window.location.reload(true);
-										}}
-									>
-										Làm mới
-									</button>
+									<div>
+										<span>Đen   </span>
+										<input value={den} onChange={(e)=> setDen(e.target.value)} type="number" name="bet" id="bet" />
+										<span>Trắng {Number(4-den)}</span>
+										<button
+											type="submit"
+											className="btn-submit btn-admin-1"
+											style={{ display: "inline-block", margin: "0 0 0 10px" }}
+										>
+											Xác nhận
+										</button>
+										<button
+											style={{ display: "inline-block", margin: "0 0 0 10px" }}
+											className="btn-submit btn-admin-2"
+											onClick={() => {
+												window.location.reload(true);
+											}}
+										>
+											Làm mới
+										</button>
+									</div>
 								</form>
 								<Table>
 									<TableHead>
