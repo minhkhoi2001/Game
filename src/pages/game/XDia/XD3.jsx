@@ -182,14 +182,14 @@ function XD3() {
 			clearTimeout(myTimeout);
 		};
 	}, [second, start, dulieunhap]);
-	const [choose, setChoose] = useState();
-	// const onChoose = (e) => {
-	// 	if (choose.includes(e.target.id)) {
-	// 		setItem(choose.filter((item) => item !== e.target.id));
-	// 	} else {
-	// 		setItem([...choose, e.target.id]);
-	// 	}
-	// };
+	const [choose, setChoose] = useState([]);
+	function onChoose(num) {
+		if (choose.includes(num)) {
+			setChoose(choose.filter((item) => item !== num));
+		} else {
+			setChoose([...choose, num]);
+		}
+	};
 	const onSubmit = (e) => {
 		e.preventDefault();
 		const formData = {
@@ -290,78 +290,88 @@ function XD3() {
 
 	return (
 		<>
-			<div className="main">
+			<div className="main xd">
 				<Header profile={profile} />
 				<div className="box-bg-game">
 					<div className="bg-game">
+						<div
+							data-v-45adac70=""
+							class="v_circle taste_lottery_countdown xodi  v_circle_show v_circle_PC"
+						>
+							{/*<div data-v-45adac70="" class="mask full">
+								<div
+									data-v-45adac70=""
+									class="fill fix_l"
+									style={{transform: "rotate(44deg)"}}
+								></div>
+							</div>*/}
+							<div data-v-45adac70="" class="mask half">
+								<div
+									data-v-45adac70=""
+									class="fill fix"
+									style={{transform: "rotate(180deg)"}}
+								></div>
+							</div>
+							<div
+								data-v-45adac70=""
+								flex="main:center cross:center"
+								class="pv"
+							>
+								<span data-v-45adac70="" class="progress">28</span>
+							</div>
+						</div>
 						<div className="boxdia">
 							<img src={chen} className="point" alt="" />
 							<img className="check" src={dia} alt="" />
+						</div>
+						<div class="timexd">
+							Phiên 123 <br/>
+							{bet ? formatDate(new Date(bet.createdAt)) : null}
 						</div>
 					</div>
 				</div>
 				<div>
 					<button
-						className="taste_unit_item active"
-						onClick={() => {
-							if (choose) {
-								setChoose([...choose, 8]);
-							} else {
-								setChoose([8]);
-							}
-						}}
+						className={`taste_unit_item ${
+							choose.includes("8") ? "active" : ""
+						}`}
+						onClick={e => onChoose("8")}
 					>
 						<div className="taste_unit_img taste_unit_img_DA"></div>
 						<div className="taste_unit_odds">1.985</div>
 					</button>
 					<button
-						className="taste_unit_item"
-						onClick={() => {
-							if (choose) {
-								setChoose([...choose, 7]);
-							} else {
-								setChoose([7]);
-							}
-						}}
+						className={`taste_unit_item ${
+							choose.includes("7") ? "active" : ""
+						}`}
+						onClick={e => onChoose("7")}
 					>
 						<div className="taste_unit_img taste_unit_img_XIAO"></div>
 						<div className="taste_unit_odds">1.985</div>
 					</button>
 					<button
-						className="taste_unit_item"
-						onClick={() => {
-							if (choose) {
-								setChoose([...choose, 5]);
-							} else {
-								setChoose([5]);
-							}
-						}}
+						className={`taste_unit_item ${
+							choose.includes("5") ? "active" : ""
+						}`}
+						onClick={e => onChoose("5")}
 					>
 						<div className="taste_unit_img taste_unit_img_DAN"></div>
 						<div className="taste_unit_odds">1.985</div>
 					</button>
 					<button
-						className="taste_unit_item"
-						onClick={() => {
-							if (choose) {
-								setChoose([...choose, 6]);
-							} else {
-								setChoose([6]);
-							}
-						}}
+						className={`taste_unit_item ${
+							choose.includes("6") ? "active" : ""
+						}`}
+						onClick={e => onChoose("6")}
 					>
 						<div className="taste_unit_img taste_unit_img_SHUANG"></div>
 						<div className="taste_unit_odds">1.985</div>
 					</button>
 					<button
-						className="taste_unit_item"
-						onClick={() => {
-							if (choose) {
-								setChoose([...choose, 4]);
-							} else {
-								setChoose([4]);
-							}
-						}}
+						className={`taste_unit_item ${
+							choose.includes("4") ? "active" : ""
+						}`}
+						onClick={e => onChoose("4")}
 					>
 						<div>
 							<div class="nums_yxx_qw">
@@ -374,14 +384,10 @@ function XD3() {
 						<div className="taste_unit_odds">1.985</div>
 					</button>
 					<button
-						className="taste_unit_item"
-						onClick={() => {
-							if (choose) {
-								setChoose([...choose, 3]);
-							} else {
-								setChoose([3]);
-							}
-						}}
+						className={`taste_unit_item ${
+							choose.includes("3") ? "active" : ""
+						}`}
+						onClick={e => onChoose("3")}
 					>
 						<div>
 							<div class="nums_yxx_qw">
@@ -394,14 +400,10 @@ function XD3() {
 						<div className="taste_unit_odds">1.985</div>
 					</button>
 					<button
-						className="taste_unit_item"
-						onClick={() => {
-							if (choose) {
-								setChoose([...choose, 2]);
-							} else {
-								setChoose([2]);
-							}
-						}}
+						className={`taste_unit_item ${
+							choose.includes("2") ? "active" : ""
+						}`}
+						onClick={e => onChoose("2")}
 					>
 						<div>
 							<div class="nums_yxx_qw">
@@ -414,14 +416,10 @@ function XD3() {
 						<div className="taste_unit_odds">1.985</div>
 					</button>
 					<button
-						className="taste_unit_item"
-						onClick={() => {
-							if (choose) {
-								setChoose([...choose, 1]);
-							} else {
-								setChoose([1]);
-							}
-						}}
+						className={`taste_unit_item ${
+							choose.includes("1") ? "active" : ""
+						}`}
+						onClick={e => onChoose("1")}
 					>
 						<div>
 							<div class="nums_yxx_qw">
@@ -485,6 +483,7 @@ function XD3() {
 									onChange={(e) => setMoney(e.target.value)}
 									name="money"
 									type="number"
+									placeholder="Nhập số tiền"
 								/>
 							</div>
 						</div>
@@ -544,7 +543,7 @@ function XD3() {
 															}}
 														>
 															{item.result.split(" ").map((item) => (
-																<div className={`n${item}`}></div>
+																<div className={`a${item}`}></div>
 															))}
 														</td>
 														<td>{formatDate(new Date(item.createdAt))}</td>

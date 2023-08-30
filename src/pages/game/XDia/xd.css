@@ -4,7 +4,7 @@
 	margin-right: -0.32rem;
 	overflow: hidden;
 }
-.main {
+.main.xd {
     background: url(../../../img/bg-xd.jpg) #183862 no-repeat;
     background-size: 100% 100%;
 }
@@ -12,7 +12,7 @@
 	height: 250px;
 	display: flex;
 }
-.main .header:after {
+.main.xd .header:after {
 	background: transparent;
 }
 .boxdia {
@@ -517,4 +517,124 @@
     background-position-y: -0.363em;
     background-size: auto 6.615em;
     background-repeat: no-repeat;
+}
+.v_circle.v_circle_PC[data-v-45adac70] {
+    width: 60px;
+    height: 60px;
+    font-size: 20px;
+}
+.v_circle[data-v-45adac70] {
+    border-radius: 50%;
+    width: 40px;
+    height: 40px;
+    background-color: #1d4970;
+    opacity: 0;
+    transition: opacity .3s;
+    z-index: 9;
+}
+.v_circle.v_circle_show[data-v-45adac70] {
+    opacity: 1;
+}
+.taste_lottery_countdown {
+    position: absolute;
+    left: 35px;
+    bottom: 175px;
+    z-index: 9;
+}
+.v_circle .fill[data-v-45adac70], .v_circle .mask[data-v-45adac70] {
+    position: absolute;
+    border-radius: 50%;
+    -webkit-backface-visibility: hidden;
+    backface-visibility: hidden;
+    width: 100%;
+    height: 100%;
+}
+.v_circle .fill .fix[data-v-45adac70], .v_circle .mask .fix[data-v-45adac70] {
+    background-color: #36e957;
+    width: 100%;
+    height: 100%;
+    clip: rect(0,20px,40px,0);
+}
+.v_circle .fill.half[data-v-45adac70], .v_circle .mask.half[data-v-45adac70] {
+    clip: rect(0,40px,40px,20px);
+}
+.v_circle.v_circle_PC .fill .fix_l[data-v-45adac70], .v_circle.v_circle_PC .fill.half[data-v-45adac70], .v_circle.v_circle_PC .mask .fix_l[data-v-45adac70], .v_circle.v_circle_PC .mask.half[data-v-45adac70] {
+    clip: rect(0,60px,60px,30px);
+}
+.v_circle.v_circle_PC .fill .fix[data-v-45adac70], .v_circle.v_circle_PC .mask .fix[data-v-45adac70] {
+    clip: rect(0,30px,60px,0);
+}
+.v_circle .pv[data-v-45adac70] {
+    position: absolute;
+    top: 0;
+    left: 0;
+    bottom: 0;
+    right: 0;
+    margin: auto;
+    z-index: 1;
+    border-radius: 50%;
+    text-align: center;
+    width: 34px;
+    height: 34px;
+    background-color: #004073;
+    border: 4px solid rgba(0,19,67,.6);
+    box-sizing: border-box;
+}
+.v_circle.v_circle_PC .pv[data-v-45adac70] {
+    width: 52px;
+    height: 52px;
+    border: 6px solid rgba(0,19,67,.6);
+}
+.v_circle .pv .progress[data-v-45adac70]{box-sizing:border-box;display:block;width:100%;height:100%;margin:0;color:#36e957;font-size:16px;font-weight:500;padding:5px 0;line-height:1}
+.v_circle.v_circle_PC .pv .progress[data-v-45adac70] {
+    padding: 8px 0;
+    font-size: 24px;
+}
+.timexd {
+	position: absolute;
+	bottom: 30px;
+	left: 50%;
+	transform: translateX(-50%);
+	color: #fff;
+	font-size: .3rem;
+}
+.main.xd .tab-navigation > li.active {
+	background: rgba(136,213,255,.4)
+}
+.main.xd .tab-navigation > li {
+	background: rgba(0,0,0,.2);
+	color: #fff;
+}
+.main.xd .tab-content {
+	background: rgba(0,0,0,.2);
+	color: #f2f2f2;
+}
+.main.xd table thead {
+	background: rgba(0,0,0,.1);
+}
+.main.xd table tbody tr:nth-child(even) {
+	background: rgba(0,0,0,.2);
+}
+.main.xd table tbody tr:hover {
+	background: rgba(0,0,0,.4);
+}
+.history_xucxac > .a0 {
+    width: 1.425em;
+    height: 1.425em;
+    background-image: url(https://www.123bdly.com/home/static-game/img/css_sprites.42d662b7.png);
+    background-position-x: -4.631em;
+    background-position-y: -0.356em;
+    background-size: auto 6.483em;
+    background-repeat: no-repeat;
+    display: inline-block;
+}
+.history_xucxac > .a1 {
+    width: 1.425em;
+    height: 1.425em;
+    background-image: url(https://www.123bdly.com/home/static-game/img/css_sprites.42d662b7.png);
+    background-position-x: -2.493em;
+    background-position-y: -0.356em;
+    background-size: auto 6.483em;
+    background-repeat: no-repeat;
+    display: inline-block;
 }
