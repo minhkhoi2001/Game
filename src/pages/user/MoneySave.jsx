@@ -146,7 +146,14 @@ function MoneySave() {
 				<Header profile={profile} />
 				<h1 className="title-h1">Két Tiết Kiệm</h1>
 				<p className="tongloinhuan">
-					Tổng lợi nhuận: <b>0</b>
+					Tổng lợi nhuận:{" "}
+					<b>
+						{(Math.floor(
+							(new Date() - new Date(saving?.vi.createdAt)) / (24 * 60000 * 60)
+						) *
+							(Math.floor(saving?.vi?.money) *
+								getLV(profile?.level, profit[0]))).toLocaleString()}đ
+					</b>
 				</p>
 				<div className="record_bet">
 					<div className="colum-resultxs">
