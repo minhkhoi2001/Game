@@ -6,13 +6,13 @@ export const GetNameChoose = (state, type, sanh) => {
 				chon+="4 trắng, "
 			}
 			if (Number(item) == 2 && type == null) {
-				chon+="4 đen, "
+				chon+="4 đỏ, "
 			}
 			if (Number(item) == 3 && type == null) {
-				chon+="3 đen 1 trắng,"
+				chon+="3 đỏ 1 trắng,"
 			}
 			if (Number(item) == 4 && type == null) {
-				chon+="3 trắng 1 đen, "
+				chon+="3 trắng 1 đỏ, "
 			}
 			if (Number(item) ==5 && type == null) {
 				chon+="Chẵn, "
