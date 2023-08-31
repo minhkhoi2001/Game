@@ -65,6 +65,7 @@ import ListXSMN from "./pages/game/ListXSMN";
 import Login from "./pages/user/Login";
 import Register from "./pages/user/Register";
 import Home from "./pages/user/Home";
+import Home2 from "./pages/user/Home2";
 import CSKH from "./pages/user/Cskh";
 import Notification from "./pages/user/Notification";
 import Profile from "./pages/user/Profile";
@@ -142,6 +143,7 @@ function App() {
 						<Route element={<Login />} path="/login" />
 						<Route element={<Register />} path="/register" />
 						<Route element={<Home />} path="/" />
+						<Route element={<Home2 />} path="/home2" />
 						<Route element={<CSKH />} path="/cskh" />
 						<Route element={<Notification />} path="/notification" />
 

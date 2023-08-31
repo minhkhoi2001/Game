@@ -183,7 +183,7 @@ function XD5() {
 				swal("Thất bại", "Bạn chưa nhập tiền", "error");
 			} else {
 				axios
-					.post("https://server.vnvip294.com/cxd3/choose", formData)
+					.post("https://server.vnvip294.com/cxd5/choose", formData)
 					.then((res) => {
 						swal("Đặt cược thành công", "", "success");
 						setChoose([]);
@@ -322,7 +322,7 @@ function XD5() {
 				<div>
 					<button
 						className={`taste_unit_item ${
-							choose.includes("5") ? "active" : ""
+							choose.includes("6") ? "active" : ""
 						}`}
 						onClick={(e) => onChoose("6")}
 					>
@@ -331,7 +331,7 @@ function XD5() {
 					</button>
 					<button
 						className={`taste_unit_item ${
-							choose.includes("6") ? "active" : ""
+							choose.includes("5") ? "active" : ""
 						}`}
 						onClick={(e) => onChoose("5")}
 					>
@@ -631,7 +631,7 @@ function XD5() {
 															</div>
 														</div>
 														<div className="money_history">
-															<span className="money">
+															<span className="money" style={{color:"#f2f2f2"}}>
 																{Number(item.money).toLocaleString()}đ
 															</span>
 															<div className="time_choose">
@@ -705,10 +705,11 @@ function XD5() {
 													style={{
 														display: "flex",
 														justifyContent: "center",
+														fontSize: "13px"
 													}}
 												>
 													{ls.id_bet.result.split(" ").map((item) => (
-														<div className={`n${item}`}></div>
+														<div className={`a${item}`}></div>
 													))}
 												</div>
 											</>

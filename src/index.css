@@ -355,7 +355,7 @@ select:active {
 	max-height: 0.9rem;
 	width: auto;
 }
-.main .swiper img {
+.main .swiper {
 	border-radius: 8px;
 }
 .main .list-game {
@@ -1282,7 +1282,7 @@ table tbody tr:hover {
 	min-width: 100px;
 }
 .box-image {
-	box-shadow: rgb(213, 192, 192) 0px 0px 0.15rem 0px;
+	box-shadow: 0 0.02rem 0.06rem rgba(0,0,0,.06);
 	background: #fff;
 	border-radius: 0.15rem;
 	overflow: hidden;
@@ -1800,6 +1800,7 @@ body:has(.admin-theme) #webpack-dev-server-client-overlay {
 .marquees > div:first-child {
 	flex: 0 0 50px;
 	text-align: left;
+	color: #ff0000;
 }
 .marquee {
 	width: calc(100% - 140px);

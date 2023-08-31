@@ -656,7 +656,7 @@ function XD3() {
 															</div>
 														</div>
 														<div className="money_history">
-															<span className="money">
+															<span className="money" style={{color:"#f2f2f2"}}>
 																{Number(item.money).toLocaleString()}đ
 															</span>
 															<div className="time_choose">
@@ -730,10 +730,11 @@ function XD3() {
 													style={{
 														display: "flex",
 														justifyContent: "center",
+														fontSize: "13px"
 													}}
 												>
 													{ls.id_bet.result.split(" ").map((item) => (
-														<div className={`n${item}`}></div>
+														<div className={`a${item}`}></div>
 													))}
 												</div>
 											</>
