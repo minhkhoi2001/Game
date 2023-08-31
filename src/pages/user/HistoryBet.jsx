@@ -220,7 +220,8 @@ function HistoryBet() {
 														</div>
 													</>
 												) : ls.sanh == "Xúc sắc 3p" ||
-												  ls.sanh == "Xúc sắc 5p" ? (
+												  ls.sanh == "Xúc sắc 5p" || ls.sanh == "Tài xỉu 5p" || 
+												  ls.sanh == "Tài xỉu 1p" || ls.sanh == "Tài xỉu 3p" ? (
 													<>
 														<h3
 															style={{
@@ -242,7 +243,31 @@ function HistoryBet() {
 															))}
 														</div>
 													</>
-												) : ls.sanh == "Xổ số 3p" || ls.sanh == "Xổ số 5p" ? (
+												) : ls.sanh == "Xóc dĩa 3p" ||
+												ls.sanh == "Xóc dĩa 5p" ? (
+												  <>
+													  <h3
+														  style={{
+															  fontSize: "0.4rem",
+															  margin: "20px 0 10px",
+														  }}
+													  >
+														  Kết quả phiên {ls.id_bet.id_bet}
+													  </h3>
+													  <div
+														  className="history_xucxac"
+														  style={{
+															  display: "flex",
+															  justifyContent: "center",
+															  fontSize: "13px"
+														  }}
+													  >
+														  {ls.id_bet.result.split(" ").map((item) => (
+															  <div className={`a${item}`}></div>
+														  ))}
+													  </div>
+												  </>
+											  ) : ls.sanh == "Xổ số 3p" || ls.sanh == "Xổ số 5p" ? (
 													<>
 														<h3
 															style={{
