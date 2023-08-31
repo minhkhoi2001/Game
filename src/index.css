@@ -1035,6 +1035,7 @@ table tbody tr:hover {
 	padding: 0.05rem 0.1rem;
 	border-radius: 0.1rem;
 	color: #fff;
+	display: inline-block;
 }
 .win {
 	background-color: #6fe26f;
