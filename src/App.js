@@ -79,6 +79,7 @@ import EditBank from "./pages/user/EditBank";
 import ResetPassword from "./pages/user/ResetPassword";
 import TransferMoney from "./pages/user/TransferMoney";
 import RoomChat from "./pages/user/RoomChat";
+import Invite from "./pages/user/Invite";
 
 // Admin
 import PrivateCustomer from "./PrivateCustomer";
@@ -154,15 +155,8 @@ function App() {
 							<Route element={<Taixiu1 />} path="/taixiu1" />
 							<Route element={<Taixiu3 />} path="/taixiu3" />
 							<Route element={<Taixiu5 />} path="/taixiu5" />
-
-
-
 							<Route element={<XD3 />} path="/xd3" />
 							<Route element={<XD5 />} path="/xd5" />
-
-
-
-
 
 							<Route element={<Lo />} path="/xoso3p" />
 							<Route element={<Bacang />} path="/xoso3p/bacang" />
@@ -237,6 +231,7 @@ function App() {
 							<Route element={<ResetPassword />} path="/password" />
 							<Route element={<TransferMoney />} path="/transfer" />
 							<Route element={<RoomChat />} path="/chat" />
+							<Route element={<Invite />} path="/invite" />
 						</Route>
 						
 						<Route path="/admin" element={<PrivateRouteAdmin />}>

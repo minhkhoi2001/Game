@@ -293,20 +293,11 @@ function XD3() {
 				<div>
 					<button
 						className={`taste_unit_item ${
-							choose.includes("8") ? "active" : ""
+							choose.includes("6") ? "active" : ""
 						}`}
-						onClick={(e) => onChoose("8")}
+						onClick={(e) => onChoose("6")}
 					>
-						<div className="taste_unit_img taste_unit_img_DA"></div>
-						<div className="taste_unit_odds">1.985</div>
-					</button>
-					<button
-						className={`taste_unit_item ${
-							choose.includes("7") ? "active" : ""
-						}`}
-						onClick={(e) => onChoose("7")}
-					>
-						<div className="taste_unit_img taste_unit_img_XIAO"></div>
+						<div className="taste_unit_img taste_unit_img_DAN"></div>
 						<div className="taste_unit_odds">1.985</div>
 					</button>
 					<button
@@ -314,15 +305,6 @@ function XD3() {
 							choose.includes("5") ? "active" : ""
 						}`}
 						onClick={(e) => onChoose("5")}
-					>
-						<div className="taste_unit_img taste_unit_img_DAN"></div>
-						<div className="taste_unit_odds">1.985</div>
-					</button>
-					<button
-						className={`taste_unit_item ${
-							choose.includes("6") ? "active" : ""
-						}`}
-						onClick={(e) => onChoose("6")}
 					>
 						<div className="taste_unit_img taste_unit_img_SHUANG"></div>
 						<div className="taste_unit_odds">1.985</div>

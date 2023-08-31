@@ -273,9 +273,9 @@ function Home() {
 							</Link>
 						</div>
 						<div className="box-game">
-							<Link to="/xd5">
-								<img src={require("../../img/TrxWingo-7fc426b2.png")} />
-								<h3>XÓC ĐĨA 5P</h3>
+							<Link to="/xd3">
+								<img src={require("../../img/xocdia.png")} />
+								<h3>XÓC ĐĨA 3P</h3>
 								<div className="box-game-text">
 									<div>Đoán số</div>
 									<div>Lớn/Nhỏ/Lẻ/Chẵn để giành chiến thắng</div>
@@ -283,9 +283,9 @@ function Home() {
 							</Link>
 						</div>
 						<div className="box-game">
-							<Link to="/xd3">
-								<img src={require("../../img/TrxWingo-7fc426b2.png")} />
-								<h3>XÓC ĐĨA 3P</h3>
+							<Link to="/xd5">
+								<img src={require("../../img/xocdia2.png")} />
+								<h3>XÓC ĐĨA 5P</h3>
 								<div className="box-game-text">
 									<div>Đoán số</div>
 									<div>Lớn/Nhỏ/Lẻ/Chẵn để giành chiến thắng</div>

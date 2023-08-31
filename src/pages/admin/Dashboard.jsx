@@ -83,7 +83,7 @@ function Dashboard() {
 						>
 							<Container maxWidth={false}>
 								<Grid container spacing={3}>
-									<Grid item xl={3} lg={3} sm={6} xs={12}>
+									<Grid item xl={3} lg={6} sm={6} xs={12}>
 										{data && users && (
 											<TotalCustomers
 												user={users.length}
@@ -94,7 +94,7 @@ function Dashboard() {
 											/>
 										)}
 									</Grid>
-									<Grid item lg={3} sm={6} xl={3} xs={12}>
+									<Grid item lg={6} sm={6} xl={3} xs={12}>
 										{data && (
 											<Budget
 												tongnap={data.tongnapngay}
@@ -105,7 +105,7 @@ function Dashboard() {
 											/>
 										)}
 									</Grid>
-									<Grid item xl={3} lg={3} sm={6} xs={12}>
+									<Grid item xl={3} lg={6} sm={6} xs={12}>
 										{data && (
 											<TasksProgress
 												tongrut={data.tongrutngay}
@@ -116,7 +116,7 @@ function Dashboard() {
 											/>
 										)}
 									</Grid>
-									<Grid item xl={3} lg={3} sm={6} xs={12}>
+									<Grid item xl={3} lg={6} sm={6} xs={12}>
 										{data && (
 											<TotalProfit
 												tongcuoc={data.tongcuocngay}

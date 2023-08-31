@@ -1991,3 +1991,61 @@ body:has(.admin-theme) #webpack-dev-server-client-overlay {
 		column-count: 2;
 	}
 }
+.invite {
+	margin-top: 100px;
+	margin-left: -0.32rem;
+	margin-right: -0.32rem;
+	position: relative;
+	background: url(./img/invite.png) left top / cover no-repeat;
+	height: 180px;
+	text-shadow: rgb(255, 255, 136) 1px 0px 10px;
+	color: rgba(255, 255, 255, 0.8);
+	padding: 0 .2rem;
+	display: flex;
+	justify-content: space-between;
+	align-items: center;
+}
+.text-invite {
+	width: 50%;
+	font-size: .4rem;
+}
+.text-invite h3 {
+	font-size: .6rem;
+	margin: 0 0 1rem;
+	font-weight: bold;
+}
+.text-invite h4 {
+	font-size: .5rem;
+	margin-top: 0;
+	font-weight: bold;
+}
+.taikhoandautu {
+	position: relative;
+	background: url(./img/taikhoandautu.png) left top / cover no-repeat;
+	height: 135px;
+	color: #fff;
+	padding: 0.2rem .35rem;
+	margin-top: 20px;
+	font-size: .4rem;
+	text-align: left;
+	border-radius: .25rem;
+}
+.tienlai {
+	background: url(./img/tienlai.png) left top / cover no-repeat;
+}
+.taikhoandautu > div {
+	display: flex;
+	justify-content: space-between;
+	flex-flow: row wrap;
+	height: 100%;
+}
+.taikhoandautu > div > * {
+	width: 100%;
+	height: 50%;
+}
+.taikhoandautu h3 {
+	font-size: .5rem;
+	font-weight: bold;
+	margin: 0;
+	height: 0.5rem;
+}

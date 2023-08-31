@@ -145,20 +145,30 @@ function MoneySave() {
 			<div className="main">
 				<Header profile={profile} />
 				<h1 className="title-h1">Két Tiết Kiệm</h1>
-				<p className="tongloinhuan">
+				{/*<p className="tongloinhuan">
 					Tổng lợi nhuận:{" "}
 					<b>
-						{(Math.floor(
-							(new Date() - new Date(saving?.vi.createdAt)) / (24 * 60000 * 60)
-						) *
-							(Math.floor(saving?.vi?.money) *
-								getLV(profile?.level, profit[0]))).toLocaleString()}đ
+						{profile && profit && (
+							<>
+								{Number(
+									(
+										Math.floor(
+											(new Date() - new Date(saving?.vi.createdAt)) /
+												(24 * 60000 * 60)
+										) *
+										(Math.floor(saving?.vi?.money) *
+											getLV(profile?.level, profit[0]))
+									).toFixed(0)
+								).toLocaleString()}{" "}
+								đ
+							</>
+						)}
 					</b>
-				</p>
+				</p>*/}
 				<div className="record_bet">
 					<div className="colum-resultxs">
 						<div className="col-50">
-							<div className="info_bet">
+							{/*<div className="info_bet">
 								Tiền trong ví{" "}
 								<div className="xs_before">
 									{profile ? Math.floor(profile.money).toLocaleString() : "0"} đ
@@ -172,15 +182,15 @@ function MoneySave() {
 										: "0"}{" "}
 									đ
 								</div>
-							</div>
-						</div>
-						<div className="col-50">
+							</div>*/}
 							<div className="info_bet">
 								Lãi suất{" "}
 								<div className="xs_before">
 									{profit && getLV(profile?.level, profit[0])}%
 								</div>
 							</div>
+						</div>
+						<div className="col-50">
 							<div className="info_bet">
 								Thu nhập hàng ngày{" "}
 								<div className="xs_before">
@@ -204,6 +214,36 @@ function MoneySave() {
 								Rút két
 							</button>
 						</div>
+					</div>
+				</div>
+				<div className="taikhoandautu">
+					<div>
+						<div>Tài khoản đầu tư</div>
+						<h3>
+							{saving ? Math.floor(saving?.vi?.money).toLocaleString() : "0"} đ
+						</h3>
+					</div>
+				</div>
+				<div className="taikhoandautu tienlai">
+					<div>
+						<div>Tổng lãi</div>
+						<h3>
+						{profile && profit && (
+							<>
+								{Number(
+									(
+										Math.floor(
+											(new Date() - new Date(saving?.vi.createdAt)) /
+												(24 * 60000 * 60)
+										) *
+										(Math.floor(saving?.vi?.money) *
+											getLV(profile?.level, profit[0]))
+									).toFixed(0)
+								).toLocaleString()}{" "}
+								đ
+							</>
+						)}
+						</h3>
 					</div>
 				</div>
 				{isVisible1 && (

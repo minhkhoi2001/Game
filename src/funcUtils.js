@@ -18,7 +18,7 @@ export const GetNameChoose = (state, type, sanh) => {
 				chon+="Chẵn, "
 			}
 			if (Number(item) == 6 && type == null) {
-				chon+="Lẽ "
+				chon+="Lẻ "
 			}
 		});
         return chon

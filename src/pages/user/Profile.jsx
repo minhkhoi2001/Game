@@ -15,6 +15,7 @@ import LockPersonOutlinedIcon from "@mui/icons-material/LockPersonOutlined";
 import LogoutOutlinedIcon from "@mui/icons-material/LogoutOutlined";
 import KeyboardArrowRightOutlinedIcon from "@mui/icons-material/KeyboardArrowRightOutlined";
 import SavingsOutlinedIcon from '@mui/icons-material/SavingsOutlined';
+import GroupOutlinedIcon from '@mui/icons-material/GroupOutlined';
 
 function Profile() {
 	const [profile, setProfile] = useState(null);
@@ -95,13 +96,13 @@ function Profile() {
 							) : null}
 							{profile ? <span>{profile.username}</span> : <span>...</span>}
 							<span style={{ margin: "0" }}>
-								{profile ? (
+								{/*profile ? (
 									<span>
 										Mã giới thiệu <b>{profile.code}</b>
 									</span>
 								) : (
 									<span>...</span>
-								)}
+								)*/}
 							</span>
 							{profile ? (
 								<strong id="account__balance">
@@ -165,6 +166,13 @@ function Profile() {
 							<span>
 								<AccountBalanceOutlinedIcon sx={{ fontSize: "25px" }} />
 								Liên kết ngân hàng
+							</span>
+							<KeyboardArrowRightOutlinedIcon />
+						</Link>
+						<Link to="/invite" className="account__menu-item">
+							<span>
+								<GroupOutlinedIcon sx={{ fontSize: "25px" }} />
+								Mời bạn bè
 							</span>
 							<KeyboardArrowRightOutlinedIcon />
 						</Link>

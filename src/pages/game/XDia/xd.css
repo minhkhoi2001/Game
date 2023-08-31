@@ -334,7 +334,7 @@
 	}
 }
 .taste_unit_item {
-	width: calc(25% - 0.4rem);
+	width: calc(50% - 0.4rem);
 	height: 80px;
 	margin: 0 0.2rem 0.4rem;
 	box-sizing: border-box;
