@@ -1994,7 +1994,7 @@ body:has(.admin-theme) #webpack-dev-server-client-overlay {
 	}
 }
 .invite {
-	margin-top: 100px;
+	margin-top: 20px;
 	margin-left: -0.32rem;
 	margin-right: -0.32rem;
 	position: relative;

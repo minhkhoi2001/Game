@@ -9,6 +9,8 @@ import { Link, useNavigate } from "react-router-dom";
 function Invite() {
 	const [profile, setProfile] = useState(null);
 	const [isShow, setShow] = useState(false);
+	const [profit, setProfit] = useState(null);
+	const [setting, setSetting] = useState(null);
 	axios.interceptors.request.use(
 		(config) => {
 			const token = localStorage.getItem("user");
@@ -40,6 +42,12 @@ function Invite() {
 				setProfile(res.data.data);
 			})
 			.catch((err) => localStorage.removeItem("user"));
+		axios.get(`https://server.vnvip294.com/profit/get`, {}).then((res) => {
+			setProfit(res.data.data[0]);
+		});
+		axios.get(`https://server.vnvip294.com/setting/get`, {}).then((res) => {
+			setSetting(res.data.data[0]);
+		});
 	}, []);
 	return (
 		<>
@@ -72,13 +80,23 @@ function Invite() {
 					</div>
 				</div>
 				<h1 className="title-h1">Mời Bạn Bè</h1>
+				<div className="text_choose_center huongdan" style={{position:"relative"}}>
+					<div className="title" style={{ margin: "0.2rem 0 0.4rem" }}>
+						Giới thiệu bạn bè nhận quà liền tay
+					</div>
+					<ul>
+						<li>Nhận ngay {profit ? Number(profit.first).toLocaleString() : 0}đ khi giới thiệu thành công một thành viên mới.</li>
+						<li>Nhận ngay {profit ? Number(profit.aff).toLocaleString() : 0}đ khi thành viên mới tham gia trò chơi lần đầu.</li>
+						<li>Nhận thêm {setting ? Number(setting.aff)*100: 0}% số tiền mỗi khi thành viên của bạn giới thiệu tham gia trò chơi</li>
+					</ul>
+				</div>
 				<div className="invite">
-                    <div className="text-invite">
-                        <h3>{profile?.username}</h3>
-                        <div>Mã mời thành viên</div>
-                        <h4>{profile?.code}</h4>
-                    </div>
-                </div>
+					<div className="text-invite">
+						<h3>{profile?.username}</h3>
+						<div>Mã mời thành viên</div>
+						<h4>{profile?.code}</h4>
+					</div>
+				</div>
 			</div>
 			<Footer />
 		</>

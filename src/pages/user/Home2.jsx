@@ -91,10 +91,13 @@ function Home() {
 				<div className="box-image">
 				<Swiper {...swiperParams}>
 					<SwiperSlide>
-						<img src={require("../../img/banner1.jpg")} />
+						<img src="/upload/tro-choi.jpg" />
 					</SwiperSlide>
 					<SwiperSlide>
-						<img src={require("../../img/banner3.jpg")} />
+						<img src="/upload/xo-so.jpg" />
+					</SwiperSlide>
+					<SwiperSlide>
+						<img src="/upload/nang-cap-vip.jpg" />
 					</SwiperSlide>
 				</Swiper>
 				{notify ? (
@@ -118,25 +121,25 @@ function Home() {
 					<div className="lottery-menu">
 						<div class="lottery-menu-top">
 							<div class="lottery-item" onClick={() => handleOptionClick("1")}>
-								<img src="https://m.vn5555.vip/static/img/hotLottery.0a733060.png"/>
+								<img src={require("../../img/hotLottery.0a733060.png")}/>
 								<span>Xổ số 3 miền</span>
 							</div>
 							<div class="lottery-item" onClick={() => handleOptionClick("2")}>
-								<img src="https://m.vn5555.vip/static/img/all.a4d78610.png"/>
+								<img src={require("../../img/all.a4d78610.png")}/>
 								<span>Xổ số nhanh</span>
 							</div>
 							<div class="lottery-item" onClick={() => handleOptionClick("3")}>
-								<img src="https://m.vn5555.vip/static/img/lobby.e990b38c.png"/>
+								<img src={require("../../img/lobby.e990b38c.png")}/>
 								<span>Xóc đĩa</span>
 							</div>
 						</div>
 						<div class="lottery-menu-mid">
 							<div class="lottery-item" onClick={() => handleOptionClick("4")}>
-								<img src="https://m.vn5555.vip/static/img/SICBO.30ef5ab9.png"/>
+								<img src={require("../../img/SICBO.30ef5ab9.png")}/>
 								<span>Xúc sắc</span>
 							</div>
 							<div class="lottery-item" onClick={() => handleOptionClick("5")}>
-								<img src="https://m.vn5555.vip/static/img/KENO.b46b0ad4.png"/>
+								<img src={require("../../img/KENO.b46b0ad4.png")}/>
 								<span>Keno</span>
 							</div>
 							<div class="lottery-item" onClick={() => handleOptionClick("6")}>
