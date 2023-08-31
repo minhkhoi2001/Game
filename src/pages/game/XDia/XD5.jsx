@@ -705,7 +705,7 @@ function XD5() {
 													style={{
 														display: "flex",
 														justifyContent: "center",
-														fontSize: "13px"
+														fontSize: "13px"	
 													}}
 												>
 													{ls.id_bet.result.split(" ").map((item) => (

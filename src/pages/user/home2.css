@@ -24,7 +24,7 @@
     width: 31.5%
 }
 .lottery-menu-mid {
-    background-image: url(https://m.vn5555.vip/static/img/m-orange.a36778d3.svg),linear-gradient(180deg,rgba(255,229,135,.2),rgba(255,229,135,0) 108.52%),linear-gradient(182.51deg,#ffba94 -16.37%,#f69e70 31.58%,#ee5659 80.54%);
+    background-image: url(../../img/m-orange.a36778d3.svg),linear-gradient(180deg,rgba(255,229,135,.2),rgba(255,229,135,0) 108.52%),linear-gradient(182.51deg,#ffba94 -16.37%,#f69e70 31.58%,#ee5659 80.54%);
     background-size: 100%;
     box-shadow: 0 0.02rem 0.06rem rgba(0,0,0,.2), inset 0 0.01rem 0.02rem rgba(255,250,241,.8), inset 0 -0.01rem 0.03rem #fdbfbc;
     border-radius: 0.3rem;
@@ -49,4 +49,35 @@
     bottom: 0.15rem;
     left: 50%;
     transform: translateX(-50%);
+}
+.lottery-list {
+    display: flex;
+    flex-flow: row wrap;
+    align-items: center;
+    vertical-align: middle;
+    justify-content: center;
+    background: #fff;
+    border-radius: 0.3rem;
+    overflow: hidden;
+    box-shadow: 0 0.02rem 0.06rem rgba(0,0,0,.06);
+}
+.lottery-list .lottery-item {
+    width: calc(100%/3);
+    border-left: .03rem solid #ebebeb;
+    padding: 10px 0;
+}
+.lottery-list .lottery-item:first-child {
+    border: 0;
+}
+.lottery-list .lottery-item img {
+    filter: drop-shadow(0 0 .5rem rgba(255,138,211,.5));
+    border: .05rem solid #fff;
+    border-radius: 100%;
+    max-width: 1.3rem;
+}
+.lottery-list .lottery-item span {
+    color: #333;
+    font-size: 0.3rem;
+    width: 100%;
+    display: block;
 }
