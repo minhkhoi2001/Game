@@ -2,10 +2,10 @@ export const GetNameChoose = (state, type, sanh) => {
 	if(sanh==="Xóc dĩa 3p"||sanh==="Xóc dĩa 5p"){
 		let chon = "Chọn ";
 		state?.split(" ").map((item) => {
-			if (Number(item) == 1 && type == null) {
+			if (Number(item) == 2 && type == null) {
 				chon+="4 trắng, "
 			}
-			if (Number(item) == 2 && type == null) {
+			if (Number(item) == 1 && type == null) {
 				chon+="4 đỏ, "
 			}
 			if (Number(item) == 3 && type == null) {
