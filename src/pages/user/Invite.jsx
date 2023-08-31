@@ -87,7 +87,7 @@ function Invite() {
 					<ul>
 						<li>Nhận ngay {profit ? Number(profit.first).toLocaleString() : 0}đ khi giới thiệu thành công một thành viên mới.</li>
 						<li>Nhận ngay {profit ? Number(profit.aff).toLocaleString() : 0}đ khi thành viên mới tham gia trò chơi lần đầu.</li>
-						<li>Nhận thêm {setting ? Number(setting.aff)*100: 0}% số tiền mỗi khi thành viên của bạn giới thiệu tham gia trò chơi</li>
+						{/*<li>Nhận thêm {setting ? Number(setting.aff)*100: 0}% số tiền mỗi khi thành viên của bạn giới thiệu tham gia trò chơi</li>*/}
 					</ul>
 				</div>
 				<div className="invite">
