@@ -1080,7 +1080,7 @@ table tbody tr:hover {
 	font-size: 0.4rem;
 }
 .content_bank:not(:has(.item-banks:nth-child(2))) > div {
-	width: 70%;
+	width: 85%;
 }
 .content_bank > div {
 	width: 50%;
@@ -1919,6 +1919,25 @@ body:has(.admin-theme) #webpack-dev-server-client-overlay {
 	text-align: center;
 	font-size: 0.55rem;
 	font-weight: bold;
+}
+.hide-chatbar2 {
+	position: absolute;
+	z-index: 2;
+	background: #fff;
+	height: 0.85rem;
+	line-height: 0.5rem;
+	width: 50%;
+	top: 0;
+	color: #333;
+	text-align: left;
+	font-size: 0.55rem;
+	font-weight: bold;
+}
+.main:has(.hide-chatbar2) .header:after {
+	display: none;
+}
+.main:has(.hide-chatbar2) .header {
+	background: red;
 }
 .table_ls_tx th {
 	font-size: 0.4rem;

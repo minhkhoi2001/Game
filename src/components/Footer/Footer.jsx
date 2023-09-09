@@ -54,7 +54,7 @@ function Footer(props) {
 			icon: <HeadsetMicOutlinedIcon />,
 			iconactive: <HeadsetMicIcon/>,
 			title: "CSKH",
-			to: "/cskh",
+			to: "https://t.me/BEST96TX",
 		},
 
 	];

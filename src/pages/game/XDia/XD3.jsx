@@ -7,6 +7,8 @@ import { GetNameChoose } from "../../../funcUtils";
 import chen from "./img/chen.png";
 import dia from "./img/dia.png";
 import "./xd.css";
+import ChatButton from "../../components/ChatButton";
+
 function XD3() {
 	const [isVisible, setVisible] = useState(null);
 	const [bet, setBet] = useState(null);
@@ -45,7 +47,7 @@ function XD3() {
 
 	const handleOptionClick = (option) => {
 		setActiveOption(option);
-		setNewMoney(Number(option) * 1000);
+		setNewMoney(Number(Number(option) * 1000).toLocaleString());
 	};
 	useEffect(() => {
 		axios.get(`https://server.vnvip294.com/auth/getUser`, {}).then((res) => {
@@ -173,7 +175,7 @@ function XD3() {
 		const formData = {
 			result: choose.join(" "),
 			id: bet?._id,
-			money: choose.length * newMoney,
+			money: choose.length * Number(newMoney.replaceAll(".","")),
 		};
 		if (Number(second) > 10) {
 			if (choose.length == 0) {
@@ -251,21 +253,21 @@ function XD3() {
 					<div className="bg-game">
 						<div
 							data-v-45adac70=""
-							class="v_circle taste_lottery_countdown xodi  v_circle_show v_circle_PC"
+							className="v_circle taste_lottery_countdown xodi  v_circle_show v_circle_PC"
 						>
-							<div data-v-45adac70="" class="mask half">
+							<div data-v-45adac70="" className="mask half">
 								<div
 									data-v-45adac70=""
-									class="fill fix"
+									className="fill fix"
 									style={{ transform: `rotate(${second}deg)` }}
 								></div>
 							</div>
 							<div
 								data-v-45adac70=""
 								flex="main:center cross:center"
-								class="pv"
+								className="pv"
 							>
-								<span data-v-45adac70="" class="progress">
+								<span data-v-45adac70="" className="progress">
 									{second}
 								</span>
 							</div>
@@ -281,7 +283,7 @@ function XD3() {
 								</div>
 							)}
 						</div>
-						<div class="timexd">
+						<div className="timexd">
 							<span style={{ fontSize: "0.4rem" }}>Phiên {bet?.id_bet}</span>{" "}
 							<br />
 							<span style={{ opacity: "0.7" }}>
@@ -298,7 +300,7 @@ function XD3() {
 						onClick={(e) => onChoose("6")}
 					>
 						<div className="taste_unit_img taste_unit_img_DAN"></div>
-						<div className="taste_unit_odds">1.985</div>
+						<div className="taste_unit_odds">{setting && setting.le}</div>
 					</button>
 					<button
 						className={`taste_unit_item ${
@@ -307,7 +309,7 @@ function XD3() {
 						onClick={(e) => onChoose("5")}
 					>
 						<div className="taste_unit_img taste_unit_img_SHUANG"></div>
-						<div className="taste_unit_odds">1.985</div>
+						<div className="taste_unit_odds">{setting && setting.chan}</div>
 					</button>
 					<button
 						className={`taste_unit_item ${
@@ -316,14 +318,14 @@ function XD3() {
 						onClick={(e) => onChoose("4")}
 					>
 						<div>
-							<div class="nums_yxx_qw">
-								<div class="taste_unit_item_yxx taste_unit_item_w die"></div>
-								<div class="taste_unit_item_yxx taste_unit_item_w die"></div>
-								<div class="taste_unit_item_yxx taste_unit_item_w die"></div>
-								<div class="taste_unit_item_yxx taste_unit_item_r die"></div>
+							<div className="nums_yxx_qw">
+								<div className="taste_unit_item_yxx taste_unit_item_w die"></div>
+								<div className="taste_unit_item_yxx taste_unit_item_w die"></div>
+								<div className="taste_unit_item_yxx taste_unit_item_w die"></div>
+								<div className="taste_unit_item_yxx taste_unit_item_r die"></div>
 							</div>
 						</div>
-						<div className="taste_unit_odds">1.985</div>
+						<div className="taste_unit_odds">{setting && setting.f3trang}</div>
 					</button>
 					<button
 						className={`taste_unit_item ${
@@ -332,14 +334,14 @@ function XD3() {
 						onClick={(e) => onChoose("3")}
 					>
 						<div>
-							<div class="nums_yxx_qw">
-								<div class="taste_unit_item_yxx taste_unit_item_r die"></div>
-								<div class="taste_unit_item_yxx taste_unit_item_r die"></div>
-								<div class="taste_unit_item_yxx taste_unit_item_r die"></div>
-								<div class="taste_unit_item_yxx taste_unit_item_w die"></div>
+							<div className="nums_yxx_qw">
+								<div className="taste_unit_item_yxx taste_unit_item_r die"></div>
+								<div className="taste_unit_item_yxx taste_unit_item_r die"></div>
+								<div className="taste_unit_item_yxx taste_unit_item_r die"></div>
+								<div className="taste_unit_item_yxx taste_unit_item_w die"></div>
 							</div>
 						</div>
-						<div className="taste_unit_odds">1.985</div>
+						<div className="taste_unit_odds">{setting && setting.f3den}</div>
 					</button>
 					<button
 						className={`taste_unit_item ${
@@ -348,14 +350,14 @@ function XD3() {
 						onClick={(e) => onChoose("2")}
 					>
 						<div>
-							<div class="nums_yxx_qw">
-								<div class="taste_unit_item_yxx taste_unit_item_w die"></div>
-								<div class="taste_unit_item_yxx taste_unit_item_w die"></div>
-								<div class="taste_unit_item_yxx taste_unit_item_w die"></div>
-								<div class="taste_unit_item_yxx taste_unit_item_w die"></div>
+							<div className="nums_yxx_qw">
+								<div className="taste_unit_item_yxx taste_unit_item_w die"></div>
+								<div className="taste_unit_item_yxx taste_unit_item_w die"></div>
+								<div className="taste_unit_item_yxx taste_unit_item_w die"></div>
+								<div className="taste_unit_item_yxx taste_unit_item_w die"></div>
 							</div>
 						</div>
-						<div className="taste_unit_odds">1.985</div>
+						<div className="taste_unit_odds">{setting && setting.ftrang}</div>
 					</button>
 					<button
 						className={`taste_unit_item ${
@@ -364,14 +366,14 @@ function XD3() {
 						onClick={(e) => onChoose("1")}
 					>
 						<div>
-							<div class="nums_yxx_qw">
-								<div class="taste_unit_item_yxx taste_unit_item_r die"></div>
-								<div class="taste_unit_item_yxx taste_unit_item_r die"></div>
-								<div class="taste_unit_item_yxx taste_unit_item_r die"></div>
-								<div class="taste_unit_item_yxx taste_unit_item_r die"></div>
+							<div className="nums_yxx_qw">
+								<div className="taste_unit_item_yxx taste_unit_item_r die"></div>
+								<div className="taste_unit_item_yxx taste_unit_item_r die"></div>
+								<div className="taste_unit_item_yxx taste_unit_item_r die"></div>
+								<div className="taste_unit_item_yxx taste_unit_item_r die"></div>
 							</div>
 						</div>
-						<div className="taste_unit_odds">1.985</div>
+						<div className="taste_unit_odds">{setting && setting.fden}</div>
 					</button>
 				</div>
 				<div className="bet_taste_chips">
@@ -382,9 +384,13 @@ function XD3() {
 						}`}
 						onClick={() => handleOptionClick("5")}
 					>
-						<div data-v-331b32c3="" class="taste_chip">
-							<div data-v-331b32c3="" class="taste_chip_base taste_chip_5">
-								<div data-v-331b32c3="" class="item_chip_num">
+						<div
+							data-v-331b32c3=""
+							flex="main:center cross:center"
+							className="taste_chip"
+						>
+							<div data-v-331b32c3="" className="taste_chip_base taste_chip_10">
+								<div data-v-331b32c3="" className="item_chip_num">
 									<span data-v-331b32c3="">5K</span>
 								</div>
 							</div>
@@ -400,34 +406,15 @@ function XD3() {
 						<div
 							data-v-331b32c3=""
 							flex="main:center cross:center"
-							class="taste_chip"
-						>
-							<div data-v-331b32c3="" class="taste_chip_base taste_chip_10">
-								<div data-v-331b32c3="" class="item_chip_num">
-									<span data-v-331b32c3="">10K</span>
-								</div>
-							</div>
-						</div>
-					</div>
-					<div
-						data-v-331b32c3=""
-						className={`taste_chips_swiper_item ${
-							activeOption === "25" ? "active" : ""
-						}`}
-						onClick={() => handleOptionClick("25")}
-					>
-						<div
-							data-v-331b32c3=""
-							flex="main:center cross:center"
-							class="taste_chip"
+							className="taste_chip"
 						>
 							<div
 								data-v-331b32c3=""
 								flex="main:center cross:center"
-								class="taste_chip_base taste_chip_25"
+								className="taste_chip_base taste_chip_25"
 							>
-								<div data-v-331b32c3="" class="item_chip_num">
-									<span data-v-331b32c3="">25K</span>
+								<div data-v-331b32c3="" className="item_chip_num">
+									<span data-v-331b32c3="">10K</span>
 								</div>
 							</div>
 						</div>
@@ -439,9 +426,9 @@ function XD3() {
 						}`}
 						onClick={() => handleOptionClick("50")}
 					>
-						<div data-v-331b32c3="" class="taste_chip">
-							<div data-v-331b32c3="" class="taste_chip_base taste_chip_50">
-								<div data-v-331b32c3="" class="item_chip_num">
+						<div data-v-331b32c3="" className="taste_chip">
+							<div data-v-331b32c3="" className="taste_chip_base taste_chip_50">
+								<div data-v-331b32c3="" className="item_chip_num">
 									<span data-v-331b32c3="">50K</span>
 								</div>
 							</div>
@@ -454,25 +441,10 @@ function XD3() {
 						}`}
 						onClick={() => handleOptionClick("100")}
 					>
-						<div data-v-331b32c3="" class="taste_chip">
-							<div data-v-331b32c3="" class="taste_chip_base taste_chip_100">
-								<div data-v-331b32c3="" class="item_chip_num">
+						<div data-v-331b32c3="" className="taste_chip">
+							<div data-v-331b32c3="" className="taste_chip_base taste_chip_100">
+								<div data-v-331b32c3="" className="item_chip_num">
 									<span data-v-331b32c3="">100K</span>
-								</div>
-							</div>
-						</div>
-					</div>
-					<div
-						data-v-331b32c3=""
-						className={`taste_chips_swiper_item ${
-							activeOption === "200" ? "active" : ""
-						}`}
-						onClick={() => handleOptionClick("200")}
-					>
-						<div data-v-331b32c3="" class="taste_chip">
-							<div data-v-331b32c3="" class="taste_chip_base taste_chip_200">
-								<div data-v-331b32c3="" class="item_chip_num">
-									<span data-v-331b32c3="">200K</span>
 								</div>
 							</div>
 						</div>
@@ -484,10 +456,40 @@ function XD3() {
 						}`}
 						onClick={() => handleOptionClick("500")}
 					>
-						<div data-v-331b32c3="" class="taste_chip">
-							<div data-v-331b32c3="" class="taste_chip_base taste_chip_500">
-								<div data-v-331b32c3="" class="item_chip_num">
+						<div data-v-331b32c3="" className="taste_chip">
+							<div data-v-331b32c3="" className="taste_chip_base taste_chip_200">
+								<div data-v-331b32c3="" className="item_chip_num">
 									<span data-v-331b32c3="">500K</span>
+								</div>
+							</div>
+						</div>
+					</div>
+					<div
+						data-v-331b32c3=""
+						className={`taste_chips_swiper_item ${
+							activeOption === "1000" ? "active" : ""
+						}`}
+						onClick={() => handleOptionClick("1000")}
+					>
+						<div data-v-331b32c3="" className="taste_chip">
+							<div data-v-331b32c3="" className="taste_chip_base taste_chip_500">
+								<div data-v-331b32c3="" className="item_chip_num">
+									<span data-v-331b32c3="">1000K</span>
+								</div>
+							</div>
+						</div>
+					</div>
+					<div
+						data-v-331b32c3=""
+						className={`taste_chips_swiper_item ${
+							activeOption === "5000" ? "active" : ""
+						}`}
+						onClick={() => handleOptionClick("5000")}
+					>
+						<div data-v-331b32c3="" className="taste_chip">
+							<div data-v-331b32c3="" className="taste_chip_base taste_chip_5">
+								<div data-v-331b32c3="" className="item_chip_num">
+									<span data-v-331b32c3="">5000K</span>
 								</div>
 							</div>
 						</div>
@@ -497,11 +499,11 @@ function XD3() {
 					<div
 						data-v-331b32c3=""
 						flex="main:justify box:justify cross:center"
-						class="bet_taste_info"
+						className="bet_taste_info"
 					>
 						<button
 							data-v-331b32c3=""
-							class="bet_taste_reset"
+							className="bet_taste_reset"
 							onClick={() => {
 								setActiveOption(null);
 								setNewMoney(0);
@@ -509,44 +511,45 @@ function XD3() {
 						>
 							Đặt lại
 						</button>
-						<div data-v-331b32c3="" class="bet_taste_text">
+						<div data-v-331b32c3="" className="bet_taste_text">
 							<div
 								data-v-331b32c3=""
 								flex="main:center cross:center"
-								class="bet_taste_num vi"
+								className="bet_taste_num vi"
 							>
-								<span data-v-331b32c3="" class="bet_taste_text__common">
+								<span data-v-331b32c3="" className="bet_taste_text__common">
 									Đã chọn
 								</span>
-								<span data-v-331b32c3="" class="bet_taste_text__protrude">
+								<span data-v-331b32c3="" className="bet_taste_text__protrude">
 									{choose ? choose.length : 0}
 								</span>
-								<span data-v-331b32c3="" class="bet_taste_text__common">
+								<span data-v-331b32c3="" className="bet_taste_text__common">
 									Lô
 								</span>
 							</div>
 							<div
 								data-v-331b32c3=""
 								flex="cross:center"
-								class="bet_taste_money"
+								className="bet_taste_money"
 							>
 								<input
 									data-v-331b32c3=""
 									flex-box="8"
-									class="bet_taste_money_bet"
-									min={0}
+									className="bet_taste_money_bet"
+									min={1000}
 									value={newMoney}
 									onChange={(e) => setNewMoney(e.target.value)}
 									onClick={() => setActiveOption(null)}
+									onKeyUp={(e) => setNewMoney(Number((e.target.value).replaceAll(".","")).toLocaleString())}
 									name="money"
-									type="number"
+									type="text"
 									placeholder="Nhập số tiền"
 								/>
 							</div>
 						</div>
 						<button
 							data-v-331b32c3=""
-							class="bet_taste_submit"
+							className="bet_taste_submit"
 							type="submit"
 							onClick={onSubmit}
 						>
@@ -676,6 +679,7 @@ function XD3() {
 					</div>
 				</div>
 
+				<ChatButton/>
 				<Footer />
 
 				{isShow === true && ls.status_bet !== "Pending" ? (

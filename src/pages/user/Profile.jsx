@@ -194,6 +194,12 @@ function Profile() {
 							className="account__menu-item"
 							onClick={() => {
 								localStorage.removeItem("user");
+									localStorage.removeItem("currentUser");
+									var now = new Date();
+									var time = now.getTime();
+									var expireTime = time;
+									now.setTime(expireTime);
+									document.cookie = 'jwt=;Expires=Thu, 01 Jan 1970 00:00:01 GMT;';
 								navigate("/login");
 							}}
 						>

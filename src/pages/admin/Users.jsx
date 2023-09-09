@@ -148,41 +148,41 @@ function Users() {
 														<>
 															<TableRow>
 																<TableCell sx={{ fontWeight: "600", padding: "10px" }}>
-																	{item.iduser}
+																	{item?.iduser}
 																</TableCell>
 																<TableCell sx={{ fontWeight: "600", padding: "10px" }}>
-																	{item.username}
+																	{item?.username}
 																</TableCell>
 																<TableCell sx={{ fontWeight: "600", padding: "10px" }}>
-																	{employee && employee.find((x=>x.code===item.aff))?.username}
+																	{employee && employee.find((x=>x.code===item?.aff))?.username}
 																</TableCell>
 																<TableCell sx={{ fontWeight: "600", padding: "10px" }}>
-																	{item.money.toLocaleString()} VNĐ
+																	{item?.money.toLocaleString()} VNĐ
 																</TableCell>
 																{/*<TableCell sx={{ fontWeight: "600", padding: "10px" }}>
-																	{formatDate(new Date(item.createdAt))}
+																	{formatDate(new Date(item?.createdAt))}
 																</TableCell>
 																<TableCell sx={{ fontWeight: "600", padding: "10px" }}>
-																	{item.adminadd.toLocaleString()}
+																	{item?.adminadd.toLocaleString()}
 																</TableCell>
 																<TableCell sx={{ fontWeight: "600", padding: "10px" }}>
-																	{item.admintru.toLocaleString()}
+																	{item?.admintru.toLocaleString()}
 																</TableCell>
 																<TableCell sx={{ fontWeight: "600", padding: "10px" }}>
-																	{item.adminthuong.toLocaleString()}
+																	{item?.adminthuong.toLocaleString()}
 																</TableCell>*/}
 																<TableCell sx={{ fontWeight: "600", padding: "10px" }}>
-																	{item.totalbet.toLocaleString()}
+																	{item?.totalbet.toLocaleString()}
 																</TableCell>
 																<TableCell sx={{ fontWeight: "600", padding: "10px" }}>
-																	{item.totalwin.toLocaleString()}
+																	{item?.totalwin.toLocaleString()}
 																</TableCell>
 																<TableCell sx={{ fontWeight: "600", padding: "10px" }}>
 																	<form
 																		onSubmit={(e) => {
 																			e.preventDefault();
 																			const dataForm = {
-																				id: item._id,
+																				id: item?._id,
 																				money: e.target.money.value,
 																			};
 																			axios
@@ -199,7 +199,7 @@ function Users() {
 																	>
 																		<input
 																			style={{ width: "100px" }}
-																			id={item._id}
+																			id={item?._id}
 																			name="money"
 																			type="number"
 																		/>
@@ -211,7 +211,7 @@ function Users() {
 																		onSubmit={(e) => {
 																			e.preventDefault();
 																			const dataForm = {
-																				id: item._id,
+																				id: item?._id,
 																				money: e.target.money.value,
 																			};
 																			axios
@@ -228,7 +228,7 @@ function Users() {
 																	>
 																		<input
 																			style={{ width: "100px" }}
-																			id={item._id}
+																			id={item?._id}
 																			name="money"
 																			type="number"
 																		/>
@@ -238,14 +238,14 @@ function Users() {
 																<TableCell
 																	sx={{ fontWeight: "600", display: "flex" }}
 																>
-																	{item.isLock == false ? (
+																	{item?.isLock == false ? (
 																		<Button
 																			onClick={() => {
 																				axios
 																					.post(
 																						`https://server.vnvip294.com/auth/lockkey`,
 																						{
-																							id: item._id,
+																							id: item?._id,
 
 																							isLock: true,
 																						}
@@ -265,7 +265,7 @@ function Users() {
 																					.post(
 																						`https://server.vnvip294.com/auth/lockkey`,
 																						{
-																							id: item._id,
+																							id: item?._id,
 
 																							isLock: false,
 																						}
@@ -281,7 +281,7 @@ function Users() {
 																	)}
 																	<Button
 																		onClick={() =>
-																			navigate(`/admin/user/${item._id}`)
+																			navigate(`/admin/user/${item?._id}`)
 																		}
 																	>
 																		Xem

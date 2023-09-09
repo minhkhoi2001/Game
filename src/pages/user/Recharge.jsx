@@ -133,11 +133,11 @@ function AddMoney() {
 											<div>
 												Người nhận: <b>{item.fullname}</b>
 											</div>
-											{profile.username ? (
+											{profile?.username ? (
 												<div>
 													Nội dung chuyển khoản:{" "}
 													<b>
-														{item.title} {" "} {profile.username}
+														{item.title} {" "} {profile?.username}
 													</b>
 												</div>
 												) : null }
@@ -145,7 +145,7 @@ function AddMoney() {
 									)
 							)
 						) : (
-							<div>Hệ thống nạp tiền đang bảo trì, vui lòng quay lại sau</div>
+							<div>Vui lòng liên hệ chăm sóc khách hàng</div>
 						)}
 					</div>
 					<form className="form-lg" onSubmit={handleSubmit(onSubmit)}>

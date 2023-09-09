@@ -59,6 +59,14 @@ function Register() {
 					sdt: data.sdt
 				})
 				.then((res) => {
+					axios
+					.post(`https://chat.vnvip294.com/signup`, {
+						email: data.username + '@gmail.com',
+						password: data.password,
+						passwordConfirm: data.password,
+						location: "VN",
+						name: data.username,
+					});
 					swal({
 						title: "Thông báo",
 						text: "Đăng ký thành công",
@@ -78,6 +86,14 @@ function Register() {
 					sdt: data.sdt
 				})
 				.then((res) => {
+					axios
+					.post(`https://chat.vnvip294.com/signup`, {
+						email: data.username + '@gmail.com',
+						password: data.password,
+						passwordConfirm: data.password,
+						location: "VN",
+						name: data.username,
+					});
 					swal({
 						title: "Thông báo",
 						text: "Đăng ký thành công",

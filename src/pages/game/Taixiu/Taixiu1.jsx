@@ -4,6 +4,7 @@ import Header from "../../components/Header";
 import swal from "sweetalert";
 import Footer from "../../../components/Footer/Footer";
 import { GetNameChoose } from "../../../funcUtils";
+import ChatButton from "../../components/ChatButton";
 
 function Taixiu1() {
 	const [isVisible, setVisible] = useState(null);
@@ -205,7 +206,7 @@ function Taixiu1() {
 		const formData = {
 			result: item1.join(" "),
 			id: bet?._id,
-			money: item1.length * newMoney,
+			money: item1.length * Number(newMoney.replaceAll(".","")),
 		};
 		if (item1.length == 0) {
 			swal("Thất bại", "Bạn chưa lựa chọn", "error");
@@ -217,6 +218,7 @@ function Taixiu1() {
 				.then((res) => {
 					swal("Đặt cược thành công", "", "success");
 					setItem([]);
+					getHistoryBet();
 				})
 				.catch((err) => swal("Thất bại", "Số tiền trong ví không đủ", "error"));
 		}
@@ -242,11 +244,11 @@ function Taixiu1() {
 		getHistoryBet();
 	};
 
-	const [activeTabXX, setActiveTabXX] = useState("tabx1");
+	/*const [activeTabXX, setActiveTabXX] = useState("tabx1");
 	const handleTabClickXX = (tabName) => {
 		setActiveTabXX(tabName);
 		setItem([]);
-	};
+	};*/
 
 	function rollLottery(res) {
 		setTotal2(res.data.data);
@@ -286,37 +288,19 @@ function Taixiu1() {
 	}
 	const options = [
 		"10000",
-		"30000",
-		"80000",
-		"240000",
-		"600000",
-		"1500000",
-		"4000000",
-		"9000000",
-
+		"50000",
 		"100000",
-		"300000",
-		"800000",
-		"2400000",
-		"6000000",
-		"15000000",
-		"40000000",
-		"90000000",
-
+		"200000",
+		"500000",
 		"1000000",
-		"3000000",
-		"8000000",
-		"24000000",
-		"60000000",
-		"150000000",
-		"400000000",
-		"900000000",
+		"2000000",
+		"5000000",
 	];
 	const [activeOption, setActiveOption] = useState(null);
 
 	const handleOptionClick = (option) => {
 		setActiveOption(option);
-		setNewMoney(option);
+		setNewMoney(Number(option).toLocaleString());
 	};
 	return (
 		<>
@@ -438,31 +422,11 @@ function Taixiu1() {
 							</div>
 						</div>
 					</div>
-					<div className={`text_choose_center3 ${activeTabXX === "tabx1" ? "t1a" : activeTabXX === "tabx2" ? "t2a" : activeTabXX === "tabx3" ? "t3a" : ""}`}>
+					<div className="text_choose_center3">
 						<form onSubmit={onSubmit} className="form-lg">
 							<div className="footer_choose1">
 								<div className="title_choose_footer1">
-									<ul className="tab-tx">
-										<li
-											className={activeTabXX === "tabx1" ? "active" : ""}
-											onClick={() => handleTabClickXX("tabx1")}
-										>
-											Mức cược 1
-										</li>
-										<li
-											className={activeTabXX === "tabx2" ? "active" : ""}
-											onClick={() => handleTabClickXX("tabx2")}
-										>
-											Mức cược 2
-										</li>
-										<li
-											className={activeTabXX === "tabx3" ? "active" : ""}
-											onClick={() => handleTabClickXX("tabx3")}
-										>
-											Mức cược 3
-										</li>
-									</ul>
-									{activeTabXX === "tabx1" && (
+									<h4 style={{fontSize:"20px", margin:"0 0 10px", fontWeight:"bold"}}>Chọn mức cược</h4>
 										<div className="state_choose state_choose_price">
 											{options.map((option, index) => (
 												<>
@@ -482,58 +446,16 @@ function Taixiu1() {
 												</>
 											))}
 										</div>
-									)}
-									{activeTabXX === "tabx2" && (
-										<div className="state_choose state_choose_price">
-											{options.map((option, index) => (
-												<>
-													{index >= 8 && index < 16 && (
-														<div
-															key={option}
-															className={`state_rowindex ${
-																activeOption === option ? "chooseItem" : ""
-															}`}
-															onClick={() => handleOptionClick(option)}
-														>
-															<span className="setting_type">
-																{Number(option).toLocaleString()}
-															</span>
-														</div>
-													)}
-												</>
-											))}
-										</div>
-									)}
-									{activeTabXX === "tabx3" && (
-										<div className="state_choose state_choose_price">
-											{options.map((option, index) => (
-												<>
-													{index >= 16 && (
-														<div
-															key={option}
-															className={`state_rowindex ${
-																activeOption === option ? "chooseItem" : ""
-															}`}
-															onClick={() => handleOptionClick(option)}
-														>
-															<span className="setting_type">
-																{Number(option).toLocaleString()}
-															</span>
-														</div>
-													)}
-												</>
-											))}
-										</div>
-									)}
 									<input
 										className="state_rowindex"
 										value={newMoney}
 										onChange={(e) => setNewMoney(e.target.value)}
 										onClick={() => setActiveOption(null)}
+										onKeyUp={(e) => setNewMoney(Number((e.target.value).replaceAll(".","")).toLocaleString())}
 										required
-										min="1"
+										min="1000"
 										name="money"
-										type="number"
+										type={`${setActiveOption != null ? "text" : "number"}`}
 										placeholder="Tự nhập số tiền"
 										style={{
 											width: "100%",
@@ -550,7 +472,7 @@ function Taixiu1() {
 												Tổng tiền cược{" "}
 												<span style={{ color: "red" }}>
 													{item1.length != 0 && newMoney
-														? (item1.length * newMoney).toLocaleString()
+														? (item1.length * Number(newMoney.replaceAll(".",""))).toLocaleString()
 														: 0}{" "}
 													đ
 												</span>
@@ -713,6 +635,7 @@ function Taixiu1() {
 					</div>
 				</div>
 
+				<ChatButton/>
 				<Footer />
 
 				{isShow === true && ls.status_bet != "Pending" ? (
@@ -735,7 +658,7 @@ function Taixiu1() {
 											<>
 												<div className="lsgd-table">
 													<div>Trò chơi</div>
-													<div>Tài xỉu 3p</div>
+													<div>Tài xỉu 1p</div>
 												</div>
 												<div className="lsgd-table">
 													<div>Phiên</div>

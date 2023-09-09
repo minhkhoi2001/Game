@@ -120,36 +120,36 @@ function Request() {
 													<>
 														<TableRow>
 															<TableCell sx={{ fontWeight: "600", padding: "10px" }}>
-																{item.user.username}
+																{item?.user.username}
 															</TableCell>
 															<TableCell sx={{ fontWeight: "600", padding: "10px" }}>
-																{item.user.iduser}
+																{item?.user.iduser}
 															</TableCell>
 															<TableCell sx={{ fontWeight: "600", padding: "10px" }}>
-																{item.detail}
+																{item?.detail}
 															</TableCell>
 
 															<TableCell sx={{ fontWeight: "600", padding: "10px" }}>
-																{item.money.toLocaleString()} VNĐ
+																{item?.money.toLocaleString()} VNĐ
 															</TableCell>
-															{item.status_payment === "Pending" ? (
+															{item?.status_payment === "Pending" ? (
 																<TableCell sx={{padding:"10px"}}>
 																	<Button type="text" color="warning">
-																		{item.status_payment}
+																		{item?.status_payment}
 																	</Button>
 																</TableCell>
 															) : null}
-															{item.status_payment === "Success" ? (
+															{item?.status_payment === "Success" ? (
 																<TableCell sx={{padding:"10px"}}>
 																	<Button type="text" color="success">
-																		{item.status_payment}
+																		{item?.status_payment}
 																	</Button>
 																</TableCell>
 															) : null}
-															{item.status_payment === "Deny" ? (
+															{item?.status_payment === "Deny" ? (
 																<TableCell sx={{padding:"10px"}}>
 																	<Button type="text" color="error">
-																		{item.status_payment}
+																		{item?.status_payment}
 																	</Button>
 																</TableCell>
 															) : null}
@@ -157,7 +157,7 @@ function Request() {
 																<Button
 																	onClick={() => {
 																		const formData = {
-																			id: item._id,
+																			id: item?._id,
 																			status: "Accept",
 																		};
 																		axios
@@ -170,14 +170,14 @@ function Request() {
 																			})
 																			.catch((err) => setLoad(true));
 																	}}
-																	disabled={item.status_payment !== "Pending"}
+																	disabled={item?.status_payment !== "Pending"}
 																>
 																	Xác nhận
 																</Button>
 																<Button
 																	onClick={() => {
 																		const formData = {
-																			id: item._id,
+																			id: item?._id,
 																			status: "Deny",
 																		};
 																		axios
@@ -190,13 +190,13 @@ function Request() {
 																			})
 																			.catch((err) => setLoad(true));
 																	}}
-																	disabled={item.status_payment !== "Pending"}
+																	disabled={item?.status_payment !== "Pending"}
 																>
 																	Từ chối
 																</Button>
 															</TableCell>
 															<TableCell sx={{ fontWeight: "600", padding: "10px" }}>
-																{formatDate(new Date(item.createdAt))}
+																{formatDate(new Date(item?.createdAt))}
 															</TableCell>
 														</TableRow>
 													</>

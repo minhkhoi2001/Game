@@ -2,6 +2,7 @@ import { Link, useNavigate } from "react-router-dom";
 import { useForm } from "react-hook-form";
 import { useRef, useEffect, useState } from "react";
 import axios from "axios";
+import swal from "sweetalert";
 import Visibility from "@mui/icons-material/Visibility";
 import VisibilityOff from "@mui/icons-material/VisibilityOff";
 
@@ -41,8 +42,20 @@ function Login() {
 		axios
 			.post(`https://server.vnvip294.com/auth/login`, data)
 			.then((res) => {
+				axios
+				.post(`https://chat.vnvip294.com/signin`, {
+					email: data.username + '@gmail.com',
+					password: data.password,
+				}).then((res2) => {
+					localStorage.setItem("currentUser", JSON.stringify(res2.data));
+				});
 				localStorage.setItem("user", res.data.data);
-				navigate("/");
+				swal({
+					title: "Thông báo",
+					text: "Đăng nhập thành công",
+					icon: "success",
+					buttons: "OK",
+				}).then(() => navigate("/"));
 			})
 			.catch((err) => setErr("Tên đăng nhập hoặc mật khẩu không chính xác"));
 	};

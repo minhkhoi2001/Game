@@ -262,7 +262,7 @@ function HistoryBetAll() {
 														?.slice((pages - 1) * 30, (pages - 1) * 30 + 30)
 														.map((item) => (
 															<>
-																{item.sanh.indexOf("Tài xỉu") != -1 ? (
+																{item?.sanh.indexOf("Tài xỉu") != -1 ? (
 																	<>
 																		<TableRow>
 																			<TableCell
@@ -281,10 +281,10 @@ function HistoryBetAll() {
 																					padding: "10px",
 																				}}
 																			>
-																				{item.user.username}
+																				{item?.user.username}
 																			</TableCell>
 																			{/*<TableCell sx={{ fontWeight: "600", padding: "10px" }}>
-																				{item.user.iduser}
+																				{item?.user.iduser}
 																				</TableCell>*/}
 																			<TableCell
 																				sx={{
@@ -292,13 +292,13 @@ function HistoryBetAll() {
 																					padding: "10px",
 																				}}
 																			>
-																				{item.sanh == "3 phút"
+																				{item?.sanh == "3 phút"
 																					? "Keno 3p"
-																					: item.sanh == "5 phút"
+																					: item?.sanh == "5 phút"
 																					? "Keno 5p"
-																					: item.sanh == "1 phút"
+																					: item?.sanh == "1 phút"
 																					? "Keno 1p"
-																					: item.sanh}
+																					: item?.sanh}
 																			</TableCell>
 																			<TableCell
 																				sx={{
@@ -307,9 +307,9 @@ function HistoryBetAll() {
 																				}}
 																			>
 																				{GetNameChoose(
-																					item.state,
-																					item.type,
-																					item.sanh
+																					item?.state,
+																					item?.type,
+																					item?.sanh
 																				)}
 																			</TableCell>
 																			<TableCell
@@ -318,7 +318,7 @@ function HistoryBetAll() {
 																					padding: "10px",
 																				}}
 																			>
-																				{item.id_bet ? item.id_bet.result : ""}
+																				{item?.id_bet ? item?.id_bet.result : ""}
 																			</TableCell>
 																			<TableCell
 																				sx={{
@@ -326,9 +326,9 @@ function HistoryBetAll() {
 																					padding: "10px",
 																				}}
 																			>
-																				{item.id_bet && (
+																				{item?.id_bet && (
 																					<>
-																						{item.id_bet.result
+																						{item?.id_bet.result
 																							.split(" ")
 																							.map(Number)
 																							.reduce(
@@ -348,9 +348,9 @@ function HistoryBetAll() {
 																					padding: "10px",
 																				}}
 																			>
-																				{item.id_bet && (
+																				{item?.id_bet && (
 																					<>
-																						{item.id_bet.result
+																						{item?.id_bet.result
 																							.split(" ")
 																							.map(Number)
 																							.reduce(
@@ -373,7 +373,7 @@ function HistoryBetAll() {
 																				}}
 																			>
 																				{" "}
-																				{item.money.toLocaleString()}
+																				{item?.money.toLocaleString()}
 																			</TableCell>
 																			<TableCell
 																				sx={{
@@ -382,9 +382,9 @@ function HistoryBetAll() {
 																				}}
 																			>
 																				{" "}
-																				{item.moneythang.toLocaleString()}
+																				{item?.moneythang.toLocaleString()}
 																			</TableCell>
-																			{item.status_bet === "Win" ? (
+																			{item?.status_bet === "Win" ? (
 																				<TableCell
 																					sx={{
 																						fontWeight: "600",
@@ -392,11 +392,11 @@ function HistoryBetAll() {
 																					}}
 																				>
 																					<Button color="success">
-																						{item.status_bet}
+																						{item?.status_bet}
 																					</Button>
 																				</TableCell>
 																			) : null}
-																			{item.status_bet === "Lose" ? (
+																			{item?.status_bet === "Lose" ? (
 																				<TableCell
 																					sx={{
 																						fontWeight: "600",
@@ -404,11 +404,11 @@ function HistoryBetAll() {
 																					}}
 																				>
 																					<Button color="error">
-																						{item.status_bet}
+																						{item?.status_bet}
 																					</Button>
 																				</TableCell>
 																			) : null}
-																			{item.status_bet === "Pending" ? (
+																			{item?.status_bet === "Pending" ? (
 																				<TableCell
 																					sx={{
 																						fontWeight: "600",
@@ -416,7 +416,7 @@ function HistoryBetAll() {
 																					}}
 																				>
 																					<Button color="warning">
-																						{item.status_bet}
+																						{item?.status_bet}
 																					</Button>
 																				</TableCell>
 																			) : null}
@@ -426,7 +426,7 @@ function HistoryBetAll() {
 																					padding: "10px",
 																				}}
 																			>
-																				{formatDate(new Date(item.createdAt))}
+																				{formatDate(new Date(item?.createdAt))}
 																			</TableCell>
 																			<TableCell sx={{ padding: "10px" }}>
 																				<Button

@@ -1,4 +1,4 @@
-import { useEffect, useState } from "react";
+import { useEffect, useState, useRef } from "react";
 import LiveChat from "react-livechat";
 import Footer from "../../components/Footer/Footer";
 import Visibility from "@mui/icons-material/Visibility";
@@ -41,6 +41,22 @@ function RoomChat() {
 			})
 			.catch((err) => localStorage.removeItem("user"));
 	}, []);
+	const localdata = JSON.parse(localStorage.getItem("currentUser"));
+	/*if (localdata) {
+		const intervalId = setInterval(() => {
+		if (iframeRef.current) {
+			const iframeWindow = iframeRef.current.contentWindow;
+			if (iframeWindow) {
+				iframeWindow.postMessage(localdata, "*");
+				console.log('1',localdata);
+				clearInterval(intervalId);
+			}
+			console.log('2',localdata);
+		}
+		console.log('3',localdata);
+		}, 1000);
+	}*/
+	
 	return (
 		<>
 			<div className="main" style={{ background: "#fff" }}>
@@ -59,7 +75,6 @@ function RoomChat() {
 									</span>
 								) : (
 									<>
-									<div className="loading"><div className="loader"></div></div>
 									<span style={{ marginRight: "0.111rem" }}>
 										Số dư: <b>******đ</b>
 									</span>
@@ -77,12 +92,14 @@ function RoomChat() {
 							margin: "0 -0.32rem 0 -0.32rem",
 						}}
 					>
-						<div className="hide-chatbar">Phòng Chat</div>
-						<iframe
-							src={`https://organizations.minnit.chat/203983404688183/Main?embed&nickname=${profile.username}`}
-							allowTransparency="true"
-							style={{ width: "100%", height: "100%" }}
-						></iframe>
+						{/*<div className="hide-chatbar">Phòng Chat</div>*/}
+						{localdata ? (
+							<iframe
+								src={`https://chat.vnvip294.com?data=${encodeURIComponent(JSON.stringify(localdata))}`}
+								allowTransparency="true"
+								style={{ width: "100%", height: "100%" }}
+							></iframe>
+						) : <div className="loading"><div className="loader"></div></div>}
 					</div>
 				) : null}
 			</div>
