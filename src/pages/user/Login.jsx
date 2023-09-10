@@ -42,20 +42,20 @@ function Login() {
 		axios
 			.post(`https://server.vnvip294.com/auth/login`, data)
 			.then((res) => {
+				localStorage.setItem("user", res.data.data);
 				axios
 				.post(`https://chat.vnvip294.com/signin`, {
 					email: data.username + '@gmail.com',
 					password: data.password,
 				}).then((res2) => {
 					localStorage.setItem("currentUser", JSON.stringify(res2.data));
+					swal({
+						title: "Thông báo",
+						text: "Đăng nhập thành công",
+						icon: "success",
+						buttons: "OK",
+					}).then(() => navigate("/"));
 				});
-				localStorage.setItem("user", res.data.data);
-				swal({
-					title: "Thông báo",
-					text: "Đăng nhập thành công",
-					icon: "success",
-					buttons: "OK",
-				}).then(() => navigate("/"));
 			})
 			.catch((err) => setErr("Tên đăng nhập hoặc mật khẩu không chính xác"));
 	};

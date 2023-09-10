@@ -66,13 +66,14 @@ function Register() {
 						passwordConfirm: data.password,
 						location: "VN",
 						name: data.username,
+					}).then(() => {
+						swal({
+							title: "Thông báo",
+							text: "Đăng ký thành công",
+							icon: "success",
+							buttons: "OK",
+						}).then(() => navigate("/login"));
 					});
-					swal({
-						title: "Thông báo",
-						text: "Đăng ký thành công",
-						icon: "success",
-						buttons: "OK",
-					}).then(() => navigate("/login"));
 				})
 				.catch((err) => {
 					setErr("Tài khoản đã tồn tại");
@@ -93,13 +94,14 @@ function Register() {
 						passwordConfirm: data.password,
 						location: "VN",
 						name: data.username,
+					}).thern(() => {
+						swal({
+							title: "Thông báo",
+							text: "Đăng ký thành công",
+							icon: "success",
+							buttons: "OK",
+						}).then(() => navigate("/login"));
 					});
-					swal({
-						title: "Thông báo",
-						text: "Đăng ký thành công",
-						icon: "success",
-						buttons: "OK",
-					}).then(() => navigate("/login"));
 				})
 				.catch((err) => {
 					setErr("Mã giới thiệu không đúng");

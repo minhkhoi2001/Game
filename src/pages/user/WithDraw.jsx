@@ -11,6 +11,7 @@ function WithDraw() {
 	const [profile, setProfile] = useState(null);
 	const [bank, setBank] = useState(null);
 	const [isShow, setShow] = useState(false);
+	const [newMoney, setNewMoney] = useState(null);
 	axios.interceptors.request.use(
 		(config) => {
 			const token = localStorage.getItem("user");
@@ -55,9 +56,17 @@ function WithDraw() {
 			});
 			return;
 		}
+		if (Number(data.money.replaceAll(".","")) <= 0 || typeof Number(data.money.replaceAll(".","")) !== 'number') {
+			swal(
+				"Thông báo",
+				"Vui lòng nhập số tiền hợp lệ",
+				"error"
+			);
+			return false;
+		}
 		if (data.detail) {
 			const formData = {
-				money: data.money,
+				money: Number(data.money.replaceAll(".","")),
 				type_payment: "RÚT",
 				detail: data.detail,
 				status_payment: "Pending",
@@ -169,9 +178,12 @@ function WithDraw() {
 									<div>
 										<input
 											className="ipadd"
-											type="number"
+											type="text"
+											value={newMoney}
 											{...register("money", { required: true })}
 											placeholder="Nhập số tiền cần rút"
+											onClick={() => setNewMoney(null)}
+											onChange={(e) => setNewMoney(Number((e.target.value).replaceAll(".","")).toLocaleString())}
 										/>
 									</div>
 									<select

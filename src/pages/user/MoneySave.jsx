@@ -38,6 +38,7 @@ function MoneySave() {
 	const [profile, setProfile] = useState(null);
 	const [saving, setSaving] = useState(null);
 	const [profit, setProfit] = useState(null);
+	const [newMoney, setNewMoney] = useState(null);
 	const navigate = useNavigate();
 	axios.interceptors.request.use(
 		(config) => {
@@ -76,9 +77,16 @@ function MoneySave() {
 	} = useForm();
 	const onSubmit1 = (data) => {
 		const formData = {
-			money: data.money,
+			money: Number(data.money.replaceAll(".","")),
 		};
-
+		if (Number(data.money.replaceAll(".","")) <= 0 || typeof Number(data.money.replaceAll(".","")) !== 'number') {
+			swal(
+				"Thông báo",
+				"Vui lòng nhập số tiền hợp lệ",
+				"error"
+			);
+			return false;
+		}
 		axios
 			.post(`https://server.vnvip294.com/money/send`, formData)
 			.then((res) => {
@@ -105,8 +113,16 @@ function MoneySave() {
 			return;
 		}
 		const formData = {
-			money: data.money,
+			money: Number(data.money.replaceAll(".","")),
 		};
+		if (Number(data.money.replaceAll(".","")) <= 0 || typeof Number(data.money.replaceAll(".","")) !== 'number') {
+			swal(
+				"Thông báo",
+				"Vui lòng nhập số tiền hợp lệ",
+				"error"
+			);
+			return false;
+		}
 		axios
 			.post(`https://server.vnvip294.com/money/withdraw`, formData)
 			.then((res) => {
@@ -256,9 +272,12 @@ function MoneySave() {
 								<div>
 									<input
 										className="ipadd"
-										type="number"
+										type="text"
 										{...register("money", { required: true })}
 										placeholder="Nhập số tiền nạp"
+										value={newMoney}
+										onClick={() => setNewMoney(null)}
+										onChange={(e) => setNewMoney(Number((e.target.value).replaceAll(".","")).toLocaleString())}
 									/>
 								</div>
 								{errors.money ? (
@@ -286,9 +305,12 @@ function MoneySave() {
 									<div>
 										<input
 											className="ipadd"
-											type="number"
+											type="text"
 											{...register("money", { required: true })}
 											placeholder="Nhập số tiền rút"
+											value={newMoney}
+											onClick={() => setNewMoney(null)}
+											onChange={(e) => setNewMoney(Number((e.target.value).replaceAll(".","")).toLocaleString())}
 										/>
 									</div>
 									<button

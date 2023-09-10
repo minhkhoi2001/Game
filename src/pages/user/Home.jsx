@@ -85,10 +85,10 @@ function Home() {
 				</div>
 				<Swiper {...swiperParams}>
 					<SwiperSlide>
-						<img src={require("../../img/banner1.jpg")} />
+						<img src={require("../../img/banner12.jpg")} />
 					</SwiperSlide>
 					<SwiperSlide>
-						<img src={require("../../img/banner3.jpg")} />
+						<img src={require("../../img/banner11.jpg")} />
 					</SwiperSlide>
 				</Swiper>
 				{notify ? (

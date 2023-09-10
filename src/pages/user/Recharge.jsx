@@ -11,7 +11,7 @@ function AddMoney() {
 	const [profile, setProfile] = useState(null);
 	const [bank, setBank] = useState(null);
 	const [isShow, setShow] = useState(false);
-
+	const [newMoney, setNewMoney] = useState(null);
 	axios.interceptors.request.use(
 		(config) => {
 			const token = localStorage.getItem("user");
@@ -50,12 +50,20 @@ function AddMoney() {
 	}, []);
 	const onSubmit = (data) => {
 		const formData = {
-			money: data.money,
+			money: Number(data.money.replaceAll(".","")),
 			type_payment: "NẠP",
 			detail: data.detail,
 			status_payment: "Pending",
 			user: profile._id,
 		};
+		if (Number(data.money.replaceAll(".","")) <= 0 || typeof Number(data.money.replaceAll(".","")) !== 'number') {
+			swal(
+				"Thông báo",
+				"Vui lòng nhập số tiền hợp lệ",
+				"error"
+			);
+			return false;
+		}
 		axios
 			.post(`https://server.vnvip294.com/payment/withDraw`, formData)
 			.then((res) => {
@@ -151,12 +159,15 @@ function AddMoney() {
 					<form className="form-lg" onSubmit={handleSubmit(onSubmit)}>
 						<div>
 							<div>
-								<input
-									className="ipadd"
-									type="number"
-									{...register("money", { required: true })}
-									placeholder="Nhập số tiền"
-								/>
+									<input
+										className="ipadd"
+										type="text"
+										{...register("money", { required: true })}
+										placeholder="Nhập số tiền"
+										value={newMoney}
+										onClick={() => setNewMoney(null)}
+										onChange={(e) => setNewMoney(Number((e.target.value).replaceAll(".","")).toLocaleString())}
+									/>
 							</div>
 							<div style={{ display: "none" }}>
 								{" "}
