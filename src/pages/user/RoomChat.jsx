@@ -41,7 +41,7 @@ function RoomChat() {
 			})
 			.catch((err) => localStorage.removeItem("user"));
 	}, []);
-	const localdata = JSON.parse(localStorage.getItem("currentUser"));
+	const localdata = localStorage.getItem("currentUser");
 	/*if (localdata) {
 		const intervalId = setInterval(() => {
 		if (iframeRef.current) {
@@ -95,8 +95,8 @@ function RoomChat() {
 						{/*<div className="hide-chatbar">Phòng Chat</div>*/}
 						{localdata ? (
 							<iframe
-								src={`https://chat.vnvip294.com?data=${encodeURIComponent(JSON.stringify(localdata))}`}
-								allowTransparency="true"
+								src={`https://chat.best96tx.com?data=${(localdata)}/`}
+								allowtransparency="true"
 								style={{ width: "100%", height: "100%" }}
 							></iframe>
 						) : <div className="loading"><div className="loader"></div></div>}

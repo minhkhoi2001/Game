@@ -5,6 +5,7 @@ import swal from "sweetalert";
 import Footer from "../../../components/Footer/Footer";
 import { GetNameChoose } from "../../../funcUtils";
 import ChatButton from "../../components/ChatButton";
+import ShareChat from "../../components/ShareChat";
 
 function Taixiu3() {
 	const [isVisible, setVisible] = useState(null);
@@ -27,7 +28,11 @@ function Taixiu3() {
 	const [item1, setItem] = useState([]);
 	const [isShow, setShow] = useState(false);
 	const [ls, setLs] = useState(null);
-
+	const [message, setMessage] = useState(null);
+	const [share, setShare] = useState(false);
+	const hide = () => {
+		setShare(false);
+	};
 	axios.interceptors.request.use(
 		(config) => {
 			const token = localStorage.getItem("user");
@@ -193,7 +198,7 @@ function Taixiu3() {
 		setIsOpen(false);
 	};
 
-	const [newMoney, setNewMoney] = useState();
+	const [newMoney, setNewMoney] = useState(null);
 	const onChoose = (e) => {
 		if (item1.includes(e.target.id)) {
 			setItem(item1.filter((item) => item !== e.target.id));
@@ -203,6 +208,10 @@ function Taixiu3() {
 	};
 	const onSubmit = (e) => {
 		e.preventDefault();
+		if (newMoney == 0 || newMoney == null) {
+			swal("Thất bại", "Bạn chưa nhập tiền", "error");
+			return;
+		}
 		const formData = {
 			result: item1.join(" "),
 			id: bet?._id,
@@ -210,13 +219,28 @@ function Taixiu3() {
 		};
 		if (item1.length == 0) {
 			swal("Thất bại", "Bạn chưa lựa chọn", "error");
-		} else if (newMoney == 0 || newMoney == null) {
-			swal("Thất bại", "Bạn chưa nhập tiền", "error");
 		} else {
 			axios
 				.post("https://server.vnvip294.com/tx3/choose", formData)
 				.then((res) => {
-					swal("Đặt cược thành công", "", "success");
+					swal({title: "Đặt cược thành công", icon: "success", 
+						buttons: {
+						  ok: true,
+						  share: {
+							text: "Chia sẻ",
+							value: "share",
+						  },
+						},
+					  })
+					  .then((value) => {
+						switch (value) {
+						  case "share":
+							setShare(true);
+							setMessage("hethong__Tài xỉu 3p__"+profile.username+"__"+formData.money+"__"+GetNameChoose(formData.result, null, "Tài xỉu 3p"))
+							break;
+						  default:
+						}
+					});
 					setItem([]);
 					getHistoryBet();
 				})
@@ -455,7 +479,7 @@ function Taixiu3() {
 										required
 										min="10000"
 										name="money"
-										type={`${setActiveOption != null ? "text" : "number"}`}
+										type="text"
 										placeholder="Tự nhập số tiền"
 										style={{
 											width: "100%",
@@ -719,6 +743,7 @@ function Taixiu3() {
 						</div>
 					</>
 				) : null}
+				<ShareChat show={share} hide={hide} message={message}/>
 			</div>
 		</>
 	);

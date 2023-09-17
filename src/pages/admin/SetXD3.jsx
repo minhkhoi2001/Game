@@ -251,6 +251,32 @@ function SetXD3p() {
 				.catch((res) => swal("Lỗi", "Update không thành công", "error"));
 		}
 	};
+	function thongke(num) {
+		if (current) {
+			const countTable = {};
+			for (let i = 1; i <= 9; i++) {
+				countTable[i] = { count: 0, totalMoney: 0 };
+			}
+			current.forEach((item) => {
+				const money = item.money;
+				const states = item.state.split(" ").map(Number);
+				const length = states.length;
+
+				states.forEach((state) => {
+					if (state >= 1 && state <= 9) {
+						countTable[state].count++;
+						countTable[state].totalMoney += money / length;
+					}
+				});
+			});
+			/*for (let i = 1; i <= 9; i++) {
+				console.log(`Số ${i}: Số lần xuất hiện - ${countTable[i].count}, Tổng tiền - ${countTable[i].totalMoney}`);
+			}*/
+			return Number(countTable[num].totalMoney).toLocaleString();
+		} else {
+			return 0;
+		}
+	}
 	return (
 		<>
 			<ThemeProvider theme={theme}>
@@ -280,6 +306,25 @@ function SetXD3p() {
 									</div>
 								</div>
 								<div className="form_set"></div>
+								<div class="current_bet">
+									<div class="current_bet_head">
+										<div>Lẻ</div>
+										<div>Chẵn</div>
+										<div>3 trắng 1 đỏ</div>
+										<div>3 đỏ 1 trắng</div>
+										<div>4 trắng</div>
+										<div>4 đỏ</div>
+									</div>
+
+									<div class="current_bet_body">
+										<div>{thongke(6)}</div>
+										<div>{thongke(5)}</div>
+										<div>{thongke(4)}</div>
+										<div>{thongke(3)}</div>
+										<div>{thongke(2)}</div>
+										<div>{thongke(1)}</div>
+									</div>
+								</div>
 								<Table>
 									<TableHead>
 										<TableRow>
@@ -307,7 +352,7 @@ function SetXD3p() {
 																{GetNameChoose(item.state, null, item.sanh)}
 															</TableCell>
 															<TableCell sx={{ padding: "10px" }}>
-																{item.money}
+																{Number(item.money).toLocaleString()}
 															</TableCell>
 															<TableCell sx={{ padding: "10px" }}>
 																{formatDate(new Date(item.createdAt))}

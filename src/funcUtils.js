@@ -9,7 +9,7 @@ export const GetNameChoose = (state, type, sanh) => {
 				chon+="4 đỏ, "
 			}
 			if (Number(item) == 3 && type == null) {
-				chon+="3 đỏ 1 trắng,"
+				chon+="3 đỏ 1 trắng, "
 			}
 			if (Number(item) == 4 && type == null) {
 				chon+="3 trắng 1 đỏ, "
@@ -18,10 +18,10 @@ export const GetNameChoose = (state, type, sanh) => {
 				chon+="Chẵn, "
 			}
 			if (Number(item) == 6 && type == null) {
-				chon+="Lẻ "
+				chon+="Lẻ, "
 			}
 		});
-        return chon
+        return chon.substring(0, chon.length - 2)
 	}
 	if (sanh === "Tài xỉu 1p" || sanh === "Tài xỉu 5p" || sanh === "Tài xỉu 3p") {
 		let chon = "Chọn ";

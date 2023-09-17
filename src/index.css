@@ -1907,37 +1907,20 @@ body:has(.admin-theme) #webpack-dev-server-client-overlay {
 .result_admin_choose table, .max900 {
 	max-width: 900px;
 }
-.hide-chatbar {
-	position: absolute;
-	z-index: 2;
-	background: #ff0000;
-	height: 0.8rem;
-	line-height: 0.5rem;
-	width: 100%;
-	top: 0;
-	color: #f2f2f2;
-	text-align: center;
-	font-size: 0.55rem;
+.current_bet {
+	border: 0.5px solid #eee;
+	margin-bottom: 20px;
+}
+.current_bet > div {
+	display: flex;
+}
+.current_bet > div > div {
+	padding: 10px;
+	flex: 1;
+	border: 0.5px solid #eee;
+}
+.current_bet > div:first-child {
 	font-weight: bold;
-}
-.hide-chatbar2 {
-	position: absolute;
-	z-index: 2;
-	background: #fff;
-	height: 0.85rem;
-	line-height: 0.5rem;
-	width: 50%;
-	top: 0;
-	color: #333;
-	text-align: left;
-	font-size: 0.55rem;
-	font-weight: bold;
-}
-.main:has(.hide-chatbar2) .header:after {
-	display: none;
-}
-.main:has(.hide-chatbar2) .header {
-	background: red;
 }
 .table_ls_tx th {
 	font-size: 0.4rem;
@@ -2067,6 +2050,6 @@ body:has(.admin-theme) #webpack-dev-server-client-overlay {
 .taikhoandautu h3 {
 	font-size: .5rem;
 	font-weight: bold;
-	margin: 0;
+	margin: 0;	
 	height: 0.5rem;
 }

@@ -246,7 +246,7 @@ function MoneySave() {
 						<h3>
 						{profile && profit && (
 							<>
-								{Number(
+								{saving ? Number(
 									(
 										Math.floor(
 											(new Date() - new Date(saving?.vi.createdAt)) /
@@ -255,7 +255,7 @@ function MoneySave() {
 										(Math.floor(saving?.vi?.money) *
 											getLV(profile?.level, profit[0]))
 									).toFixed(0)
-								).toLocaleString()}{" "}
+								).toLocaleString() : 0}{" "}
 								đ
 							</>
 						)}

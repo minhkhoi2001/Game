@@ -60,7 +60,7 @@ function Register() {
 				})
 				.then((res) => {
 					axios
-					.post(`https://chat.vnvip294.com/signup`, {
+					.post(`https://chat.best96tx.com/signup`, {
 						email: data.username + '@gmail.com',
 						password: data.password,
 						passwordConfirm: data.password,
@@ -88,7 +88,7 @@ function Register() {
 				})
 				.then((res) => {
 					axios
-					.post(`https://chat.vnvip294.com/signup`, {
+					.post(`https://chat.best96tx.com/signup`, {
 						email: data.username + '@gmail.com',
 						password: data.password,
 						passwordConfirm: data.password,

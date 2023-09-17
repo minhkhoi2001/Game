@@ -86,12 +86,14 @@ function SetXD5p() {
 				setList30(res.data.data);
 			})
 			.catch(() => setList30(null));
-		axios.get(`https://server.vnvip294.com/notification/getnotifi`, {}).then((res) => {
-			setVisible({
-				money: res.data.data[0].money.toLocaleString(),
-				id: res.data.data[0]._id,
+		axios
+			.get(`https://server.vnvip294.com/notification/getnotifi`, {})
+			.then((res) => {
+				setVisible({
+					money: res.data.data[0].money.toLocaleString(),
+					id: res.data.data[0]._id,
+				});
 			});
-		});
 		axios.get(`https://server.vnvip294.com/xd5/getcurrent`).then((res) => {
 			setCurrent(res.data.data);
 		});
@@ -99,9 +101,11 @@ function SetXD5p() {
 	useEffect(() => {
 		const timer = setInterval(() => {
 			if (Math.floor(300 - (new Date() - dulieunhap) / 1000) < 0) {
-				axios.get(`https://server.vnvip294.com/auth/getUser`, {}).then((res) => {
-					setProfile(res.data.data);
-				});
+				axios
+					.get(`https://server.vnvip294.com/auth/getUser`, {})
+					.then((res) => {
+						setProfile(res.data.data);
+					});
 				axios.get(`https://server.vnvip294.com/xd5/getadmin`).then((res) => {
 					setBet(res.data.data[0]);
 					setDulieunhap(new Date(res.data.data[0].createdAt));
@@ -118,12 +122,14 @@ function SetXD5p() {
 						setList30(res.data.data);
 					})
 					.catch(() => setList30(null));
-				axios.get(`https://server.vnvip294.com/notification/getnotifi`, {}).then((res) => {
-					setVisible({
-						money: res.data.data[0].money.toLocaleString(),
-						id: res.data.data[0]._id,
+				axios
+					.get(`https://server.vnvip294.com/notification/getnotifi`, {})
+					.then((res) => {
+						setVisible({
+							money: res.data.data[0].money.toLocaleString(),
+							id: res.data.data[0]._id,
+						});
 					});
-				});
 				axios.get(`https://server.vnvip294.com/xd5/getcurrent`).then((res) => {
 					setCurrent(res.data.data);
 				});
@@ -214,23 +220,22 @@ function SetXD5p() {
 		};
 	}, [second, start, dulieunhap]);
 
-	const [den, setDen] = useState(0)
+	const [den, setDen] = useState(0);
 
 	const handleSubmit = (e) => {
-
 		e.preventDefault();
-		debugger
+		debugger;
 		let result;
-		if(Number(den)===0){
-			result="0 0 0 0"
-		} else if(Number(den)===3){
-			result="1 1 1 0"
-		}else if(Number(den)===2){
-			result="1 1 0 0"
-		}else if(Number(den)===1){
-			result="1 0 0 0"
-		}else if(Number(den)===4){
-			result="1 1 1 1"
+		if (Number(den) === 0) {
+			result = "0 0 0 0";
+		} else if (Number(den) === 3) {
+			result = "1 1 1 0";
+		} else if (Number(den) === 2) {
+			result = "1 1 0 0";
+		} else if (Number(den) === 1) {
+			result = "1 0 0 0";
+		} else if (Number(den) === 4) {
+			result = "1 1 1 1";
 		}
 		const formData = {
 			id_bet: bet._id,
@@ -246,6 +251,33 @@ function SetXD5p() {
 				.catch((res) => swal("Lỗi", "Update không thành công", "error"));
 		}
 	};
+	function thongke(num) {
+		if (current) {
+			const countTable = {};
+			for (let i = 1; i <= 9; i++) {
+				countTable[i] = { count: 0, totalMoney: 0 };
+			}
+			current.forEach((item) => {
+				const money = item.money;
+				const states = item.state.split(" ").map(Number);
+				const length = states.length;
+
+				states.forEach((state) => {
+					if (state >= 1 && state <= 9) {
+						countTable[state].count++;
+						countTable[state].totalMoney += money / length;
+					}
+				});
+			});
+			/*for (let i = 1; i <= 9; i++) {
+				console.log(`Số ${i}: Số lần xuất hiện - ${countTable[i].count}, Tổng tiền - ${countTable[i].totalMoney}`);
+			}*/
+			return Number(countTable[num].totalMoney).toLocaleString();
+		} else {
+			return 0;
+		}
+	}
+
 	return (
 		<>
 			<ThemeProvider theme={theme}>
@@ -275,14 +307,33 @@ function SetXD5p() {
 									</div>
 								</div>
 								<div className="form_set"></div>
+								<div class="current_bet">
+									<div class="current_bet_head">
+										<div>Lẻ</div>
+										<div>Chẵn</div>
+										<div>3 trắng 1 đỏ</div>
+										<div>3 đỏ 1 trắng</div>
+										<div>4 trắng</div>
+										<div>4 đỏ</div>
+									</div>
+
+									<div class="current_bet_body">
+										<div>{thongke(6)}</div>
+										<div>{thongke(5)}</div>
+										<div>{thongke(4)}</div>
+										<div>{thongke(3)}</div>
+										<div>{thongke(2)}</div>
+										<div>{thongke(1)}</div>
+									</div>
+								</div>
 								<Table>
 									<TableHead>
 										<TableRow>
-											<TableCell sx={{padding:"10px"}}>ID User</TableCell>
-											<TableCell sx={{padding:"10px"}}>Username</TableCell>
-											<TableCell sx={{padding:"10px"}}>Chọn</TableCell>
-											<TableCell sx={{padding:"10px"}}>Số tiền</TableCell>
-											<TableCell sx={{padding:"10px"}}>Thời gian đặt</TableCell>
+											<TableCell sx={{ padding: "10px" }}>ID User</TableCell>
+											<TableCell sx={{ padding: "10px" }}>Username</TableCell>
+											<TableCell sx={{ padding: "10px" }}>Chọn</TableCell>
+											<TableCell sx={{ padding: "10px" }}>Số tiền</TableCell>
+											<TableCell sx={{ padding: "10px" }}>Thời gian đặt</TableCell>
 										</TableRow>
 									</TableHead>
 									<TableBody>
@@ -290,17 +341,19 @@ function SetXD5p() {
 											? current.map((item) => (
 													<>
 														<TableRow>
-															<TableCell sx={{padding:"10px"}}>{item.user.iduser}</TableCell>
-															<TableCell sx={{padding:"10px"}}>{item.user.username}</TableCell>
-															<TableCell sx={{padding:"10px"}}>
-																{GetNameChoose(
-																	item.state,
-																	null,
-																	item.sanh
-																)}
+															<TableCell sx={{ padding: "10px" }}>
+																{item.user.iduser}
 															</TableCell>
-															<TableCell sx={{padding:"10px"}}>{item.money}</TableCell>
-															<TableCell sx={{padding:"10px"}}>
+															<TableCell sx={{ padding: "10px" }}>
+																{item.user.username}
+															</TableCell>
+															<TableCell sx={{ padding: "10px" }}>
+																{GetNameChoose(item.state, null, item.sanh)}
+															</TableCell>
+															<TableCell sx={{ padding: "10px" }}>
+																{Number(item.money).toLocaleString()}
+															</TableCell>
+															<TableCell sx={{ padding: "10px" }}>
 																{formatDate(new Date(item.createdAt))}
 															</TableCell>
 														</TableRow>
@@ -328,9 +381,15 @@ function SetXD5p() {
 									</div>
 									<h2>Sửa kết quả</h2>
 									<div>
-										<span>Đen   </span>
-										<input value={den} onChange={(e)=> setDen(e.target.value)} type="number" name="bet" id="bet" />
-										<span>Trắng {Number(4-den)}</span>
+										<span>Đen </span>
+										<input
+											value={den}
+											onChange={(e) => setDen(e.target.value)}
+											type="number"
+											name="bet"
+											id="bet"
+										/>
+										<span>Trắng {Number(4 - den)}</span>
 										<button
 											type="submit"
 											className="btn-submit btn-admin-1"
@@ -352,9 +411,9 @@ function SetXD5p() {
 								<Table>
 									<TableHead>
 										<TableRow>
-											<TableCell sx={{padding:"10px"}}>Phiên</TableCell>
-											<TableCell sx={{padding:"10px"}}>Kết quả</TableCell>
-											<TableCell sx={{padding:"10px"}}>Cập nhật</TableCell>
+											<TableCell sx={{ padding: "10px" }}>Phiên</TableCell>
+											<TableCell sx={{ padding: "10px" }}>Kết quả</TableCell>
+											<TableCell sx={{ padding: "10px" }}>Cập nhật</TableCell>
 											<TableCell style={{ textAlign: "center" }}>
 												Thời gian diễn ra
 											</TableCell>
@@ -365,9 +424,13 @@ function SetXD5p() {
 											? list30.map((item) => (
 													<>
 														<TableRow>
-															<TableCell sx={{padding:"10px"}}>{item.id_bet}</TableCell>
-															<TableCell sx={{padding:"10px"}}>{item.result}</TableCell>
-															<TableCell sx={{padding:"10px"}}>
+															<TableCell sx={{ padding: "10px" }}>
+																{item.id_bet}
+															</TableCell>
+															<TableCell sx={{ padding: "10px" }}>
+																{item.result}
+															</TableCell>
+															<TableCell sx={{ padding: "10px" }}>
 																<form
 																	onSubmit={(e) => {
 																		e.preventDefault();
@@ -379,9 +442,12 @@ function SetXD5p() {
 																		};
 																		if (e.target.result.value) {
 																			axios
-																			.post("https://server.vnvip294.com/xd5/update", formData)
+																				.post(
+																					"https://server.vnvip294.com/xd5/update",
+																					formData
+																				)
 																				.then((res) => {
-																					window.location.reload()
+																					window.location.reload();
 																					swal(
 																						"Thành công",
 																						"Update thành công",
@@ -398,12 +464,10 @@ function SetXD5p() {
 																		}
 																	}}
 																>
-																	<input
-																		name="result"
-																		type="string"
-																		
-																	/>
-																	<button className="btn-admin-3">Xác nhận</button>
+																	<input name="result" type="string" />
+																	<button className="btn-admin-3">
+																		Xác nhận
+																	</button>
 																</form>
 															</TableCell>
 															<TableCell style={{ textAlign: "center" }}>

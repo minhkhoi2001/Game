@@ -8,6 +8,7 @@ import chen from "./img/chen.png";
 import dia from "./img/dia.png";
 import "./xd.css";
 import ChatButton from "../../components/ChatButton";
+import ShareChat from "../../components/ShareChat";
 
 function XD3() {
 	const [isVisible, setVisible] = useState(null);
@@ -27,7 +28,13 @@ function XD3() {
 	const [setting, setSetting] = useState(null);
 	const [isShow, setShow] = useState(false);
 	const [ls, setLs] = useState(null);
-	const [newMoney, setNewMoney] = useState();
+	const [newMoney, setNewMoney] = useState(null);
+	const [message, setMessage] = useState(null);
+	const [share, setShare] = useState(false);
+	const hide = () => {
+		setShare(false);
+	};
+
 	axios.interceptors.request.use(
 		(config) => {
 			const token = localStorage.getItem("user");
@@ -43,6 +50,7 @@ function XD3() {
 			return Promise.reject(error);
 		}
 	);
+
 	const [activeOption, setActiveOption] = useState(null);
 
 	const handleOptionClick = (option) => {
@@ -172,6 +180,10 @@ function XD3() {
 	}
 	const onSubmit = (e) => {
 		e.preventDefault();
+		if (newMoney == 0 || newMoney == null) {
+			swal("Thất bại", "Bạn chưa nhập tiền", "error");
+			return;
+		}
 		const formData = {
 			result: choose.join(" "),
 			id: bet?._id,
@@ -180,13 +192,28 @@ function XD3() {
 		if (Number(second) > 10) {
 			if (choose.length == 0) {
 				swal("Thất bại", "Bạn chưa lựa chọn", "error");
-			} else if (newMoney == 0 || newMoney == null) {
-				swal("Thất bại", "Bạn chưa nhập tiền", "error");
 			} else {
 				axios
 					.post("https://server.vnvip294.com/cxd3/choose", formData)
 					.then((res) => {
-						swal("Đặt cược thành công", "", "success");
+						swal({title: "Đặt cược thành công", icon: "success", 
+							buttons: {
+							  ok: true,
+							  share: {
+								text: "Chia sẻ",
+								value: "share",
+							  },
+							},
+						  })
+						  .then((value) => {
+							switch (value) {
+							  case "share":
+								setShare(true);
+								setMessage("hethong__Xóc đĩa 3p__"+profile.username+"__"+formData.money+"__"+GetNameChoose(formData.result, null, "Xóc dĩa 3p"))
+								break;
+							  default:
+							}
+						});
 						setChoose([]);
 					})
 					.catch((err) =>
@@ -506,7 +533,7 @@ function XD3() {
 							className="bet_taste_reset"
 							onClick={() => {
 								setActiveOption(null);
-								setNewMoney(0);
+								setNewMoney(null);
 							}}
 						>
 							Đặt lại
@@ -764,6 +791,9 @@ function XD3() {
 						</div>
 					</>
 				) : null}
+
+				<ShareChat show={share} hide={hide} message={message}/>
+
 			</div>
 		</>
 	);

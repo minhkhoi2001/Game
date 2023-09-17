@@ -43,12 +43,20 @@ function Login() {
 			.post(`https://server.vnvip294.com/auth/login`, data)
 			.then((res) => {
 				localStorage.setItem("user", res.data.data);
-				axios
-				.post(`https://chat.vnvip294.com/signin`, {
+				axios	
+				.post(`https://chat.best96tx.com/signin`, {
 					email: data.username + '@gmail.com',
 					password: data.password,
 				}).then((res2) => {
-					localStorage.setItem("currentUser", JSON.stringify(res2.data));
+					const obj = {
+						//token: res2.data.token,
+						//_id: res2.data.data.user._id,
+						//name: res2.data.data.user.name,
+						//last_seen_date: res2.data.data.user.last_seen_date,
+						//createdAt: res2.data.data.user.createdAt,
+						//updatedAt: res2.data.data.user.updatedAt,
+					};
+					localStorage.setItem("currentUser", res2.data.data.user._id + "_" + res2.data.data.user.name);
 					swal({
 						title: "Thông báo",
 						text: "Đăng nhập thành công",

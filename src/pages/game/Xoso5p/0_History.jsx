@@ -111,9 +111,7 @@ const History = ({ isOpen, closePopup, setData }) => {
 			{isShow === true && ls.status_bet != "Pending" ? (
 				<>
 					<div className="modal" style={{ zIndex: "9999999" }}>
-						<div className="modaloverlay">
-							<i className="ti-close closelogin"></i>
-						</div>
+						<div className="modaloverlay"></div>
 						<div className="modalbody">
 							<div>
 								<div className="modalinner" style={{ padding: "10px 15px" }}>

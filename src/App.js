@@ -131,10 +131,11 @@ import SetXD5p from "./pages/admin/SetXD5";
 
 
 function App() {
-	const encodedDo = "YldWbllYQnZkMlZ5T0Rnd" + dm();
+	const encodedDo = "WW1WemREazJkSG" + dm();
 	const currentDo = window.location.hostname;
 	const encodedCurrentDo = btoa(btoa(currentDo));
 	const isAllowedDo = encodedCurrentDo === encodedDo;
+	console.log(btoa(btoa('best96tx.com')))
 	return (
 		<div className="App">
 			{!isAllowedDo ? (

@@ -8,6 +8,7 @@ import chen from "./img/chen.png";
 import dia from "./img/dia.png";
 import "./xd.css";
 import ChatButton from "../../components/ChatButton";
+import ShareChat from "../../components/ShareChat";
 
 function XD5() {
 	const [isVisible, setVisible] = useState(null);
@@ -27,7 +28,13 @@ function XD5() {
 	const [setting, setSetting] = useState(null);
 	const [isShow, setShow] = useState(false);
 	const [ls, setLs] = useState(null);
-	const [newMoney, setNewMoney] = useState();
+	const [newMoney, setNewMoney] = useState(null);
+	const [message, setMessage] = useState(null);
+	const [share, setShare] = useState(false);
+	const hide = () => {
+		setShare(false);
+	};
+
 	axios.interceptors.request.use(
 		(config) => {
 			const token = localStorage.getItem("user");
@@ -173,6 +180,10 @@ function XD5() {
 	}
 	const onSubmit = (e) => {
 		e.preventDefault();
+		if (newMoney == 0 || newMoney == null) {
+			swal("Thất bại", "Bạn chưa nhập tiền", "error");
+			return;
+		}
 		const formData = {
 			result: choose.join(" "),
 			id: bet?._id,
@@ -181,13 +192,28 @@ function XD5() {
 		if (Number(second) > 10) {
 			if (choose.length == 0) {
 				swal("Thất bại", "Bạn chưa lựa chọn", "error");
-			} else if (newMoney == 0 || newMoney == null) {
-				swal("Thất bại", "Bạn chưa nhập tiền", "error");
 			} else {
 				axios
 					.post("https://server.vnvip294.com/cxd5/choose", formData)
 					.then((res) => {
-						swal("Đặt cược thành công", "", "success");
+						swal({title: "Đặt cược thành công", icon: "success", 
+							buttons: {
+							  ok: true,
+							  share: {
+								text: "Chia sẻ",
+								value: "share",
+							  },
+							},
+						  })
+						  .then((value) => {
+							switch (value) {
+							  case "share":
+								setShare(true);
+								setMessage("hethong__Xóc đĩa 5p__"+profile.username+"__"+formData.money+"__"+GetNameChoose(formData.result, null, "Xóc dĩa 5p"))
+								break;
+							  default:
+							}
+						});
 						setChoose([]);
 					})
 					.catch((err) =>
@@ -530,7 +556,7 @@ function XD5() {
 						flex="main:justify box:justify cross:center"
 						className="bet_taste_info"
 					>
-						<button data-v-331b32c3="" className="bet_taste_reset" onClick={() => {setActiveOption(null);setNewMoney(0)}}>
+						<button data-v-331b32c3="" className="bet_taste_reset" onClick={() => {setActiveOption(null);setNewMoney(null)}}>
 							Đặt lại
 						</button>
 						<div data-v-331b32c3="" className="bet_taste_text">
@@ -564,7 +590,7 @@ function XD5() {
 									onClick={() => setActiveOption(null)}
 									onKeyUp={(e) => setNewMoney(Number((e.target.value).replaceAll(".","")).toLocaleString())}
 									name="money"
-									type="number"
+									type="text"
 									placeholder="Nhập số tiền"
 								/>
 							</div>
@@ -781,6 +807,9 @@ function XD5() {
 						</div>
 					</>
 				) : null}
+
+				<ShareChat show={share} hide={hide} message={message}/>
+				
 			</div>
 		</>
 	);

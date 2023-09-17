@@ -230,6 +230,32 @@ function SetTX1p() {
 				.catch((res) => swal("Lỗi", "Update không thành công", "error"));
 		}
 	};
+	function thongke(num) {
+		if (current) {
+			const countTable = {};
+			for (let i = 1; i <= 9; i++) {
+				countTable[i] = { count: 0, totalMoney: 0 };
+			}
+			current.forEach((item) => {
+				const money = item.money;
+				const states = item.state.split(" ").map(Number);
+				const length = states.length;
+
+				states.forEach((state) => {
+					if (state >= 1 && state <= 9) {
+						countTable[state].count++;
+						countTable[state].totalMoney += money / length;
+					}
+				});
+			});
+			/*for (let i = 1; i <= 9; i++) {
+				console.log(`Số ${i}: Số lần xuất hiện - ${countTable[i].count}, Tổng tiền - ${countTable[i].totalMoney}`);
+			}*/
+			return Number(countTable[num].totalMoney).toLocaleString();
+		} else {
+			return 0;
+		}
+	}
 	return (
 		<>
 			<ThemeProvider theme={theme}>
@@ -259,6 +285,20 @@ function SetTX1p() {
 									</div>
 								</div>
 								<div className="form_set"></div>
+								<div class="current_bet">
+									<div class="current_bet_head">
+										<div>Tài</div>
+										<div>Xỉu</div>
+										<div>Lẻ</div>
+										<div>Chẵn</div>
+									</div>
+									<div class="current_bet_body">
+										<div>{thongke(1)}</div>
+										<div>{thongke(2)}</div>
+										<div>{thongke(3)}</div>
+										<div>{thongke(4)}</div>
+									</div>
+								</div>
 								<Table>
 									<TableHead>
 										<TableRow>
