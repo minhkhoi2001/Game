@@ -21,7 +21,6 @@ function Taixiu3() {
 	const date = new Date();
 	const currentMinute = date.getMinutes();
 	const currentSecond = date.getSeconds();
-	const [item, setState] = useState(null);
 	const [total, setTotal] = useState(null);
 	const [total2, setTotal2] = useState(null);
 	const [setting, setSetting] = useState(null);
@@ -75,6 +74,7 @@ function Taixiu3() {
 					id: res.data.data[0]._id,
 				});
 			});
+		getHistoryBet();
 	}, []);
 	useEffect(() => {
 		const timer = setInterval(() => {
@@ -102,6 +102,7 @@ function Taixiu3() {
 							id: res.data.data[0]._id,
 						});
 					});
+				getHistoryBet();
 			}
 		}, 500);
 
@@ -190,14 +191,6 @@ function Taixiu3() {
 		};
 	}, [second, start, dulieunhap]);
 
-	const [isOpen, setIsOpen] = useState(false);
-	const openPopup = () => {
-		setIsOpen(true);
-	};
-	const closePopup = () => {
-		setIsOpen(false);
-	};
-
 	const [newMoney, setNewMoney] = useState(null);
 	const onChoose = (e) => {
 		if (item1.includes(e.target.id)) {
@@ -215,7 +208,7 @@ function Taixiu3() {
 		const formData = {
 			result: item1.join(" "),
 			id: bet?._id,
-			money: item1.length * Number(newMoney.replaceAll(".","")),
+			money: item1.length * Number(newMoney.replaceAll(".", "").replaceAll(',','')),
 		};
 		if (item1.length == 0) {
 			swal("Thất bại", "Bạn chưa lựa chọn", "error");
@@ -223,28 +216,39 @@ function Taixiu3() {
 			axios
 				.post("https://server.vnvip294.com/tx3/choose", formData)
 				.then((res) => {
-					swal({title: "Đặt cược thành công", icon: "success", 
+					swal({
+						title: "Đặt cược thành công",
+						icon: "success",
 						buttons: {
-						  ok: true,
-						  share: {
-							text: "Chia sẻ",
-							value: "share",
-						  },
+							ok: true,
+							share: {
+								text: "Chia sẻ",
+								value: "share",
+							},
 						},
-					  })
-					  .then((value) => {
+					}).then((value) => {
 						switch (value) {
-						  case "share":
-							setShare(true);
-							setMessage("hethong__Tài xỉu 3p__"+profile.username+"__"+formData.money+"__"+GetNameChoose(formData.result, null, "Tài xỉu 3p"))
-							break;
-						  default:
+							case "share":
+								setShare(true);
+								setMessage(
+									"hethong__Tài xỉu 3p__" +
+										profile.username +
+										"__" +
+										formData.money +
+										"__" +
+										GetNameChoose(formData.result, null, "Tài xỉu 3p")
+								);
+								break;
+							default:
 						}
 					});
 					setItem([]);
 					getHistoryBet();
 				})
 				.catch((err) => swal("Thất bại", "Số tiền trong ví không đủ", "error"));
+			axios.get(`https://server.vnvip294.com/auth/getUser`, {}).then((res) => {
+				setProfile(res.data.data);
+			});
 		}
 	};
 	function formatDate(m) {
@@ -446,36 +450,60 @@ function Taixiu3() {
 							</div>
 						</div>
 					</div>
-					<div className={`text_choose_center3 ${activeTabXX === "tabx1" ? "t1a" : activeTabXX === "tabx2" ? "t2a" : activeTabXX === "tabx3" ? "t3a" : ""}`}>
+					<div
+						className={`text_choose_center3 ${
+							activeTabXX === "tabx1"
+								? "t1a"
+								: activeTabXX === "tabx2"
+								? "t2a"
+								: activeTabXX === "tabx3"
+								? "t3a"
+								: ""
+						}`}
+					>
 						<form onSubmit={onSubmit} className="form-lg">
 							<div className="footer_choose1">
 								<div className="title_choose_footer1">
-									<h4 style={{fontSize:"20px", margin:"0 0 10px", fontWeight:"bold"}}>Chọn mức cược</h4>
-										<div className="state_choose state_choose_price">
-											{options.map((option, index) => (
-												<>
-													{index < 8 && (
-														<div
-															key={option}
-															className={`state_rowindex ${
-																activeOption === option ? "chooseItem" : ""
-															}`}
-															onClick={() => handleOptionClick(option)}
-														>
-															<span className="setting_type">
-																{Number(option).toLocaleString()}
-															</span>
-														</div>
-													)}
-												</>
-											))}
-										</div>
+									<h4
+										style={{
+											fontSize: "20px",
+											margin: "0 0 10px",
+											fontWeight: "bold",
+										}}
+									>
+										Chọn mức cược
+									</h4>
+									<div className="state_choose state_choose_price">
+										{options.map((option, index) => (
+											<>
+												{index < 8 && (
+													<div
+														key={option}
+														className={`state_rowindex ${
+															activeOption === option ? "chooseItem" : ""
+														}`}
+														onClick={() => handleOptionClick(option)}
+													>
+														<span className="setting_type">
+															{Number(option).toLocaleString()}
+														</span>
+													</div>
+												)}
+											</>
+										))}
+									</div>
 									<input
 										className="state_rowindex"
 										value={newMoney}
 										onChange={(e) => setNewMoney(e.target.value)}
 										onClick={() => setActiveOption(null)}
-										onKeyUp={(e) => setNewMoney(Number((e.target.value).replaceAll(".","")).toLocaleString())}
+										onKeyUp={(e) =>
+											setNewMoney(
+												Number(
+													e.target.value.replaceAll(".", "")
+												).toLocaleString()
+											)
+										}
 										required
 										min="10000"
 										name="money"
@@ -496,7 +524,10 @@ function Taixiu3() {
 												Tổng tiền cược{" "}
 												<span style={{ color: "red" }}>
 													{item1.length != 0 && newMoney
-														? (item1.length * Number(newMoney.replaceAll(".",""))).toLocaleString()
+														? (
+																item1.length *
+																Number(newMoney.replaceAll(".", "").replaceAll(',',''))
+														  ).toLocaleString()
 														: 0}{" "}
 													đ
 												</span>
@@ -547,7 +578,9 @@ function Taixiu3() {
 									</thead>
 									<tbody>
 										<tr>
-											<td style={{ textAlign: "center" }}>{bet && bet.id_bet}</td>
+											<td style={{ textAlign: "center" }}>
+												{bet && bet.id_bet}
+											</td>
 											<td style={{ textAlign: "center" }} colspan="3">
 												Đang chờ kết quả
 											</td>
@@ -557,7 +590,9 @@ function Taixiu3() {
 											total2.map((item, index) => (
 												<>
 													<tr key={index}>
-														<td style={{ textAlign: "center" }}>{item.id_bet}</td>
+														<td style={{ textAlign: "center" }}>
+															{item.id_bet}
+														</td>
 														<td
 															className="history_xucxac"
 															style={{
@@ -659,7 +694,7 @@ function Taixiu3() {
 					</div>
 				</div>
 
-				<ChatButton/>
+				<ChatButton />
 				<Footer />
 
 				{isShow === true && ls.status_bet != "Pending" ? (
@@ -743,7 +778,7 @@ function Taixiu3() {
 						</div>
 					</>
 				) : null}
-				<ShareChat show={share} hide={hide} message={message}/>
+				<ShareChat show={share} hide={hide} message={message} />
 			</div>
 		</>
 	);

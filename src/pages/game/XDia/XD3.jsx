@@ -84,6 +84,7 @@ function XD3() {
 					id: res.data.data[0]._id,
 				});
 			});
+		getHistoryBet();
 	}, []);
 	useEffect(() => {
 		const timer = setInterval(() => {
@@ -111,6 +112,7 @@ function XD3() {
 							id: res.data.data[0]._id,
 						});
 					});
+				getHistoryBet();
 			}
 		}, 500);
 
@@ -187,7 +189,9 @@ function XD3() {
 		const formData = {
 			result: choose.join(" "),
 			id: bet?._id,
-			money: choose.length * Number(newMoney.replaceAll(".","")),
+			money:
+				choose.length *
+				Number(newMoney.replaceAll(".", "").replaceAll(",", "")),
 		};
 		if (Number(second) > 10) {
 			if (choose.length == 0) {
@@ -196,22 +200,30 @@ function XD3() {
 				axios
 					.post("https://server.vnvip294.com/cxd3/choose", formData)
 					.then((res) => {
-						swal({title: "Đặt cược thành công", icon: "success", 
+						swal({
+							title: "Đặt cược thành công",
+							icon: "success",
 							buttons: {
-							  ok: true,
-							  share: {
-								text: "Chia sẻ",
-								value: "share",
-							  },
+								ok: true,
+								share: {
+									text: "Chia sẻ",
+									value: "share",
+								},
 							},
-						  })
-						  .then((value) => {
+						}).then((value) => {
 							switch (value) {
-							  case "share":
-								setShare(true);
-								setMessage("hethong__Xóc đĩa 3p__"+profile.username+"__"+formData.money+"__"+GetNameChoose(formData.result, null, "Xóc dĩa 3p"))
-								break;
-							  default:
+								case "share":
+									setShare(true);
+									setMessage(
+										"hethong__Xóc đĩa 3p__" +
+											profile.username +
+											"__" +
+											formData.money +
+											"__" +
+											GetNameChoose(formData.result, null, "Xóc dĩa 3p")
+									);
+									break;
+								default:
 							}
 						});
 						setChoose([]);
@@ -220,6 +232,10 @@ function XD3() {
 						swal("Thất bại", "Số tiền trong ví không đủ", "error")
 					);
 			}
+			axios.get(`https://server.vnvip294.com/auth/getUser`, {}).then((res) => {
+				setProfile(res.data.data);
+			});
+			getHistoryBet();
 		} else {
 			swal("Đã hết thời gian cược", "Vui lòng chờ phiên tiếp theo", "info");
 		}
@@ -253,21 +269,24 @@ function XD3() {
 			})
 			.catch((err) => function () {});
 	}
-	const [money, setMoney] = useState();
 	useEffect(() => {
 		if (Number(second) === 2) {
-			document.querySelector(".point").style.animation = "movePoint 4s forwards";
+			document.querySelector(".point").style.animation =
+				"movePoint 4s forwards";
 			document.querySelector(".check").style.animation = "";
 		} else if (Number(second) === 170) {
-			document.querySelector(".point").style.animation = "movePointBack 4s forwards";
+			document.querySelector(".point").style.animation =
+				"movePointBack 4s forwards";
 		} else if (Number(second) === 165) {
 			document.querySelector(".point").style.animation = "shake 4s forwards";
 			document.querySelector(".check").style.animation = "shake1 4s forwards";
 		} else if (Number(second) === 155) {
-			document.querySelector(".point").style.animation = "movePointBack 4s forwards";
+			document.querySelector(".point").style.animation =
+				"movePointBack 4s forwards";
 			document.querySelector(".check").style.animation = "";
-		} else if (Number(second) < 155 && Number(second) > 2){
-			document.querySelector(".point").style.animation = "movePointBack 4s forwards";
+		} else if (Number(second) < 155 && Number(second) > 2) {
+			document.querySelector(".point").style.animation =
+				"movePointBack 4s forwards";
 			document.querySelector(".check").style.animation = "";
 		}
 	}, [second]);
@@ -300,7 +319,12 @@ function XD3() {
 							</div>
 						</div>
 						<div className="boxdia">
-							<img src={chen} className="point" alt="" style={{animation: "movePointBack"}} />
+							<img
+								src={chen}
+								className="point"
+								alt=""
+								style={{ animation: "movePointBack" }}
+							/>
 							<img className="check" src={dia} alt="" />
 							{total && (
 								<div className="history_xucxac result-dia">
@@ -469,7 +493,10 @@ function XD3() {
 						onClick={() => handleOptionClick("100")}
 					>
 						<div data-v-331b32c3="" className="taste_chip">
-							<div data-v-331b32c3="" className="taste_chip_base taste_chip_100">
+							<div
+								data-v-331b32c3=""
+								className="taste_chip_base taste_chip_100"
+							>
 								<div data-v-331b32c3="" className="item_chip_num">
 									<span data-v-331b32c3="">100K</span>
 								</div>
@@ -484,7 +511,10 @@ function XD3() {
 						onClick={() => handleOptionClick("500")}
 					>
 						<div data-v-331b32c3="" className="taste_chip">
-							<div data-v-331b32c3="" className="taste_chip_base taste_chip_200">
+							<div
+								data-v-331b32c3=""
+								className="taste_chip_base taste_chip_200"
+							>
 								<div data-v-331b32c3="" className="item_chip_num">
 									<span data-v-331b32c3="">500K</span>
 								</div>
@@ -499,7 +529,10 @@ function XD3() {
 						onClick={() => handleOptionClick("1000")}
 					>
 						<div data-v-331b32c3="" className="taste_chip">
-							<div data-v-331b32c3="" className="taste_chip_base taste_chip_500">
+							<div
+								data-v-331b32c3=""
+								className="taste_chip_base taste_chip_500"
+							>
 								<div data-v-331b32c3="" className="item_chip_num">
 									<span data-v-331b32c3="">1000K</span>
 								</div>
@@ -567,7 +600,13 @@ function XD3() {
 									value={newMoney}
 									onChange={(e) => setNewMoney(e.target.value)}
 									onClick={() => setActiveOption(null)}
-									onKeyUp={(e) => setNewMoney(Number((e.target.value).replaceAll(".","")).toLocaleString())}
+									onKeyUp={(e) =>
+										setNewMoney(
+											Number(
+												e.target.value.replaceAll(".", "")
+											).toLocaleString()
+										)
+									}
 									name="money"
 									type="text"
 									placeholder="Nhập số tiền"
@@ -686,7 +725,10 @@ function XD3() {
 															</div>
 														</div>
 														<div className="money_history">
-															<span className="money" style={{color:"#f2f2f2"}}>
+															<span
+																className="money"
+																style={{ color: "#f2f2f2" }}
+															>
 																{Number(item.money).toLocaleString()}đ
 															</span>
 															<div className="time_choose">
@@ -706,7 +748,7 @@ function XD3() {
 					</div>
 				</div>
 
-				<ChatButton/>
+				<ChatButton />
 				<Footer />
 
 				{isShow === true && ls.status_bet !== "Pending" ? (
@@ -761,7 +803,7 @@ function XD3() {
 													style={{
 														display: "flex",
 														justifyContent: "center",
-														fontSize: "13px"
+														fontSize: "13px",
 													}}
 												>
 													{ls.id_bet.result.split(" ").map((item) => (
@@ -792,8 +834,7 @@ function XD3() {
 					</>
 				) : null}
 
-				<ShareChat show={share} hide={hide} message={message}/>
-
+				<ShareChat show={share} hide={hide} message={message} />
 			</div>
 		</>
 	);

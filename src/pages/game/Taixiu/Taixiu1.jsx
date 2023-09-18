@@ -21,7 +21,6 @@ function Taixiu1() {
 	const date = new Date();
 	const currentMinute = date.getMinutes();
 	const currentSecond = date.getSeconds();
-	const [item, setState] = useState(null);
 	const [total, setTotal] = useState(null);
 	const [total2, setTotal2] = useState(null);
 	const [setting, setSetting] = useState(null);
@@ -75,6 +74,8 @@ function Taixiu1() {
 					id: res.data.data[0]._id,
 				});
 			});
+
+			getHistoryBet();
 	}, []);
 	useEffect(() => {
 		const timer = setInterval(() => {
@@ -102,6 +103,7 @@ function Taixiu1() {
 							id: res.data.data[0]._id,
 						});
 					});
+					getHistoryBet();
 			}
 		}, 500);
 
@@ -190,14 +192,6 @@ function Taixiu1() {
 		};
 	}, [second, start, dulieunhap]);
 
-	const [isOpen, setIsOpen] = useState(false);
-	const openPopup = () => {
-		setIsOpen(true);
-	};
-	const closePopup = () => {
-		setIsOpen(false);
-	};
-
 	const [newMoney, setNewMoney] = useState(null);
 	const onChoose = (e) => {
 		if (item1.includes(e.target.id)) {
@@ -212,10 +206,11 @@ function Taixiu1() {
 			swal("Thất bại", "Bạn chưa nhập tiền", "error");
 			return;
 		}
+		let moneys = newMoney.replaceAll(".", "").replaceAll(',','')
 		const formData = {
 			result: item1.join(" "),
 			id: bet?._id,
-			money: item1.length * Number(newMoney.replaceAll(".","")),
+			money: item1.length * Number(moneys),
 		};
 		if (item1.length == 0) {
 			swal("Thất bại", "Bạn chưa lựa chọn", "error");
@@ -223,28 +218,39 @@ function Taixiu1() {
 			axios
 				.post("https://server.vnvip294.com/tx1/choose", formData)
 				.then((res) => {
-					swal({title: "Đặt cược thành công", icon: "success", 
+					swal({
+						title: "Đặt cược thành công",
+						icon: "success",
 						buttons: {
-						  ok: true,
-						  share: {
-							text: "Chia sẻ",
-							value: "share",
-						  },
+							ok: true,
+							share: {
+								text: "Chia sẻ",
+								value: "share",
+							},
 						},
-					  })
-					  .then((value) => {
+					}).then((value) => {
 						switch (value) {
-						  case "share":
-							setShare(true);
-							setMessage("hethong__Tài xỉu 1p__"+profile.username+"__"+formData.money+"__"+GetNameChoose(formData.result, null, "Tài xỉu 1p"))
-							break;
-						  default:
+							case "share":
+								setShare(true);
+								setMessage(
+									"hethong__Tài xỉu 1p__" +
+										profile.username +
+										"__" +
+										formData.money +
+										"__" +
+										GetNameChoose(formData.result, null, "Tài xỉu 1p")
+								);
+								break;
+							default:
 						}
 					});
 					setItem([]);
 					getHistoryBet();
 				})
 				.catch((err) => swal("Thất bại", "Số tiền trong ví không đủ", "error"));
+			axios.get(`https://server.vnvip294.com/auth/getUser`, {}).then((res) => {
+				setProfile(res.data.data);
+			});
 		}
 	};
 	function formatDate(m) {
@@ -450,32 +456,46 @@ function Taixiu1() {
 						<form onSubmit={onSubmit} className="form-lg">
 							<div className="footer_choose1">
 								<div className="title_choose_footer1">
-									<h4 style={{fontSize:"20px", margin:"0 0 10px", fontWeight:"bold"}}>Chọn mức cược</h4>
-										<div className="state_choose state_choose_price">
-											{options.map((option, index) => (
-												<>
-													{index < 8 && (
-														<div
-															key={option}
-															className={`state_rowindex ${
-																activeOption === option ? "chooseItem" : ""
-															}`}
-															onClick={() => handleOptionClick(option)}
-														>
-															<span className="setting_type">
-																{Number(option).toLocaleString()}
-															</span>
-														</div>
-													)}
-												</>
-											))}
-										</div>
+									<h4
+										style={{
+											fontSize: "20px",
+											margin: "0 0 10px",
+											fontWeight: "bold",
+										}}
+									>
+										Chọn mức cược
+									</h4>
+									<div className="state_choose state_choose_price">
+										{options.map((option, index) => (
+											<>
+												{index < 8 && (
+													<div
+														key={option}
+														className={`state_rowindex ${
+															activeOption === option ? "chooseItem" : ""
+														}`}
+														onClick={() => handleOptionClick(option)}
+													>
+														<span className="setting_type">
+															{Number(option).toLocaleString()}
+														</span>
+													</div>
+												)}
+											</>
+										))}
+									</div>
 									<input
 										className="state_rowindex"
 										value={newMoney}
 										onChange={(e) => setNewMoney(e.target.value)}
 										onClick={() => setActiveOption(null)}
-										onKeyUp={(e) => setNewMoney(Number((e.target.value).replaceAll(".","")).toLocaleString())}
+										onKeyUp={(e) =>
+											setNewMoney(
+												Number(
+													e.target.value.replaceAll(".", "")
+												).toLocaleString()
+											)
+										}
 										required
 										min="1000"
 										name="money"
@@ -496,7 +516,10 @@ function Taixiu1() {
 												Tổng tiền cược{" "}
 												<span style={{ color: "red" }}>
 													{item1.length != 0 && newMoney
-														? (item1.length * Number(newMoney.replaceAll(".",""))).toLocaleString()
+														? (
+																item1.length *
+																Number(newMoney.replaceAll(".", "").replaceAll(',',''))
+														  ).toLocaleString()
 														: 0}{" "}
 													đ
 												</span>
@@ -547,7 +570,9 @@ function Taixiu1() {
 									</thead>
 									<tbody>
 										<tr>
-											<td style={{ textAlign: "center" }}>{bet && bet.id_bet}</td>
+											<td style={{ textAlign: "center" }}>
+												{bet && bet.id_bet}
+											</td>
 											<td style={{ textAlign: "center" }} colspan="3">
 												Đang chờ kết quả
 											</td>
@@ -557,7 +582,9 @@ function Taixiu1() {
 											total2.map((item, index) => (
 												<>
 													<tr key={index}>
-														<td style={{ textAlign: "center" }}>{item.id_bet}</td>
+														<td style={{ textAlign: "center" }}>
+															{item.id_bet}
+														</td>
 														<td
 															className="history_xucxac"
 															style={{
@@ -659,7 +686,7 @@ function Taixiu1() {
 					</div>
 				</div>
 
-				<ChatButton/>
+				<ChatButton />
 				<Footer />
 
 				{isShow === true && ls.status_bet != "Pending" ? (
@@ -744,8 +771,7 @@ function Taixiu1() {
 					</>
 				) : null}
 
-				<ShareChat show={share} hide={hide} message={message}/>
-
+				<ShareChat show={share} hide={hide} message={message} />
 			</div>
 		</>
 	);
