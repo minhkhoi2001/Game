@@ -90,12 +90,12 @@ function Set1() {
 				setList30(res.data.data);
 			})
 			.catch(() => setList30(null));
-		axios.get(`https://server.vnvip294.com/notification/getnotifi`, {}).then((res) => {
+		/*axios.get(`https://server.vnvip294.com/notification/getnotifi`, {}).then((res) => {
 			setVisible({
 				money: res.data.data[0].money.toLocaleString(),
 				id: res.data.data[0]._id,
 			});
-		});
+		});*/
 		axios.get(`https://server.vnvip294.com/bet1/getcurrent`).then((res) => {
 			setCurrent(res.data.data);
 		});
@@ -351,7 +351,7 @@ function Set1() {
 											? list30.map((item) => (
 													<>
 														<TableRow>
-															<TableCell sx={{padding:"10px"}}>{item.id_bet}</TableCell>
+															<TableCell sx={{padding:"10px"}}>{item?.id_bet}</TableCell>
 															<TableCell sx={{padding:"10px"}}>{item.result}</TableCell>
 															<TableCell sx={{padding:"10px"}}>
 																<form

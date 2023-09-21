@@ -69,9 +69,9 @@ const History = ({ isOpen, closePopup, setData }) => {
 														</div>
 														<div className="id_history_sanh">
 															Phiên cược:{" "}
-															{item.id_bet.id_bet
-																? item.id_bet.id_bet
-																: item.id_bet}
+															{item?.id_bet?.id_bet
+																? item?.id_bet?.id_bet
+																: item?.id_bet}
 														</div>
 														<div className="id_history_sanh">
 															{GetNameChoose(item.state, item.type, item.sanh)}
@@ -122,7 +122,7 @@ const History = ({ isOpen, closePopup, setData }) => {
 										Chi tiết cược
 									</div>
 
-									{ls.id_bet.id_bet ? (
+									{ls?.id_bet?.id_bet ? (
 										<>
 											<div className="lsgd-table">
 												<div>Trò chơi</div>
@@ -130,7 +130,7 @@ const History = ({ isOpen, closePopup, setData }) => {
 											</div>
 											<div className="lsgd-table">
 												<div>Phiên</div>
-												<div>{ls.id_bet.id_bet}</div>
+												<div>{ls?.id_bet?.id_bet}</div>
 											</div>
 											<div className="lsgd-table">
 												<div>Thời gian</div>
@@ -149,7 +149,7 @@ const History = ({ isOpen, closePopup, setData }) => {
 												<div>{Number(ls.moneythang).toLocaleString()} đ</div>
 											</div>
 											<h3 style={{ fontSize: "0.35rem", margin: "20px 0 0", textAlign: "left", fontWeight: "bold", textDecoration: "underline" }}>
-												Kết quả phiên {ls.id_bet.id_bet}
+												Kết quả phiên {ls?.id_bet?.id_bet}
 											</h3>
 											<table
 												id="table-xsmb"

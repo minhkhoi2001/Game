@@ -441,7 +441,7 @@ function UserProfile() {
 														<TableCell
 															sx={{ fontWeight: "600", padding: "10px" }}
 														>
-															{item.id_bet ? item.id_bet?.id_bet: ""}
+															{item?.id_bet ? item?.id_bet?.id_bet: ""}
 														</TableCell>
 														<TableCell
 															sx={{ fontWeight: "600", padding: "10px" }}
@@ -462,14 +462,14 @@ function UserProfile() {
 														<TableCell
 															sx={{ fontWeight: "600", padding: "10px" }}
 														>
-															{item.id_bet ? item.id_bet.result : ""}
+															{item?.id_bet ? item?.id_bet.result : ""}
 														</TableCell>
 														<TableCell
 															sx={{ fontWeight: "600", padding: "10px" }}
 														>
-															{item.id_bet && (
+															{item?.id_bet && (
 																<>
-															{item.id_bet.result
+															{item?.id_bet.result
 																.split(" ")
 																.map(Number)
 																.reduce((acc, curr) => acc + curr, 0) > 10 ? (<span className="t-blue">Tài</span>) : (<span className="t-green">Xỉu</span>)}
@@ -479,9 +479,9 @@ function UserProfile() {
 														<TableCell
 															sx={{ fontWeight: "600", padding: "10px" }}
 														>
-															{item.id_bet && (
+															{item?.id_bet && (
 																<>
-															{item.id_bet.result
+															{item?.id_bet.result
 																.split(" ")
 																.map(Number)
 																.reduce((acc, curr) => acc + curr, 0) % 2 == 0 ? (<span className="t-blue">Chẵn</span>) : (<span className="t-green">Lẻ</span>)}

@@ -247,7 +247,7 @@ function Xoso5() {
 		});
 		const formData = {
 			state: newData.join(" "),
-			id: bet?._id,
+			id: bet._id,
 			type: 1,
 			money: item1.length * newMoney * 18000,
 		};

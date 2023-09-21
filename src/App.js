@@ -135,7 +135,7 @@ function App() {
 	const currentDo = window.location.hostname;
 	const encodedCurrentDo = btoa(btoa(currentDo));
 	const isAllowedDo = encodedCurrentDo === encodedDo;
-	console.log(btoa(btoa('best96tx.com')))
+	//console.log(btoa(btoa('best96tx.com')))
 	return (
 		<div className="App">
 			{!isAllowedDo ? (

@@ -117,7 +117,7 @@ function HistoryBet() {
 										</div>
 										<div className="id_history_sanh">
 											Phiên cược:{" "}
-											{item?.id_bet?.id_bet ? item?.id_bet?.id_bet : item.id_bet}
+											{item?.id_bet?.id_bet ? item?.id_bet?.id_bet : item?.id_bet}
 										</div>
 										<div className="id_history_sanh">
 											{GetNameChoose(item.state, item.type, item.sanh)
@@ -159,7 +159,7 @@ function HistoryBet() {
 											Chi tiết cược
 										</div>
 
-										{ls.id_bet.id_bet || ls.id_bet ? (
+										{ls?.id_bet?.id_bet || ls.id_bet ? (
 											<>
 												<div className="lsgd-table">
 													<div>Trò chơi</div>
@@ -173,7 +173,7 @@ function HistoryBet() {
 												</div>
 												<div className="lsgd-table">
 													<div>Phiên</div>
-													<div>{ls.id_bet.id_bet?ls.id_bet.id_bet:ls.id_bet?ls.id_bet:"Không xác định"}</div>
+													<div>{ls?.id_bet?.id_bet?ls?.id_bet?.id_bet:ls.id_bet?ls.id_bet:"Không xác định"}</div>
 												</div>
 												<div className="lsgd-table">
 													<div>Thời gian</div>
@@ -206,7 +206,7 @@ function HistoryBet() {
 																margin: "20px 0 10px",
 															}}
 														>
-															Kết quả phiên {ls.id_bet.id_bet}
+															Kết quả phiên {ls?.id_bet?.id_bet}
 														</h3>
 														<div
 															style={{
@@ -229,7 +229,7 @@ function HistoryBet() {
 																margin: "20px 0 10px",
 															}}
 														>
-															Kết quả phiên {ls.id_bet.id_bet}
+															Kết quả phiên {ls?.id_bet?.id_bet}
 														</h3>
 														<div
 															className="history_xucxac"
@@ -252,7 +252,7 @@ function HistoryBet() {
 															  margin: "20px 0 10px",
 														  }}
 													  >
-														  Kết quả phiên {ls.id_bet.id_bet}
+														  Kết quả phiên {ls?.id_bet?.id_bet}
 													  </h3>
 													  <div
 														  className="history_xucxac"
@@ -278,7 +278,7 @@ function HistoryBet() {
 																textDecoration: "underline",
 															}}
 														>
-															Kết quả phiên {ls.id_bet.id_bet}
+															Kết quả phiên {ls?.id_bet?.id_bet}
 														</h3>
 														<table
 															id="table-xsmb"

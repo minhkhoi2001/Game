@@ -425,7 +425,7 @@ function SetXD5p() {
 													<>
 														<TableRow>
 															<TableCell sx={{ padding: "10px" }}>
-																{item.id_bet}
+																{item?.id_bet}
 															</TableCell>
 															<TableCell sx={{ padding: "10px" }}>
 																{item.result}

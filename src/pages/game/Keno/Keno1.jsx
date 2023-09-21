@@ -202,7 +202,7 @@ function Keno1() {
 		e.preventDefault();
 		const formData = {
 			result: item1.join(" "),
-			id: bet?._id,
+			id: bet._id,
 			money: item1.length * newMoney,
 		};
 		axios
@@ -750,7 +750,7 @@ function Keno1() {
 											total.map((item, index) => (
 												<>
 													<tr key={index}>
-														<td>{item.id_bet}</td>
+														<td>{item?.id_bet}</td>
 														<td
 															style={{
 																display: "flex",
@@ -800,9 +800,9 @@ function Keno1() {
 															</div>
 															<div className="id_history_sanh">
 																Phiên cược:{" "}
-																{item.id_bet.id_bet
-																	? item.id_bet.id_bet
-																	: item.id_bet}
+																{item?.id_bet?.id_bet
+																	? item?.id_bet?.id_bet
+																	: item?.id_bet}
 															</div>
 															<div className="id_history_sanh">
 																{GetNameChoose(item.state, null)}
@@ -922,7 +922,7 @@ function Keno1() {
 											Chi tiết cược
 										</div>
 
-										{ls.id_bet.id_bet ? (
+										{ls?.id_bet?.id_bet ? (
 											<>
 												<div className="lsgd-table">
 													<div>Trò chơi</div>
@@ -930,7 +930,7 @@ function Keno1() {
 												</div>
 												<div className="lsgd-table">
 													<div>Phiên</div>
-													<div>{ls.id_bet.id_bet}</div>
+													<div>{ls?.id_bet?.id_bet}</div>
 												</div>
 												<div className="lsgd-table">
 													<div>Thời gian</div>
@@ -951,7 +951,7 @@ function Keno1() {
 												<h3
 													style={{ fontSize: "0.4rem", margin: "20px 0 10px" }}
 												>
-													Kết quả phiên {ls.id_bet.id_bet}
+													Kết quả phiên {ls?.id_bet?.id_bet}
 												</h3>
 												<div
 													style={{

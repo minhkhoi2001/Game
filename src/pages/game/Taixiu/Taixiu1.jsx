@@ -47,6 +47,16 @@ function Taixiu1() {
 			return Promise.reject(error);
 		}
 	);
+
+	function getHistoryBet() {
+		axios
+			.get(`https://server.vnvip294.com/history/historyus`, {})
+			.then((res) => {
+				setHistoryGame(res.data.data);
+			})
+			.catch((err) => function () {});
+	}
+
 	useEffect(() => {
 		axios.get(`https://server.vnvip294.com/auth/getUser`, {}).then((res) => {
 			setProfile(res.data.data);
@@ -209,9 +219,13 @@ function Taixiu1() {
 		let moneys = newMoney.replaceAll(".", "").replaceAll(',','')
 		const formData = {
 			result: item1.join(" "),
-			id: bet?._id,
+			id: bet._id,
 			money: item1.length * Number(moneys),
-		};
+		}
+		if (formData.money > profile.money) {
+			swal("Thất bại", "Số dư không đủ", "error");
+			return;
+		}
 		if (item1.length == 0) {
 			swal("Thất bại", "Bạn chưa lựa chọn", "error");
 		} else {
@@ -245,12 +259,14 @@ function Taixiu1() {
 						}
 					});
 					setItem([]);
+					axios
+						.get(`https://server.vnvip294.com/auth/getUser`, {})
+						.then((res) => {
+								setProfile(res.data.data);
+						});
 					getHistoryBet();
 				})
-				.catch((err) => swal("Thất bại", "Số tiền trong ví không đủ", "error"));
-			axios.get(`https://server.vnvip294.com/auth/getUser`, {}).then((res) => {
-				setProfile(res.data.data);
-			});
+				.catch((err) => swal("Đã xảy ra lỗi", "Vui lòng tải lại trang", "error"));
 		}
 	};
 	function formatDate(m) {
@@ -308,14 +324,6 @@ function Taixiu1() {
 		};
 	}
 
-	function getHistoryBet() {
-		axios
-			.get(`https://server.vnvip294.com/history/historyus`, {})
-			.then((res) => {
-				setHistoryGame(res.data.data);
-			})
-			.catch((err) => function () {});
-	}
 	const options = [
 		"10000",
 		"50000",
@@ -583,7 +591,7 @@ function Taixiu1() {
 												<>
 													<tr key={index}>
 														<td style={{ textAlign: "center" }}>
-															{item.id_bet}
+															{item?.id_bet}
 														</td>
 														<td
 															className="history_xucxac"
@@ -657,9 +665,9 @@ function Taixiu1() {
 															</div>
 															<div className="id_history_sanh">
 																Phiên cược:{" "}
-																{item.id_bet.id_bet
-																	? item.id_bet.id_bet
-																	: item.id_bet}
+																{item?.id_bet?.id_bet
+																	? item?.id_bet?.id_bet
+																	: item?.id_bet}
 															</div>
 															<div className="id_history_sanh">
 																{GetNameChoose(item.state, null, item.sanh)}
@@ -705,7 +713,7 @@ function Taixiu1() {
 											Chi tiết cược
 										</div>
 
-										{ls.id_bet.id_bet ? (
+										{ls?.id_bet?.id_bet ? (
 											<>
 												<div className="lsgd-table">
 													<div>Trò chơi</div>
@@ -713,7 +721,7 @@ function Taixiu1() {
 												</div>
 												<div className="lsgd-table">
 													<div>Phiên</div>
-													<div>{ls.id_bet.id_bet}</div>
+													<div>{ls?.id_bet?.id_bet}</div>
 												</div>
 												<div className="lsgd-table">
 													<div>Thời gian</div>
@@ -734,7 +742,7 @@ function Taixiu1() {
 												<h3
 													style={{ fontSize: "0.4rem", margin: "20px 0 10px" }}
 												>
-													Kết quả phiên {ls.id_bet.id_bet}
+													Kết quả phiên {ls?.id_bet?.id_bet}
 												</h3>
 												<div
 													className="history_xucxac"

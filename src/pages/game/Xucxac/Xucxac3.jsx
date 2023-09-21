@@ -61,12 +61,12 @@ function Xucxac3() {
 				setTotal2(res.data.data);
 			})
 			.catch(() => setTotal(null));
-		axios.get(`https://server.vnvip294.com/notification/getnotifi`, {}).then((res) => {
+		/*axios.get(`https://server.vnvip294.com/notification/getnotifi`, {}).then((res) => {
 			setVisible({
 				money: res.data.data[0].money.toLocaleString(),
 				id: res.data.data[0]._id,
 			});
-		});
+		});*/
 	}, []);
 	useEffect(() => {
 		const timer = setInterval(() => {
@@ -201,7 +201,7 @@ function Xucxac3() {
 		e.preventDefault();
 		const formData = {
 			result: item1.join(" "),
-			id: bet?._id,
+			id: bet._id,
 			money: item1.length * newMoney,
 		};
 		
@@ -667,7 +667,7 @@ function Xucxac3() {
 											total2.map((item, index) => (
 												<>
 													<tr key={index}>
-														<td>{item.id_bet}</td>
+														<td>{item?.id_bet}</td>
 														<td
 															className="history_xucxac"
 															style={{
@@ -715,9 +715,9 @@ function Xucxac3() {
 															</div>
 															<div className="id_history_sanh">
 																Phiên cược:{" "}
-																{item.id_bet.id_bet
-																	? item.id_bet.id_bet
-																	: item.id_bet}
+																{item?.id_bet?.id_bet
+																	? item?.id_bet?.id_bet
+																	: item?.id_bet}
 															</div>
 															<div className="id_history_sanh">
 																{GetNameChoose(item.state, null,item.sanh)}
@@ -837,7 +837,7 @@ function Xucxac3() {
 										Chi tiết cược
 									</div>
 
-									{ls.id_bet.id_bet ? (
+									{ls?.id_bet?.id_bet ? (
 										<>
 											<div className="lsgd-table">
 												<div>Trò chơi</div>
@@ -845,7 +845,7 @@ function Xucxac3() {
 											</div>
 											<div className="lsgd-table">
 												<div>Phiên</div>
-												<div>{ls.id_bet.id_bet}</div>
+												<div>{ls?.id_bet?.id_bet}</div>
 											</div>
 											<div className="lsgd-table">
 												<div>Thời gian</div>
@@ -864,7 +864,7 @@ function Xucxac3() {
 												<div>{Number(ls.moneythang).toLocaleString()} đ</div>
 											</div>
 											<h3 style={{ fontSize: "0.4rem", margin: "20px 0 10px" }}>
-												Kết quả phiên {ls.id_bet.id_bet}
+												Kết quả phiên {ls?.id_bet?.id_bet}
 											</h3>
 											<div
 															className="history_xucxac"

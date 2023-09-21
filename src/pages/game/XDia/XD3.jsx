@@ -188,11 +188,15 @@ function XD3() {
 		}
 		const formData = {
 			result: choose.join(" "),
-			id: bet?._id,
+			id: bet._id,
 			money:
 				choose.length *
 				Number(newMoney.replaceAll(".", "").replaceAll(",", "")),
 		};
+		if (formData.money > profile.money) {
+			swal("Thất bại", "Số dư không đủ", "error");
+			return;
+		}
 		if (Number(second) > 10) {
 			if (choose.length == 0) {
 				swal("Thất bại", "Bạn chưa lựa chọn", "error");
@@ -227,15 +231,15 @@ function XD3() {
 							}
 						});
 						setChoose([]);
+						axios
+							.get(`https://server.vnvip294.com/auth/getUser`, {})
+							.then((res) => {
+								setProfile(res.data.data);
+							});
+						getHistoryBet();
 					})
-					.catch((err) =>
-						swal("Thất bại", "Số tiền trong ví không đủ", "error")
-					);
+					.catch((err) => swal("Đã xảy ra lỗi", "Vui lòng tải lại trang", "error"));
 			}
-			axios.get(`https://server.vnvip294.com/auth/getUser`, {}).then((res) => {
-				setProfile(res.data.data);
-			});
-			getHistoryBet();
 		} else {
 			swal("Đã hết thời gian cược", "Vui lòng chờ phiên tiếp theo", "info");
 		}
@@ -274,6 +278,8 @@ function XD3() {
 			document.querySelector(".point").style.animation =
 				"movePoint 4s forwards";
 			document.querySelector(".check").style.animation = "";
+		} else if (Number(second) === 175) {
+			getHistoryBet()
 		} else if (Number(second) === 170) {
 			document.querySelector(".point").style.animation =
 				"movePointBack 4s forwards";
@@ -660,7 +666,7 @@ function XD3() {
 											total2.map((item, index) => (
 												<>
 													<tr key={index}>
-														<td>{item.id_bet}</td>
+														<td>{item?.id_bet}</td>
 														<td
 															className="history_xucxac"
 															style={{
@@ -716,9 +722,9 @@ function XD3() {
 															</div>
 															<div className="id_history_sanh">
 																Phiên:{" "}
-																{item.id_bet.id_bet
-																	? item.id_bet.id_bet
-																	: item.id_bet}
+																{item?.id_bet?.id_bet
+																	? item?.id_bet?.id_bet
+																	: item?.id_bet}
 															</div>
 															<div className="id_history_sanh">
 																{GetNameChoose(item.state, null, item.sanh)}
@@ -766,8 +772,7 @@ function XD3() {
 										>
 											Chi tiết cược
 										</div>
-
-										{ls.id_bet.id_bet ? (
+										{ls?.id_bet?.id_bet ? (
 											<>
 												<div className="lsgd-table">
 													<div>Trò chơi</div>
@@ -775,7 +780,7 @@ function XD3() {
 												</div>
 												<div className="lsgd-table">
 													<div>Phiên</div>
-													<div>{ls.id_bet.id_bet}</div>
+													<div>{ls?.id_bet?.id_bet}</div>
 												</div>
 												<div className="lsgd-table">
 													<div>Thời gian</div>
@@ -796,7 +801,7 @@ function XD3() {
 												<h3
 													style={{ fontSize: "0.4rem", margin: "20px 0 10px" }}
 												>
-													Kết quả phiên {ls.id_bet.id_bet}
+													Kết quả phiên {ls?.id_bet?.id_bet}
 												</h3>
 												<div
 													className="history_xucxac"

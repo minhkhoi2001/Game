@@ -82,7 +82,7 @@ function HistoryAll() {
 					<div className="content-history" style={{ margin: "1.5rem 0 0" }}>
 						{profile?.map((item, key) => (
 							<>
-								{item.id_bet && (
+								{item?.id_bet && (
 									<>
 										<div className="item_inner">
 											<div className="item_history">

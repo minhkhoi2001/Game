@@ -76,12 +76,12 @@ function SetXoSo5() {
 				setList30(res.data.data);
 			})
 			.catch(() => setList30(null));
-		axios.get(`https://server.vnvip294.com/notification/getnotifi`, {}).then((res) => {
+		/*axios.get(`https://server.vnvip294.com/notification/getnotifi`, {}).then((res) => {
 			setVisible({
 				money: res.data.data[0].money.toLocaleString(),
 				id: res.data.data[0]._id,
 			});
-		});
+		});*/
 		axios.get(`https://server.vnvip294.com/Xoso5/getcurrent`, {}).then((res) => {
 			setCurrent(res.data.data);
 		});
@@ -285,7 +285,7 @@ function SetXoSo5() {
 	const [newChange, setNewChange] = useState();
 	const handleChange = (e) => {
 		setListEdit(e.target.value);
-		const a = list30.find((item) => item.id_bet === e.target.value);
+		const a = list30.find((item) => item?.id_bet === e.target.value);
 		setNewChange(a);
 	};
 	
@@ -637,8 +637,8 @@ function SetXoSo5() {
 										{list30
 											? list30.map((item) => {
 													return (
-														<option value={item.id_bet}>
-															Phiên {item.id_bet}
+														<option value={item?.id_bet}>
+															Phiên {item?.id_bet}
 														</option>
 													);
 											  })

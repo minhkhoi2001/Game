@@ -162,7 +162,7 @@ function XSMNBoncangdacbiet() {
 		}
 		const formData = {
 			state: newData,
-			id: bet?._id,
+			id: bet._id,
 			type: 9,
 			money:  newMoney,
 			sanh: bet.name,

@@ -248,7 +248,7 @@ function Truotxien4() {
 		});
 		const formData = {
 			state: newData.join(" "),
-			id: bet?._id,
+			id: bet._id,
 			type: 7,
 			money: newMoney,
 		};

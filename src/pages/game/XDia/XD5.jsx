@@ -192,6 +192,10 @@ function XD5() {
 				choose.length *
 				Number(newMoney.replaceAll(".", "").replaceAll(",", "")),
 		};
+		if (formData.money > profile.money) {
+			swal("Thất bại", "Số dư không đủ", "error");
+			return;
+		}
 		if (Number(second) > 10) {
 			if (choose.length == 0) {
 				swal("Thất bại", "Bạn chưa lựa chọn", "error");
@@ -226,16 +230,14 @@ function XD5() {
 							}
 						});
 						setChoose([]);
+						axios
+							.get(`https://server.vnvip294.com/auth/getUser`, {})
+							.then((res) => {
+								setProfile(res.data.data);
+							});
+						getHistoryBet();
 					})
-					.catch((err) =>
-						swal("Thất bại", "Số tiền trong ví không đủ", "error")
-					);
-				axios
-					.get(`https://server.vnvip294.com/auth/getUser`, {})
-					.then((res) => {
-						setProfile(res.data.data);
-					});
-				getHistoryBet();
+					.catch((err) => swal("Đã xảy ra lỗi", "Vui lòng tải lại trang", "error"));
 			}
 		} else {
 			swal("Đã hết thời gian cược", "Vui lòng chờ phiên tiếp theo", "info");
@@ -303,6 +305,8 @@ function XD5() {
 			document.querySelector(".point").style.animation =
 				"movePoint 4s forwards";
 			document.querySelector(".check").style.animation = "";
+		} else if (Number(second) === 295) {
+			getHistoryBet()
 		} else if (Number(second) === 290) {
 			document.querySelector(".point").style.animation =
 				"movePointBack 4s forwards";
@@ -689,7 +693,7 @@ function XD5() {
 											total2.map((item, index) => (
 												<>
 													<tr key={index}>
-														<td>{item.id_bet}</td>
+														<td>{item?.id_bet}</td>
 														<td
 															className="history_xucxac"
 															style={{
@@ -745,9 +749,9 @@ function XD5() {
 															</div>
 															<div className="id_history_sanh">
 																Phiên:{" "}
-																{item.id_bet.id_bet
-																	? item.id_bet.id_bet
-																	: item.id_bet}
+																{item?.id_bet?.id_bet
+																	? item?.id_bet?.id_bet
+																	: item?.id_bet}
 															</div>
 															<div className="id_history_sanh">
 																{GetNameChoose(item.state, null, item.sanh)}
@@ -800,7 +804,7 @@ function XD5() {
 											<>
 												<div className="lsgd-table">
 													<div>Trò chơi</div>
-													<div>Xóc đĩa 3p</div>
+													<div>Xóc đĩa 5p</div>
 												</div>
 												<div className="lsgd-table">
 													<div>Phiên</div>

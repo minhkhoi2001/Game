@@ -61,7 +61,7 @@ const History = ({ isOpen, closePopup }) => {
 															</span>
 														</div>
 														<div className="id_history_sanh">
-															Phiên cược: {item.id_bet.id_bet?item.id_bet.id_bet:item.id_bet}
+															Phiên cược: {item?.id_bet?.id_bet?item?.id_bet?.id_bet:item?.id_bet}
 														</div>
 														<div className="id_history_sanh">
 															{GetNameChoose(item.state, null)}

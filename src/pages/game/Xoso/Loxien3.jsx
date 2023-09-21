@@ -241,7 +241,7 @@ function Loxien3() {
 		})
 		const formData = {
 			state: newData.join(" "),
-			id: bet?._id,
+			id: bet._id,
 			type: 5,
 			money: item1.length * newMoney,
 		};
