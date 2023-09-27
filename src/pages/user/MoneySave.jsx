@@ -39,7 +39,6 @@ function MoneySave() {
 	const [saving, setSaving] = useState(null);
 	const [profit, setProfit] = useState(null);
 	const [newMoney, setNewMoney] = useState(null);
-	const navigate = useNavigate();
 	axios.interceptors.request.use(
 		(config) => {
 			const token = localStorage.getItem("user");
@@ -77,7 +76,7 @@ function MoneySave() {
 	} = useForm();
 	const onSubmit1 = (data) => {
 		const formData = {
-			money: Number(data.money.replaceAll(".","")),
+			money: Number(data.money.replaceAll(".","").replaceAll(",","")),
 		};
 		if (Number(data.money.replaceAll(".","")) <= 0 || typeof Number(data.money.replaceAll(".","")) !== 'number') {
 			swal(
@@ -277,7 +276,7 @@ function MoneySave() {
 										placeholder="Nhập số tiền nạp"
 										value={newMoney}
 										onClick={() => setNewMoney(null)}
-										onChange={(e) => setNewMoney(Number((e.target.value).replaceAll(".","")).toLocaleString())}
+										onChange={(e) => setNewMoney(Number((e.target.value).replaceAll(".","").replaceAll(",",'')).toLocaleString())}
 									/>
 								</div>
 								{errors.money ? (

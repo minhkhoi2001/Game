@@ -96,13 +96,15 @@ function Profile() {
 							) : null}
 							{profile ? <span>{profile.username}</span> : <span>...</span>}
 							<span style={{ margin: "0" }}>
-								{/*profile ? (
-									<span>
-										Mã giới thiệu <b>{profile.code}</b>
-									</span>
-								) : (
-									<span>...</span>
-								)*/}
+										{
+													profile ? (
+														<span>
+															Mã giới thiệu <b>{profile.code}</b>
+														</span>
+													) : (
+														<span>...</span>
+													)
+										}
 							</span>
 							{profile ? (
 								<strong id="account__balance">

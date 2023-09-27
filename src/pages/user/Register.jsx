@@ -94,7 +94,7 @@ function Register() {
 						passwordConfirm: data.password,
 						location: "VN",
 						name: data.username,
-					}).thern(() => {
+					}).then(() => {
 						swal({
 							title: "Thông báo",
 							text: "Đăng ký thành công",
