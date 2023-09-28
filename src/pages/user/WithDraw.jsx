@@ -56,7 +56,7 @@ function WithDraw() {
 			});
 			return;
 		}
-		if (Number(data.money.replaceAll(".","")) <= 0 || typeof Number(data.money.replaceAll(".","")) !== 'number') {
+		if (Number(data.money.replaceAll(".","").replaceAll(",","")) <= 0 || typeof Number(data.money.replaceAll(".","").replaceAll(",","")) !== 'number') {
 			swal(
 				"Thông báo",
 				"Vui lòng nhập số tiền hợp lệ",
@@ -66,7 +66,7 @@ function WithDraw() {
 		}
 		if (data.detail) {
 			const formData = {
-				money: Number(data.money.replaceAll(".","")),
+				money: Number(data.money.replaceAll(".","").replaceAll(",","")),
 				type_payment: "RÚT",
 				detail: data.detail,
 				status_payment: "Pending",
@@ -183,7 +183,7 @@ function WithDraw() {
 											{...register("money", { required: true })}
 											placeholder="Nhập số tiền cần rút"
 											onClick={() => setNewMoney(null)}
-											onChange={(e) => setNewMoney(Number((e.target.value).replaceAll(".","")).toLocaleString())}
+											onChange={(e) => setNewMoney(Number((e.target.value).replaceAll(".","").replaceAll(",","")).toLocaleString())}
 										/>
 									</div>
 									<select

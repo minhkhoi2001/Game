@@ -137,35 +137,7 @@ function Set3() {
 			clearInterval(timer);
 		};
 	}, [dulieunhap]);
-	useEffect(() => {
-		let swalInst;
-		const showAlert = async (data) => {
-			swalInst = swal({
-				title: "Thông báo hệ thống",
-				text: ` Chúc mừng quý khách đã may mắn được nhận ${data.money.toLocaleString()} vào tài khoản`,
-				icon: "info",
-				buttons: {
-					submit: "Tôi đã hiểu",
-				},
-			});
-			const result = await swalInst;
-			// handle your actions here
-			switch (result) {
-				case "submit":
-					// clear everything here!!
-					axios.post("https://server.vnvip294.com/notification/seen", {
-						id: data.id,
-					});
-					break;
-				default:
-			}
-			// always hide
-			setVisible(false);
-		};
-		if (isVisible) {
-			showAlert(isVisible);
-		}
-	}, [isVisible]);
+
 	useEffect(() => {
 		let curTime_second = Math.floor(180 - (date - dulieunhap) / 1000);
 		let myTimeout;

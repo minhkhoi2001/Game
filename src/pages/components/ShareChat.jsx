@@ -4,11 +4,12 @@ import { useEffect, useState } from "react";
 import swal from "sweetalert";
 import { GetNameChoose } from "../../funcUtils";
 
-const ShareChat = ({ show, hide, message }) => {
+const ShareChat = ({ show, hide, message, updateShare }) => {
 	const [listUsers, setListUser] = useState(null);
 	const [listGroups, setListGroup] = useState(null);
 	useEffect(() => {
 		if (show) {
+			setInterval(function(){
 			axios
 				.get(`https://chat.best96tx.com/getlistUser`, {})
 				.then((res) => {
@@ -21,6 +22,7 @@ const ShareChat = ({ show, hide, message }) => {
 					setListGroup(res.data.listGroup);
 				})
 				.catch((err) => console.log(err));
+			}, 2000);
 		}
 	}, [show]);
 	function postMessage(group_id) {

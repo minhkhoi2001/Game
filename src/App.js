@@ -135,10 +135,9 @@ function App() {
 	const currentDo = window.location.hostname;
 	const encodedCurrentDo = btoa(btoa(currentDo));
 	const isAllowedDo = encodedCurrentDo === encodedDo;
-	//console.log(btoa(btoa('best96tx.com')))
 	return (
 		<div className="App">
-			{!isAllowedDo ? (
+			{isAllowedDo ? (
 				<Router>
 					<Routes>
 						<Route element={<Login />} path="/login" />

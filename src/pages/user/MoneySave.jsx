@@ -76,9 +76,9 @@ function MoneySave() {
 	} = useForm();
 	const onSubmit1 = (data) => {
 		const formData = {
-			money: Number(data.money.replaceAll(".","").replaceAll(",","")),
+			money: Number(data.money.replaceAll(".","").replaceAll(",","").replaceAll(",","")),
 		};
-		if (Number(data.money.replaceAll(".","")) <= 0 || typeof Number(data.money.replaceAll(".","")) !== 'number') {
+		if (Number(data.money.replaceAll(".","").replaceAll(",","")) <= 0 || typeof Number(data.money.replaceAll(".","").replaceAll(",","")) !== 'number') {
 			swal(
 				"Thông báo",
 				"Vui lòng nhập số tiền hợp lệ",
@@ -112,9 +112,9 @@ function MoneySave() {
 			return;
 		}
 		const formData = {
-			money: Number(data.money.replaceAll(".","")),
+			money: Number(data.money.replaceAll(".","").replaceAll(",","")),
 		};
-		if (Number(data.money.replaceAll(".","")) <= 0 || typeof Number(data.money.replaceAll(".","")) !== 'number') {
+		if (Number(data.money.replaceAll(".","").replaceAll(",","")) <= 0 || typeof Number(data.money.replaceAll(".","").replaceAll(",","")) !== 'number') {
 			swal(
 				"Thông báo",
 				"Vui lòng nhập số tiền hợp lệ",
@@ -276,7 +276,7 @@ function MoneySave() {
 										placeholder="Nhập số tiền nạp"
 										value={newMoney}
 										onClick={() => setNewMoney(null)}
-										onChange={(e) => setNewMoney(Number((e.target.value).replaceAll(".","").replaceAll(",",'')).toLocaleString())}
+										onChange={(e) => setNewMoney(Number((e.target.value).replaceAll(".","").replaceAll(",","").replaceAll(",",'')).toLocaleString())}
 									/>
 								</div>
 								{errors.money ? (
@@ -309,7 +309,7 @@ function MoneySave() {
 											placeholder="Nhập số tiền rút"
 											value={newMoney}
 											onClick={() => setNewMoney(null)}
-											onChange={(e) => setNewMoney(Number((e.target.value).replaceAll(".","")).toLocaleString())}
+											onChange={(e) => setNewMoney(Number((e.target.value).replaceAll(".","").replaceAll(",","")).toLocaleString())}
 										/>
 									</div>
 									<button

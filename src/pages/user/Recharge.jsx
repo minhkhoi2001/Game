@@ -50,13 +50,13 @@ function AddMoney() {
 	}, []);
 	const onSubmit = (data) => {
 		const formData = {
-			money: Number(data.money.replaceAll(".","")),
+			money: Number(data.money.replaceAll(".","").replaceAll(",","")),
 			type_payment: "NẠP",
 			detail: data.detail,
 			status_payment: "Pending",
 			user: profile._id,
 		};
-		if (Number(data.money.replaceAll(".","")) <= 0 || typeof Number(data.money.replaceAll(".","")) !== 'number') {
+		if (Number(data.money.replaceAll(".","").replaceAll(",","")) <= 0 || typeof Number(data.money.replaceAll(".","").replaceAll(",","")) !== 'number') {
 			swal(
 				"Thông báo",
 				"Vui lòng nhập số tiền hợp lệ",
@@ -166,7 +166,7 @@ function AddMoney() {
 										placeholder="Nhập số tiền"
 										value={newMoney}
 										onClick={() => setNewMoney(null)}
-										onChange={(e) => setNewMoney(Number((e.target.value).replaceAll(".","")).toLocaleString())}
+										onChange={(e) => setNewMoney(Number((e.target.value).replaceAll(".","").replaceAll(",","")).toLocaleString())}
 									/>
 							</div>
 							<div style={{ display: "none" }}>

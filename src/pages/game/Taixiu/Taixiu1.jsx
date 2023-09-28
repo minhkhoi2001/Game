@@ -500,7 +500,7 @@ function Taixiu1() {
 										onKeyUp={(e) =>
 											setNewMoney(
 												Number(
-													e.target.value.replaceAll(".", "")
+													e.target.value.replaceAll(".", "").replaceAll(",", "")
 												).toLocaleString()
 											)
 										}

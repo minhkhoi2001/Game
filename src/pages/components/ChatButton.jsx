@@ -35,7 +35,7 @@ const ChatButton = () => {
 						const count = filteredObjects.length;
 						setUnread(count);
 					});
-			}, 5000);
+			}, 3000);
 		}
 	}, []);
 	return (
