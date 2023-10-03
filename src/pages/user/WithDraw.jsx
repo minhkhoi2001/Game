@@ -4,13 +4,14 @@ import axios from "axios";
 import { useForm } from "react-hook-form";
 import { Link, useNavigate } from "react-router-dom";
 import swal from "sweetalert";
-import Visibility from "@mui/icons-material/Visibility";
-import VisibilityOff from "@mui/icons-material/VisibilityOff";
+//import Visibility from "@mui/icons-material/Visibility";
+//import VisibilityOff from "@mui/icons-material/VisibilityOff";
+import Header from "../components/Header";
 
 function WithDraw() {
 	const [profile, setProfile] = useState(null);
 	const [bank, setBank] = useState(null);
-	const [isShow, setShow] = useState(false);
+	//const [isShow, setShow] = useState(false);
 	const [newMoney, setNewMoney] = useState(null);
 	axios.interceptors.request.use(
 		(config) => {
@@ -117,28 +118,7 @@ function WithDraw() {
 	return (
 		<>
 			<div className="main">
-				<div className="header">
-					<div className="header-top">
-						<div className="logo">
-							<Link to="/">
-								<img src={require("../../img/best96.png")} alt="Logo" />
-							</Link>
-						</div>
-						<div className="header-right">
-							<div style={{ display: "flex", float: "right" }}>
-							{profile ? (
-              <span style={{ marginRight: "0.111rem" }}>
-                Số dư: <b>{Math.floor(profile.money).toLocaleString()}đ</b>
-              </span>
-            ) : (
-              <span style={{ marginRight: "0.111rem" }}>
-                Số dư: <b>******đ</b>
-              </span>
-            )}
-							</div>
-						</div>
-					</div>
-				</div>
+				<Header profile={profile} />
 				<h1 className="title-h1">Rút Tiền</h1>
 				<div className="content_profile" style={{ margin: "1.5rem 0 0" }}>
 					<Link
@@ -162,7 +142,7 @@ function WithDraw() {
 							{profile ? profile.username : null}
 							</div>
 							<div className="icon_credit">
-								<img src={require("../../img/icon_credit.png")} />
+								<img alt="" src={require("../../img/icon_credit.png")} />
 							</div>
 						</div>
 					</Link>

@@ -46,7 +46,7 @@ function SettingNotify() {
 
 	const [notifyItem, setNotifyItem] = useState();
 	useEffect(() => {
-		if (load == true) {
+		if (load === true) {
 			axios.get(`https://server.vnvip294.com/auth/getnotify`, {}).then((res) => {
 				setNotify(res.data.data);
 				setLoad(false);
@@ -111,7 +111,7 @@ function SettingNotify() {
 										<>
 											{notify.map((item, index) => (
 												<>
-													{index == 0 && item.title == "marquee" ? (
+													{index == 0 && item.title === "marquee" ? (
 														<div style={{display:"flex", margin:"10px 0 80px", border: "1px solid red", lineHeight: "2"}}>
 															<marquee className="thongbaomarquee">
 																<div className="contentHtml" dangerouslySetInnerHTML={{ __html: item.content }} />
@@ -192,13 +192,13 @@ function SettingNotify() {
 											<>
 												{notify.map((item, index) => (
 													<>
-													{index != 0 && item.title != "marquee" ? (
+													{index != 0 && item.title !== "marquee" ? (
 													<TableRow>
 														<TableCell sx={{ fontWeight: "600", padding: "10px" }}>
 															{item.title}
 														</TableCell>
 														<TableCell sx={{ fontWeight: "600", padding: "10px" }}>
-															<img src={item.image} style={{width:"200px",height:"auto"}}/>
+															<img alt="" src={item.image} style={{width:"200px",height:"auto"}}/>
 														</TableCell>
 														<TableCell sx={{ fontWeight: "600", padding: "10px" }}>
 															<div className="contentHtml" dangerouslySetInnerHTML={{ __html: item.content }} />
@@ -266,7 +266,7 @@ function SettingNotify() {
 																	Sửa thông báo
 																</div>
 																<div className="modalform">
-																{notifyItem.title != "marquee" ? (
+																{notifyItem.title !== "marquee" ? (
 																<>
 																	<div
 																		className="modalformgroup"

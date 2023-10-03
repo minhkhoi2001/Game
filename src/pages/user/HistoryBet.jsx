@@ -1,9 +1,7 @@
 import Footer from "../../components/Footer/Footer";
-import { Link, useNavigate } from "react-router-dom";
+import Header from "../components/Header";
 import { useEffect, useState } from "react";
 import axios from "axios";
-import Visibility from "@mui/icons-material/Visibility";
-import VisibilityOff from "@mui/icons-material/VisibilityOff";
 import { GetNameChoose } from "../../funcUtils";
 
 function HistoryBet() {
@@ -58,28 +56,7 @@ function HistoryBet() {
 	return (
 		<>
 			<div className="main">
-				<div className="header">
-					<div className="header-top">
-						<div className="logo">
-							<Link to="/">
-								<img src={require("../../img/best96.png")} alt="Logo" />
-							</Link>
-						</div>
-						<div className="header-right">
-							<div style={{ display: "flex", float: "right" }}>
-								{profile1 ? (
-									<span style={{ marginRight: "0.111rem" }}>
-										Số dư: <b>{Math.floor(profile1.money).toLocaleString()}đ</b>
-									</span>
-								) : (
-									<span style={{ marginRight: "0.111rem" }}>
-										Số dư: <b>******đ</b>
-									</span>
-								)}
-							</div>
-						</div>
-					</div>
-				</div>
+				<Header profile={profile} />
 				<h1 className="title-h1">Lịch Sử Tham Gia</h1>
 				{profile != null ? (
 					<div className="content-history" style={{ margin: "1.5rem 0 0" }}>
@@ -95,11 +72,11 @@ function HistoryBet() {
 									<div className="item_history">
 										<div className="title_item_history">
 											<span className="sanh">
-												{item.sanh == "3 phút"
+												{item.sanh === "3 phút"
 													? "Keno 3p"
-													: item.sanh == "5 phút"
+													: item.sanh === "5 phút"
 													? "Keno 5p"
-													: item.sanh == "1 phút"
+													: item.sanh === "1 phút"
 													? "Keno 1p"
 													: item.sanh}
 											</span>
@@ -143,7 +120,7 @@ function HistoryBet() {
 
 				<Footer profile={profile1} />
 
-				{isShow === true && ls.status_bet != "Pending" ? (
+				{isShow === true && ls.status_bet !== "Pending" ? (
 					<>
 						<div className="modal" style={{ zIndex: "9999999" }}>
 							<div className="modaloverlay">
@@ -163,11 +140,11 @@ function HistoryBet() {
 											<>
 												<div className="lsgd-table">
 													<div>Trò chơi</div>
-													<div>{ls.sanh == "3 phút"
+													<div>{ls.sanh === "3 phút"
 													? "Keno 3p"
-													: ls.sanh == "5 phút"
+													: ls.sanh === "5 phút"
 													? "Keno 5p"
-													: ls.sanh == "1 phút"
+													: ls.sanh === "1 phút"
 													? "Keno 1p"
 													: ls.sanh}</div>
 												</div>
@@ -196,9 +173,9 @@ function HistoryBet() {
 													<div>{Number(ls.moneythang).toLocaleString()} đ</div>
 												</div>
 
-												{ls.sanh == "3 phút" ||
-												ls.sanh == "5 phút" ||
-												ls.sanh == "1 phút" ? (
+												{ls.sanh === "3 phút" ||
+												ls.sanh === "5 phút" ||
+												ls.sanh === "1 phút" ? (
 													<>
 														<h3
 															style={{
@@ -219,9 +196,9 @@ function HistoryBet() {
 															))}
 														</div>
 													</>
-												) : ls.sanh == "Xúc sắc 3p" ||
-												  ls.sanh == "Xúc sắc 5p" || ls.sanh == "Tài xỉu 5p" || 
-												  ls.sanh == "Tài xỉu 1p" || ls.sanh == "Tài xỉu 3p" ? (
+												) : ls.sanh === "Xúc sắc 3p" ||
+												  ls.sanh === "Xúc sắc 5p" || ls.sanh === "Tài xỉu 5p" || 
+												  ls.sanh === "Tài xỉu 1p" || ls.sanh === "Tài xỉu 3p" ? (
 													<>
 														<h3
 															style={{
@@ -243,8 +220,8 @@ function HistoryBet() {
 															))}
 														</div>
 													</>
-												) : ls.sanh == "Xóc dĩa 3p" ||
-												ls.sanh == "Xóc dĩa 5p" ? (
+												) : ls.sanh === "Xóc dĩa 3p" ||
+												ls.sanh === "Xóc dĩa 5p" ? (
 												  <>
 													  <h3
 														  style={{
@@ -267,7 +244,7 @@ function HistoryBet() {
 														  ))}
 													  </div>
 												  </>
-											  ) : ls.sanh == "Xổ số 3p" || ls.sanh == "Xổ số 5p" ? (
+											  ) : ls.sanh === "Xổ số 3p" || ls.sanh === "Xổ số 5p" ? (
 													<>
 														<h3
 															style={{

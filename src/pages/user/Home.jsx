@@ -5,8 +5,6 @@ import "swiper/swiper.min.css";
 import SwiperCore, { Autoplay } from "swiper/core";
 import { useEffect, useState } from "react";
 import axios from "axios";
-import Visibility from "@mui/icons-material/Visibility";
-import VisibilityOff from "@mui/icons-material/VisibilityOff";
 import CampaignIcon from '@mui/icons-material/Campaign';
 
 function Home() {
@@ -32,7 +30,7 @@ function Home() {
 			return Promise.reject(error);
 		}
 	);
-	const [isShow, setShow] = useState(false);
+	//const [isShow, setShow] = useState(false);
 	const [profile1, setProfile1] = useState(null);
 	const [notify, setNotify] = useState();
 	useEffect(() => {
@@ -53,7 +51,7 @@ function Home() {
 					<div className="header-top">
 						<div className="logo">
 							<Link to="/">
-								<img src={require("../../img/best96.png")} alt="Logo" />
+								<img alt="" src={require("../../img/best96.png")} />
 							</Link>
 						</div>
 						<div className="header-right">
@@ -85,15 +83,15 @@ function Home() {
 				</div>
 				<Swiper {...swiperParams}>
 					<SwiperSlide>
-						<img src={require("../../img/banner12.jpg")} />
+						<img alt="" src={require("../../img/banner12.jpg")} />
 					</SwiperSlide>
 					<SwiperSlide>
-						<img src={require("../../img/banner11.jpg")} />
+						<img alt="" src={require("../../img/banner11.jpg")} />
 					</SwiperSlide>
 				</Swiper>
 				{notify ? (
 				<>				
-				{notify.isShow == true && notify.title == "marquee" ? (		
+				{notify.isShow === true && notify.title === "marquee" ? (		
 					<div className="marquees">
 						<div><CampaignIcon sx={{fontSize:"22px"}}/></div>
 						<div><div className="marquee"><p dangerouslySetInnerHTML={{ __html: notify.content }} /></div></div>
@@ -109,7 +107,7 @@ function Home() {
 					<div className="list-game">
 						{/*<div className="box-game op xsmb">
 							<Link to="/xsmb">
-								<img
+								<img alt=""
 									src={require("../../img/logo-Vlottery.webp")}
 									style={{ marginLeft: "-15px" }}
 								/>
@@ -122,7 +120,7 @@ function Home() {
 						</div>
 						<div className="box-game op xsmt">
 							<Link to="/xsmt">
-								<img
+								<img alt=""
 									src={require("../../img/logo-Vlottery.webp")}
 									style={{ marginLeft: "-15px" }}
 								/>
@@ -137,7 +135,7 @@ function Home() {
 						</div>
 						<div className="box-game op xsmn">
 							<Link to="/xsmn">
-								<img
+								<img alt=""
 									src={require("../../img/logo-Vlottery.webp")}
 									style={{ marginLeft: "-15px" }}
 								/>
@@ -150,7 +148,7 @@ function Home() {
 						</div>
 						<div className="box-game">
 							<Link to="/xoso3p">
-								<img
+								<img alt=""
 									src={require("../../img/lottery-81925723.png")}
 									style={{ margin: "8px 5px 0 0" }}
 								/>
@@ -163,7 +161,7 @@ function Home() {
 						</div>
 						<div className="box-game">
 							<Link to="/xoso5p">
-								<img
+								<img alt=""
 									src={require("../../img/lottery-e8asj.png")}
 									style={{ margin: "0 5px 0 0" }}
 								/>
@@ -176,7 +174,7 @@ function Home() {
 						</div>
 						<div className="box-game">
 							<Link to="/keno1p">
-								<img src={require("../../img/WinGo-749c393c.png")} />
+								<img alt="" src={require("../../img/WinGo-749c393c.png")} />
 								<h3>KENO 1P</h3>
 								<div className="box-game-text">
 									<div>Đoán số</div>
@@ -186,7 +184,7 @@ function Home() {
 						</div>
 						<div className="box-game">
 							<Link to="/keno3p">
-								<img
+								<img alt=""
 									src={require("../../img/5d-4be64165.png")}
 									style={{ margin: "0 5px 0 0" }}
 								/>
@@ -199,7 +197,7 @@ function Home() {
 						</div>
 						<div className="box-game">
 							<Link to="/keno5p">
-								<img src={require("../../img/TrxWingo-7fc426b2.png")} />
+								<img alt="" src={require("../../img/TrxWingo-7fc426b2.png")} />
 								<h3>KENO 5P</h3>
 								<div className="box-game-text">
 									<div>Đoán số</div>
@@ -209,7 +207,7 @@ function Home() {
 						</div>
 						<div className="box-game">
 							<Link to="/xucxac3">
-								<img
+								<img alt=""
 									src={require("../../img/k3-3fb4362a.png")}
 									style={{ margin: "0 5px 0 0" }}
 								/>
@@ -222,7 +220,7 @@ function Home() {
 						</div>
 						<div className="box-game">
 							<Link to="/xucxac5">
-								<img
+								<img alt=""
 									src={require("../../img/logo-k333.685bfbc8.png")}
 									style={{ margin: "0 5px 0 0" }}
 								/>
@@ -235,7 +233,7 @@ function Home() {
 				</div>*/}
 						<div className="box-game">
 							<Link to="/taixiu1">
-								<img
+								<img alt=""
 									src={require("../../img/taixiu1.png")}
 									style={{ margin: "0 5px 0 0" }}
 								/>
@@ -248,7 +246,7 @@ function Home() {
 						</div>
 						<div className="box-game">
 							<Link to="/taixiu3">
-								<img
+								<img alt=""
 									src={require("../../img/k3-3fb4362a.png")}
 									style={{ margin: "0 5px 0 0" }}
 								/>
@@ -261,7 +259,7 @@ function Home() {
 						</div>
 						<div className="box-game">
 							<Link to="/taixiu5">
-								<img
+								<img alt=""
 									src={require("../../img/logo-k333.685bfbc8.png")}
 									style={{ margin: "0 5px 0 0" }}
 								/>
@@ -274,7 +272,7 @@ function Home() {
 						</div>
 						<div className="box-game">
 							<Link to="/xd3">
-								<img src={require("../../img/xocdia.png")} />
+								<img alt="" src={require("../../img/xocdia.png")} />
 								<h3>XÓC ĐĨA 3P</h3>
 								<div className="box-game-text">
 									<div>Đoán số</div>
@@ -284,7 +282,7 @@ function Home() {
 						</div>
 						<div className="box-game">
 							<Link to="/xd5">
-								<img src={require("../../img/xocdia2.png")} />
+								<img alt="" src={require("../../img/xocdia2.png")} />
 								<h3>XÓC ĐĨA 5P</h3>
 								<div className="box-game-text">
 									<div>Đoán số</div>

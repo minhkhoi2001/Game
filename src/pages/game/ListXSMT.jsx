@@ -1,9 +1,20 @@
 import Footer from "../../components/Footer/Footer";
+import Header from "../components/Header";
 import { useEffect, useState } from "react";
 import axios from "axios";
 import { Link, useNavigate } from "react-router-dom";
 import "./listxs.css";
+
 function ListXSMT() {
+	const [profile, setProfile] = useState(null);
+	useEffect(() => {
+		axios
+			.get(`https://server.vnvip294.com/auth/getUser`, {})
+			.then((res) => {
+				setProfile(res.data.data);
+			})
+			.catch((err) => localStorage.removeItem("user"));
+	}, []);
 	const date1 = new Date();
 	const [date, setDate] = useState(date1.getDay());
 	const [data, setData] = useState();
@@ -57,18 +68,7 @@ function ListXSMT() {
 	return (
 		<>
 			<div className="main">
-				<div className="header">
-					<div className="header-top">
-						<div className="logo">
-							<Link to="/">
-								<img src={require("../../img/best96.png")} alt="Logo" />
-							</Link>
-						</div>
-						<div className="header-right">
-							<div style={{ display: "flex", float: "right" }}></div>
-						</div>
-					</div>
-				</div>
+				<Header profile={profile} />
 				<div className="account">
 					<h1 className="title-h1" style={{color:"#fff"}}>Xổ số miền Trung</h1>
 					<div className="account__menu">
@@ -94,7 +94,7 @@ function ListXSMT() {
 												<div>{item.name}</div>
 												{/*<span>Ngày xổ: {item.issueList[0].turnNum}</span>*/}
 												<div>Ngày xổ: {item.turnNum}</div>
-												<img src={`https://www.666mu88.com/static/img/gameicons/cp/${item.code}.png`}/>
+												<img alt="" src={`https://www.666mu88.com/static/img/gameicons/cp/${item.code}.png`}/>
 											</div>
 										</Link>
 									</>

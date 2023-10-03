@@ -352,13 +352,13 @@ function XD5() {
 							</div>
 						</div>
 						<div className="boxdia">
-							<img
+							<img alt=""
 								src={chen}
 								className="point"
 								alt=""
 								style={{ animation: "movePointBack" }}
 							/>
-							<img className="check" src={dia} alt="" />
+							<img alt="" className="check" src={dia} alt="" />
 							{total && (
 								<div className="history_xucxac result-dia">
 									{total[0].result.split(" ").map((item) => (

@@ -1,6 +1,6 @@
 import { Link, useNavigate } from "react-router-dom";
 import { useForm } from "react-hook-form";
-import { useRef, useEffect, useState } from "react";
+import { useEffect, useState } from "react";
 import axios from "axios";
 import swal from "sweetalert";
 import Visibility from "@mui/icons-material/Visibility";
@@ -48,14 +48,6 @@ function Login() {
 					email: data.username + '@gmail.com',
 					password: data.password,
 				}).then((res2) => {
-					const obj = {
-						//token: res2.data.token,
-						//_id: res2.data.data.user._id,
-						//name: res2.data.data.user.name,
-						//last_seen_date: res2.data.data.user.last_seen_date,
-						//createdAt: res2.data.data.user.createdAt,
-						//updatedAt: res2.data.data.user.updatedAt,
-					};
 					localStorage.setItem("currentUser", res2.data.data.user._id + "_" + res2.data.data.user.name);
 					swal({
 						title: "Thông báo",
@@ -75,7 +67,7 @@ function Login() {
 		<>
 			<div className="login">
 				<form className="form-lg" onSubmit={handleSubmit(onSubmit)}>
-					<img src={require("../../img/best96.png")} alt="Logo" className="logologin"/>
+					<img alt="" src={require("../../img/best96.png")} className="logologin"/>
 					<h1>Đăng Nhập</h1>
 					<div className="inputs">
 						<div className="input">

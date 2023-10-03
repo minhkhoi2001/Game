@@ -78,7 +78,7 @@ export const SalesCustomer = (props) => {
 		);
 	}, []);
 	useEffect(() => {
-		if (load == true) {
+		if (load === true) {
 			axios
 				.get(
 					`https://server.vnvip294.com/statistic/getbydaycustomer?dateStart=${startDate}&endDate=${endDate}`

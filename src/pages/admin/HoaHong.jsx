@@ -26,7 +26,7 @@ function HoaHong() {
 		}
 	);
 	useEffect(() => {
-		if (load == true) {
+		if (load === true) {
 			axios.get(`https://server.vnvip294.com/play/get`, {}).then((res) => {
 				setSetting(res.data.data[0]);
 				setLoad(false);

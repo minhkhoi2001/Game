@@ -69,7 +69,7 @@ const ShareChat = ({ show, hide, message, updateShare }) => {
 							<ul className="listuserchat">
 								{listUsers?.map((item, key) => (
 									<li key={key} onClick={() => sendTextMessage(item._id)} data={item._id}>
-										<img src={item.profile} />
+										<img alt="" src={item.profile} />
 										<span>{item.name}</span>
 									</li>
 								))}

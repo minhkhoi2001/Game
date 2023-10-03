@@ -5,8 +5,6 @@ import "swiper/swiper.min.css";
 import SwiperCore, { Autoplay } from "swiper/core";
 import { useEffect, useState } from "react";
 import axios from "axios";
-import Visibility from "@mui/icons-material/Visibility";
-import VisibilityOff from "@mui/icons-material/VisibilityOff";
 import CampaignIcon from "@mui/icons-material/Campaign";
 import "./home2.css";
 
@@ -33,7 +31,7 @@ function Home() {
 			return Promise.reject(error);
 		}
 	);
-	const [isShow, setShow] = useState(false);
+	//const [isShow, setShow] = useState(false);
 	const [profile1, setProfile1] = useState(null);
 	const [notify, setNotify] = useState();
 	useEffect(() => {
@@ -58,7 +56,7 @@ function Home() {
 					<div className="header-top">
 						<div className="logo">
 							<Link to="/">
-								<img src={require("../../img/best96.png")} alt="Logo" />
+								<img alt="" src={require("../../img/best96.png")} />
 							</Link>
 						</div>
 						<div className="header-right">
@@ -91,18 +89,18 @@ function Home() {
 				<div className="box-image">
 				<Swiper {...swiperParams}>
 					<SwiperSlide>
-						<img src="/upload/tro-choi.jpg" />
+						<img alt="" src="/upload/tro-choi.jpg" />
 					</SwiperSlide>
 					<SwiperSlide>
-						<img src="/upload/xo-so.jpg" />
+						<img alt="" src="/upload/xo-so.jpg" />
 					</SwiperSlide>
 					<SwiperSlide>
-						<img src="/upload/nang-cap-vip.jpg" />
+						<img alt="" src="/upload/nang-cap-vip.jpg" />
 					</SwiperSlide>
 				</Swiper>
 				{notify ? (
 					<>
-						{notify.isShow == true && notify.title == "marquee" ? (
+						{notify.isShow === true && notify.title === "marquee" ? (
 							<div className="marquees" style={{background:"#fff", margin: "-7px 0 0", padding: "5px"}}>
 								<div>
 									<CampaignIcon sx={{ fontSize: "22px" }} />
@@ -121,33 +119,33 @@ function Home() {
 					<div className="lottery-menu">
 						<div className="lottery-menu-top">
 							<div className="lottery-item" onClick={() => handleOptionClick("1")}>
-								<img src={require("../../img/hotLottery.0a733060.png")}/>
+								<img alt="" src={require("../../img/hotLottery.0a733060.png")}/>
 								<span>Xổ số 3 miền</span>
 							</div>
 							<div className="lottery-item" onClick={() => handleOptionClick("2")}>
-								<img src={require("../../img/all.a4d78610.png")}/>
+								<img alt="" src={require("../../img/all.a4d78610.png")}/>
 								<span>Xổ số nhanh</span>
 							</div>
 							<div className="lottery-item" onClick={() => handleOptionClick("3")}>
-								<img src={require("../../img/lobby.e990b38c.png")}/>
+								<img alt="" src={require("../../img/lobby.e990b38c.png")}/>
 								<span>Xóc đĩa</span>
 							</div>
 						</div>
 						<div className="lottery-menu-mid">
 							<div className="lottery-item" onClick={() => handleOptionClick("4")}>
-								<img src={require("../../img/SICBO.30ef5ab9.png")}/>
+								<img alt="" src={require("../../img/SICBO.30ef5ab9.png")}/>
 								<span>Xúc sắc</span>
 							</div>
 							<div className="lottery-item" onClick={() => handleOptionClick("5")}>
-								<img src={require("../../img/KENO.b46b0ad4.png")}/>
+								<img alt="" src={require("../../img/KENO.b46b0ad4.png")}/>
 								<span>Keno</span>
 							</div>
 							<div className="lottery-item" onClick={() => handleOptionClick("6")}>
-								<img src={require("../../img/game_mini-d03d72bd.png")} style={{padding:"0.25rem 0.42rem"}}/>
+								<img alt="" src={require("../../img/game_mini-d03d72bd.png")} style={{padding:"0.25rem 0.42rem"}}/>
 								<span>Tài xỉu</span>
 							</div>
 							<Link to="/notification" className="lottery-item">
-								<img src={require("../../img/invitation_bg-cba7474d.png")} style={{padding:"0.25rem 0.42rem"}}/>
+								<img alt="" src={require("../../img/invitation_bg-cba7474d.png")} style={{padding:"0.25rem 0.42rem"}}/>
 								<span>Khuyến mãi</span>
 							</Link>
 						</div>
@@ -159,7 +157,7 @@ function Home() {
 						<>
 						<div className="box-game op xsmb">
 							<Link to="/xsmb">
-								<img
+								<img alt=""
 									src={require("../../img/logo-Vlottery.webp")}
 									style={{ marginLeft: "-15px" }}
 								/>
@@ -172,7 +170,7 @@ function Home() {
 						</div>
 						<div className="box-game op xsmt">
 							<Link to="/xsmt">
-								<img
+								<img alt=""
 									src={require("../../img/logo-Vlottery.webp")}
 									style={{ marginLeft: "-15px" }}
 								/>
@@ -187,7 +185,7 @@ function Home() {
 						</div>
 						<div className="box-game op xsmn">
 							<Link to="/xsmn">
-								<img
+								<img alt=""
 									src={require("../../img/logo-Vlottery.webp")}
 									style={{ marginLeft: "-15px" }}
 								/>
@@ -204,7 +202,7 @@ function Home() {
 						<>
 						<div className="box-game">
 							<Link to="/xoso3p">
-								<img
+								<img alt=""
 									src={require("../../img/lottery-81925723.png")}
 									style={{ margin: "8px 5px 0 0" }}
 								/>
@@ -217,7 +215,7 @@ function Home() {
 						</div>
 						<div className="box-game">
 							<Link to="/xoso5p">
-								<img
+								<img alt=""
 									src={require("../../img/lottery-e8asj.png")}
 									style={{ margin: "0 5px 0 0" }}
 								/>
@@ -234,7 +232,7 @@ function Home() {
 						<>
 						<div className="box-game">
 							<Link to="/xd3">
-								<img src={require("../../img/xocdia.png")} />
+								<img alt="" src={require("../../img/xocdia.png")} />
 								<h3>XÓC ĐĨA 3P</h3>
 								<div className="box-game-text">
 									<div>Đoán số</div>
@@ -244,7 +242,7 @@ function Home() {
 						</div>
 						<div className="box-game">
 							<Link to="/xd5">
-								<img src={require("../../img/xocdia2.png")} />
+								<img alt="" src={require("../../img/xocdia2.png")} />
 								<h3>XÓC ĐĨA 5P</h3>
 								<div className="box-game-text">
 									<div>Đoán số</div>
@@ -258,7 +256,7 @@ function Home() {
 						<>
 						<div className="box-game">
 							<Link to="/xucxac3">
-								<img
+								<img alt=""
 									src={require("../../img/k3-3fb4362a.png")}
 									style={{ margin: "0 5px 0 0" }}
 								/>
@@ -271,7 +269,7 @@ function Home() {
 						</div>
 						<div className="box-game">
 							<Link to="/xucxac5">
-								<img
+								<img alt=""
 									src={require("../../img/logo-k333.685bfbc8.png")}
 									style={{ margin: "0 5px 0 0" }}
 								/>
@@ -288,15 +286,15 @@ function Home() {
 						<>
 						<div className="lottery-list">
 							<Link to="/keno1p" className="lottery-item">
-								<img src={require("../../img/KENO.eadd2dc4.png")}/>
+								<img alt="" src={require("../../img/KENO.eadd2dc4.png")}/>
 								<span>KENO 1P</span>
 							</Link>
 							<Link to="/keno3p" className="lottery-item">
-								<img src={require("../../img/KENO.eadd2dc4.png")}/>
+								<img alt="" src={require("../../img/KENO.eadd2dc4.png")}/>
 								<span>KENO 3P</span>
 							</Link>
 							<Link to="/keno5p" className="lottery-item">
-								<img src={require("../../img/KENO.eadd2dc4.png")}/>
+								<img alt="" src={require("../../img/KENO.eadd2dc4.png")}/>
 								<span>KENO 5P</span>
 							</Link>
 						</div>
@@ -306,15 +304,15 @@ function Home() {
 						<>
 						<div className="lottery-list">
 							<Link to="/taixiu1" className="lottery-item">
-								<img src={require("../../img/SICBO.b8afca93.png")}/>
+								<img alt="" src={require("../../img/SICBO.b8afca93.png")}/>
 								<span>TÀI XỈU 1P</span>
 							</Link>
 							<Link to="/taixiu3" className="lottery-item">
-								<img src={require("../../img/SICBO.b8afca93.png")}/>
+								<img alt="" src={require("../../img/SICBO.b8afca93.png")}/>
 								<span>TÀI XỈU 3P</span>
 							</Link>
 							<Link to="/taixiu5" className="lottery-item">
-								<img src={require("../../img/SICBO.b8afca93.png")}/>
+								<img alt="" src={require("../../img/SICBO.b8afca93.png")}/>
 								<span>TÀI XỈU 5P</span>
 							</Link>
 						</div>

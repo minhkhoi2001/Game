@@ -2,9 +2,10 @@ import Footer from "../../components/Footer/Footer";
 import { useEffect, useState } from "react";
 import axios from "axios";
 import { useForm } from "react-hook-form";
-import { Link, useNavigate, useParams } from "react-router-dom";
-import { Button } from "@mui/material";
+import { useParams } from "react-router-dom";
 import swal from "sweetalert";
+import Header from "../components/Header";
+
 function EditBank() {
 	const [profile, setProfile] = useState(null);
 
@@ -28,10 +29,9 @@ function EditBank() {
 		register,
 		handleSubmit,
 		setError,
-		formState: { errors },
 	} = useForm();
 	const [bank, setBank] = useState(null);
-	const navigate = useNavigate();
+	//const navigate = useNavigate();
 	useEffect(() => {
 		axios
 			.get(`https://server.vnvip294.com/auth/getUser`, {})
@@ -68,15 +68,7 @@ function EditBank() {
 	return (
 		<>
 			<div className="main">
-				<div className="header">
-					<div className="header-top">
-						<div className="logo">
-							<Link to="/">
-								<img src={require("../../img/best96.png")} alt="Logo" />
-							</Link>
-						</div>
-					</div>
-				</div>
+				<Header profile={profile} />
 				<h1 className="title-h1">Sửa Thông Tin</h1>
 				<div className="content_profile" style={{ margin: "1.8rem 0 0" }}>
 					{bank != null ? (

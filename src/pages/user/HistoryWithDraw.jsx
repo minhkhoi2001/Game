@@ -1,7 +1,5 @@
 import Footer from "../../components/Footer/Footer";
-import Visibility from "@mui/icons-material/Visibility";
-import VisibilityOff from "@mui/icons-material/VisibilityOff";
-import { Link, useNavigate } from "react-router-dom";
+import Header from "../components/Header";
 import { useEffect, useState } from "react";
 import axios from "axios";
 
@@ -22,7 +20,7 @@ function Rut() {
 	}
 	const [profile, setProfile] = useState(null);
 	const [profile1, setProfile1] = useState(null);
-	const [isShow, setShow] = useState(false);
+	//const [isShow, setShow] = useState(false);
 	axios.interceptors.request.use(
 		(config) => {
 			const token = localStorage.getItem("user");
@@ -56,34 +54,13 @@ function Rut() {
 	return (
 		<>
 			<div className="main">
-				<div className="header">
-					<div className="header-top">
-						<div className="logo">
-							<Link to="/">
-								<img src={require("../../img/best96.png")} alt="Logo" />
-							</Link>
-						</div>
-						<div className="header-right">
-							<div style={{ display: "flex", float: "right" }}>
-							{profile1 ? (
-              <span style={{ marginRight: "0.111rem" }}>
-                Số dư: <b>{Math.floor(profile1.money).toLocaleString()}đ</b>
-              </span>
-            ) : (
-              <span style={{ marginRight: "0.111rem" }}>
-                Số dư: <b>******đ</b>
-              </span>
-            )}
-							</div>
-						</div>
-					</div>
-				</div>
+				<Header profile={profile} />
 				<h1 className="title-h1">Lịch Sử Rút Tiền</h1>
 				{profile ? (
 					<div className="content-history" style={{ margin: "1.5rem 0 0" }}>
 						{profile?.map((item, key) => (
 							<>
-								{item.type_payment == "RÚT" ? (
+								{item.type_payment === "RÚT" ? (
 									<>
 										<div className="item_inner">
 											<div className="item_history">

@@ -22,7 +22,6 @@ function Register() {
 		}
 	}, []);
 	const onSubmit = (data) => {
-		let code = "";
 		if (data.username.length < 6) {
 			setError("username", {
 				type: "minLength",
@@ -120,7 +119,7 @@ function Register() {
 		<>
 			<div className="login">
 				<form className="form-lg" onSubmit={handleSubmit(onSubmit)}>
-					<img src={require("../../img/best96.png")} alt="Logo" className="logologin"/>
+					<img alt="" src={require("../../img/best96.png")} className="logologin"/>
 					<h1>Đăng Ký</h1>
 					<div className="inputs">
 						<div className="input">

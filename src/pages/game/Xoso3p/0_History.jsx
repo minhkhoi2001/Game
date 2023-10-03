@@ -44,7 +44,7 @@ const History = ({ isOpen, closePopup, setData }) => {
 								<div className="content-history award_tb">
 									{historyGame?.map((item, key) => (
 										<>
-											{item.sanh == "Xổ số 3p" && item.type ? (
+											{item.sanh === "Xổ số 3p" && item.type ? (
 												<div
 													className="item_inner"
 													onClick={() => {
@@ -108,7 +108,7 @@ const History = ({ isOpen, closePopup, setData }) => {
 					</div>
 				</div>
 			)}
-			{isShow === true && ls.status_bet != "Pending" ? (
+			{isShow === true && ls.status_bet !== "Pending" ? (
 				<>
 					<div className="modal" style={{ zIndex: "9999999" }}>
 						<div className="modaloverlay"></div>

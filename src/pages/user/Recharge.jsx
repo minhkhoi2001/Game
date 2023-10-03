@@ -1,16 +1,14 @@
 import Footer from "../../components/Footer/Footer";
-import React, { useEffect, useState, useRef } from "react";
+import React, { useEffect, useState } from "react";
 import axios from "axios";
 import { useForm } from "react-hook-form";
-import { Link, useNavigate } from "react-router-dom";
+import { useNavigate } from "react-router-dom";
 import swal from "sweetalert";
-import Visibility from "@mui/icons-material/Visibility";
-import VisibilityOff from "@mui/icons-material/VisibilityOff";
+import Header from "../components/Header";
 
 function AddMoney() {
 	const [profile, setProfile] = useState(null);
 	const [bank, setBank] = useState(null);
-	const [isShow, setShow] = useState(false);
 	const [newMoney, setNewMoney] = useState(null);
 	axios.interceptors.request.use(
 		(config) => {
@@ -95,28 +93,7 @@ function AddMoney() {
 	return (
 		<>
 			<div className="main">
-				<div className="header">
-					<div className="header-top">
-						<div className="logo">
-							<Link to="/">
-								<img src={require("../../img/best96.png")} alt="Logo" />
-							</Link>
-						</div>
-						<div className="header-right">
-							<div style={{ display: "flex", float: "right" }}>
-								{profile ? (
-									<span style={{ marginRight: "0.111rem" }}>
-										Số dư: <b>{Math.floor(profile.money).toLocaleString()}đ</b>
-									</span>
-								) : (
-									<span style={{ marginRight: "0.111rem" }}>
-										Số dư: <b>******đ</b>
-									</span>
-								)}
-							</div>
-						</div>
-					</div>
-				</div>
+			<Header profile={profile} />
 				<h1 className="title-h1">Nạp Tiền</h1>
 				<div className="content_profile">
 					{/* <div style={{margin:"10px 0 0"}}>Vui lòng liên hệ CSKH để được hướng dẫn nạp tiền</div> */}

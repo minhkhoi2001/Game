@@ -1,11 +1,13 @@
 import Footer from "../../components/Footer/Footer";
-import { useEffect, useState } from "react";
+import { useState, useEffect } from "react";
 import axios from "axios";
 import { useForm } from "react-hook-form";
-import { Link, useNavigate } from "react-router-dom";
+import { useNavigate } from "react-router-dom";
 import swal from "sweetalert";
+import Header from "../components/Header";
 
 function TransferMoney() {
+	const [profile, setProfile] = useState(null);
 	axios.interceptors.request.use(
 		(config) => {
 			const token = localStorage.getItem("user");
@@ -24,9 +26,14 @@ function TransferMoney() {
 	const {
 		register,
 		handleSubmit,
-		formState: { errors },
 	} = useForm();
-	const [bank, setBank] = useState(null);
+	useEffect(() => {
+		axios
+			.get(`https://server.vnvip294.com/auth/getUser`, {})
+			.then((res) => {
+				setProfile(res.data.data);
+			})
+	}, []);
 	const navigate = useNavigate();
 
 	const onSubmit = (data) => {
@@ -45,18 +52,7 @@ function TransferMoney() {
 	return (
 		<>
 			<div className="main">
-				<div className="header">
-					<div className="header-top">
-						<div className="logo">
-							<Link to="/">
-								<img src={require("../../img/best96.png")} alt="Logo" />
-							</Link>
-						</div>
-						<div className="header-right">
-							<div style={{ display: "flex", float: "right" }}></div>
-						</div>
-					</div>
-				</div>
+				<Header profile={profile} />
 				<h1 className="title-h1">Chuyển tiền</h1>
 				<div className="content_profile">
 					<form className="form-lg" onSubmit={handleSubmit(onSubmit)}>

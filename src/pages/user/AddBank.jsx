@@ -3,8 +3,8 @@ import { useEffect, useState } from "react";
 import axios from "axios";
 import { useForm } from "react-hook-form";
 import { Link, useNavigate } from "react-router-dom";
-import { Button } from "@mui/material";
 import swal from "sweetalert";
+import Header from "../components/Header";
 
 function AddBank() {
 	const [profile, setProfile] = useState(null);
@@ -69,21 +69,13 @@ function AddBank() {
 	return (
 		<>
 			<div className="main">
-				<div className="header">
-					<div className="header-top">
-						<div className="logo">
-							<Link to="/">
-								<img src={require("../../img/best96.png")} alt="Logo" />
-							</Link>
-						</div>
-					</div>
-				</div>
+				<Header profile={profile} />
 				<h1 className="title-h1">Liên Kết Ngân Hàng</h1>
 				{/*<button onClick={()=>{
 					setShow(!show)
 				}} className="btn-medium" style={{margin:"1.8rem auto 0.5rem"}}>Liên kết tài khoản ngân hàng</button>*/}
 				<div className="content_profile">
-					{show == true ? (
+					{show === true ? (
 						<>
 							<form className="form-lg" onSubmit={handleSubmit(onSubmit)}>
 								<div>
@@ -135,7 +127,7 @@ function AddBank() {
 													{item.name_bank}
 												</div>
 												<div className="icon_credit">
-													<img src={require("../../img/icon_credit.png")} />
+													<img alt="" src={require("../../img/icon_credit.png")} />
 												</div>
 											</div>
 										</Link>
@@ -144,7 +136,7 @@ function AddBank() {
 							</>
 						) : (
 							<>
-								{show == false ? (
+								{show === false ? (
 									<>
 										<div style={{ margin: "1.8rem 0 0" }}>
 											Hiện chưa có ngân hàng

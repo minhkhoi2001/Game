@@ -1,4 +1,5 @@
 import Footer from "../../components/Footer/Footer";
+import Header from "../components/Header";
 import "../user/profile.css";
 import { useEffect, useState } from "react";
 import axios from "axios";
@@ -46,18 +47,7 @@ function Profile() {
 	return (
 		<>
 			<div className="main">
-				<div className="header">
-					<div className="header-top">
-						<div className="logo">
-							<Link to="/">
-								<img src={require("../../img/best96.png")} alt="Logo" />
-							</Link>
-						</div>
-						<div className="header-right">
-							<div style={{ display: "flex", float: "right" }}></div>
-						</div>
-					</div>
-				</div>
+				<Header profile={profile} />
 				<div className="account">
 					<div className="account__top promotionRule__container-content__rules-item">
 						<div className="promotionRule__container-content__rules-item__splitBorder">
@@ -70,7 +60,7 @@ function Profile() {
 						<div className="promotionRule__container-content__rules-item__titleLeft"></div>
 						<div className="promotionRule__container-content__rules-item__title">
 							{profile ? (
-								<>{profile.level == 0 ? "VIP 1" : "VIP " + profile.level}</>
+								<>{profile.level === 0 ? "VIP 1" : "VIP " + profile.level}</>
 							) : null}
 						</div>
 						<div className="promotionRule__container-content__rules-item__titleRight"></div>
@@ -78,19 +68,18 @@ function Profile() {
 						<div className="account__balance">
 							{profile ? (
 								<span className="background-vip">
-									<img
+									<img alt=""
 										src={require(`../../img/${
-											profile.level == 0 ? "v1" : "v" + profile.level
+											profile.level === 0 ? "v1" : "v" + profile.level
 										}.png`)}
 										className={`img-vip ${
-											profile.level == 0
+											profile.level === 0
 												? "img-vip-1"
 												: "img-vip-" + profile.level
 										}`}
 									/>
-									<img
+									<img alt=""
 										src={require("../../img/profile-picture.jpg")}
-										alt="Profile"
 									/>
 								</span>
 							) : null}

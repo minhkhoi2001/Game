@@ -19,7 +19,7 @@ function Keno5() {
 	const date = new Date();	
 	const currentMinute = date.getMinutes();
 	const currentSecond = date.getSeconds();
-	const [item, setState] = useState(null);
+	//const [item, setState] = useState(null);
 	const [total, setTotal] = useState(null);
 	const [setting, setSetting] = useState(null);
 	const [item1, setItem] = useState([]);
@@ -896,7 +896,7 @@ function Keno5() {
 					</div>
 				)}
 
-				{isShow === true && ls.status_bet != "Pending" ? (
+				{isShow === true && ls.status_bet !== "Pending" ? (
 				<>
 					<div className="modal" style={{ zIndex: "9999999" }}>
 						<div className="modaloverlay"></div>

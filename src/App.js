@@ -137,7 +137,7 @@ function App() {
 	const isAllowedDo = encodedCurrentDo === encodedDo;
 	return (
 		<div className="App">
-			{isAllowedDo ? (
+			{!isAllowedDo ? (
 				<Router>
 					<Routes>
 						<Route element={<Login />} path="/login" />

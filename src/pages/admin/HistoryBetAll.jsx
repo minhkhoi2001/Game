@@ -130,12 +130,12 @@ function HistoryBetAll() {
 
 	const [st, setSt] = useState(0);
 	const handleChangeStatus = (e) => {
-		if (ls.status_bet == "Lose" || ls.status_bet == "Pending") {
-			if (e.target.value == "Win") {
+		if (ls.status_bet === "Lose" || ls.status_bet === "Pending") {
+			if (e.target.value === "Win") {
 				setSt(1);
 			}
 		} else {
-			if (e.target.value == "Lose" || e.target.value == "Pending") {
+			if (e.target.value === "Lose" || e.target.value === "Pending") {
 				setSt(2);
 			}
 		}
@@ -292,11 +292,11 @@ function HistoryBetAll() {
 																					padding: "10px",
 																				}}
 																			>
-																				{item?.sanh == "3 phút"
+																				{item?.sanh === "3 phút"
 																					? "Keno 3p"
-																					: item?.sanh == "5 phút"
+																					: item?.sanh === "5 phút"
 																					? "Keno 5p"
-																					: item?.sanh == "1 phút"
+																					: item?.sanh === "1 phút"
 																					? "Keno 1p"
 																					: item?.sanh}
 																			</TableCell>
@@ -498,11 +498,11 @@ function HistoryBetAll() {
 													<div>Trò chơi: </div>
 													<div>
 														<b>
-															{ls.sanh == "3 phút"
+															{ls.sanh === "3 phút"
 																? "Keno 3p"
-																: ls.sanh == "5 phút"
+																: ls.sanh === "5 phút"
 																? "Keno 5p"
-																: ls.sanh == "1 phút"
+																: ls.sanh === "1 phút"
 																? "Keno 1p"
 																: ls.sanh}
 														</b>

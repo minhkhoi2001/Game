@@ -770,7 +770,7 @@ function Taixiu5() {
 				<ChatButton />
 				<Footer />
 
-				{isShow === true && ls.status_bet != "Pending" ? (
+				{isShow === true && ls.status_bet !== "Pending" ? (
 					<>
 						<div className="modal" style={{ zIndex: "9999999" }}>
 							<div className="modaloverlay">

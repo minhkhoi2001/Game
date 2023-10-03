@@ -19,7 +19,7 @@ function Xucxac5() {
 	const date = new Date();
 	const currentMinute = date.getMinutes();
 	const currentSecond = date.getSeconds();
-	const [item, setState] = useState(null);
+	//const [item, setState] = useState(null);
 	const [total, setTotal] = useState(null);
 	const [total2, setTotal2] = useState(null);
 	const [setting, setSetting] = useState(null);
@@ -823,7 +823,7 @@ function Xucxac5() {
 					</div>
 				)}
 
-				{isShow === true && ls.status_bet != "Pending" ? (
+				{isShow === true && ls.status_bet !== "Pending" ? (
 				<>
 					<div className="modal" style={{ zIndex: "9999999" }}>
 						<div className="modaloverlay"></div>

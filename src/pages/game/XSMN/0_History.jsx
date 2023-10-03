@@ -104,7 +104,7 @@ const History = ({ isOpen, closePopup }) => {
 					</div>
 				</div>
 			)}
-			{isShow === true && ls.status_bet != "Pending" ? (
+			{isShow === true && ls.status_bet !== "Pending" ? (
 				<>
 					<div className="modal" style={{ zIndex: "9999999" }}>
 						<div className="modaloverlay"></div>

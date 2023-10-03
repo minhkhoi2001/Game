@@ -19,7 +19,7 @@ const ChatButton = () => {
 			.post(`https://chat.best96tx.com/getAllConversations`, { myId })
 			.then((res) => {
 				const filteredObjects = res.data.listMessage.filter(
-					(obj) => obj.unread == "0"
+					(obj) => obj.unread === "0"
 				);
 				const count = filteredObjects.length;
 				setUnread(count);
@@ -30,7 +30,7 @@ const ChatButton = () => {
 					.post(`https://chat.best96tx.com/getAllConversations`, { myId })
 					.then((res) => {
 						const filteredObjects = res.data.listMessage.filter(
-							(obj) => obj.unread == "0"
+							(obj) => obj.unread === "0"
 						);
 						const count = filteredObjects.length;
 						setUnread(count);

@@ -1,17 +1,17 @@
 import React from "react";
 import { Link } from "react-router-dom";
-import Visibility from "@mui/icons-material/Visibility";
-import VisibilityOff from "@mui/icons-material/VisibilityOff";
+//import Visibility from "@mui/icons-material/Visibility";
+//import VisibilityOff from "@mui/icons-material/VisibilityOff";
 import { useState } from "react";
 
 const Header = ({ profile }) => {
-  const [isShow, setShow] = useState(false);
+  //const [isShow, setShow] = useState(false);
   return (
     <div className="header">
       <div className="header-top">
         <div className="logo">
           <Link to="/">
-            <img src={require("../../img/best96.png")} alt="Logo" />
+            <img alt="" src={require("../../img/best96.png")} />
           </Link>
         </div>
         <div className="header-right">

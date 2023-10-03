@@ -38,7 +38,7 @@ function BankAdmin() {
 	);
 	const [bankItem, setBankItem] = useState();
 	useEffect(() => {
-		if (load == true) {
+		if (load === true) {
 			axios.get(`https://server.vnvip294.com/auth/getbank`, {}).then((res) => {
 				setBank(res.data.data);
 				setLoad(false);

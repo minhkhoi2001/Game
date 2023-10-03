@@ -1,7 +1,8 @@
 import { useEffect, useState } from "react";
 import Footer from "../../components/Footer/Footer";
 import axios from "axios";
-import { Link, useNavigate } from "react-router-dom";
+import { useNavigate } from "react-router-dom";
+import Header from "../components/Header";
 
 function Notification() {
 	const [profile, setProfile] = useState(null);
@@ -40,38 +41,30 @@ function Notification() {
 	return (
 		<>
 			<div className="main">
-				<div className="header">
-					<div className="header-top">
-						<div className="logo">
-							<Link to="/">
-								<img src={require("../../img/best96.png")} alt="Logo" />
-							</Link>
-						</div>
-					</div>
-				</div>
+				<Header profile={profile} />
 				<h1 className="title-h1">Khuyến Mãi</h1>
 				<div style={{ position: "relative", margin: "1.8rem 0 0" }}>
 					{/*<div className="box-image">
-						<img src={require("../../img/tb1.jpg")} />
+						<img alt="" src={require("../../img/tb1.jpg")} />
 						<div className="box-image-title">Thông báo 1</div>
 					</div>
 					<div className="box-image">
-						<img src={require("../../img/tb2.jpg")} />
+						<img alt="" src={require("../../img/tb2.jpg")} />
 						<div className="box-image-title">Thông báo 2</div>
 					</div>
 					<div className="box-image">
-						<img src={require("../../img/tb3.jpg")} />
+						<img alt="" src={require("../../img/tb3.jpg")} />
 						<div className="box-image-title">Thông báo 3</div>
 					</div>*/}
 					{notify != null ? (
 						<>
 							{notify.map((item, index) => (
 								<>
-									{index != 0 && item.title != "marquee" ? (
+									{index !== 0 && item.title !== "marquee" ? (
 										<div
 											className="box-image"
 											onClick={() => {
-												if (item.title.indexOf("{") != 0) {
+												if (item.title.indexOf("{") !== 0) {
 													axios
 														.get(
 															`https://server.vnvip294.com/auth/notifyall/${item._id}`,
@@ -89,9 +82,8 @@ function Notification() {
 												}
 											}}
 										>
-											<img
+											<img alt=""
 												src={item.image}
-												alt={item.title}
 												style={{ width: "100%" }}
 											/>
 											<div className="box-image-title">
