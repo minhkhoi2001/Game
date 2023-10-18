@@ -28,7 +28,7 @@ export const SalesCustomer = (props) => {
     );
 
     useEffect(() => {
-        axios.get(`https://server.best96tx.com/statistic/getallcustomer`).then((res) =>
+        axios.get(`${process.env.REACT_APP_API_URL}/statistic/getallcustomer`).then((res) =>
             setData({
                 datasets: [
                     {
@@ -218,7 +218,7 @@ export const SalesCustomer = (props) => {
                     endIcon={<ArrowRightIcon fontSize="small" />}
                     size="small"
                     onClick={() => {
-                        axios.get(`https://server.best96tx.com/statistic/getallcustomer`).then((res) =>
+                        axios.get(`${process.env.REACT_APP_API_URL}/statistic/getallcustomer`).then((res) =>
                             setData({
                                 datasets: [
                                     {

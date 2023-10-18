@@ -32,7 +32,7 @@ function DashboardCustomer() {
     );
 
     useEffect(() => {
-        axios.get(`https://server.best96tx.com/statistic/getallcustomer`).then((res) => setData(res.data.data));
+        axios.get(`${process.env.REACT_APP_API_URL}/statistic/getallcustomer`).then((res) => setData(res.data.data));
     }, []);
     return (
         <>

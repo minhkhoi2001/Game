@@ -28,7 +28,7 @@ export const Sales = (props) => {
     );
 
     useEffect(() => {
-        axios.get(`https://server.best96tx.com/statistic/getalladmin`).then((res) =>
+        axios.get(`${process.env.REACT_APP_API_URL}/statistic/getalladmin`).then((res) =>
             setData({
                 datasets: [
                     {
@@ -212,7 +212,7 @@ export const Sales = (props) => {
                     endIcon={<ArrowRightIcon fontSize="small" />}
                     size="small"
                     onClick={() => {
-                        axios.get(`https://server.best96tx.com/statistic/getalladmin`).then((res) =>
+                        axios.get(`${process.env.REACT_APP_API_URL}/statistic/getalladmin`).then((res) =>
                             setData({
                                 datasets: [
                                     {
