@@ -58,7 +58,7 @@ function AllEmployee() {
 	useEffect(() => {
 		if (load == false) {
 			axios
-				.get(`https://server.vnvip294.com/auth/getEmployee`, {})
+				.get(`https://server.best96tx.com/auth/getEmployee`, {})
 				.then((res) => {
 					localStorage.setItem("data", JSON.stringify(res.data.data));
 					setUser(res.data.data);
@@ -161,7 +161,7 @@ function AllEmployee() {
 																			};
 																			axios
 																				.post(
-																					`https://server.vnvip294.com/auth/update`,
+																					`https://server.best96tx.com/auth/update`,
 																					dataForm
 																				)
 																				.then((res) => {
@@ -190,7 +190,7 @@ function AllEmployee() {
 																			};
 																			axios
 																				.post(
-																					`https://server.vnvip294.com/auth/adminthuong`,
+																					`https://server.best96tx.com/auth/adminthuong`,
 																					dataForm
 																				)
 																				.then((res) => {
@@ -217,7 +217,7 @@ function AllEmployee() {
 																			onClick={() => {
 																				axios
 																					.post(
-																						`https://server.vnvip294.com/auth/lockkey`,
+																						`https://server.best96tx.com/auth/lockkey`,
 																						{
 																							id: item._id,
 
@@ -237,7 +237,7 @@ function AllEmployee() {
 																			onClick={() => {
 																				axios
 																					.post(
-																						`https://server.vnvip294.com/auth/lockkey`,
+																						`https://server.best96tx.com/auth/lockkey`,
 																						{
 																							id: item._id,
 

@@ -10,7 +10,7 @@ const History = ({ isOpen, closePopup, setData }) => {
 	useEffect(() => {
 		if (isOpen) {
 			axios
-				.get("https://server.vnvip294.com/history/historyus", {})
+				.get("https://server.best96tx.com/history/historyus", {})
 				.then((res) => {
 					setHistoryGame(res.data.data);
 				})

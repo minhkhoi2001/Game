@@ -73,7 +73,7 @@
 	bottom: 0;
 	background: #fff;
 	z-index: -1;
-	max-width: 500px;
+	max-width: 300px;
 }
 .chatbox.enter {
 	opacity: 1 !important;
@@ -88,6 +88,8 @@
 	bottom: 65px;
 	z-index: 99999;
 	box-shadow: 0 0.08333rem 0.16667rem #c5c5da40;
+	max-width: 300px;
+	max-height: 500px;
 }
 .chatbox .header-chatbox {
 	flex-shrink: 0;

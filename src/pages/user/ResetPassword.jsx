@@ -25,7 +25,7 @@ function ResetPassword() {
 	);
 	useEffect(() => {
 		axios
-			.get(`https://server.vnvip294.com/auth/getUser`, {})
+			.get(`https://server.best96tx.com/auth/getUser`, {})
 			.then((res) => {
 				setProfile(res.data.data);
 			})
@@ -43,7 +43,7 @@ function ResetPassword() {
 			newpassword: data.password,
 		};
 		axios
-			.post(`https://server.vnvip294.com/auth/password`, formData)
+			.post(`https://server.best96tx.com/auth/password`, formData)
 			.then((res) => {
 				swal("Sửa mật khẩu thành công");
 				navigate("/profile");

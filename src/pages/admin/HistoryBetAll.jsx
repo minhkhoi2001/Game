@@ -72,7 +72,7 @@ function HistoryBetAll() {
 	};
 	useEffect(() => {
 		axios
-			.get(`https://server.vnvip294.com/history/all`, {})
+			.get(`https://server.best96tx.com/history/all`, {})
 			.then((res) => {
 				localStorage.setItem("data", JSON.stringify(res.data.data));
 				setData(res.data.data);
@@ -162,7 +162,7 @@ function HistoryBetAll() {
 			moneythang: e.target.moneythang.value,
 		};
 		axios
-			.patch(`https://server.vnvip294.com/history`, formData)
+			.patch(`https://server.best96tx.com/history`, formData)
 			.then((res) => {
 				setShow(false);
 				swal("Cập nhật thành công").then((value) => {

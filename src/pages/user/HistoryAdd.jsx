@@ -38,13 +38,13 @@ function HistoryAdd() {
 	);
 	useEffect(() => {
 		axios
-			.get(`https://server.vnvip294.com/payment/paymentus`, {})
+			.get(`https://server.best96tx.com/payment/paymentus`, {})
 			.then((res) => {
 				setProfile(res.data.data);
 			})
 			.catch((err) => function () {});
 		axios
-			.get(`https://server.vnvip294.com/auth/getUser`, {})
+			.get(`https://server.best96tx.com/auth/getUser`, {})
 			.then((res) => {
 				setProfile1(res.data.data);
 			})
@@ -53,7 +53,7 @@ function HistoryAdd() {
 	return (
 		<>
 			<div className="main">
-				<Header profile={profile} />
+				<Header profile={profile1} />
 				<h1 className="title-h1">Lịch Sử Nạp Tiền</h1>
 				{profile ? (
 					<div className="content-history" style={{ margin: "1.5rem 0 0" }}>

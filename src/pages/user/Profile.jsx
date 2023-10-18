@@ -38,7 +38,7 @@ function Profile() {
 	);
 	useEffect(() => {
 		axios
-			.get(`https://server.vnvip294.com/auth/getUser`, {})
+			.get(`https://server.best96tx.com/auth/getUser`, {})
 			.then((res) => {
 				setProfile(res.data.data);
 			})
@@ -167,13 +167,13 @@ function Profile() {
 							</span>
 							<KeyboardArrowRightOutlinedIcon />
 						</Link>
-						<Link to="/transfer" className="account__menu-item">
+						{/*<Link to="/transfer" className="account__menu-item">
 							<span>
 								<MoveUpIcon sx={{ fontSize: "25px" }} />
 								Chuyển tiền
 							</span>
 							<KeyboardArrowRightOutlinedIcon />
-						</Link>
+							</Link>*/}
 						<Link to="/password" className="account__menu-item">
 							<span>
 								<LockPersonOutlinedIcon sx={{ fontSize: "25px" }} />

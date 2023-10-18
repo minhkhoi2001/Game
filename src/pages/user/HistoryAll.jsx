@@ -38,13 +38,13 @@ function HistoryAll() {
 	);
 	useEffect(() => {
 		axios
-			.get(`https://server.vnvip294.com/auth/biendongsodu`, {})
+			.get(`https://server.best96tx.com/auth/biendongsodu`, {})
 			.then((res) => {
 				setProfile(res.data.data);
 			})
 			.catch((err) => function () {});
 		axios
-			.get(`https://server.vnvip294.com/auth/getUser`, {})
+			.get(`https://server.best96tx.com/auth/getUser`, {})
 			.then((res) => {
 				setProfile1(res.data.data);
 			})
@@ -53,7 +53,7 @@ function HistoryAll() {
 	return (
 		<>
 			<div className="main">
-				<Header profile={profile} />
+				<Header profile={profile1} />
 				<h1 className="title-h1">Biến Động Số Dư</h1>
 				{profile ? (
 					<div className="content-history" style={{ margin: "1.5rem 0 0" }}>

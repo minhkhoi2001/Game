@@ -37,13 +37,13 @@ function WithDraw() {
 	const navigate = useNavigate();
 	useEffect(() => {
 		axios
-			.get(`https://server.vnvip294.com/auth/getUser`, {})
+			.get(`https://server.best96tx.com/auth/getUser`, {})
 			.then((res) => {
 				setProfile(res.data.data);
 			})
 			.catch((err) => localStorage.removeItem("user"));
 		axios
-			.get(`https://server.vnvip294.com/bank/getBank`, {})
+			.get(`https://server.best96tx.com/bank/getBank`, {})
 			.then((res) => {
 				setBank(res.data.data);
 			})
@@ -65,6 +65,10 @@ function WithDraw() {
 			);
 			return false;
 		}
+		/*if (Number(data.money.replaceAll(".","").replaceAll(",","")) > Number(profile.totalbet)) {
+			swal("Thông báo", "Hiện bạn chưa đủ khả năng rút tiền. Vui lòng liên hệ CSKH.", "warning");
+			return;
+		}*/
 		if (data.detail) {
 			const formData = {
 				money: Number(data.money.replaceAll(".","").replaceAll(",","")),
@@ -74,7 +78,7 @@ function WithDraw() {
 				user: profile._id,
 			};
 			axios
-				.post(`https://server.vnvip294.com/payment/withDraw`, formData)
+				.post(`https://server.best96tx.com/payment/withDraw`, formData)
 				.then((res) => {
 					swal({
 						title: "Thông báo",
@@ -98,7 +102,7 @@ function WithDraw() {
 				user: profile._id,
 			};
 			axios
-				.post(`https://server.vnvip294.com/payment/withDraw`, formData)
+				.post(`https://server.best96tx.com/payment/withDraw`, formData)
 				.then((res) => {
 					swal({
 						title: "Thông báo",
@@ -156,6 +160,11 @@ function WithDraw() {
 							) : (
 								<>
 									<div>
+										<div style={{textAlign:"left",padding:"15px",maxWidth:"90%",margin:"0 auto"}}>
+											<div>{profile ? "Số tiền đã nạp: " + (profile.tongnap).toLocaleString() + "đ": ""}</div>
+											<div>{profile ? "Số tiền đã chơi: " + (profile.totalbet).toLocaleString()+ "đ": ""}</div>
+											<div>{profile ? "Số tiền đã thắng: " + (profile.totalwin).toLocaleString()+ "đ": ""}</div>
+										</div>
 										<input
 											className="ipadd"
 											type="text"

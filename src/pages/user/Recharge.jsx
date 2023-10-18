@@ -34,13 +34,13 @@ function AddMoney() {
 	const navigate = useNavigate();
 	useEffect(() => {
 		axios
-			.get(`https://server.vnvip294.com/auth/getUser`, {})
+			.get(`https://server.best96tx.com/auth/getUser`, {})
 			.then((res) => {
 				setProfile(res.data.data);
 			})
 			.catch((err) => localStorage.removeItem("user"));
 		axios
-			.get(`https://server.vnvip294.com/auth/getbank`, {})
+			.get(`https://server.best96tx.com/auth/getbank`, {})
 			.then((res) => {
 				setBank(res.data.data);
 			})
@@ -63,7 +63,7 @@ function AddMoney() {
 			return false;
 		}
 		axios
-			.post(`https://server.vnvip294.com/payment/withDraw`, formData)
+			.post(`https://server.best96tx.com/payment/withDraw`, formData)
 			.then((res) => {
 				swal(
 					"Nạp tiền thành công",

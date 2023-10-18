@@ -49,26 +49,26 @@ function Taixiu5() {
 		}
 	);
 	useEffect(() => {
-		axios.get(`https://server.vnvip294.com/auth/getUser`, {}).then((res) => {
+		axios.get(`https://server.best96tx.com/auth/getUser`, {}).then((res) => {
 			setProfile(res.data.data);
 		});
-		axios.get(`https://server.vnvip294.com/setting/get`, {}).then((res) => {
+		axios.get(`https://server.best96tx.com/setting/get`, {}).then((res) => {
 			setSetting(res.data.data[0]);
 		});
-		axios.get(`https://server.vnvip294.com/taixiu5/get`).then((res) => {
+		axios.get(`https://server.best96tx.com/taixiu5/get`).then((res) => {
 			setBet(res.data.data);
 			setDulieunhap(new Date(res.data.data.createdAt));
 			setStart(true);
 		});
 		axios
-			.get(`https://server.vnvip294.com/taixiu5/getallbet`, {})
+			.get(`https://server.best96tx.com/taixiu5/getallbet`, {})
 			.then((res) => {
 				setTotal(res.data.data);
 				setTotal2(res.data.data);
 			})
 			.catch(() => setTotal(null));
 		axios
-			.get(`https://server.vnvip294.com/notification/getnotifi`, {})
+			.get(`https://server.best96tx.com/notification/getnotifi`, {})
 			.then((res) => {
 				setVisible({
 					money: res.data.data[0].money.toLocaleString(),
@@ -81,22 +81,22 @@ function Taixiu5() {
 		const timer = setInterval(() => {
 			if (Math.floor(300 - (new Date() - dulieunhap) / 1000) < 0) {
 				axios
-					.get(`https://server.vnvip294.com/auth/getUser`, {})
+					.get(`https://server.best96tx.com/auth/getUser`, {})
 					.then((res) => {
 						setProfile(res.data.data);
 					});
-				axios.get(`https://server.vnvip294.com/taixiu5/get`).then((res) => {
+				axios.get(`https://server.best96tx.com/taixiu5/get`).then((res) => {
 					setBet(res.data.data);
 					setDulieunhap(new Date(res.data.data.createdAt));
 				});
 				axios
-					.get(`https://server.vnvip294.com/taixiu5/getallbet`, {})
+					.get(`https://server.best96tx.com/taixiu5/getallbet`, {})
 					.then((res) => {
 						rollLottery(res);
 					})
 					.catch(() => setTotal(null));
 				axios
-					.get(`https://server.vnvip294.com/notification/getnotifi`, {})
+					.get(`https://server.best96tx.com/notification/getnotifi`, {})
 					.then((res) => {
 						setVisible({
 							money: res.data.data[0].money.toLocaleString(),
@@ -126,7 +126,7 @@ function Taixiu5() {
 
 			switch (result) {
 				case "submit":
-					axios.post("https://server.vnvip294.com/notification/seen", {
+					axios.post("https://server.best96tx.com/notification/seen", {
 						id: data.id,
 					});
 					break;
@@ -195,6 +195,14 @@ function Taixiu5() {
 
 	const [newMoney, setNewMoney] = useState(null);
 	const onChoose = (e) => {
+		if (item1.includes("1") && e.target.id === "2" || item1.includes("2") && e.target.id === "1") {
+			swal("Thông báo", "Không được phép đặt 2 cửa", "warning");
+			return;
+		}
+		if (item1.includes("3") && e.target.id === "4" || item1.includes("4") && e.target.id === "3") {
+			swal("Thông báo", "Không được phép đặt 2 cửa", "warning");
+			return;
+		}
 		if (item1.includes(e.target.id)) {
 			setItem(item1.filter((item) => item !== e.target.id));
 		} else {
@@ -220,8 +228,9 @@ function Taixiu5() {
 		if (item1.length == 0) {
 			swal("Thất bại", "Bạn chưa lựa chọn", "error");
 		} else {
+			if (Number(second) > 5) {
 			axios
-				.post("https://server.vnvip294.com/tx5/choose", formData)
+				.post("https://server.best96tx.com/tx5/choose", formData)
 				.then((res) => {
 					swal({
 						title: "Đặt cược thành công",
@@ -251,13 +260,16 @@ function Taixiu5() {
 					});
 					setItem([]);
 					axios
-						.get(`https://server.vnvip294.com/auth/getUser`, {})
+						.get(`https://server.best96tx.com/auth/getUser`, {})
 						.then((res) => {
 								setProfile(res.data.data);
 						});
 					getHistoryBet();
 				})
 				.catch((err) => swal("Đã xảy ra lỗi", "Vui lòng tải lại trang", "error"));
+			} else {
+				swal("Đã hết thời gian cược", "Vui lòng chờ phiên tiếp theo", "info");
+			}
 		}
 	};
 	function formatDate(m) {
@@ -317,7 +329,7 @@ function Taixiu5() {
 
 	function getHistoryBet() {
 		axios
-			.get(`https://server.vnvip294.com/history/historyus`, {})
+			.get(`https://server.best96tx.com/history/historyus`, {})
 			.then((res) => {
 				setHistoryGame(res.data.data);
 			})
@@ -599,7 +611,7 @@ function Taixiu5() {
 													{item1.length != 0 && newMoney
 														? (
 																item1.length *
-																Number(newMoney.replaceAll(".", ""))
+																Number(newMoney.replaceAll(".", "").replaceAll(",", ""))
 														  ).toLocaleString()
 														: 0}{" "}
 													đ

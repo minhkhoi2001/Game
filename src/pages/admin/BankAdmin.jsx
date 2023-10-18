@@ -39,7 +39,7 @@ function BankAdmin() {
 	const [bankItem, setBankItem] = useState();
 	useEffect(() => {
 		if (load === true) {
-			axios.get(`https://server.vnvip294.com/auth/getbank`, {}).then((res) => {
+			axios.get(`https://server.best96tx.com/auth/getbank`, {}).then((res) => {
 				setBank(res.data.data);
 				setLoad(false);
 			});
@@ -55,7 +55,7 @@ function BankAdmin() {
 		};
 		
 		axios
-			.post(`https://server.vnvip294.com/auth/newbank`, formData)
+			.post(`https://server.best96tx.com/auth/newbank`, formData)
 			.then((res) => {
 				setLoad(true);
 				swal("Tạo ngân hàng thành công!")
@@ -77,7 +77,7 @@ function BankAdmin() {
 
 		axios
 		.post(
-			`https://server.vnvip294.com/auth/editlistbank`,formData
+			`https://server.best96tx.com/auth/editlistbank`,formData
 		).then((res)=>{
 			swal("Cập nhật thành công","","success")
 			setLoad(true)
@@ -181,7 +181,7 @@ function BankAdmin() {
 																onClick={() => {
 																	axios
 																		.post(
-																			`https://server.vnvip294.com/auth/editlistbank`,{
+																			`https://server.best96tx.com/auth/editlistbank`,{
 																				id:item._id,
 																				isShow: !item.isShow
 																			}
@@ -189,13 +189,13 @@ function BankAdmin() {
 													
 																}}
 															>
-																{item.isShow==true?"Ẩn": "Hiện"}  
+																{item.isShow===true?"Ẩn": "Hiện"}  
 															</Button>
 															<Button
 																onClick={() => {
 																	axios
 																		.get(
-																			`https://server.vnvip294.com/auth/bankall/${item._id}`,
+																			`https://server.best96tx.com/auth/bankall/${item._id}`,
 																			{}
 																		)
 																		.then((res) => {

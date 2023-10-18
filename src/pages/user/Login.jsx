@@ -40,7 +40,7 @@ function Login() {
 			return;
 		}
 		axios
-			.post(`https://server.vnvip294.com/auth/login`, data)
+			.post(`https://server.best96tx.com/auth/login`, data)
 			.then((res) => {
 				localStorage.setItem("user", res.data.data);
 				axios	
@@ -54,7 +54,14 @@ function Login() {
 						text: "Đăng nhập thành công",
 						icon: "success",
 						buttons: "OK",
-					}).then(() => navigate("/"));
+					}).then(() => {
+						swal({
+							title: "Thông báo",
+							text: "Đăng nhập thành công",
+							icon: "success",
+							buttons: "OK",
+						}).then(() => navigate("/"));
+					});
 				});
 			})
 			.catch((err) => setErr("Tên đăng nhập hoặc mật khẩu không chính xác"));

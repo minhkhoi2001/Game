@@ -7,6 +7,8 @@ import { GetNameChoose } from "../../funcUtils";
 const ShareChat = ({ show, hide, message, updateShare }) => {
 	const [listUsers, setListUser] = useState(null);
 	const [listGroups, setListGroup] = useState(null);
+	const localdata = localStorage.getItem("currentUser");
+	const sender_id = localdata.substring(0, localdata.indexOf("_"));
 	useEffect(() => {
 		if (show) {
 			setInterval(function(){
@@ -16,18 +18,22 @@ const ShareChat = ({ show, hide, message, updateShare }) => {
 					setListUser(res.data.listUser);
 				})
 				.catch((err) => console.log(err));
-			axios
+			/*axios
 				.get(`https://chat.best96tx.com/getlistGroup`, {})
 				.then((res) => {
 					setListGroup(res.data.listGroup);
+				})
+				.catch((err) => console.log(err));*/
+			axios
+				.post(`https://chat.best96tx.com/getlistGroupById`, {id:sender_id})
+				.then((res) => {
+					setListGroup(res.data.contacts);
 				})
 				.catch((err) => console.log(err));
 			}, 2000);
 		}
 	}, [show]);
 	function postMessage(group_id) {
-		const localdata = localStorage.getItem("currentUser");
-		const sender_id = localdata.substring(0, localdata.indexOf("_"));
 		axios
 			.post(`https://chat.best96tx.com/postMessage`, {
 				message,

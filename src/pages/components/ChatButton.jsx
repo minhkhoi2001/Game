@@ -16,27 +16,19 @@ const ChatButton = () => {
 	const myId = localdata.substring(0, localdata.indexOf("_"));
 	useEffect(() => {
 		axios
-			.post(`https://chat.best96tx.com/getAllConversations`, { myId })
+			.post(`https://chat.best96tx.com/getUnreadById`, { id: myId })
 			.then((res) => {
-				const filteredObjects = res.data.listMessage.filter(
-					(obj) => obj.unread === "0"
-				);
-				const count = filteredObjects.length;
-				setUnread(count);
+				setUnread(res.data.unread);
 			});
-		if (localdata) {
+		/*if (localdata) {
 			const timer = setInterval(() => {
 				axios
-					.post(`https://chat.best96tx.com/getAllConversations`, { myId })
+					.post(`https://chat.best96tx.com/getUnreadById`, { id: myId })
 					.then((res) => {
-						const filteredObjects = res.data.listMessage.filter(
-							(obj) => obj.unread === "0"
-						);
-						const count = filteredObjects.length;
-						setUnread(count);
+						setUnread(res.data.unread);
 					});
 			}, 3000);
-		}
+		}*/
 	}, []);
 	return (
 		<>

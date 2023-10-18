@@ -40,7 +40,7 @@ export const TrafficByDeviceCustomer = (props) => {
 	);
 
 	useEffect(() => {
-		axios.get("https://server.vnvip294.com/statistic/getallcustomer").then((res) =>
+		axios.get("https://server.best96tx.com/statistic/getallcustomer").then((res) =>
 			setData({
 				datasets: [
 					{
@@ -63,7 +63,7 @@ export const TrafficByDeviceCustomer = (props) => {
 		if(load==true){
 			axios
 			.get(
-				`https://server.vnvip294.com/statistic/getbydaycustomer?dateStart=${startDate}&endDate=${endDate}`
+				`https://server.best96tx.com/statistic/getbydaycustomer?dateStart=${startDate}&endDate=${endDate}`
 			)
 			.then((res) =>
 				setData({
@@ -206,7 +206,7 @@ export const TrafficByDeviceCustomer = (props) => {
 					endIcon={<ArrowRightIcon fontSize="small" />}
 					size="small"
 					onClick={()=>{
-						axios.get("https://server.vnvip294.com/statistic/getallcustomer").then((res) =>
+						axios.get("https://server.best96tx.com/statistic/getallcustomer").then((res) =>
 						setData({
 							datasets: [
 								{

@@ -35,25 +35,25 @@ function Invite() {
 	}, []);
 	useEffect(() => {
 		axios
-			.get(`https://server.vnvip294.com/auth/getUser`, {})
+			.get(`https://server.best96tx.com/auth/getUser`, {})
 			.then((res) => {
 				setProfile(res.data.data);
 			})
 			.catch((err) => localStorage.removeItem("user"));
-		axios.get(`https://server.vnvip294.com/profit/get`, {}).then((res) => {
+		axios.get(`https://server.best96tx.com/profit/get`, {}).then((res) => {
 			setProfit(res.data.data[0]);
 		});
-		/*axios.get(`https://server.vnvip294.com/setting/get`, {}).then((res) => {
+		/*axios.get(`https://server.best96tx.com/setting/get`, {}).then((res) => {
 			setSetting(res.data.data[0]);
 		});*/
 	}, []);
 	return (
 		<>
-			{isLoading ? (
+			{/*isLoading ? (
 				<div className="loading">
 					<div className="loader"></div>
 				</div>
-			) : null}
+			) : null*/}
 			<div className="main">
 				<Header profile={profile} />
 				<h1 className="title-h1">Mời Bạn Bè</h1>

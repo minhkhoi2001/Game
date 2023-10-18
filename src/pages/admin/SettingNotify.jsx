@@ -47,7 +47,7 @@ function SettingNotify() {
 	const [notifyItem, setNotifyItem] = useState();
 	useEffect(() => {
 		if (load === true) {
-			axios.get(`https://server.vnvip294.com/auth/getnotify`, {}).then((res) => {
+			axios.get(`https://server.best96tx.com/auth/getnotify`, {}).then((res) => {
 				setNotify(res.data.data);
 				setLoad(false);
 			});
@@ -61,7 +61,7 @@ function SettingNotify() {
 			content: content,
 		};
 		axios
-			.post(`https://server.vnvip294.com/auth/newnotify`, formData)
+			.post(`https://server.best96tx.com/auth/newnotify`, formData)
 			.then((res) => {
 				setLoad(true);
 				swal("Tạo thông báo thành công!")
@@ -82,7 +82,7 @@ function SettingNotify() {
 
 		axios
 		.post(
-			`https://server.vnvip294.com/auth/editlistnotify`,formData
+			`https://server.best96tx.com/auth/editlistnotify`,formData
 		).then((res)=>{
 			swal("Cập nhật thành công","","success")
 			setLoad(true)
@@ -121,7 +121,7 @@ function SettingNotify() {
 																onClick={() => {
 																	axios
 																		.get(
-																			`https://server.vnvip294.com/auth/notifyall/${item._id}`,
+																			`https://server.best96tx.com/auth/notifyall/${item._id}`,
 																			{}
 																		)
 																		.then((res) => {
@@ -208,7 +208,7 @@ function SettingNotify() {
 																onClick={() => {
 																	axios
 																		.post(
-																			`https://server.vnvip294.com/auth/editlistnotify`,{
+																			`https://server.best96tx.com/auth/editlistnotify`,{
 																				id:item._id,
 																				isShow: !item.isShow
 																			}
@@ -222,7 +222,7 @@ function SettingNotify() {
 																onClick={() => {
 																	axios
 																		.get(
-																			`https://server.vnvip294.com/auth/notifyall/${item._id}`,
+																			`https://server.best96tx.com/auth/notifyall/${item._id}`,
 																			{}
 																		)
 																		.then((res) => {

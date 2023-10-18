@@ -39,7 +39,7 @@ export const TrafficByDevice = (props) => {
 	);
 
 	useEffect(() => {
-		axios.get("https://server.vnvip294.com/statistic/getalladmin").then((res) =>
+		axios.get("https://server.best96tx.com/statistic/getalladmin").then((res) =>
 			setData({
 				datasets: [
 					{
@@ -61,7 +61,7 @@ export const TrafficByDevice = (props) => {
 		if(load==true){
 			axios
 			.get(
-				`https://server.vnvip294.com/statistic/getbydayadmin?dateStart=${startDate}&endDate=${endDate}`
+				`https://server.best96tx.com/statistic/getbydayadmin?dateStart=${startDate}&endDate=${endDate}`
 			)
 			.then((res) =>
 				setData({
@@ -217,7 +217,7 @@ export const TrafficByDevice = (props) => {
 					endIcon={<ArrowRightIcon fontSize="small" />}
 					size="small"
 					onClick={()=>{
-						axios.get("https://server.vnvip294.com/statistic/getalladmin").then((res) =>
+						axios.get("https://server.best96tx.com/statistic/getalladmin").then((res) =>
 						setData({
 							datasets: [
 								{

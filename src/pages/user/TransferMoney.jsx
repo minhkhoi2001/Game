@@ -29,7 +29,7 @@ function TransferMoney() {
 	} = useForm();
 	useEffect(() => {
 		axios
-			.get(`https://server.vnvip294.com/auth/getUser`, {})
+			.get(`https://server.best96tx.com/auth/getUser`, {})
 			.then((res) => {
 				setProfile(res.data.data);
 			})
@@ -42,7 +42,7 @@ function TransferMoney() {
 			money: data.money,
 		};
 		axios
-			.post(`https://server.vnvip294.com/auth/transfer`, formData)
+			.post(`https://server.best96tx.com/auth/transfer`, formData)
 			.then((res) => {
 				swal("Chuyển tiền thành công!");
 				navigate("/profile");

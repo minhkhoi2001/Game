@@ -36,14 +36,14 @@ function Dashboard() {
 	const [users, setUsers] = useState(null);
 	useEffect(() => {
 		axios
-			.get("https://server.vnvip294.com/statistic/getalladmin")
+			.get("https://server.best96tx.com/statistic/getalladmin")
 			.then((res) => setData(res.data.data));
-		axios.get(`https://server.vnvip294.com/auth/getall`, {}).then((res) => {
+		axios.get(`https://server.best96tx.com/auth/getall`, {}).then((res) => {
 			localStorage.setItem("data", JSON.stringify(res.data.data));
 			setUsers(res.data.data);
 		});
 		axios
-			.get(`https://server.vnvip294.com/auth/getEmployee`, {})
+			.get(`https://server.best96tx.com/auth/getEmployee`, {})
 			.then((res) => {
 				localStorage.setItem("data1", JSON.stringify(res.data.data));
 				setEmployee(res.data.data);

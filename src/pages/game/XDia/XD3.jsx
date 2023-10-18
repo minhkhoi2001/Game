@@ -58,26 +58,26 @@ function XD3() {
 		setNewMoney(Number(Number(option) * 1000).toLocaleString());
 	};
 	useEffect(() => {
-		axios.get(`https://server.vnvip294.com/auth/getUser`, {}).then((res) => {
+		axios.get(`https://server.best96tx.com/auth/getUser`, {}).then((res) => {
 			setProfile(res.data.data);
 		});
-		axios.get(`https://server.vnvip294.com/setting/get`, {}).then((res) => {
+		axios.get(`https://server.best96tx.com/setting/get`, {}).then((res) => {
 			setSetting(res.data.data[0]);
 		});
-		axios.get(`https://server.vnvip294.com/xd3/get`).then((res) => {
+		axios.get(`https://server.best96tx.com/xd3/get`).then((res) => {
 			setBet(res.data.data);
 			setDulieunhap(new Date(res.data.data.createdAt));
 			setStart(true);
 		});
 		axios
-			.get(`https://server.vnvip294.com/xd3/getallbet`, {})
+			.get(`https://server.best96tx.com/xd3/getallbet`, {})
 			.then((res) => {
 				setTotal(res.data.data);
 				setTotal2(res.data.data);
 			})
 			.catch(() => setTotal(null));
 		axios
-			.get(`https://server.vnvip294.com/notification/getnotifi`, {})
+			.get(`https://server.best96tx.com/notification/getnotifi`, {})
 			.then((res) => {
 				setVisible({
 					money: res.data.data[0].money.toLocaleString(),
@@ -90,22 +90,22 @@ function XD3() {
 		const timer = setInterval(() => {
 			if (Math.floor(180 - (new Date() - dulieunhap) / 1000) < 0) {
 				axios
-					.get(`https://server.vnvip294.com/auth/getUser`, {})
+					.get(`https://server.best96tx.com/auth/getUser`, {})
 					.then((res) => {
 						setProfile(res.data.data);
 					});
-				axios.get(`https://server.vnvip294.com/xd3/get`).then((res) => {
+				axios.get(`https://server.best96tx.com/xd3/get`).then((res) => {
 					setBet(res.data.data);
 					setDulieunhap(new Date(res.data.data.createdAt));
 				});
 				axios
-					.get(`https://server.vnvip294.com/xd3/getallbet`, {})
+					.get(`https://server.best96tx.com/xd3/getallbet`, {})
 					.then((res) => {
 						setTotal(res.data.data);
 					})
 					.catch(() => setTotal(null));
 				axios
-					.get(`https://server.vnvip294.com/notification/getnotifi`, {})
+					.get(`https://server.best96tx.com/notification/getnotifi`, {})
 					.then((res) => {
 						setVisible({
 							money: res.data.data[0].money.toLocaleString(),
@@ -174,6 +174,10 @@ function XD3() {
 	}, [second, start, dulieunhap]);
 	const [choose, setChoose] = useState([]);
 	function onChoose(num) {
+		if (choose.includes("6") && num === "5" || choose.includes("5") && num === "6") {
+			swal("Thông báo", "Không được phép đặt 2 cửa", "warning");
+			return;
+		}
 		if (choose.includes(num)) {
 			setChoose(choose.filter((item) => item !== num));
 		} else {
@@ -197,12 +201,12 @@ function XD3() {
 			swal("Thất bại", "Số dư không đủ", "error");
 			return;
 		}
-		if (Number(second) > 10) {
+		if (Number(second) > 5) {
 			if (choose.length == 0) {
 				swal("Thất bại", "Bạn chưa lựa chọn", "error");
 			} else {
 				axios
-					.post("https://server.vnvip294.com/cxd3/choose", formData)
+					.post("https://server.best96tx.com/cxd3/choose", formData)
 					.then((res) => {
 						swal({
 							title: "Đặt cược thành công",
@@ -232,7 +236,7 @@ function XD3() {
 						});
 						setChoose([]);
 						axios
-							.get(`https://server.vnvip294.com/auth/getUser`, {})
+							.get(`https://server.best96tx.com/auth/getUser`, {})
 							.then((res) => {
 								setProfile(res.data.data);
 							});
@@ -267,7 +271,7 @@ function XD3() {
 
 	function getHistoryBet() {
 		axios
-			.get(`https://server.vnvip294.com/history/historyus`, {})
+			.get(`https://server.best96tx.com/history/historyus`, {})
 			.then((res) => {
 				setHistoryGame(res.data.data);
 			})
@@ -328,10 +332,9 @@ function XD3() {
 							<img alt=""
 								src={chen}
 								className="point"
-								alt=""
 								style={{ animation: "movePointBack" }}
 							/>
-							<img alt="" className="check" src={dia} alt="" />
+							<img alt="" className="check" src={dia} />
 							{total && (
 								<div className="history_xucxac result-dia">
 									{total[0].result.split(" ").map((item) => (

@@ -65,15 +65,15 @@ function Loxien4() {
 					},
 				]);
 			});
-		axios.get(`https://server.vnvip294.com/auth/getUser`, {}).then((res) => {
+		axios.get(`https://server.best96tx.com/auth/getUser`, {}).then((res) => {
 			setProfile(res.data.data);
 		});
-		axios.get(`https://server.vnvip294.com/setting/get`, {}).then((res) => {
+		axios.get(`https://server.best96tx.com/setting/get`, {}).then((res) => {
 			setSetting(res.data.data[0]);
 		});
 
 		axios
-			.get(`https://server.vnvip294.com/notification/getnotifi`, {})
+			.get(`https://server.best96tx.com/notification/getnotifi`, {})
 			.then((res) => {
 				setVisible({
 					money: res.data.data[0].money.toLocaleString(),
@@ -96,7 +96,7 @@ function Loxien4() {
 
 			switch (result) {
 				case "submit":
-					axios.post("https://server.vnvip294.com/notification/seen", {
+					axios.post("https://server.best96tx.com/notification/seen", {
 						id: data.id,
 					});
 					break;
@@ -188,7 +188,7 @@ function Loxien4() {
 				swal("Thất bại", "Bạn chưa chọn số đánh", "info");
 			} else {
 				axios
-					.post("https://server.vnvip294.com/history/chooseXSMB", formData)
+					.post("https://server.best96tx.com/history/chooseXSMB", formData)
 					.then((res) => {
 						swal("Đặt cược thành công", "", "success");
 						setItem([]);
@@ -209,7 +209,7 @@ function Loxien4() {
 				swal("Thất bại", "Bạn chưa chọn số đánh", "info");
 			} else {
 				axios
-					.post("https://server.vnvip294.com/history/chooseXSMB", formData)
+					.post("https://server.best96tx.com/history/chooseXSMB", formData)
 					.then((res) => {
 						swal("Đặt cược thành công", "", "success");
 						setItem([]);

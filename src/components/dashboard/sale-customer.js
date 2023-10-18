@@ -1,5 +1,5 @@
 import { Bar } from "react-chartjs-2";
-import Chart from "chart.js/auto";
+//import Chart from "chart.js/auto";
 import {
 	Box,
 	Button,
@@ -9,7 +9,7 @@ import {
 	Divider,
 	useTheme,
 } from "@mui/material";
-import ArrowDropDownIcon from "@mui/icons-material/ArrowDropDown";
+//import ArrowDropDownIcon from "@mui/icons-material/ArrowDropDown";
 import ArrowRightIcon from "@mui/icons-material/ArrowRight";
 import { useEffect, useState } from "react";
 import axios from "axios";
@@ -39,7 +39,7 @@ export const SalesCustomer = (props) => {
 	);
 
 	useEffect(() => {
-		axios.get("https://server.vnvip294.com/statistic/getallcustomer").then((res) =>
+		axios.get("https://server.best96tx.com/statistic/getallcustomer").then((res) =>
 			setData({
 				datasets: [
 					{
@@ -81,7 +81,7 @@ export const SalesCustomer = (props) => {
 		if (load === true) {
 			axios
 				.get(
-					`https://server.vnvip294.com/statistic/getbydaycustomer?dateStart=${startDate}&endDate=${endDate}`
+					`https://server.best96tx.com/statistic/getbydaycustomer?dateStart=${startDate}&endDate=${endDate}`
 				)
 				.then((res) =>
 					setData({
@@ -262,7 +262,7 @@ export const SalesCustomer = (props) => {
 					endIcon={<ArrowRightIcon fontSize="small" />}
 					size="small"
 					onClick={() => {
-						axios.get("https://server.vnvip294.com/statistic/getallcustomer").then((res) =>
+						axios.get("https://server.best96tx.com/statistic/getallcustomer").then((res) =>
 							setData({
 								datasets: [
 									{

@@ -22,7 +22,7 @@ const PrivateCustomer=()=>{
 	);
 	useEffect(()=>{
 		axios
-			.get(`https://server.vnvip294.com/auth/getUser`,{
+			.get(`https://server.best96tx.com/auth/getUser`,{
 			})
 			.then((res) => {
 					setChecking(false)

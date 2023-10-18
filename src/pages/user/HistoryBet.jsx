@@ -41,13 +41,13 @@ function HistoryBet() {
 
 	useEffect(() => {
 		axios
-			.get(`https://server.vnvip294.com/history/historyus`, {})
+			.get(`https://server.best96tx.com/history/historyus`, {})
 			.then((res) => {
 				setProfile(res.data.data);
 			})
 			.catch((err) => function () {});
 		axios
-			.get(`https://server.vnvip294.com/auth/getUser`, {})
+			.get(`https://server.best96tx.com/auth/getUser`, {})
 			.then((res) => {
 				setProfile1(res.data.data);
 			})
@@ -56,7 +56,7 @@ function HistoryBet() {
 	return (
 		<>
 			<div className="main">
-				<Header profile={profile} />
+				<Header profile={profile1} />
 				<h1 className="title-h1">Lịch Sử Tham Gia</h1>
 				{profile != null ? (
 					<div className="content-history" style={{ margin: "1.5rem 0 0" }}>

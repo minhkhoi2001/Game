@@ -51,7 +51,7 @@ function Register() {
 		}
 		if (data.code === "") {
 			axios
-				.post(`https://server.vnvip294.com/auth/register`, {
+				.post(`https://server.best96tx.com/auth/register`, {
 					username: data.username,
 					password: data.password,
 					code: "admin",
@@ -79,7 +79,7 @@ function Register() {
 				});
 		} else if (data.code) {
 			axios
-				.post(`https://server.vnvip294.com/auth/register`, {
+				.post(`https://server.best96tx.com/auth/register`, {
 					username: data.username,
 					password: data.password,
 					code: data.code,
