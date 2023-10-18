@@ -28,14 +28,11 @@ function Loxien3() {
 	axios.interceptors.request.use(
 		(config) => {
 			const token = localStorage.getItem("user");
-
 			if (token) {
 				config.headers["Authorization"] = `Bearer ${token}`;
 			}
-
 			return config;
 		},
-
 		(error) => {
 			return Promise.reject(error);
 		}
@@ -57,26 +54,26 @@ function Loxien3() {
 		};
 	}
 	useEffect(() => {
-		axios.get(`https://server.best96tx.com/auth/getUser`, {}).then((res) => {
+		axios.get(`${process.env.REACT_APP_API_URL}/auth/getUser`, {}).then((res) => {
 			setProfile(res.data.data);
 		});
-		axios.get(`https://server.best96tx.com/setting/get`, {}).then((res) => {
+		axios.get(`${process.env.REACT_APP_API_URL}/setting/get`, {}).then((res) => {
 			setSetting(res.data.data[0]);
 		});
-		axios.get(`https://server.best96tx.com/Xoso5/get`).then((res) => {
+		axios.get(`${process.env.REACT_APP_API_URL}/Xoso5/get`).then((res) => {
 			setBet(res.data.data);
 			setDulieunhap(new Date(res.data.data.createdAt));
 			setStart(true);
 		});
 		axios
-			.get(`https://server.best96tx.com/Xoso5/getallbet`, {})
+			.get(`${process.env.REACT_APP_API_URL}/Xoso5/getallbet`, {})
 			.then((res) => {
 				rollLottery(res);
 				setNewData(res.data.data);
 			})
 			.catch(() => setTotal(null));
 		axios
-			.get(`https://server.best96tx.com/notification/getnotifi`, {})
+			.get(`${process.env.REACT_APP_API_URL}/notification/getnotifi`, {})
 			.then((res) => {
 				setVisible({
 					money: res.data.data[0].money.toLocaleString(),
@@ -88,23 +85,23 @@ function Loxien3() {
 		const timer = setInterval(() => {
 			if (Math.floor(300 - (new Date() - dulieunhap) / 1000) < 0) {
 				axios
-					.get(`https://server.best96tx.com/auth/getUser`, {})
+					.get(`${process.env.REACT_APP_API_URL}/auth/getUser`, {})
 					.then((res) => {
 						setProfile(res.data.data);
 					});
-				axios.get(`https://server.best96tx.com/Xoso5/get`).then((res) => {
+				axios.get(`${process.env.REACT_APP_API_URL}/Xoso5/get`).then((res) => {
 					setBet(res.data.data);
 					setDulieunhap(new Date(res.data.data.createdAt));
 				});
 				axios
-					.get(`https://server.best96tx.com/Xoso5/getallbet`, {})
+					.get(`${process.env.REACT_APP_API_URL}/Xoso5/getallbet`, {})
 					.then((res) => {
 						rollLottery(res);
 						setNewData(res.data.data);
 					})
 					.catch(() => setTotal(null));
 				axios
-					.get(`https://server.best96tx.com/notification/getnotifi`, {})
+					.get(`${process.env.REACT_APP_API_URL}/notification/getnotifi`, {})
 					.then((res) => {
 						setVisible({
 							money: res.data.data[0].money.toLocaleString(),

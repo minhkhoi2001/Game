@@ -7,9 +7,10 @@ import { Provider } from "react-redux";
 import store from "../src/app/store";
 
 ReactDOM.createRoot(document.getElementById("root")).render(
-  <Provider store={store}>
-      <React.Suspense fallback={<div className="admin-theme">Loading...</div>}>
-      <App />
-      </React.Suspense>
-  </Provider>
-);reportWebVitals();
+    <Provider store={store}>
+        <React.Suspense fallback={<div className="admin-theme">Loading...</div>}>
+            <App />
+        </React.Suspense>
+    </Provider>
+);
+reportWebVitals();

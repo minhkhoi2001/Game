@@ -4,155 +4,121 @@ import { theme } from "../../theme";
 import "./users.css";
 import axios from "axios";
 import { toast, ToastContainer } from "react-toastify";
-
-import {
-	Box,
-	Button,
-	Container,
-	Input,
-	Table,
-	TableBody,
-	TableCell,
-	TableHead,
-	TableRow,
-	TextField,
-} from "@mui/material";
+import { Box, Button, Container, Input, Table, TableBody, TableCell, TableHead, TableRow, TextField } from "@mui/material";
 import { useEffect, useState } from "react";
 import { useNavigate, useParams } from "react-router-dom";
-import swal from "sweetalert";
+//import swal from "sweetalert";
+
 function UsersByEmployee() {
-	function formatDate(m) {
-		new Date(m);
-		const dateString =
-			m.getUTCFullYear() +
-			"/" +
-			("0" + (m.getMonth() + 1)).slice(-2) +
-			"/" +
-			("0" + m.getDate()).slice(-2) +
-			"  " +
-			("0" + m.getHours()).slice(-2) +
-			":" +
-			("0" + m.getMinutes()).slice(-2);
-		return dateString;
-	}
-	const [users, setUser] = useState(null);
-	const [load, setLoad] = useState(false);
-	const [searched, setSearched] = useState("");
-	const navigate = useNavigate();
-	axios.interceptors.request.use(
-		(config) => {
-			const token = localStorage.getItem("user");
+    function formatDate(m) {
+        new Date(m);
+        const dateString =
+            m.getUTCFullYear() +
+            "/" +
+            ("0" + (m.getMonth() + 1)).slice(-2) +
+            "/" +
+            ("0" + m.getDate()).slice(-2) +
+            "  " +
+            ("0" + m.getHours()).slice(-2) +
+            ":" +
+            ("0" + m.getMinutes()).slice(-2);
+        return dateString;
+    }
+    const [users, setUser] = useState(null);
+    const [load, setLoad] = useState(false);
+    const [searched, setSearched] = useState("");
+    const navigate = useNavigate();
+    axios.interceptors.request.use(
+        (config) => {
+            const token = localStorage.getItem("user");
+            if (token) {
+                config.headers["Authorization"] = `Bearer ${token}`;
+            }
+            return config;
+        },
+        (error) => {
+            return Promise.reject(error);
+        }
+    );
+    const { id } = useParams();
+    useEffect(() => {
+        if (load == false) {
+            axios
+                .post(`${process.env.REACT_APP_API_URL}/auth/getCustomerEmployee`, { code: id })
+                .then((res) => {
+                    localStorage.setItem("data", JSON.stringify(res.data.data));
+                    setUser(res.data.data);
+                    setLoad(true);
+                })
+                .then((res) => setLoad(true));
+        }
+    }, [load]);
+    const requestSearch = (searchedVal) => {
+        setSearched(searchedVal);
 
-			if (token) {
-				config.headers["Authorization"] = `Bearer ${token}`;
-			}
+        if (searchedVal !== "") {
+            const filteredRows = JSON.parse(localStorage.getItem("data")).filter((row) => {
+                return row.username.toLowerCase().includes(searchedVal.toLowerCase());
+            });
+            setUser(filteredRows);
+        } else {
+            setUser(JSON.parse(localStorage.getItem("data")));
+        }
+    };
 
-			return config;
-		},
+    return (
+        <>
+            <ThemeProvider theme={theme}>
+                <DashboardLayout>
+                    {
+                        <Box
+                            component="main"
+                            sx={{
+                                flexGrow: 1,
+                                py: 1
+                            }}>
+                            <Container maxWidth={false}>
+                                <div className="container_set">Danh sách user</div>
+                                {users ? (
+                                    <>
+                                        <div className="form_set">
+                                            <Box sx={{ minWidth: 600 }}>
+                                                <TextField
+                                                    value={searched}
+                                                    onChange={(searchVal) => requestSearch(searchVal.target.value)}
+                                                    placeholder="Tìm kiếm"
+                                                    sx={{ marginBottom: "5px", paddingRight: "700px" }}
+                                                />
+                                                <Table>
+                                                    <TableHead>
+                                                        <TableRow>
+                                                            <TableCell sx={{ padding: "10px" }}>ID User</TableCell>
+                                                            <TableCell sx={{ padding: "10px" }}>Username</TableCell>
+                                                            <TableCell sx={{ padding: "10px" }}>Số tiền</TableCell>
+                                                            <TableCell sx={{ padding: "10px" }}>Ngày tạo</TableCell>
+                                                            <TableCell sx={{ padding: "10px" }}>Admin Cộng</TableCell>
 
-		(error) => {
-			return Promise.reject(error);
-		}
-	);
-	const { id } = useParams();
-	useEffect(() => {
-		if (load == false) {
-			axios
-				.post(`https://server.best96tx.com/auth/getCustomerEmployee`, {code: id})
-				.then((res) => {
-					localStorage.setItem("data", JSON.stringify(res.data.data));
-					setUser(res.data.data);
-					setLoad(true);
-				})
-				.then((res) => setLoad(true));
-		}
-	}, [load]);
-	const requestSearch = (searchedVal) => {
-		setSearched(searchedVal);
-
-		if (searchedVal !== "") {
-			const filteredRows = JSON.parse(localStorage.getItem("data")).filter(
-				(row) => {
-					return row.username.toLowerCase().includes(searchedVal.toLowerCase());
-				}
-			);
-			setUser(filteredRows);
-		} else {
-			setUser(JSON.parse(localStorage.getItem("data")));
-		}
-	};
-
-		return (
-			<>
-				<ThemeProvider theme={theme}>
-					<DashboardLayout>
-						{
-							<Box
-								component="main"
-								sx={{
-									flexGrow: 1,
-									py: 1,
-								}}
-							>
-								<Container maxWidth={false}>
-									<div className="container_set">Danh sách user</div>
-									{users?(<>
-										<div className="form_set">
-										<Box sx={{ minWidth: 600 }}>
-											<TextField
-												value={searched}
-												onChange={(searchVal) =>
-													requestSearch(searchVal.target.value)
-												}
-												placeholder="Tìm kiếm"
-												sx={{ marginBottom: "5px", paddingRight: "700px" }}
-											/>
-											<Table>
-												<TableHead>
-													<TableRow>
-														<TableCell sx={{padding:"10px"}}>ID User</TableCell>
-														<TableCell sx={{padding:"10px"}}>Username</TableCell>
-														<TableCell sx={{padding:"10px"}}>Số tiền</TableCell>
-														<TableCell sx={{padding:"10px"}}>Ngày tạo</TableCell>
-														<TableCell sx={{padding:"10px"}}>Admin Cộng</TableCell>
-
-														<TableCell sx={{padding:"10px"}}>Admin Trừ</TableCell>
-														<TableCell sx={{padding:"10px"}}>Admin Thưởng</TableCell>
-														<TableCell sx={{padding:"10px"}}>Tổng Cược</TableCell>
-														{/* <TableCell sx={{padding:"10px"}}>Rút/ Nạp Tiền</TableCell>
+                                                            <TableCell sx={{ padding: "10px" }}>Admin Trừ</TableCell>
+                                                            <TableCell sx={{ padding: "10px" }}>Admin Thưởng</TableCell>
+                                                            <TableCell sx={{ padding: "10px" }}>Tổng Cược</TableCell>
+                                                            {/* <TableCell sx={{padding:"10px"}}>Rút/ Nạp Tiền</TableCell>
 														<TableCell sx={{padding:"10px"}}>Thưởng</TableCell>
 														<TableCell sx={{padding:"10px"}}>Xem thông tin</TableCell> */}
-													</TableRow>
-												</TableHead>
-												<TableBody>
-													{users.map((item) => (
-														<>
-															<TableRow>
-																<TableCell sx={{ fontWeight: "600", padding: "10px" }}>
-																	{item.iduser}
-																</TableCell>
-																<TableCell sx={{ fontWeight: "600", padding: "10px" }}>
-																	{item.username}
-																</TableCell>
-																<TableCell sx={{ fontWeight: "600", padding: "10px" }}>
-																	{item.money.toLocaleString()} VNĐ
-																</TableCell>
-																<TableCell sx={{ fontWeight: "600", padding: "10px" }}>
-																	{formatDate(new Date(item.createdAt))}
-																</TableCell>
-																<TableCell sx={{ fontWeight: "600", padding: "10px" }}>
-																	{item.adminadd.toLocaleString()}
-																</TableCell>
-																<TableCell sx={{ fontWeight: "600", padding: "10px" }}>
-																	{item.admintru.toLocaleString()}
-																</TableCell>
-																<TableCell sx={{ fontWeight: "600", padding: "10px" }}>
-																	{item.adminthuong.toLocaleString()}
-																</TableCell>
-																<TableCell sx={{ fontWeight: "600", padding: "10px" }}>
-																	{item.totalbet.toLocaleString()}
-																</TableCell>
-																{/* <TableCell sx={{ fontWeight: "600", padding: "10px" }}>
+                                                        </TableRow>
+                                                    </TableHead>
+                                                    <TableBody>
+                                                        {users.map((item) => (
+                                                            <>
+                                                                <TableRow>
+                                                                    <TableCell sx={{ fontWeight: "600", padding: "10px" }}>{item.iduser}</TableCell>
+                                                                    <TableCell sx={{ fontWeight: "600", padding: "10px" }}>{item.username}</TableCell>
+                                                                    <TableCell sx={{ fontWeight: "600", padding: "10px" }}>{item.money.toLocaleString()} VNĐ</TableCell>
+                                                                    <TableCell sx={{ fontWeight: "600", padding: "10px" }}>{formatDate(new Date(item.createdAt))}</TableCell>
+                                                                    <TableCell sx={{ fontWeight: "600", padding: "10px" }}>{item.adminadd.toLocaleString()}</TableCell>
+                                                                    <TableCell sx={{ fontWeight: "600", padding: "10px" }}>{item.admintru.toLocaleString()}</TableCell>
+                                                                    <TableCell sx={{ fontWeight: "600", padding: "10px" }}>{item.adminthuong.toLocaleString()}</TableCell>
+                                                                    <TableCell sx={{ fontWeight: "600", padding: "10px" }}>{item.totalbet.toLocaleString()}</TableCell>
+                                                                    {/* <TableCell sx={{ fontWeight: "600", padding: "10px" }}>
 																	<form
 																		onSubmit={(e) => {
 																			e.preventDefault();
@@ -162,7 +128,7 @@ function UsersByEmployee() {
 																			};
 																			axios
 																				.post(
-																					`https://server.best96tx.com/auth/update`,
+																					`${process.env.REACT_APP_API_URL}/auth/update`,
 																					dataForm
 																				)
 																				.then((res) => {
@@ -181,7 +147,7 @@ function UsersByEmployee() {
 																		<Button type="submit">Xác nhận</Button>
 																	</form>
 																</TableCell> */}
-																{/* <TableCell sx={{ fontWeight: "600", padding: "10px" }}>
+                                                                    {/* <TableCell sx={{ fontWeight: "600", padding: "10px" }}>
 																	<form
 																		onSubmit={(e) => {
 																			e.preventDefault();
@@ -191,7 +157,7 @@ function UsersByEmployee() {
 																			};
 																			axios
 																				.post(
-																					`https://server.best96tx.com/auth/adminthuong`,
+																					`${process.env.REACT_APP_API_URL}/auth/adminthuong`,
 																					dataForm
 																				)
 																				.then((res) => {
@@ -210,7 +176,7 @@ function UsersByEmployee() {
 																		<Button type="submit">Xác nhận</Button>
 																	</form>
 																</TableCell> */}
-																{/* <TableCell
+                                                                    {/* <TableCell
 																	sx={{ fontWeight: "600", display: "flex" }}
 																>
 																	{item.isLock == false ? (
@@ -218,7 +184,7 @@ function UsersByEmployee() {
 																			onClick={() => {
 																				axios
 																					.post(
-																						`https://server.best96tx.com/auth/lockkey`,
+																						`${process.env.REACT_APP_API_URL}/auth/lockkey`,
 																						{
 																							id: item._id,
 
@@ -238,7 +204,7 @@ function UsersByEmployee() {
 																			onClick={() => {
 																				axios
 																					.post(
-																						`https://server.best96tx.com/auth/lockkey`,
+																						`${process.env.REACT_APP_API_URL}/auth/lockkey`,
 																						{
 																							id: item._id,
 
@@ -262,20 +228,23 @@ function UsersByEmployee() {
 																		Xem
 																	</Button>
 																</TableCell> */}
-															</TableRow>
-														</>
-													))}
-												</TableBody>
-											</Table>
-										</Box>
-									</div>
-									</>):<div>Hiện chưa có user</div>}
-								</Container>
-							</Box>
-						}
-					</DashboardLayout>
-				</ThemeProvider>
-			</>
-		);
+                                                                </TableRow>
+                                                            </>
+                                                        ))}
+                                                    </TableBody>
+                                                </Table>
+                                            </Box>
+                                        </div>
+                                    </>
+                                ) : (
+                                    <div>Hiện chưa có user</div>
+                                )}
+                            </Container>
+                        </Box>
+                    }
+                </DashboardLayout>
+            </ThemeProvider>
+        </>
+    );
 }
 export default UsersByEmployee;

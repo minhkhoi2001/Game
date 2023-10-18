@@ -1,26 +1,26 @@
-.container_set{
+.container_set {
     font-size: 2rem;
     font-weight: 700;
 }
-.form_set{
+.form_set {
     margin-top: 50px;
     display: flex;
     justify-content: center;
 }
-.result_admin_choose{
+.result_admin_choose {
     margin-top: 20px;
     display: flex;
     justify-content: center;
 }
-.select_keo{
+.select_keo {
     padding: 5px;
-    margin: 3px
+    margin: 3px;
 }
-.btn-submit{
+.btn-submit {
     margin: 5px auto;
-    display:block;
+    display: block;
     padding: 5px;
 }
-.title_result{
+.title_result {
     margin-left: 10px;
 }

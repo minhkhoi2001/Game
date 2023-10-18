@@ -1,10 +1,10 @@
-import React, { useEffect } from 'react';
+import React, { useEffect } from "react";
 
 const GoogleTranslate = () => {
-  useEffect(() => {
-    const googleTranslateScript = document.createElement('script');
-    googleTranslateScript.type = 'text/javascript';
-    googleTranslateScript.innerHTML = `
+    useEffect(() => {
+        const googleTranslateScript = document.createElement("script");
+        googleTranslateScript.type = "text/javascript";
+        googleTranslateScript.innerHTML = `
       function googleTranslateElementInit() {
         new google.translate.TranslateElement({
           pageLanguage: 'vi',
@@ -14,17 +14,17 @@ const GoogleTranslate = () => {
         }, 'google-translate-element');
       }
     `;
-    document.head.appendChild(googleTranslateScript);
+        document.head.appendChild(googleTranslateScript);
 
-    const googleTranslateApiScript = document.createElement('script');
-    googleTranslateApiScript.type = 'text/javascript';
-    googleTranslateApiScript.src =
-      '//translate.google.com/translate_a/element.js?cb=googleTranslateElementInit';
-    googleTranslateApiScript.async = true;
-    document.head.appendChild(googleTranslateApiScript);
-  }, []);
+        const googleTranslateApiScript = document.createElement("script");
+        googleTranslateApiScript.type = "text/javascript";
+        googleTranslateApiScript.src =
+            "//translate.google.com/translate_a/element.js?cb=googleTranslateElementInit";
+        googleTranslateApiScript.async = true;
+        document.head.appendChild(googleTranslateApiScript);
+    }, []);
 
-  return <div id="google-translate-element" />;
+    return <div id="google-translate-element" />;
 };
 
 export default GoogleTranslate;

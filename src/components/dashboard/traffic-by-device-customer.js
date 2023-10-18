@@ -26,14 +26,11 @@ export const TrafficByDeviceCustomer = (props) => {
 	axios.interceptors.request.use(
 		(config) => {
 			const token = localStorage.getItem("user");
-
 			if (token) {
 				config.headers["Authorization"] = `Bearer ${token}`;
 			}
-
 			return config;
 		},
-
 		(error) => {
 			return Promise.reject(error);
 		}
@@ -63,7 +60,7 @@ export const TrafficByDeviceCustomer = (props) => {
 		if(load==true){
 			axios
 			.get(
-				`https://server.best96tx.com/statistic/getbydaycustomer?dateStart=${startDate}&endDate=${endDate}`
+				`${process.env.REACT_APP_API_URL}/statistic/getbydaycustomer?dateStart=${startDate}&endDate=${endDate}`
 			)
 			.then((res) =>
 				setData({

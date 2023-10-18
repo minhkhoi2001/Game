@@ -1,26 +1,25 @@
-import Configuration from "../configService/configService"
+import Configuration from "../configService/configService";
 
-import axios from "axios"
+import axios from "axios";
 
 class BaseService {
-    constructor(props){
+    constructor(props) {
         this.config = Configuration;
         this.endpoint = props.endpoint;
-        this.serviceUrl= `https://server.best96tx.com/${this.endpoint}`
-
-    } 
+        this.serviceUrl = `${process.env.REACT_APP_API_URL}/${this.endpoint}`;
+    }
     handleResponse(response) {
         if (response.status === 401) {
-           return {
-            status: 400,
-            message: "Có lỗi xảy ra"
-           }
+            return {
+                status: 400,
+                message: "Có lỗi xảy ra"
+            };
         }
         return response;
     }
 
     handleError(errorEncode) {
-        let error = { ...errorEncode }
+        let error = { ...errorEncode };
         switch (true) {
             case error.response !== undefined && error.response !== null:
                 // The request was made and the server responded with a status code
@@ -62,13 +61,13 @@ class BaseService {
         // }
 
         if (error.message?.startsWith?.("#")) {
-            const idx = error.message.indexOf("-")
-            if (idx !== -1) error.message = error.message.slice(idx + 1, error.message.length)
+            const idx = error.message.indexOf("-");
+            if (idx !== -1) error.message = error.message.slice(idx + 1, error.message.length);
         } else if (error.message?.startsWith?.("<!DOCTYPE html>")) {
-            error.message = "HTTP error"
+            error.message = "HTTP error";
         }
-        return error
-    } 
+        return error;
+    }
 }
 
 export default BaseService;
