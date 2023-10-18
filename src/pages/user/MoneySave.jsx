@@ -2,7 +2,6 @@ import Footer from "../../components/Footer/Footer";
 import "../user/profile.css";
 import { useEffect, useState } from "react";
 import axios from "axios";
-import { Link, useNavigate } from "react-router-dom";
 import Header from "../components/Header";
 import { useForm } from "react-hook-form";
 import swal from "sweetalert";

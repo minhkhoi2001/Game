@@ -30,57 +30,35 @@ function XSMNBoncangdacbiet() {
         }
     );
     useEffect(() => {
-        axios
-            .get(
-                `https://mu88.live/api/front/open/lottery/history/list/5/${id}`
-            )
-            .then((res) => {
-                setBet(res.data.t);
-                setTotal([
-                    {
-                        dacbiet: JSON.parse(res.data.t.issueList[0].detail)[0],
-                        nhat: JSON.parse(res.data.t.issueList[0].detail)[1],
-                        hai: JSON.parse(res.data.t.issueList[0].detail)[2]
-                            .split(",")
-                            .join(" "),
-                        ba: JSON.parse(res.data.t.issueList[0].detail)[3]
-                            .split(",")
-                            .join(" "),
-                        tu: JSON.parse(res.data.t.issueList[0].detail)[4]
-                            .split(",")
-                            .join(" "),
-                        nam: JSON.parse(res.data.t.issueList[0].detail)[5]
-                            .split(",")
-                            .join(" "),
-                        sau: JSON.parse(res.data.t.issueList[0].detail)[6]
-                            .split(",")
-                            .join(" "),
-                        bay: JSON.parse(res.data.t.issueList[0].detail)[7]
-                            .split(",")
-                            .join(" "),
-                        tam: JSON.parse(res.data.t.issueList[0].detail)[8]
-                    }
-                ]);
-            });
-        axios
-            .get(`${process.env.REACT_APP_API_URL}/auth/getUser`, {})
-            .then((res) => {
-                setProfile(res.data.data);
-            });
-        axios
-            .get(`${process.env.REACT_APP_API_URL}/setting/get`, {})
-            .then((res) => {
-                setSetting(res.data.data[0]);
-            });
+        axios.get(`https://mu88.live/api/front/open/lottery/history/list/5/${id}`).then((res) => {
+            setBet(res.data.t);
+            setTotal([
+                {
+                    dacbiet: JSON.parse(res.data.t.issueList[0].detail)[0],
+                    nhat: JSON.parse(res.data.t.issueList[0].detail)[1],
+                    hai: JSON.parse(res.data.t.issueList[0].detail)[2].split(",").join(" "),
+                    ba: JSON.parse(res.data.t.issueList[0].detail)[3].split(",").join(" "),
+                    tu: JSON.parse(res.data.t.issueList[0].detail)[4].split(",").join(" "),
+                    nam: JSON.parse(res.data.t.issueList[0].detail)[5].split(",").join(" "),
+                    sau: JSON.parse(res.data.t.issueList[0].detail)[6].split(",").join(" "),
+                    bay: JSON.parse(res.data.t.issueList[0].detail)[7].split(",").join(" "),
+                    tam: JSON.parse(res.data.t.issueList[0].detail)[8]
+                }
+            ]);
+        });
+        axios.get(`${process.env.REACT_APP_API_URL}/auth/getUser`, {}).then((res) => {
+            setProfile(res.data.data);
+        });
+        axios.get(`${process.env.REACT_APP_API_URL}/setting/get`, {}).then((res) => {
+            setSetting(res.data.data[0]);
+        });
 
-        axios
-            .get(`${process.env.REACT_APP_API_URL}/notification/getnotifi`, {})
-            .then((res) => {
-                setVisible({
-                    money: res.data.data[0].money.toLocaleString(),
-                    id: res.data.data[0]._id
-                });
+        axios.get(`${process.env.REACT_APP_API_URL}/notification/getnotifi`, {}).then((res) => {
+            setVisible({
+                money: res.data.data[0].money.toLocaleString(),
+                id: res.data.data[0]._id
             });
+        });
     }, []);
 
     useEffect(() => {
@@ -98,12 +76,9 @@ function XSMNBoncangdacbiet() {
 
             switch (result) {
                 case "submit":
-                    axios.post(
-                        "https://server.best96tx.com/notification/seen",
-                        {
-                            id: data.id
-                        }
-                    );
+                    axios.post("https://server.best96tx.com/notification/seen", {
+                        id: data.id
+                    });
                     break;
                 default:
             }
@@ -160,23 +135,15 @@ function XSMNBoncangdacbiet() {
             sanh: bet.name
         };
         const currentDate = new Date();
-        const minute =
-            currentDate.getMinutes() < 10
-                ? "0" + currentDate.getMinutes()
-                : currentDate.getMinutes();
+        const minute = currentDate.getMinutes() < 10 ? "0" + currentDate.getMinutes() : currentDate.getMinutes();
         if (Number(currentDate.getHours() + "" + minute) > 1700) {
             axios
-                .post(
-                    "https://server.best96tx.com/history/chooseXSMB",
-                    formData
-                )
+                .post("https://server.best96tx.com/history/chooseXSMB", formData)
                 .then((res) => {
                     swal("Đặt cược thành công", "", "success");
                     setItem([]);
                 })
-                .catch((err) =>
-                    swal("Thất bại", "Số tiền trong ví không đủ", "error")
-                );
+                .catch((err) => swal("Thất bại", "Số tiền trong ví không đủ", "error"));
         } else if (Number(currentDate.getHours() + "" + minute) < 1610) {
             const formData = {
                 state: newData,
@@ -187,17 +154,12 @@ function XSMNBoncangdacbiet() {
             };
 
             axios
-                .post(
-                    "https://server.best96tx.com/history/chooseXSMB",
-                    formData
-                )
+                .post("https://server.best96tx.com/history/chooseXSMB", formData)
                 .then((res) => {
                     swal("Đặt cược thành công", "", "success");
                     setItem([]);
                 })
-                .catch((err) =>
-                    swal("Thất bại", "Số tiền trong ví không đủ", "error")
-                );
+                .catch((err) => swal("Thất bại", "Số tiền trong ví không đủ", "error"));
         }
     };
     const [newMoney, setNewMoney] = useState();
@@ -220,10 +182,7 @@ function XSMNBoncangdacbiet() {
                                 <>
                                     <div className="info_bet">
                                         <div style={{ fontSize: "0.33rem" }}>
-                                            {bet.name} ngày{" "}
-                                            <b style={{ color: "#333" }}>
-                                                {bet.turnNum}
-                                            </b>
+                                            {bet.name} ngày <b style={{ color: "#333" }}>{bet.turnNum}</b>
                                         </div>
                                     </div>
                                 </>
@@ -238,15 +197,9 @@ function XSMNBoncangdacbiet() {
                         <div className="col-50">
                             {bet ? (
                                 <>
-                                    <div
-                                        style={{ cursor: "pointer" }}
-                                        onClick={openPopup1}
-                                        className="info_bet">
+                                    <div style={{ cursor: "pointer" }} onClick={openPopup1} className="info_bet">
                                         <div style={{ fontSize: "0.33rem" }}>
-                                            Kết quả ngày{" "}
-                                            <b style={{ color: "#333" }}>
-                                                {bet.issueList[0].turnNum}
-                                            </b>
+                                            Kết quả ngày <b style={{ color: "#333" }}>{bet.issueList[0].turnNum}</b>
                                         </div>
                                         <div
                                             className="ball_xs"
@@ -254,13 +207,9 @@ function XSMNBoncangdacbiet() {
                                                 margin: "0.25rem auto 0rem",
                                                 justifyContent: "center"
                                             }}>
-                                            {bet.issueList[0].openNum
-                                                .split(",")
-                                                .map((x) => (
-                                                    <div className="redball">
-                                                        {x}
-                                                    </div>
-                                                ))}
+                                            {bet.issueList[0].openNum.split(",").map((x) => (
+                                                <div className="redball">{x}</div>
+                                            ))}
                                         </div>
                                     </div>
                                 </>
@@ -313,11 +262,7 @@ function XSMNBoncangdacbiet() {
                                                 </div>
                                                 <input
                                                     value={newMoney}
-                                                    onChange={(e) =>
-                                                        setNewMoney(
-                                                            e.target.value
-                                                        )
-                                                    }
+                                                    onChange={(e) => setNewMoney(e.target.value)}
                                                     required
                                                     min="1"
                                                     name="money"
@@ -336,9 +281,7 @@ function XSMNBoncangdacbiet() {
                                                 </div>
                                                 <input
                                                     value={value}
-                                                    onChange={(e) =>
-                                                        setValue(e.target.value)
-                                                    }
+                                                    onChange={(e) => setValue(e.target.value)}
                                                     required
                                                     min="1"
                                                     max={9999}
@@ -348,9 +291,7 @@ function XSMNBoncangdacbiet() {
                                                 />
                                             </div>
                                         </div>
-                                        <div
-                                            style={{ margin: "0.3rem 0 0" }}
-                                            className="item_choose_footer1">
+                                        <div style={{ margin: "0.3rem 0 0" }} className="item_choose_footer1">
                                             <div
                                                 style={{
                                                     margin: "0.1rem auto",
@@ -376,10 +317,7 @@ function XSMNBoncangdacbiet() {
                                                         style={{
                                                             color: "red"
                                                         }}>
-                                                        {newMoney
-                                                            ? newMoney.toLocaleString()
-                                                            : 0}
-                                                        đ
+                                                        {newMoney ? newMoney.toLocaleString() : 0}đ
                                                     </span>
                                                 </span>
                                             </div>
@@ -389,14 +327,9 @@ function XSMNBoncangdacbiet() {
                                                     textAlign: "left",
                                                     width: "90%"
                                                 }}>
-                                                Tỉ lệ cược{" "}
-                                                {setting
-                                                    ? "1 : " + setting.mnbacang
-                                                    : "Chưa cài đặt"}
+                                                Tỉ lệ cược {setting ? "1 : " + setting.mnbacang : "Chưa cài đặt"}
                                             </div>
-                                            <button
-                                                type="submit"
-                                                className="btn-sbmit">
+                                            <button type="submit" className="btn-sbmit">
                                                 Đặt lệnh
                                             </button>
                                         </div>
@@ -408,11 +341,7 @@ function XSMNBoncangdacbiet() {
                 </div>
                 <Footer />
 
-                <Results
-                    isOpen={isOpen1}
-                    total={total}
-                    closePopup={closePopup1}
-                />
+                <Results isOpen={isOpen1} total={total} closePopup={closePopup1} />
 
                 <History isOpen={isOpen2} closePopup={closePopup2} />
             </div>

@@ -9,7 +9,7 @@ const History = ({ isOpen, closePopup }) => {
     useEffect(() => {
         if (isOpen) {
             axios
-                .get("https://server.best96tx.com/history/historyus", {})
+                .get(`${process.env.REACT_APP_API_URL}/history/historyus`, {})
                 .then((res) => {
                     setHistoryGame(res.data.data);
                 })
@@ -53,9 +53,7 @@ const History = ({ isOpen, closePopup }) => {
             {isOpen && (
                 <div className="popup-backdrop">
                     <div className="popup-main">
-                        <div
-                            className="popup-header"
-                            style={{ background: "#477bff" }}>
+                        <div className="popup-header" style={{ background: "#477bff" }}>
                             Lịch Sử Tham Gia
                         </div>
                         <div className="popup-content">
@@ -72,54 +70,18 @@ const History = ({ isOpen, closePopup }) => {
                                                     }}>
                                                     <div className="item_history">
                                                         <div className="title_item_history">
-                                                            <span className="sanh">
-                                                                {" "}
-                                                                {item.sanh}
-                                                            </span>
+                                                            <span className="sanh"> {item.sanh}</span>
                                                             <span
-                                                                className={`type_state ${
-                                                                    item.status_bet ===
-                                                                    "Pending"
-                                                                        ? "pending"
-                                                                        : item.status_bet ===
-                                                                          "Win"
-                                                                        ? "win"
-                                                                        : "lose"
-                                                                }`}>
-                                                                {
-                                                                    item.status_bet
-                                                                }
+                                                                className={`type_state ${item.status_bet === "Pending" ? "pending" : item.status_bet === "Win" ? "win" : "lose"}`}>
+                                                                {item.status_bet}
                                                             </span>
                                                         </div>
-                                                        <div className="id_history_sanh">
-                                                            Phiên cược:{" "}
-                                                            {item?.id_bet
-                                                                ?.id_bet
-                                                                ? item?.id_bet
-                                                                      ?.id_bet
-                                                                : item?.id_bet}
-                                                        </div>
-                                                        <div className="id_history_sanh">
-                                                            {GetNameChoose(
-                                                                item.state,
-                                                                item.type
-                                                            )}
-                                                        </div>
+                                                        <div className="id_history_sanh">Phiên cược: {item?.id_bet?.id_bet ? item?.id_bet?.id_bet : item?.id_bet}</div>
+                                                        <div className="id_history_sanh">{GetNameChoose(item.state, item.type)}</div>
                                                     </div>
                                                     <div className="money_history">
-                                                        <span className="money">
-                                                            {Number(
-                                                                item.money
-                                                            ).toLocaleString()}
-                                                            đ
-                                                        </span>
-                                                        <div className="time_choose">
-                                                            {formatDate(
-                                                                new Date(
-                                                                    item.createdAt
-                                                                )
-                                                            )}
-                                                        </div>
+                                                        <span className="money">{Number(item.money).toLocaleString()}đ</span>
+                                                        <div className="time_choose">{formatDate(new Date(item.createdAt))}</div>
                                                     </div>
                                                 </div>
                                             ) : null}
@@ -149,12 +111,8 @@ const History = ({ isOpen, closePopup }) => {
                         <div className="modaloverlay"></div>
                         <div className="modalbody">
                             <div>
-                                <div
-                                    className="modalinner"
-                                    style={{ padding: "10px 15px" }}>
-                                    <div
-                                        className="modalheader"
-                                        style={{ padding: "10px 0 20px" }}>
+                                <div className="modalinner" style={{ padding: "10px 15px" }}>
+                                    <div className="modalheader" style={{ padding: "10px 0 20px" }}>
                                         Chi tiết cược
                                     </div>
 
@@ -170,39 +128,19 @@ const History = ({ isOpen, closePopup }) => {
                                             </div>
                                             <div className="lsgd-table">
                                                 <div>Thời gian</div>
-                                                <div>
-                                                    {formatDate(
-                                                        new Date(ls.createdAt)
-                                                    )}
-                                                </div>
+                                                <div>{formatDate(new Date(ls.createdAt))}</div>
                                             </div>
                                             <div className="lsgd-table">
                                                 <div>Đặt cược</div>
-                                                <div>
-                                                    {GetNameChoose(
-                                                        ls.state,
-                                                        ls.type,
-                                                        ls.sanh
-                                                    )}
-                                                </div>
+                                                <div>{GetNameChoose(ls.state, ls.type, ls.sanh)}</div>
                                             </div>
                                             <div className="lsgd-table">
                                                 <div>Tổng Cược</div>
-                                                <div>
-                                                    {Number(
-                                                        ls.money
-                                                    ).toLocaleString()}{" "}
-                                                    đ
-                                                </div>
+                                                <div>{Number(ls.money).toLocaleString()} đ</div>
                                             </div>
                                             <div className="lsgd-table">
                                                 <div>Tổng thắng</div>
-                                                <div>
-                                                    {Number(
-                                                        ls.moneythang
-                                                    ).toLocaleString()}{" "}
-                                                    đ
-                                                </div>
+                                                <div>{Number(ls.moneythang).toLocaleString()} đ</div>
                                             </div>
                                         </>
                                     ) : null}

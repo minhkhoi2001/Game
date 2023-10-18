@@ -39,17 +39,11 @@ const Countdown = ({ targetTime }) => {
     return (
         <>
             <div className="number">
-                <div className="item">
-                    {countdown.hours.toString().padStart(2, "0")}
-                </div>
+                <div className="item">{countdown.hours.toString().padStart(2, "0")}</div>
                 <div className="item">:</div>
-                <div className="item">
-                    {countdown.minutes.toString().padStart(2, "0")}
-                </div>
+                <div className="item">{countdown.minutes.toString().padStart(2, "0")}</div>
                 <div className="item">:</div>
-                <div className="item">
-                    {countdown.seconds.toString().padStart(2, "0")}
-                </div>
+                <div className="item">{countdown.seconds.toString().padStart(2, "0")}</div>
             </div>
         </>
     );
@@ -61,11 +55,7 @@ const CountDown = ({ date }) => {
     const currentMinute = currentTime.getMinutes();
 
     let targetTime1, targetTime2;
-    if (
-        currentHour < 17 ||
-        (currentHour === 17 && currentMinute < 10) ||
-        currentHour >= 18
-    ) {
+    if (currentHour < 17 || (currentHour === 17 && currentMinute < 10) || currentHour >= 18) {
         if (currentHour < 17 || (currentHour === 17 && currentMinute < 10)) {
             targetTime1 = new Date();
             targetTime1.setHours(17, 10, 0, 0);

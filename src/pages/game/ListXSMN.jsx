@@ -23,25 +23,25 @@ function ListXSMN() {
     };
     useEffect(() => {
         if (date == 0) {
-            axios.get("https://mu88.live/api/front/open/lottery/recent/list/dalat,kigi,tigi").then((res) => setData(res.data));
+            axios.get(`https://mu88.live/api/front/open/lottery/recent/list/dalat,kigi,tigi`).then((res) => setData(res.data));
         }
         if (date == 1) {
-            axios.get("https://mu88.live/api/front/open/lottery/recent/list/cama,doth,tphc").then((res) => setData(res.data));
+            axios.get(`https://mu88.live/api/front/open/lottery/recent/list/cama,doth,tphc`).then((res) => setData(res.data));
         }
         if (date == 2) {
-            axios.get("https://mu88.live/api/front/open/lottery/recent/list/bali,vuta").then((res) => setData(res.data));
+            axios.get(`https://mu88.live/api/front/open/lottery/recent/list/bali,vuta`).then((res) => setData(res.data));
         }
         if (date == 3) {
-            axios.get("https://mu88.live/api/front/open/lottery/recent/list/cath,dona,sotr").then((res) => setData(res.data));
+            axios.get(`https://mu88.live/api/front/open/lottery/recent/list/cath,dona,sotr`).then((res) => setData(res.data));
         }
         if (date == 4) {
-            axios.get("https://mu88.live/api/front/open/lottery/recent/list/angi,bith,tani").then((res) => setData(res.data));
+            axios.get(`https://mu88.live/api/front/open/lottery/recent/list/angi,bith,tani`).then((res) => setData(res.data));
         }
         if (date == 5) {
-            axios.get("https://mu88.live/api/front/open/lottery/recent/list/bidu,trvi").then((res) => setData(res.data));
+            axios.get(`https://mu88.live/api/front/open/lottery/recent/list/bidu,trvi`).then((res) => setData(res.data));
         }
         if (date == 6) {
-            axios.get("https://mu88.live/api/front/open/lottery/recent/list/biph,hagi,loan,tphc").then((res) => setData(res.data));
+            axios.get(`https://mu88.live/api/front/open/lottery/recent/list/biph,hagi,loan,tphc`).then((res) => setData(res.data));
         }
     }, [date]);
     return (

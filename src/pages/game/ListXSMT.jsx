@@ -24,25 +24,25 @@ function ListXSMT() {
     };
     useEffect(() => {
         if (date == 0) {
-            axios.get("https://mu88.live/api/front/open/lottery/recent/list/khho,kotu,thth").then((res) => setData(res.data));
+            axios.get(`https://mu88.live/api/front/open/lottery/recent/list/khho,kotu,thth`).then((res) => setData(res.data));
         }
         if (date == 1) {
-            axios.get("https://mu88.live/api/front/open/lottery/recent/list/phye,thth").then((res) => setData(res.data));
+            axios.get(`https://mu88.live/api/front/open/lottery/recent/list/phye,thth`).then((res) => setData(res.data));
         }
         if (date == 2) {
-            axios.get("https://mu88.live/api/front/open/lottery/recent/list/dalak,quna").then((res) => setData(res.data));
+            axios.get(`https://mu88.live/api/front/open/lottery/recent/list/dalak,quna`).then((res) => setData(res.data));
         }
         if (date == 3) {
-            axios.get("https://mu88.live/api/front/open/lottery/recent/list/dana,khho").then((res) => setData(res.data));
+            axios.get(`https://mu88.live/api/front/open/lottery/recent/list/dana,khho`).then((res) => setData(res.data));
         }
         if (date == 4) {
-            axios.get("https://mu88.live/api/front/open/lottery/recent/list/bidi,qubi,qutr").then((res) => setData(res.data));
+            axios.get(`https://mu88.live/api/front/open/lottery/recent/list/bidi,qubi,qutr`).then((res) => setData(res.data));
         }
         if (date == 5) {
-            axios.get("https://mu88.live/api/front/open/lottery/recent/list/gila,nith").then((res) => setData(res.data));
+            axios.get(`https://mu88.live/api/front/open/lottery/recent/list/gila,nith`).then((res) => setData(res.data));
         }
         if (date == 6) {
-            axios.get("https://mu88.live/api/front/open/lottery/recent/list/dana,dano,qung").then((res) => setData(res.data));
+            axios.get(`https://mu88.live/api/front/open/lottery/recent/list/dana,dano,qung`).then((res) => setData(res.data));
         }
     }, [date]);
     return (

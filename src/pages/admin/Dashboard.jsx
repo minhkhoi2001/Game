@@ -32,7 +32,7 @@ function Dashboard() {
     const [employee, setEmployee] = useState();
     const [users, setUsers] = useState(null);
     useEffect(() => {
-        axios.get("https://server.best96tx.com/statistic/getalladmin").then((res) => setData(res.data.data));
+        axios.get(`https://server.best96tx.com/statistic/getalladmin`).then((res) => setData(res.data.data));
         axios.get(`${process.env.REACT_APP_API_URL}/auth/getall`, {}).then((res) => {
             localStorage.setItem("data", JSON.stringify(res.data.data));
             setUsers(res.data.data);
